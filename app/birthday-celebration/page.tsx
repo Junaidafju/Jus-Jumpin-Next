@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SiteHeader } from "../components/site-header";
+import { AnimatedHeader } from "../components/AnimatedHeader";
 
 export const metadata: Metadata = {
   title: "Birthday Celebration at Jus Jumpin | Kids Birthday Party Venues",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function BirthdayCelebrationPage() {
   return (
     <main className="min-h-screen bg-black text-slate-50">
-      <SiteHeader />
+      <AnimatedHeader />
       <section className="jj-container py-16">
         <h1 className="mb-4 text-3xl font-semibold tracking-tight">
           Birthday Celebration
