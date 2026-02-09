@@ -77,14 +77,14 @@ export default function AboutHero() {
                                 scale: [0.8, 1.1, 0.9]
                             }}
                             transition={{
-                                duration: 18 + Math.random() * 12,
+                                duration: 18 + (i * 2) % 12,
                                 repeat: Infinity,
                                 delay: i * 1.8,
                                 ease: "easeInOut"
                             }}
                             style={{
-                                left: `${Math.random() * 100}%`,
-                                top: `${Math.random() * 140 - 40}%`,
+                                left: `${(i * 15 + 10) % 90}%`,
+                                top: `${(i * 25 + 5) % 80 - 10}%`,
                             }}
                         >
                             {['⭐', '❤️', '🌈', '⚽', '🎈', '✨', '🫧', '🍭'][i % 8]}
@@ -146,7 +146,7 @@ export default function AboutHero() {
                                     initial="hidden"
                                     animate="visible"
                                 >
-                                    adventures
+                                    Adventures
                                 </motion.span>
                             </motion.h1>
 
@@ -236,9 +236,6 @@ export default function AboutHero() {
             </div>
 
             {/* Font import */}
-            <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap');
-      `}</style>
         </section>
     );
 }

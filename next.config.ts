@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'media.istockphoto.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'static.vecteezy.com',
+      },
       // Add more domains as needed
     ],
 
