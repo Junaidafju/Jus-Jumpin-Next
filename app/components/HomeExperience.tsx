@@ -4,6 +4,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import ImageSequence from "./ImageSequence";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,153 +18,149 @@ export default function HomeExperience() {
     const ctaRef = useRef<HTMLAnchorElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Animate elements on scroll
-            gsap.fromTo(
-                headingRef.current,
-                { y: 50, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: headingRef.current,
-                        start: "top 80%",
-                        end: "top 60%",
-                        scrub: 1,
-                    }
+    useGSAP(() => {
+        // Animate elements on scroll
+        gsap.fromTo(
+            headingRef.current,
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: headingRef.current,
+                    start: "top 80%",
+                    end: "top 60%",
+                    scrub: 1,
                 }
-            );
+            }
+        );
 
-            gsap.fromTo(
-                subheadingRef.current,
-                { y: 30, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    delay: 0.2,
-                    scrollTrigger: {
-                        trigger: subheadingRef.current,
-                        start: "top 80%",
-                        end: "top 60%",
-                        scrub: 1,
-                    }
+        gsap.fromTo(
+            subheadingRef.current,
+            { y: 30, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: subheadingRef.current,
+                    start: "top 80%",
+                    end: "top 60%",
+                    scrub: 1,
                 }
-            );
+            }
+        );
 
-            // Paragraph animations with staggered effect
-            const paragraphs = [paragraph1Ref.current, paragraph2Ref.current];
-            gsap.fromTo(
-                paragraphs,
-                { y: 30, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.2,
-                    stagger: 0.3,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: paragraph1Ref.current,
-                        start: "top 80%",
-                        end: "top 60%",
-                        scrub: 1,
-                    }
+        // Paragraph animations with staggered effect
+        const paragraphs = [paragraph1Ref.current, paragraph2Ref.current];
+        gsap.fromTo(
+            paragraphs,
+            { y: 30, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                stagger: 0.3,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: paragraph1Ref.current,
+                    start: "top 80%",
+                    end: "top 60%",
+                    scrub: 1,
                 }
-            );
+            }
+        );
 
-            // Quote animation with emphasis
-            gsap.fromTo(
-                quoteRef.current,
-                { scale: 0.9, opacity: 0 },
-                {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 1,
-                    ease: "back.out(1.7)",
-                    scrollTrigger: {
-                        trigger: quoteRef.current,
-                        start: "top 85%",
-                        end: "top 60%",
-                        scrub: 1,
-                    }
+        // Quote animation with emphasis
+        gsap.fromTo(
+            quoteRef.current,
+            { scale: 0.9, opacity: 0 },
+            {
+                scale: 1,
+                opacity: 1,
+                duration: 1,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                    trigger: quoteRef.current,
+                    start: "top 85%",
+                    end: "top 60%",
+                    scrub: 1,
                 }
-            );
+            }
+        );
 
-            // CTA button animation with bounce
-            gsap.fromTo(
-                ctaRef.current,
-                { y: 20, opacity: 0, scale: 0.8 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    scale: 1,
-                    duration: 1,
-                    ease: "elastic.out(1, 0.5)",
-                    scrollTrigger: {
-                        trigger: ctaRef.current,
-                        start: "top 90%",
-                        end: "top 70%",
-                        scrub: 1,
-                    },
-                    onComplete: () => {
-                        // Add hover animation
-                        if (ctaRef.current) {
-                            ctaRef.current.addEventListener("mouseenter", () => {
-                                gsap.to(ctaRef.current, {
-                                    scale: 1.05,
-                                    duration: 0.3,
-                                    ease: "power2.out",
-                                });
+        // CTA button animation with bounce
+        gsap.fromTo(
+            ctaRef.current,
+            { y: 20, opacity: 0, scale: 0.8 },
+            {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "elastic.out(1, 0.5)",
+                scrollTrigger: {
+                    trigger: ctaRef.current,
+                    start: "top 90%",
+                    end: "top 70%",
+                    scrub: 1,
+                },
+                onComplete: () => {
+                    // Add hover animation
+                    if (ctaRef.current) {
+                        ctaRef.current.addEventListener("mouseenter", () => {
+                            gsap.to(ctaRef.current, {
+                                scale: 1.05,
+                                duration: 0.3,
+                                ease: "power2.out",
                             });
-                            ctaRef.current.addEventListener("mouseleave", () => {
-                                gsap.to(ctaRef.current, {
-                                    scale: 1,
-                                    duration: 0.3,
-                                    ease: "power2.out",
-                                });
+                        });
+                        ctaRef.current.addEventListener("mouseleave", () => {
+                            gsap.to(ctaRef.current, {
+                                scale: 1,
+                                duration: 0.3,
+                                ease: "power2.out",
                             });
-                        }
+                        });
                     }
                 }
-            );
+            }
+        );
 
-            // Image/illustration animation
-            gsap.fromTo(
-                imageRef.current,
-                { x: -100, opacity: 0, rotateY: -20 },
-                {
-                    x: 0,
-                    opacity: 1,
-                    rotateY: 0,
-                    duration: 1.5,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: imageRef.current,
-                        start: "top 80%",
-                        end: "top 50%",
-                        scrub: 1,
-                    }
+        // Image/illustration animation
+        gsap.fromTo(
+            imageRef.current,
+            { x: -100, opacity: 0, rotateY: -20 },
+            {
+                x: 0,
+                opacity: 1,
+                rotateY: 0,
+                duration: 1.5,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: imageRef.current,
+                    start: "top 80%",
+                    end: "top 50%",
+                    scrub: 1,
                 }
-            );
+            }
+        );
 
-            // Floating animation for decorative elements
-            const floatingElements = gsap.utils.toArray(".floating-element");
-            floatingElements.forEach((el: any, i) => {
-                gsap.to(el, {
-                    y: i % 2 === 0 ? -10 : 10,
-                    duration: 2 + i * 0.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: i * 0.2,
-                });
+        // Floating animation for decorative elements
+        const floatingElements = gsap.utils.toArray(".floating-element");
+        floatingElements.forEach((el: any, i) => {
+            gsap.to(el, {
+                y: i % 2 === 0 ? -10 : 10,
+                duration: 2 + i * 0.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: i * 0.2,
             });
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
+        });
+    }, { scope: sectionRef });
 
     return (
         <section

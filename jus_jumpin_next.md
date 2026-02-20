@@ -1002,12 +1002,35 @@ This approach ensures:
  |--activities
  |   |--page.tsx
  |--birthday-celebration
+ |   |--BirthdayClient.tsx
  |   |--page.tsx
  |--blogs
  |   |--page.tsx
  |--components
+ |   |--about
+ |       |--FounderSection.tsx
+ |       |--AboutHero.tsx
+ |       |--Marquee.tsx
+ |       |--MissionVission.tsx
+ |       |--ValuesSection.tsx
+ |       |--WelcomeSection.tsx
+ |   |--birthday-celebration
+ |       |--BirthdayHero.tsx
+ |       |--BirthdayInro.tsx
+ |       |--BirthdayVideoSection.tsx
+ |       |--ConfettiLanding.tsx
+ |       |--CTASection.tsx
+ |       |--FeatureComparisonTable.tsx
+ |       |--MomentsGallery.tsx
+ |       |--WhyCelebrate.tsx
+ |       |--TestimonialSection.tsx
  |   |--AnimatedHeader.tsx
+ |   |--AnimationWrapper.tsx
+ |   |--Footer.tsx
+ |   |--FooterWrapper.tsx
  |   |--HomeHero3D.tsx
+ |   |--HomeExperinece.tsx
+ |   |--ImageSequence.tsx
  |--contacts
  |   |--page.tsx
  |--school-trips

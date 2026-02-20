@@ -42,7 +42,8 @@ const VALUES = [
 
 const ValuesSection = () => {
     const containerRef = useRef<HTMLElement>(null);
-    const separatorRef = useRef<HTMLDivElement>(null);
+    const topDividerRef = useRef<SVGSVGElement>(null);
+    const wavePathRef = useRef<SVGPathElement>(null);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -54,6 +55,37 @@ const ValuesSection = () => {
 
     useGSAP(() => {
         if (!containerRef.current) return;
+
+        // Animated top divider wave - only on desktop
+        if (!isMobile && topDividerRef.current && wavePathRef.current) {
+            // Continuous wave animation
+            gsap.to(topDividerRef.current, {
+                x: -100,
+                duration: 25,
+                repeat: -1,
+                ease: "linear",
+            });
+
+            // Wave path reveal animation
+            gsap.fromTo(wavePathRef.current,
+                {
+                    opacity: 0,
+                    scaleY: 0.8,
+                    transformOrigin: "center bottom"
+                },
+                {
+                    opacity: 1,
+                    scaleY: 1,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top 95%",
+                        toggleActions: "play none none reverse",
+                    }
+                }
+            );
+        }
 
         // Section Title Animation
         gsap.fromTo(".values-title",
@@ -103,27 +135,6 @@ const ValuesSection = () => {
             );
         });
 
-        // Separator animation
-        if (separatorRef.current) {
-            gsap.fromTo(separatorRef.current,
-                {
-                    scaleY: 0,
-                    opacity: 0
-                },
-                {
-                    scaleY: 1,
-                    opacity: 1,
-                    duration: 1.5,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: separatorRef.current,
-                        start: "top 90%",
-                        toggleActions: "play none none reverse",
-                    }
-                }
-            );
-        }
-
         // Floating background elements
         if (!isMobile) {
             gsap.to('.floating-value-element', {
@@ -142,28 +153,84 @@ const ValuesSection = () => {
 
     return (
         <>
-            {/* Top Separator - Waves */}
-            <div className="relative w-full h-32 md:h-40 pointer-events-none">
-                <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 120" preserveAspectRatio="none">
-                    <defs>
-                        <linearGradient id="valuesTopGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#ffffff" />
-                            <stop offset="50%" stopColor="#f0f9ff" />
-                            <stop offset="100%" stopColor="#dcfce7" />
-                        </linearGradient>
-                    </defs>
-                    <path
-                        fill="url(#valuesTopGradient)"
-                        fillOpacity="0.95"
-                        d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,120L0,120Z"
-                    />
-                </svg>
+            {/* Animated Top Divider - Mobile responsive */}
+            <div className="relative w-full h-24 md:h-32 lg:h-40 pointer-events-none overflow-hidden">
+                {/* For mobile: Simple solid divider with overflow prevention */}
+                {isMobile ? (
+                    <div className="absolute inset-0 w-screen bg-gradient-to-br from-emerald-50 to-teal-50">
+                        <div className="relative w-full h-full">
+                            {/* Mobile wave SVG - simplified */}
+                            <svg
+                                className="absolute bottom-0 left-0 w-full h-full"
+                                viewBox="0 0 375 100"
+                                preserveAspectRatio="none"
+                                aria-hidden="true"
+                            >
+                                <defs>
+                                    <linearGradient id="mobileTopGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="#ffffff" />
+                                        <stop offset="100%" stopColor="#dcfce7" />
+                                    </linearGradient>
+                                </defs>
+                                <path
+                                    fill="url(#mobileTopGradient)"
+                                    fillOpacity="0.98"
+                                    d="M0,20C60,40,120,60,180,70C240,80,300,70,360,60C420,50,480,30,540,20C600,10,660,0,720,0C780,0,840,0,900,0C960,0,1020,0,1080,0C1140,0,1200,0,1260,0C1320,0,1380,0,1440,0L1440,100L0,100Z"
+                                    transform="translate(0, 0)"
+                                />
+                            </svg>
+
+                            {/* Mobile decorative dots */}
+                            <div className="absolute top-4 left-1/4 w-3 h-3 rounded-full bg-emerald-300/40 animate-pulse" />
+                            <div className="absolute top-8 right-1/3 w-2 h-2 rounded-full bg-amber-300/40 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                            <div className="absolute top-12 left-2/3 w-4 h-4 rounded-full bg-sky-300/40 animate-pulse" style={{ animationDelay: '1s' }} />
+                        </div>
+                    </div>
+                ) : (
+                    // Desktop: Animated SVG
+                    <svg
+                        ref={topDividerRef}
+                        className="absolute top-0 left-0 w-[120%] h-full"
+                        viewBox="0 0 1440 120"
+                        preserveAspectRatio="none"
+                        aria-hidden="true"
+                    >
+                        <defs>
+                            <linearGradient id="valuesTopGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#ffffff" />
+                                <stop offset="30%" stopColor="#f0f9ff" />
+                                <stop offset="70%" stopColor="#dcfce7" />
+                                <stop offset="100%" stopColor="#bbf7d0" />
+                            </linearGradient>
+                            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#10b981" floodOpacity="0.2" />
+                            </filter>
+                        </defs>
+
+                        {/* Main wave path */}
+                        <path
+                            ref={wavePathRef}
+                            fill="url(#valuesTopGradient)"
+                            fillOpacity="0.98"
+                            filter="url(#shadow)"
+                            d="M0,32L60,53.3C120,75,240,117,360,128C480,139,600,117,720,96C840,75,960,53,1080,48C1200,43,1320,53,1380,58.7L1440,64L1440,120L0,120Z"
+                        />
+
+                        {/* Secondary wave for depth */}
+                        <path
+                            className="values-wave"
+                            fill="url(#valuesTopGradient)"
+                            fillOpacity="0.7"
+                            d="M0,48L60,69.3C120,91,240,133,360,133.3C480,133,600,91,720,85.3C840,80,960,112,1080,117.3C1200,123,1320,101,1380,90.7L1440,80L1440,120L0,120Z"
+                        />
+                    </svg>
+                )}
             </div>
 
             {/* Main Section */}
             <section
                 ref={containerRef}
-                className="relative py-20 md:py-32 bg-gradient-to-b from-emerald-50/30 via-teal-50/20 to-green-50/10 overflow-hidden"
+                className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-emerald-50/30 via-teal-50/20 to-green-50/10"
                 aria-labelledby="values-heading"
             >
                 {/* Background Elements */}
@@ -193,148 +260,101 @@ const ValuesSection = () => {
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header */}
-                    <div className="text-center mb-16 md:mb-24">
-                        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 mb-8">
-                            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 animate-pulse" />
-                            <span className="font-bold text-emerald-700 text-lg">OUR GUIDING PRINCIPLES</span>
-                            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 animate-pulse" />
+                    <div className="text-center mb-12 md:mb-20 lg:mb-24">
+                        <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 mb-6 md:mb-8">
+                            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 animate-pulse" />
+                            <span className="font-bold text-emerald-700 text-sm md:text-base lg:text-lg">OUR GUIDING PRINCIPLES</span>
+                            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 animate-pulse" />
                         </div>
 
                         <h2
                             id="values-heading"
-                            className="values-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-6"
+                            className="values-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-slate-900 mb-4 md:mb-6"
                         >
                             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
                                 Our Core
                             </span>
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 mt-2">
+                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 mt-1 md:mt-2">
                                 Values
                             </span>
                         </h2>
 
-                        <p className="values-title text-xl md:text-2xl text-slate-600/90 max-w-3xl mx-auto leading-relaxed">
+                        <p className="values-title text-lg sm:text-xl md:text-2xl text-slate-600/90 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
                             The principles that guide every decision, every interaction, and every moment of joy we create
                         </p>
                     </div>
 
                     {/* Values Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
                         {VALUES.map((value, index) => (
                             <div
                                 key={index}
                                 className="value-card group relative"
                             >
-                                <div className={`relative h-full rounded-3xl ${value.bgColor} backdrop-blur-sm border-2 border-white/50 shadow-xl shadow-emerald-100/20 hover:shadow-2xl transition-all duration-500 overflow-hidden`}>
+                                <div className={`relative h-full rounded-2xl sm:rounded-3xl ${value.bgColor} backdrop-blur-sm border-2 border-white/50 shadow-lg sm:shadow-xl md:shadow-2xl shadow-emerald-100/20 hover:shadow-2xl transition-all duration-500 overflow-hidden`}>
                                     {/* Gradient overlay on hover */}
                                     <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
 
                                     {/* Content */}
-                                    <div className="relative p-8">
+                                    <div className="relative p-6 sm:p-8">
                                         {/* Icon/Title */}
-                                        <div className="flex items-center gap-4 mb-6">
-                                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${value.gradient} flex items-center justify-center shadow-lg`}>
-                                                <div className="text-2xl text-white">
+                                        <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                                            <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br ${value.gradient} flex items-center justify-center shadow-md sm:shadow-lg`}>
+                                                <div className="text-xl sm:text-2xl text-white">
                                                     {value.title.split(' ')[value.title.split(' ').length - 1]}
                                                 </div>
                                             </div>
-                                            <h3 className="text-2xl md:text-3xl font-bold text-slate-900" style={{ fontFamily: "'Fredoka', system-ui, sans-serif" }}>
+                                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900" style={{ fontFamily: "'Fredoka', system-ui, sans-serif" }}>
                                                 {value.title.split(' ').slice(0, -1).join(' ')}
                                             </h3>
                                         </div>
 
                                         {/* Description */}
-                                        <p className="text-lg text-slate-700/90 leading-relaxed">
+                                        <p className="text-base sm:text-lg text-slate-700/90 leading-relaxed">
                                             {value.desc}
                                         </p>
 
                                         {/* Gradient underline */}
-                                        <div className="mt-8 pt-6 border-t border-white/50">
-                                            <div className={`w-20 h-1 bg-gradient-to-r ${value.gradient} rounded-full transition-all duration-300 group-hover:w-28`} />
+                                        <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/50">
+                                            <div className={`w-16 sm:w-20 h-1 bg-gradient-to-r ${value.gradient} rounded-full transition-all duration-300 group-hover:w-24 sm:group-hover:w-28`} />
                                         </div>
                                     </div>
 
                                     {/* Corner accent */}
-                                    <div className="absolute top-0 right-0 w-12 h-12 border-t-4 border-r-4 rounded-tr-3xl border-emerald-300/50" />
+                                    <div className="absolute top-0 right-0 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 border-t-3 sm:border-t-4 border-r-3 sm:border-r-4 rounded-tr-2xl sm:rounded-tr-3xl border-emerald-300/50" />
                                 </div>
                             </div>
                         ))}
                     </div>
 
-                    {/* Center Separator */}
-                    <div ref={separatorRef} className="relative my-16 md:my-24">
-                        <div className="flex items-center justify-center">
-                            <div className="relative w-full max-w-md mx-auto">
-                                {/* Dotted line */}
-                                <div className="absolute left-0 right-0 top-1/2 h-px border-t-2 border-dashed border-emerald-200/50 transform -translate-y-1/2" />
-
-                                {/* Center emblem */}
-                                <div className="relative mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-white to-emerald-50 border-4 border-white shadow-xl flex items-center justify-center">
-                                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-500/20 animate-pulse" />
-                                    <div className="text-3xl text-emerald-600">✨</div>
-
-                                    {/* Rotating ring */}
-                                    <div className="absolute -inset-2 rounded-full border-4 border-transparent border-t-emerald-400 border-r-teal-400 opacity-0 group-hover:opacity-100 animate-spin" style={{ animationDuration: '10s' }} />
-                                </div>
-
-                                {/* Side circles */}
-                                <div className="absolute left-0 top-1/2 w-10 h-10 rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 border-2 border-white shadow-lg transform -translate-y-1/2 flex items-center justify-center">
-                                    <div className="w-4 h-4 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400" />
-                                </div>
-                                <div className="absolute right-0 top-1/2 w-10 h-10 rounded-full bg-gradient-to-r from-amber-100 to-yellow-100 border-2 border-white shadow-lg transform -translate-y-1/2 flex items-center justify-center">
-                                    <div className="w-4 h-4 rounded-full bg-gradient-to-r from-amber-400 to-yellow-400" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Closing Statement */}
-                    <div className="max-w-3xl mx-auto text-center">
-                        <div className="relative p-8 md:p-12 rounded-3xl bg-gradient-to-br from-white/80 to-emerald-50/30 backdrop-blur-sm border-2 border-white/50 shadow-xl shadow-emerald-100/20">
-                            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                                <div className="px-6 py-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500">
-                                    <span className="text-white font-bold">THE HEART OF OUR CULTURE</span>
+                    <div className="mt-12 md:mt-20 lg:mt-28 text-center">
+                        <div className="relative p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white/80 to-emerald-50/30 backdrop-blur-sm border-2 border-white/50 shadow-lg sm:shadow-xl lg:shadow-2xl shadow-emerald-100/20">
+                            <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2">
+                                <div className="px-4 py-1 sm:px-6 sm:py-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500">
+                                    <span className="text-white font-bold text-sm sm:text-base">THE HEART OF OUR CULTURE</span>
                                 </div>
                             </div>
 
-                            <div className="text-5xl text-emerald-200 mb-6">"</div>
+                            <div className="text-4xl sm:text-5xl text-emerald-200 mb-4 sm:mb-6">"</div>
 
-                            <blockquote className="text-2xl md:text-3xl italic text-slate-700/90 leading-relaxed font-light mb-8">
+                            <blockquote className="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-slate-700/90 leading-relaxed font-light mb-6 sm:mb-8">
                                 Our values aren't just words on a wall — they're the living, breathing essence of every interaction,
                                 every smile, and every unforgettable memory we create together.
                             </blockquote>
 
-                            <div className="flex items-center justify-center gap-6 mt-8 pt-8 border-t border-emerald-100">
-                                <div className="w-10 h-1 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full" />
-                                <div className="text-3xl text-amber-500">💫</div>
-                                <div className="w-10 h-1 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full" />
+                            <div className="flex items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 pt-4 sm:pt-6 md:pt-8 border-t border-emerald-100">
+                                <div className="w-8 sm:w-10 h-1 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full" />
+                                <div className="text-2xl sm:text-3xl text-amber-500">💫</div>
+                                <div className="w-8 sm:w-10 h-1 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full" />
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Bottom Separator - Curved */}
-            <div className="relative w-full h-32 md:h-40 pointer-events-none">
-                <svg className="absolute bottom-0 left-0 w-full h-full" viewBox="0 0 1440 120" preserveAspectRatio="none">
-                    <defs>
-                        <linearGradient id="valuesBottomGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#dcfce7" />
-                            <stop offset="50%" stopColor="#f0f9ff" />
-                            <stop offset="100%" stopColor="#ffffff" />
-                        </linearGradient>
-                    </defs>
-                    <path
-                        fill="url(#valuesBottomGradient)"
-                        fillOpacity="0.95"
-                        d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,120L0,120Z"
-                    />
-                </svg>
-            </div>
-
             {/* Font import */}
-            <style jsx global>{`
-                @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&display=swap');
-            `}</style>
+
         </>
     );
 };

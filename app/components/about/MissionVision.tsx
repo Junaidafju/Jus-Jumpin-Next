@@ -346,12 +346,7 @@ const MissionVision = () => {
             </div>
 
             {/* Font import */}
-            <style jsx global>{`
-                @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&display=swap');
-                body {
-                    font-family: 'Fredoka', system-ui, sans-serif;
-                }
-            `}</style>
+
         </section>
     );
 };

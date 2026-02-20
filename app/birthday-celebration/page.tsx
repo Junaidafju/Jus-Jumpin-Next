@@ -1,28 +1,13 @@
-import type { Metadata } from "next";
-import { AnimatedHeader } from "../components/AnimatedHeader";
+import BirthdayClient from './BirthdayClient';
 
-export const metadata: Metadata = {
-  title: "Birthday Celebration at Jus Jumpin | Kids Birthday Party Venues",
-  description:
-    "Plan unforgettable kids birthday celebrations at Jus Jumpin trampoline and play parks. Safe, hygienic party zones, curated packages, and complete on-ground support for parents.",
+// Server Component - No client-side code here
+export const metadata = {
+  title: 'Birthday Celebrations | Jus Jumpin - Magical Party Venue',
+  description: 'Host unforgettable birthday parties for kids and adults at Jus Jumpin. Trampoline park, personalized decorations, food & endless entertainment.',
 };
 
 export default function BirthdayCelebrationPage() {
   return (
-    <main className="min-h-screen bg-black text-slate-50">
-      <AnimatedHeader />
-      <section className="jj-container py-16">
-        <h1 className="mb-4 text-3xl font-semibold tracking-tight">
-          Birthday Celebration
-        </h1>
-        <p className="max-w-2xl text-sm text-slate-300">
-          This page will showcase why Jus Jumpin is perfect for birthday
-          celebrations, available packages, inclusions, galleries and a
-          prominent enquiry form as per the blueprint.
-        </p>
-      </section>
-    </main>
+    <BirthdayClient />
   );
 }
-
-

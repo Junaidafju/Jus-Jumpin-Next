@@ -259,13 +259,13 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
   const leftNavItems = [
     { label: "Home", href: "/" },
     { label: "Birthday", href: "/birthday-celebration/" },
-    { label: "School", href: "/school-trips/" },
+    { label: "School Trips", href: "/school-trips/" },
     { label: "Activities", href: "/our-activities/" },
   ];
 
   const rightNavItems = [
     { label: "About", href: "/about/" },
-    { label: "Blogs", href: "/blog/" },
+    // { label: "Blogs", href: "/blog/" },
     { label: "Contact", href: "/contact/" },
   ];
 
@@ -484,7 +484,7 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                   }}
                 >
                   {/* Animated shine effect */}
-                  <motion.div
+                  <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                     animate={{ x: ["100%", "-100%"] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
@@ -511,32 +511,32 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                 className="lg:hidden p-2 rounded-lg bg-white/10 border border-white/20 ml-auto"
                 aria-label="Toggle menu"
               >
-                <motion.div
+                <motion.span
                   animate={mobileMenuOpen ? "open" : "closed"}
                   variants={{
                     open: { rotate: 45, y: 6 },
                     closed: { rotate: 0, y: 0 }
                   }}
                   transition={{ duration: 0.3 }}
-                  className="w-6 h-0.5 bg-white mb-1.5"
+                  className="block w-6 h-0.5 bg-white mb-1.5"
                 />
-                <motion.div
+                <motion.span
                   animate={mobileMenuOpen ? "open" : "closed"}
                   variants={{
                     open: { opacity: 0 },
                     closed: { opacity: 1 }
                   }}
                   transition={{ duration: 0.3 }}
-                  className="w-6 h-0.5 bg-white mb-1.5"
+                  className="block w-6 h-0.5 bg-white mb-1.5"
                 />
-                <motion.div
+                <motion.span
                   animate={mobileMenuOpen ? "open" : "closed"}
                   variants={{
                     open: { rotate: -45, y: -6 },
                     closed: { rotate: 0, y: 0 }
                   }}
                   transition={{ duration: 0.3 }}
-                  className="w-6 h-0.5 bg-white"
+                  className="block w-6 h-0.5 bg-white"
                 />
               </button>
             </nav>

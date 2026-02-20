@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatedHeader } from "../components/AnimatedHeader";
+
 import AboutHero from "../components/about/AboutHero";
 import Marquee from "../components/about/Marquee";
 import WelcomeSection from "../components/about/WelcomeSection";
@@ -11,7 +11,7 @@ import FounderSection from "../components/about/FounderSection";
 export default function AboutPage() {
     return (
         <main className="min-h-screen bg-bg-cream overflow-x-hidden">
-            <AnimatedHeader />
+
 
             <AboutHero />
             <Marquee />

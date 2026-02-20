@@ -179,7 +179,7 @@ export default function AboutHero() {
                                     transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
                                 >
                                     <span className="relative z-10">Discover Our Story</span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-orange-400/0 via-white/20 to-orange-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                                    <span className="absolute inset-0 bg-gradient-to-r from-orange-400/0 via-white/20 to-orange-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                                 </motion.button>
                             </motion.div>
                         </motion.div>

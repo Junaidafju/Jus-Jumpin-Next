@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AnimatedHeader } from "./components/AnimatedHeader";
+import FooterWrapper from "./components/FooterWrapper";
 
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
         <AnimatedHeader />
 
         {children}
+        <FooterWrapper />
       </body>
     </html>
   );

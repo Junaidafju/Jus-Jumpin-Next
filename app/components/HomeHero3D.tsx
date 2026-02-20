@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,7 +11,7 @@ export default function HomeHero3D() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const canvas = canvasRef.current!;
     const context = canvas.getContext("2d")!;
     const frameCount = 300;
@@ -59,33 +60,29 @@ export default function HomeHero3D() {
       images[0].onload = render;
     }
 
-    // GSAP Context for Scoped Cleanup
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=500%", // Pin for 500% of viewport height
-          scrub: 0.5, // Smooth scrubbing
-          pin: true,
-          // markers: true, // Uncomment for debugging
-        },
-        onUpdate: render,
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "+=500%", // Pin for 500% of viewport height
+        scrub: 0.5, // Smooth scrubbing
+        pin: true,
+        // markers: true, // Uncomment for debugging
+      },
+      onUpdate: render,
+    });
 
-      tl.to(hero, {
-        frame: frameCount - 1,
-        snap: "frame",
-        ease: "none",
-        duration: 1,
-      });
-    }, containerRef); // Scope to container
+    tl.to(hero, {
+      frame: frameCount - 1,
+      snap: "frame",
+      ease: "none",
+      duration: 1,
+    });
 
     return () => {
-      ctx.revert(); // Reverts all animations and scroll triggers in this context
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, { scope: containerRef });
 
   return (
     <section ref={containerRef} className="hero-3d relative w-full h-screen overflow-hidden">

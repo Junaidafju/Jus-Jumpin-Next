@@ -65,118 +65,114 @@ const WelcomeSection: React.FC = () => {
 
     // GSAP Animations
     useGSAP(() => {
-        const ctx = gsap.context(() => {
-            // Levitation animation for flip card - disable on mobile
-            if (!isMobile) {
-                gsap.to(flipCardRef.current, {
-                    y: -20,
-                    duration: 2.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                });
-            }
-
-            // Floating emoji particles
-            gsap.to(".floating-emoji", {
-                y: (i: number) => (i % 2 === 0 ? -15 : 15),
-                x: (i: number) => (i % 3 === 0 ? -10 : 10),
-                rotation: gsap.utils.random(-10, 10),
-                duration: gsap.utils.random(2, 3),
+        // Levitation animation for flip card - disable on mobile
+        if (!isMobile) {
+            gsap.to(flipCardRef.current, {
+                y: -20,
+                duration: 2.5,
                 repeat: -1,
                 yoyo: true,
                 ease: "sine.inOut",
-                stagger: 0.5,
+            });
+        }
+
+        // Floating emoji particles
+        gsap.to(".floating-emoji", {
+            y: (i: number) => (i % 2 === 0 ? -15 : 15),
+            x: (i: number) => (i % 3 === 0 ? -10 : 10),
+            rotation: gsap.utils.random(-10, 10),
+            duration: gsap.utils.random(2, 3),
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 0.5,
+        });
+
+        // Background shapes drift
+        gsap.to(".floating-bg-shape", {
+            x: gsap.utils.random(-30, 30),
+            y: gsap.utils.random(-20, 20),
+            rotation: gsap.utils.random(-5, 5),
+            duration: gsap.utils.random(20, 30),
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 0.3,
+        });
+
+        // Text reveal animations
+        gsap.utils.toArray<HTMLElement>('.reveal-text').forEach((element, i) => {
+            gsap.fromTo(element,
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    delay: i * 0.2,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse",
+                    },
+                }
+            );
+        });
+
+        // Milestone timeline animations
+        if (timelineRef.current && progressLineRef.current) {
+            // Progress line animation
+            gsap.to(progressLineRef.current, {
+                scaleX: 1,
+                duration: 1,
+                ease: "power2.inOut",
+                scrollTrigger: {
+                    trigger: timelineRef.current,
+                    start: "top 70%",
+                    end: "bottom 30%",
+                    scrub: 1,
+                },
             });
 
-            // Background shapes drift
-            gsap.to(".floating-bg-shape", {
-                x: gsap.utils.random(-30, 30),
-                y: gsap.utils.random(-20, 20),
-                rotation: gsap.utils.random(-5, 5),
-                duration: gsap.utils.random(20, 30),
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                stagger: 0.3,
-            });
-
-            // Text reveal animations
-            gsap.utils.toArray<HTMLElement>('.reveal-text').forEach((element, i) => {
-                gsap.fromTo(element,
-                    { y: 50, opacity: 0 },
+            // Staggered card animations
+            const cards = gsap.utils.toArray<HTMLElement>('.milestone-card');
+            cards.forEach((card, i) => {
+                gsap.fromTo(card,
+                    { scale: 0.8, y: 60, opacity: 0 },
                     {
+                        scale: 1,
                         y: 0,
                         opacity: 1,
-                        duration: 1,
-                        ease: "power3.out",
-                        delay: i * 0.2,
+                        duration: 0.8,
+                        ease: "back.out(1.7)",
+                        delay: i * 0.15,
                         scrollTrigger: {
-                            trigger: element,
+                            trigger: card,
                             start: "top 85%",
                             toggleActions: "play none none reverse",
                         },
                     }
                 );
             });
+        }
 
-            // Milestone timeline animations
-            if (timelineRef.current && progressLineRef.current) {
-                // Progress line animation
-                gsap.to(progressLineRef.current, {
-                    scaleX: 1,
-                    duration: 1,
-                    ease: "power2.inOut",
-                    scrollTrigger: {
-                        trigger: timelineRef.current,
-                        start: "top 70%",
-                        end: "bottom 30%",
-                        scrub: 1,
-                    },
-                });
-
-                // Staggered card animations
-                const cards = gsap.utils.toArray<HTMLElement>('.milestone-card');
-                cards.forEach((card, i) => {
-                    gsap.fromTo(card,
-                        { scale: 0.8, y: 60, opacity: 0 },
-                        {
-                            scale: 1,
-                            y: 0,
-                            opacity: 1,
-                            duration: 0.8,
-                            ease: "back.out(1.7)",
-                            delay: i * 0.15,
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 85%",
-                                toggleActions: "play none none reverse",
-                            },
-                        }
-                    );
-                });
+        // Section header animation
+        gsap.fromTo(".section-header",
+            { y: 80, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: ".section-header",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse",
+                },
             }
+        );
 
-            // Section header animation
-            gsap.fromTo(".section-header",
-                { y: 80, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".section-header",
-                        start: "top 80%",
-                        toggleActions: "play none none reverse",
-                    },
-                }
-            );
-
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, [isMobile]);
+    }, { scope: sectionRef, dependencies: [isMobile] });
 
     // Handle flip animation
     const handleFlip = () => {
@@ -216,7 +212,6 @@ const WelcomeSection: React.FC = () => {
                 <div className="floating-bg-shape absolute top-[60%] right-[8%] w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gradient-to-tr from-amber-200/10 to-orange-200/5 rounded-[60%_40%_55%_45%] blur-3xl" />
                 <div className="floating-bg-shape absolute bottom-[15%] left-[25%] w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 bg-gradient-to-r from-emerald-200/10 to-teal-200/5 rounded-full blur-3xl" />
             </div>
-
             <div className="relative z-10 max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-32">
@@ -492,7 +487,7 @@ const WelcomeSection: React.FC = () => {
                         aria-label="Find a park near you"
                     >
                         <span className="relative z-10">Find a Park Near You →</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange-400/0 via-white/30 to-orange-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                        <span className="absolute inset-0 bg-gradient-to-r from-orange-400/0 via-white/30 to-orange-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                     </button>
                 </div>
             </div>
@@ -521,48 +516,7 @@ const WelcomeSection: React.FC = () => {
             </div>
 
             {/* Add custom animations to global styles */}
-            <style jsx global>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        
-        .backface-hidden {
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-        }
-        
-        /* Performance optimizations */
-        .will-change-transform {
-          will-change: transform;
-        }
-        
-        /* Smooth scrolling */
-        html {
-          scroll-behavior: smooth;
-        }
-        
-        /* Focus styles */
-        *:focus {
-          outline: 2px solid rgba(59, 130, 246, 0.5);
-          outline-offset: 2px;
-        }
-        
-        /* Reduced motion preferences */
-        @media (prefers-reduced-motion: reduce) {
-          *,
-          *::before,
-          *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
-        }
-      `}</style>
+
         </section>
     );
 };
