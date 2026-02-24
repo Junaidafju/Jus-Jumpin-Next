@@ -76,20 +76,31 @@ const comparisonData = [
 ];
 
 // Character images configuration
-const characters = {
-    left: [
-        { src: '/image/birthday/123.p', alt: 'Birthday Boy', delay: 0, width: 120, height: 140, offsetY: -80, fallback: '🎂' },
-        { src: '/image/birthday/party-girl.png', alt: 'Party Girl', delay: 0.2, width: 100, height: 130, offsetY: 40 },
-        { src: '/image/birthday/clown.png', alt: 'Clown', delay: 0.4, width: 110, height: 140, offsetY: 160 },
-    ],
-    right: [
-        { src: '/image/birthday/mascot.png', alt: 'Mascot', delay: 0.1, width: 120, height: 140, offsetY: -60 },
-        { src: '/image/birthday/balloon-artist.png', alt: 'Balloon Artist', delay: 0.3, width: 110, height: 130, offsetY: 60 },
-        { src: '/image/birthday/dj.png', alt: 'DJ', delay: 0.5, width: 115, height: 140, offsetY: 180 },
-    ],
+const Characters = {
+    left: {
+        src: '/image/birthday/birthday-boy.png',
+        alt: 'Birthday Boy',
+        width: 350,
+        height: 450,
+        offsetY: 0,
+        fallback: '🎂',
+        delay: 0.2
+    },
+    right: {
+        src: '/image/birthday/party-girl.png',
+        alt: 'Party Girl',
+        width: 350,
+        height: 450,
+        offsetY: 0,
+        fallback: '🎈',
+        delay: 0.4
+    },
 };
+interface FeatureComparisonTableProps {
+    onBookNow?: () => void;
+}
 
-export default function FeatureComparisonTable() {
+export default function FeatureComparisonTable({ onBookNow }: FeatureComparisonTableProps) {
     const sectionRef = useRef<HTMLElement>(null);
     const headingRef = useRef<HTMLDivElement>(null);
     const tableRef = useRef<HTMLDivElement>(null);
@@ -100,6 +111,11 @@ export default function FeatureComparisonTable() {
     const bottomWaveRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+
+    const handleImageError = (alt: string) => {
+        setImageErrors(prev => ({ ...prev, [alt]: true }));
+    };
 
     useEffect(() => {
         const checkDevice = () => {
@@ -162,7 +178,7 @@ export default function FeatureComparisonTable() {
             // Left characters - 360 rotate entry
             const leftChars = leftCharsRef.current?.querySelectorAll('.cartoon-char');
             leftChars?.forEach((char, i) => {
-                const charData = characters.left[i];
+                const charData = Characters.left;
                 if (!charData) return;
 
                 gsap.fromTo(char,
@@ -194,7 +210,7 @@ export default function FeatureComparisonTable() {
             // Right characters - 360 rotate entry (opposite direction)
             const rightChars = rightCharsRef.current?.querySelectorAll('.cartoon-char');
             rightChars?.forEach((char, i) => {
-                const charData = characters.right[i];
+                const charData = Characters.right;
                 if (!charData) return;
 
                 gsap.fromTo(char,
@@ -207,7 +223,7 @@ export default function FeatureComparisonTable() {
                         duration: 1.5,
                         delay: charData.delay,
                         ease: 'elastic.out(1, 0.5)',
-                        scrollTrigger: { trigger: tableRef.current, start: 'top 80%', once: true },
+                        scrollTrigger: { trigger: tableRef.current, start: 'top 50%', once: true },
                     }
                 );
 
@@ -225,19 +241,21 @@ export default function FeatureComparisonTable() {
 
             // Table columns elastic reveal
             const columns = tableRef.current?.querySelectorAll('.compare-column');
-            gsap.fromTo(
-                columns,
-                { y: 100, opacity: 0, scale: 0.8 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.8,
-                    stagger: 0.15,
-                    ease: 'elastic.out(1, 0.6)',
-                    scrollTrigger: { trigger: tableRef.current, start: 'top 80%', once: true },
-                }
-            );
+            if (columns && columns.length > 0) {
+                gsap.fromTo(
+                    columns,
+                    { y: 100, opacity: 0, scale: 0.8 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.8,
+                        stagger: 0.15,
+                        ease: 'elastic.out(1, 0.6)',
+                        scrollTrigger: { trigger: tableRef.current, start: 'top 80%', once: true },
+                    }
+                );
+            }
 
             // CTA section reveal
             gsap.fromTo(
@@ -272,12 +290,13 @@ export default function FeatureComparisonTable() {
                         className="block w-full h-[50px] md:h-[80px]"
                         viewBox="0 0 1200 120"
                         preserveAspectRatio="none"
+                        style={{ transform: 'rotate(180deg)' }}
                     >
                         <defs>
                             <linearGradient id="topWaveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#e6f4ff" stopOpacity="0.9" />
-                                <stop offset="50%" stopColor="#b8d9ff" stopOpacity="0.95" />
-                                <stop offset="100%" stopColor="#e6f4ff" stopOpacity="0.9" />
+                                <stop offset="0%" stopColor="#e7f4ff" stopOpacity="0.9" />
+                                <stop offset="50%" stopColor="#e7f4ff" stopOpacity="0.95" />
+                                <stop offset="100%" stopColor="#e7f4ff" stopOpacity="0.9" />
                             </linearGradient>
                         </defs>
                         <path
@@ -303,63 +322,69 @@ export default function FeatureComparisonTable() {
                     <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-purple-300 rounded-full opacity-20 blur-2xl animate-pulse" style={{ animationDelay: '1.5s' }} />
                 </div>
 
-                {/* LEFT CHARACTER IMAGES - 360 rotate entry with optimized positioning */}
+                {/* LEFT SINGLE LARGER CHARACTER IMAGE */}
                 {!isMobile && (
-                    <div ref={leftCharsRef} className="absolute left-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none hidden lg:block">
-                        {characters.left.map((char, idx) => (
+                    <div
+                        ref={leftCharsRef}
+                        className="absolute left-5 top-280 -translate-y-1/2 z-30 hidden lg:block "
+                        style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3))' }}
+                    >
+                        {!imageErrors[Characters.left.alt] ? (
                             <div
-                                key={char.alt}
-                                className="cartoon-char absolute drop-shadow-2xl"
-                                style={{
-                                    top: `${char.offsetY}px`,
-                                    left: '20px',
-                                }}
+                                className="cartoon-char relative transition-transform hover:scale-110"
+                                style={{ width: Characters.left.width, height: Characters.left.height }}
                             >
-                                <div
-                                    className="relative transition-transform hover:scale-110"
-                                    style={{ width: char.width, height: char.height }}
-                                >
-                                    <Image
-                                        src={char.src}
-                                        alt={char.alt}
-                                        fill
-                                        className="object-contain"
-                                        sizes={`${char.width}px`}
-                                        priority={idx === 0}
-                                    />
-                                </div>
+                                <Image
+                                    src={Characters.left.src}
+                                    alt={Characters.left.alt}
+                                    fill
+                                    className="object-contain"
+                                    sizes={`${Characters.left.width}px`}
+                                    priority
+                                    onError={() => handleImageError(Characters.left.alt)}
+                                />
                             </div>
-                        ))}
+                        ) : (
+                            <div
+                                className="cartoon-char absolute flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl shadow-2xl"
+                                style={{ width: Characters.left.width, height: Characters.left.height }}
+                            >
+                                <span className="text-7xl animate-bounce">{Characters.left.fallback}</span>
+                            </div>
+                        )}
                     </div>
                 )}
 
-                {/* RIGHT CHARACTER IMAGES - 360 rotate entry with optimized positioning */}
+                {/* RIGHT SINGLE LARGER CHARACTER IMAGE */}
                 {!isMobile && (
-                    <div ref={rightCharsRef} className="absolute right-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none hidden lg:block">
-                        {characters.right.map((char, idx) => (
+                    <div
+                        ref={rightCharsRef}
+                        className="absolute right-5 top-295 -translate-y-1/2 z-30 hidden lg:block"
+                        style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3))' }}
+                    >
+                        {!imageErrors[Characters.right.alt] ? (
                             <div
-                                key={char.alt}
-                                className="cartoon-char absolute drop-shadow-2xl"
-                                style={{
-                                    top: `${char.offsetY}px`,
-                                    right: '20px',
-                                }}
+                                className="cartoon-char relative transition-transform hover:scale-110"
+                                style={{ width: Characters.right.width, height: Characters.right.height }}
                             >
-                                <div
-                                    className="relative transition-transform hover:scale-110"
-                                    style={{ width: char.width, height: char.height }}
-                                >
-                                    <Image
-                                        src={char.src}
-                                        alt={char.alt}
-                                        fill
-                                        className="object-contain"
-                                        sizes={`${char.width}px`}
-                                        priority={idx === 0}
-                                    />
-                                </div>
+                                <Image
+                                    src={Characters.right.src}
+                                    alt={Characters.right.alt}
+                                    fill
+                                    className="object-contain"
+                                    sizes={`${Characters.right.width}px`}
+                                    priority
+                                    onError={() => handleImageError(Characters.right.alt)}
+                                />
                             </div>
-                        ))}
+                        ) : (
+                            <div
+                                className="cartoon-char flex items-center justify-center bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl shadow-2xl border-4 border-white"
+                                style={{ width: Characters.right.width, height: Characters.right.height }}
+                            >
+                                <span className="text-7xl animate-bounce">{Characters.right.fallback}</span>
+                            </div>
+                        )}
                     </div>
                 )}
 
@@ -479,7 +504,7 @@ export default function FeatureComparisonTable() {
                                                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
                                                     <Icon className="w-6 h-6 text-white" />
                                                 </div>
-                                                <span className="text-green-800 font-bold text-base leading-snug drop-shadow-sm">
+                                                <span className="text-green-800 font-bold">
                                                     {row.jusText}
                                                 </span>
                                                 <span className="text-2xl opacity-0 group-hover:opacity-100 transition-opacity">🎉</span>
@@ -614,10 +639,12 @@ export default function FeatureComparisonTable() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                <button className="group relative px-10 py-5 bg-white text-[#FF6B35] rounded-full font-black text-xl shadow-2xl hover:shadow-white/30 transition-all duration-300 hover:-translate-y-2 hover:scale-105 active:translate-y-0 active:scale-95 overflow-hidden border-4 border-white">
+                                <button
+                                    onClick={onBookNow}
+                                    className="group relative px-10 py-5 bg-white text-[#FE5000] rounded-full font-black text-xl shadow-2xl hover:shadow-orange-200 transition-all duration-300 hover:-translate-y-2 hover:scale-105 active:translate-y-0 active:scale-95 overflow-hidden border-4 border-white"
+                                >
                                     <span className="relative z-10 flex items-center gap-3">
-                                        <CalendarCheck className="w-6 h-6" />
-                                        Book Your Party Now
+                                        Book Birthday at Jus Jumpin
                                         <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                                     </span>
                                     <div className="absolute inset-0 bg-gradient-to-r from-orange-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

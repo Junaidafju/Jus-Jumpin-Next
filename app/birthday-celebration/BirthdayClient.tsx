@@ -10,6 +10,8 @@ import FeatureComparisonTable from '@/app/components/birthday/FeatureComparisonT
 import MomentsGallery from '@/app/components/birthday/MomentsGallery';
 import BirthdayVideoSection from '@/app/components/birthday/BirthdayVideoSection';
 import CTASection from '@/app/components/birthday/CTASection';
+import BirthdayBookingModal from '@/app/components/birthday/BirthdayBookingModal';
+import { useState } from 'react';
 
 // Dynamically import Confetti to avoid SSR
 const ConfettiLanding = dynamic(
@@ -18,29 +20,36 @@ const ConfettiLanding = dynamic(
 );
 
 export default function BirthdayClient() {
+    const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
+    const openBookingModal = () => setIsBookingModalOpen(true);
+    const closeBookingModal = () => setIsBookingModalOpen(false);
+
     return (
         <main className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-blue-50 overflow-x-hidden">
             {/* Confetti Effect - Client Only */}
             <ConfettiLanding />
 
             {/* Hero Section - Full Width */}
-            <BirthdayHero />
+            <BirthdayHero onBookNow={openBookingModal} />
 
             {/* BirthdayIntro - Full Width with separators (no container) */}
-            <BirthdayIntro />
-            <WhyCelebrate />
-            <FeatureComparisonTable />
-
+            <BirthdayIntro onBookNow={openBookingModal} />
+            <WhyCelebrate onBookNow={openBookingModal} />
+            <FeatureComparisonTable onBookNow={openBookingModal} />
+            <MomentsGallery onBookNow={openBookingModal} />
+            <BirthdayVideoSection />
             {/* Content Sections - Contained */}
             <div className="container mx-auto px-4 py-12 space-y-20">
-
-
                 <Suspense fallback={<div className="h-64 animate-pulse bg-orange-200 rounded-2xl" />}>
-                    <MomentsGallery />
+
                 </Suspense>
-                <BirthdayVideoSection />
-                <CTASection />
+
+                <CTASection onBookNow={openBookingModal} />
             </div>
+
+            {/* Booking Modal */}
+            <BirthdayBookingModal isOpen={isBookingModalOpen} onClose={closeBookingModal} />
         </main>
     );
 }

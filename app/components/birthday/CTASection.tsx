@@ -4,7 +4,11 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-const CTASection = () => {
+interface CTASectionProps {
+    onBookNow?: () => void;
+}
+
+const CTASection = ({ onBookNow }: CTASectionProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -63,7 +67,10 @@ const CTASection = () => {
                             {/* Book Now Button */}
                             <button
                                 ref={buttonRef}
-                                onClick={handleConfetti}
+                                onClick={() => {
+                                    handleConfetti();
+                                    onBookNow?.();
+                                }}
                                 onMouseEnter={handleConfetti}
                                 className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#FB6C1F] text-white font-bold text-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105"
                             >

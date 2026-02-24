@@ -79,7 +79,11 @@ const floatingItems = [
     { Icon: Cake, color: 'text-orange-400', size: 'w-16 h-16 md:w-20 md:h-20', startX: -15, endX: 115, y: '45%', speed: 0.9, mobileY: '35%' },
 ];
 
-export default function BirthdayIntro() {
+interface BirthdayIntroProps {
+    onBookNow?: () => void;
+}
+
+export default function BirthdayIntro({ onBookNow }: BirthdayIntroProps) {
     const sectionRef = useRef<HTMLElement>(null);
     const statsRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
@@ -498,7 +502,10 @@ export default function BirthdayIntro() {
                 {/* CTA */}
                 <div className="text-center relative px-4">
                     <div className="inline-flex flex-col items-center gap-3 md:gap-4">
-                        <button className="group relative px-6 py-3 md:px-10 md:py-5 bg-slate-900 text-white rounded-full font-black text-base md:text-xl shadow-xl hover:shadow-orange-500/30 transition-all duration-300 hover:-translate-y-1 active:scale-95 active:translate-y-0 overflow-hidden border-2 md:border-4 border-white w-full sm:w-auto">
+                        <button
+                            onClick={onBookNow}
+                            className="group relative px-6 py-3 md:px-10 md:py-5 bg-slate-900 text-white rounded-full font-black text-base md:text-xl shadow-xl hover:shadow-orange-500/30 transition-all duration-300 hover:-translate-y-1 active:scale-95 active:translate-y-0 overflow-hidden border-2 md:border-4 border-white w-full sm:w-auto"
+                        >
                             <span className="relative z-10 flex items-center justify-center gap-2">
                                 Book Your Party Now <Sparkles className="w-4 h-4 md:w-6 md:h-6 text-yellow-400 animate-spin-slow" />
                             </span>

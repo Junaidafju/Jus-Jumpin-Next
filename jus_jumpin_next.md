@@ -1014,7 +1014,7 @@ This approach ensures:
  |       |--MissionVission.tsx
  |       |--ValuesSection.tsx
  |       |--WelcomeSection.tsx
- |   |--birthday-celebration
+ |   |--birthday
  |       |--BirthdayHero.tsx
  |       |--BirthdayInro.tsx
  |       |--BirthdayVideoSection.tsx
@@ -1024,6 +1024,16 @@ This approach ensures:
  |       |--MomentsGallery.tsx
  |       |--WhyCelebrate.tsx
  |       |--TestimonialSection.tsx
+     |── school-trips/
+         ├── SchoolTripsHero.tsx         
+         ├── WhyChooseUs.tsx            
+         ├── TripPackages.tsx            
+         ├── WhatsIncluded.tsx           
+         ├── EducationalBenefits.tsx     
+         ├── VideoGallery.tsx            
+         ├── SchoolTestimonials.tsx      
+         ├── SchoolFAQ.tsx             
+         └── SchoolCTA.tsx              
  |   |--AnimatedHeader.tsx
  |   |--AnimationWrapper.tsx
  |   |--Footer.tsx
@@ -1035,6 +1045,7 @@ This approach ensures:
  |   |--page.tsx
  |--school-trips
  |   |--page.tsx
+ │   └── SchoolTripsClient.tsx
  |--favicon.ico
  |--globals.css
  |--layout.tsx
@@ -1105,3 +1116,43 @@ Wrapped the returned Fragment in a <header> tag. This isolates AnimatedHeader's 
 Verification
 Build Success: npm run build passes with exit code 0.
 Runtime Check: The error should no longer appear on load or hot reload, as the DOM structure is now stable.
+
+###**Birthday Booking Modal Integration Walkthrough**
+I have successfully integrated the 
+BirthdayBookingModal
+ into the birthday celebration page. All "Book Now" and "Book Your Party" buttons across the page now trigger the modal correctly.
+
+Changes Made
+State Management
+In 
+BirthdayClient.tsx
+, I added:
+
+isBookingModalOpen state to control modal visibility.
+openBookingModal
+ and 
+closeBookingModal
+ handlers.
+Integrated the 
+BirthdayBookingModal
+ component at the bottom of the layout.
+Component Updates
+Updated the following components to accept an onBookNow prop and attach it to their CTA buttons:
+
+BirthdayHero.tsx
+BirthdayIntro.tsx
+WhyCelebrate.tsx
+FeatureComparisonTable.tsx
+CTASection.tsx
+MomentsGallery.tsx
+Verification Results
+Integration Verification
+ Hero Section: The "Book Your Party" button triggers the modal.
+ Intro Section: The "Book Your Party Now" button triggers the modal.
+ Feature Comparison: The "Book Birthday at Jus Jumpin" button triggers the modal.
+ CTA Section: The "Book Now" button (with confetti effect) triggers the modal.
+ Gallery Section: The "Book a Birthday Party" button triggers the modal.
+Modal Functionality
+ Form fields are interactive.
+ Validation (e.g., date selection, package choice) is active.
+ Success state is reachable after simulated submission.

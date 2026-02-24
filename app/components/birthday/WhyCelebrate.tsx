@@ -103,7 +103,11 @@ const floatingItems = [
     { Icon: Cake, color: 'text-orange-400', size: 'w-16 h-16 md:w-20 md:h-20', startX: -15, endX: 115, y: '45%', speed: 0.9, mobileY: '35%' },
 ];
 
-export default function WhyCelebrate() {
+interface WhyCelebrateProps {
+    onBookNow?: () => void;
+}
+
+export default function WhyCelebrate({ onBookNow }: WhyCelebrateProps) {
     const sectionRef = useRef<HTMLElement>(null);
     const headingRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
@@ -498,9 +502,12 @@ export default function WhyCelebrate() {
                                     Ready to create unforgettable memories? Let's get started.
                                 </p>
                             </div>
-                            <button className="group relative px-10 py-5 bg-slate-900 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 active:scale-95 overflow-hidden shrink-0">
+                            <button
+                                onClick={onBookNow}
+                                className="group relative px-10 py-5 bg-slate-900 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0 active:scale-95 overflow-hidden shrink-0"
+                            >
                                 <span className="relative z-10 flex items-center gap-3">
-                                    View Gallery
+                                    Book Your Party
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                 </span>
                                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

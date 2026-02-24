@@ -5,7 +5,11 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 
-const BirthdayShowcase = () => {
+interface BirthdayShowcaseProps {
+    onBookNow?: () => void;
+}
+
+const BirthdayShowcase = ({ onBookNow }: BirthdayShowcaseProps) => {
     const [currentImage, setCurrentImage] = useState(0);
 
     const celebrationImages = [
@@ -321,7 +325,10 @@ const BirthdayShowcase = () => {
 
                             {/* CTA Buttons */}
                             <div className="birthday-buttons flex flex-col sm:flex-row gap-4">
-                                <button className="group relative px-8 py-4 bg-gradient-to-r from-[#FF6B35] to-[#FF8655] text-white font-bold text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                                <button
+                                    onClick={onBookNow}
+                                    className="group relative px-8 py-4 bg-gradient-to-r from-[#FF6B35] to-[#FF8655] text-white font-bold text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                                >
                                     Book Your Party
                                     <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                                 </button>

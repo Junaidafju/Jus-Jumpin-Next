@@ -22,6 +22,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'static.vecteezy.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**', // Allows all paths
+      },
       // Add more domains as needed
     ],
 
