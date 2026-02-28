@@ -62,7 +62,14 @@ const features = [
 ];
 
 // Floating decorative elements
-const FloatingElement = ({ children, delay = 0, duration = 8, className = "" }) => (
+interface FloatingElementProps {
+    children: React.ReactNode;
+    delay?: number;
+    duration?: number;
+    className?: string;
+}
+
+const FloatingElement = ({ children, delay = 0, duration = 8, className = "" }: FloatingElementProps) => (
     <motion.div
         className={`absolute pointer-events-none ${className}`}
         initial={{ opacity: 0 }}

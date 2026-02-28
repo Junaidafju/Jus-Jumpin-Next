@@ -2,160 +2,265 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Play, Sparkles, GraduationCap, BookOpen, Star } from "lucide-react";
+import { Play, Clapperboard, Film, Popcorn, Candy, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 // YouTube video data
 const videos = [
     {
         id: "kpGvSi05UXY",
-        title: "School Trip Fun at Jus Jumpin'",
-        description: "Students jumping, laughing, and learning through play",
+        title: "🎬 Jump & Learn",
+        description: "Students bouncing with joy while learning physics!",
         duration: "0:45",
+        color: "#FE5000",
+        bgColor: "#FFF1E6",
+        emoji: "🦘"
     },
     {
         id: "z876WIsNd9Y",
-        title: "Active Learning in Action",
-        description: "Physical education meets pure joy",
+        title: "🎪 Active Fun",
+        description: "Physical education meets pure excitement",
         duration: "0:38",
+        color: "#3080c0",
+        bgColor: "#E8F0F8",
+        emoji: "🤸"
     },
     {
         id: "X0cpODhIfTY",
-        title: "Team Building Adventures",
-        description: "Collaborative games and group activities",
+        title: "🤝 Team Games",
+        description: "Building friendships through group activities",
         duration: "0:52",
+        color: "#6BCB77",
+        bgColor: "#EAF6EC",
+        emoji: "🎯"
     },
     {
         id: "UWt2J4e94p8",
-        title: "Safe & Supervised Fun",
-        description: "Professional staff ensuring a secure environment",
+        title: "🛡️ Safe Fun",
+        description: "Professional staff ensuring secure environment",
         duration: "0:41",
+        color: "#FE5000",
+        bgColor: "#FFF1E6",
+        emoji: "🦸"
     },
     {
         id: "eFyYeGLfDow",
-        title: "Unforgettable School Moments",
-        description: "Memories that last a lifetime",
+        title: "📸 Best Day Ever",
+        description: "Unforgettable moments with friends",
         duration: "0:49",
+        color: "#3080c0",
+        bgColor: "#E8F0F8",
+        emoji: "🎉"
     },
 ];
 
-// Floating background icons
-const FloatingIcon = ({
-    icon: Icon,
-    delay,
-    left,
-    top,
-    size = 24
-}: {
-    icon: any;
-    delay: number;
-    left: string;
-    top: string;
-    size?: number;
-}) => (
+// Cartoon Cloud Background
+const CartoonCloud = ({ delay, size, top, left, speed = 20 }: { delay: number; size: number; top: string; left: string; speed?: number }) => (
     <motion.div
         className="absolute pointer-events-none"
-        style={{ left, top }}
-        initial={{ opacity: 0 }}
+        style={{ top, left, width: size, height: size * 0.6 }}
         animate={{
-            opacity: [0.03, 0.06, 0.03],
-            y: [0, -20, 0],
-            rotate: [0, 5, -5, 0]
+            x: [0, 50, 0, -50, 0],
+            opacity: [0.3, 0.5, 0.3],
         }}
         transition={{
-            duration: 8,
+            duration: speed,
             delay,
             repeat: Infinity,
             ease: "easeInOut"
         }}
     >
-        <Icon size={size} className="text-[#172B44]" strokeWidth={1.5} />
+        <svg viewBox="0 0 100 60" className="w-full h-full fill-white/20">
+            <path d="M20,30 Q30,15 45,20 Q55,10 70,20 Q85,15 90,30 Q95,45 70,50 Q50,55 30,50 Q10,45 20,30" />
+        </svg>
     </motion.div>
 );
 
-// Individual Video Card Component
-const VideoCard = ({ video, index }: { video: typeof videos[0]; index: number }) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false);
+// Bouncing Ball Decoration
+const BouncingBall = ({ delay, left, color }: { delay: number; left: string; color: string }) => (
+    <motion.div
+        className="absolute pointer-events-none"
+        style={{ left, bottom: "10%" }}
+        animate={{
+            y: [0, -30, 0],
+            rotate: [0, 360],
+        }}
+        transition={{
+            duration: 2,
+            delay,
+            repeat: Infinity,
+            ease: "easeInOut"
+        }}
+    >
+        <div className={`w-8 h-8 rounded-full`} style={{ backgroundColor: color, opacity: 0.2 }} />
+    </motion.div>
+);
 
-    const embedUrl = `https://www.youtube.com/embed/${video.id}`;
+// Floating Popcorn and Candy
+const FloatingSnacks = () => (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[
+            { icon: "🍿", left: "2%", top: "15%", delay: 0, rotate: true },
+            { icon: "🍬", left: "95%", top: "30%", delay: 1, rotate: true },
+            { icon: "🎪", left: "10%", top: "80%", delay: 2, rotate: false },
+            { icon: "🎈", left: "90%", top: "70%", delay: 3, rotate: true },
+            { icon: "🍭", left: "5%", top: "40%", delay: 4, rotate: false },
+            { icon: "🎨", left: "85%", top: "20%", delay: 5, rotate: true },
+        ].map((item, i) => (
+            <motion.div
+                key={i}
+                className="absolute text-3xl md:text-4xl opacity-30"
+                style={{ left: item.left, top: item.top }}
+                animate={{
+                    y: [0, -20, 0],
+                    rotate: item.rotate ? [0, 10, -10, 0] : 0,
+                    scale: [1, 1.2, 1],
+                }}
+                transition={{
+                    duration: 6,
+                    delay: item.delay,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            >
+                {item.icon}
+            </motion.div>
+        ))}
+    </div>
+);
+
+// Cartoon Video Card
+const VideoCard = ({ video, index }: { video: typeof videos[0]; index: number }) => {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const [thumbnailError, setThumbnailError] = useState(false);
+
+    const handlePlay = () => {
+        setIsPlaying(true);
+    };
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40, rotate: index % 2 === 0 ? -1 : 1 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
+            transition={{ delay: index * 0.15, duration: 0.6, type: "spring" }}
             whileHover={{
-                y: -6,
-                transition: { type: "spring", stiffness: 400, damping: 15 }
+                y: -8,
+                rotate: index % 2 === 0 ? 0.5 : -0.5,
+                transition: { type: "spring", stiffness: 300 }
             }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
             className="group relative"
         >
-            {/* Card Container */}
-            <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100/50 hover:shadow-xl transition-shadow duration-300">
+            {/* Cartoon Frame */}
+            <div
+                className="relative bg-white rounded-3xl p-2 shadow-xl"
+                style={{
+                    border: `4px solid ${video.color}`,
+                    boxShadow: `8px 8px 0 ${video.color}`,
+                }}
+            >
+                {/* Corner Decorations */}
+                <div className="absolute -top-3 -left-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-[#FE5000] z-10">
+                    <span className="text-lg">{index === 0 ? "🎬" : index === 1 ? "🎪" : index === 2 ? "🎯" : index === 3 ? "🎨" : "📸"}</span>
+                </div>
+                <div className="absolute -top-3 -right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-[#3080c0] z-10">
+                    <span className="text-lg">⭐</span>
+                </div>
+
                 {/* Video Container */}
-                <div className="relative aspect-[9/16] bg-gradient-to-br from-gray-100 to-gray-200">
-                    {/* Loading Placeholder */}
-                    {!isLoaded && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-12 h-12 border-4 border-[#3080c0]/20 border-t-[#3080c0] rounded-full animate-spin" />
-                        </div>
+                <div className="relative aspect-[9/16] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden">
+                    {!isPlaying ? (
+                        <>
+                            {/* Thumbnail */}
+                            <img
+                                src={thumbnailError
+                                    ? `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`
+                                    : `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`
+                                }
+                                alt={video.title}
+                                className="absolute inset-0 w-full h-full object-cover"
+                                onError={() => setThumbnailError(true)}
+                            />
+
+                            {/* Play Button Overlay */}
+                            <motion.button
+                                onClick={handlePlay}
+                                className="absolute inset-0 flex items-center justify-center bg-black/30 w-full h-full"
+                                whileHover={{ backgroundColor: "rgba(0,0,0,0.4)" }}
+                            >
+                                <motion.div
+                                    className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-2xl border-4 border-white"
+                                    animate={isHovered ? {
+                                        scale: 1.1,
+                                        rotate: [0, 5, -5, 0]
+                                    } : { scale: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <Play className="w-8 h-8 text-[#FE5000] ml-1" fill="currentColor" />
+                                </motion.div>
+                            </motion.button>
+
+                            {/* Duration Badge */}
+                            <div className="absolute top-3 right-3 px-3 py-1 bg-white rounded-full shadow-md border-2 border-[#FE5000]">
+                                <span className="text-xs font-bold text-[#172B44]">{video.duration}</span>
+                            </div>
+
+                            {/* Cartoon Popcorn Icon */}
+                            <motion.div
+                                className="absolute bottom-3 left-3 text-2xl"
+                                animate={{ y: [0, -3, 0] }}
+                                transition={{ duration: 1, repeat: Infinity }}
+                            >
+                                🍿
+                            </motion.div>
+
+                            {/* Cute Face when hover */}
+                            {isHovered && (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl"
+                                >
+                                    👀
+                                </motion.div>
+                            )}
+                        </>
+                    ) : (
+                        // YouTube Iframe - Plays directly in card
+                        <iframe
+                            src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`}
+                            title={video.title}
+                            className="absolute inset-0 w-full h-full"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
                     )}
-
-                    {/* YouTube Iframe */}
-                    <iframe
-                        src={embedUrl}
-                        title={video.title}
-                        className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-                        loading="lazy"
-                        allowFullScreen
-                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        onLoad={() => setIsLoaded(true)}
-                    />
-
-                    {/* Play Overlay - Only shows when video not playing */}
-                    <motion.div
-                        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                        animate={{ opacity: isHovered ? 0 : 1 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
-                            <Play className="w-8 h-8 text-[#3080c0] ml-1" fill="currentColor" />
-                        </div>
-                    </motion.div>
-
-                    {/* Gradient Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/40 to-transparent" />
-
-                    {/* Duration Badge */}
-                    <div className="absolute bottom-3 left-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-                        {video.duration}
-                    </div>
                 </div>
 
                 {/* Video Info */}
-                <div className="p-4">
-                    <h3 className="font-bold text-[#172B44] mb-1 line-clamp-1"
-                        style={{ fontFamily: '"Fredoka One", cursive' }}>
-                        {video.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 line-clamp-2">
+                <div className="p-3 text-center">
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                        <span className="text-xl">{video.emoji}</span>
+                        <h3
+                            className="text-base font-bold text-[#172B44]"
+                            style={{ fontFamily: '"Fredoka One", cursive' }}
+                        >
+                            {video.title}
+                        </h3>
+                    </div>
+                    <p className="text-xs text-gray-600 line-clamp-2">
                         {video.description}
                     </p>
+                </div>
 
-                    {/* Hover Accent */}
-                    <motion.div
-                        className="absolute bottom-0 left-0 right-0 h-1"
-                        style={{
-                            background: "linear-gradient(90deg, #3080c0, #6BCB77, #FE5000)"
-                        }}
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: isHovered ? 1 : 0 }}
-                        transition={{ duration: 0.3 }}
-                    />
+                {/* Film Strip Decoration */}
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-2 flex gap-1">
+                    {[...Array(8)].map((_, i) => (
+                        <div key={i} className="flex-1 h-full bg-[#172B44]/20 rounded-full" />
+                    ))}
                 </div>
             </div>
         </motion.div>
@@ -164,46 +269,47 @@ const VideoCard = ({ video, index }: { video: typeof videos[0]; index: number })
 
 export default function VideoGallery() {
     return (
-        <section className="relative w-full py-20 md:py-28 overflow-hidden">
-            {/* Background Gradient */}
-            <div className="absolute inset-0 pointer-events-none"
-                style={{
-                    background: "linear-gradient(180deg, #ffffff 0%, #f0f7ff 40%, #ffffff 100%)"
-                }}
-            />
+        <section className="relative w-full py-20 md:py-28 overflow-hidden bg-gradient-to-b from-[#ffffff] via-[#fbfdff] to-[#ffffff]">
+            {/* Cartoon Clouds Background */}
+            <CartoonCloud delay={0} size={200} top="5%" left="-5%" speed={25} />
+            <CartoonCloud delay={5} size={150} top="15%" left="80%" speed={20} />
+            <CartoonCloud delay={2} size={180} top="60%" left="90%" speed={22} />
+            <CartoonCloud delay={7} size={120} top="75%" left="5%" speed={18} />
 
-            {/* Floating Background Icons */}
-            <FloatingIcon icon={GraduationCap} delay={0} left="5%" top="15%" size={32} />
-            <FloatingIcon icon={BookOpen} delay={2} left="92%" top="25%" size={28} />
-            <FloatingIcon icon={Star} delay={4} left="8%" top="75%" size={24} />
-            <FloatingIcon icon={GraduationCap} delay={1} left="88%" top="80%" size={36} />
-            <FloatingIcon icon={BookOpen} delay={3} left="12%" top="45%" size={30} />
-            <FloatingIcon icon={Sparkles} delay={5} left="95%" top="60%" size={26} />
+            {/* Bouncing Balls */}
+            <BouncingBall delay={0} left="10%" color="#FE5000" />
+            <BouncingBall delay={1} left="30%" color="#3080c0" />
+            <BouncingBall delay={2} left="50%" color="#6BCB77" />
+            <BouncingBall delay={3} left="70%" color="#FE5000" />
+            <BouncingBall delay={4} left="90%" color="#3080c0" />
 
-            {/* Soft Glow Orbs */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-20 left-20 w-96 h-96 bg-[#3080c0]/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#6BCB77]/5 rounded-full blur-3xl" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FE5000]/5 rounded-full blur-3xl" />
-            </div>
+            {/* Floating Snacks */}
+            <FloatingSnacks />
 
-            {/* Top Wave Separator */}
-            <div className="absolute top-0 left-0 w-full overflow-hidden leading-none pointer-events-none">
+            {/* Top Wave with gradient matching previous section */}
+            <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
                 <svg
-                    className="relative block w-full h-12 md:h-20"
+                    className="relative block w-full h-16 md:h-24"
                     viewBox="0 0 1200 120"
                     preserveAspectRatio="none"
                 >
                     <path
                         d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-                        fill="#ffffff"
+                        fill="url(#topWaveGradient)"
                     />
+                    <defs>
+                        <linearGradient id="topWaveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#ffffff" />
+                            <stop offset="50%" stopColor="#fbfdff" />
+                            <stop offset="100%" stopColor="#ffffff" />
+                        </linearGradient>
+                    </defs>
                 </svg>
             </div>
 
             {/* Content Container */}
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
-                {/* Section Header */}
+                {/* Section Header - Clean & Proper */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -211,43 +317,43 @@ export default function VideoGallery() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12 md:mb-16"
                 >
-                    {/* Badge */}
+                    {/* Fun Badge */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm mb-6 border border-[#3080c0]/20"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-md mb-6 border border-gray-200"
+                        whileHover={{ y: -2 }}
                     >
-                        <Play className="w-4 h-4 text-[#FE5000]" />
-                        <span className="text-sm font-bold text-[#172B44]">Real School Moments</span>
-                        <Sparkles className="w-4 h-4 text-[#3080c0]" />
+                        <Clapperboard className="w-5 h-5 text-[#FE5000]" />
+                        <span className="text-sm font-bold text-[#172B44]">School Moments in Action</span>
+                        <Film className="w-5 h-5 text-[#3080c0]" />
                     </motion.div>
 
-                    {/* Main Heading */}
+                    {/* Main Heading - Clean Typography */}
                     <h2
                         className="text-4xl md:text-5xl lg:text-6xl font-black mb-4"
                         style={{ fontFamily: '"Fredoka One", cursive' }}
                     >
-                        School Trip{" "}
-                        <span className="bg-gradient-to-r from-[#3080c0] via-[#6BCB77] to-[#FE5000] bg-clip-text text-transparent">
-                            Highlights
-                        </span>
+                        <span className="text-[#172B44]">School Trip</span>
+                        <br />
+                        <span className="text-[#FE5000]">Video Highlights</span>
                     </h2>
 
                     {/* Subheading */}
                     <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-                        Watch how students experience joy, adventure, and active learning at Jus Jumpin.
+                        Watch the fun, laughter, and learning in action!
                     </p>
                 </motion.div>
 
                 {/* Video Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8">
                     {videos.map((video, index) => (
                         <VideoCard key={video.id} video={video} index={index} />
                     ))}
                 </div>
 
-                {/* Optional CTA */}
+                {/* Fun CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -256,13 +362,19 @@ export default function VideoGallery() {
                     className="mt-16 text-center"
                 >
                     <motion.button
-                        whileHover={{ y: -4, boxShadow: "0 20px 40px -10px rgba(48,128,192,0.3)" }}
-                        whileTap={{ scale: 0.98 }}
-                        className="px-8 py-4 bg-gradient-to-r from-[#3080c0] to-[#6BCB77] text-white text-lg font-bold rounded-full shadow-lg inline-flex items-center gap-2"
+                        whileHover={{ y: -4, scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="group relative px-8 py-4 bg-gradient-to-r from-[#FE5000] to-[#3080c0] text-white text-lg font-bold rounded-full shadow-xl inline-flex items-center gap-3 border-b-4 border-[#172B44] active:border-b-0 active:translate-y-1"
                         style={{ fontFamily: '"Fredoka One", cursive' }}
                     >
-                        <Play className="w-5 h-5" />
+                        <span className="text-2xl">🎪</span>
                         Plan Your School Visit
+                        <motion.span
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                            →
+                        </motion.span>
                     </motion.button>
                     <p className="text-sm text-gray-500 mt-3">
                         Bring your students for an unforgettable experience
@@ -270,29 +382,29 @@ export default function VideoGallery() {
                 </motion.div>
             </div>
 
-            {/* Bottom Wave Separator */}
-            <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180 pointer-events-none">
+            {/* Bottom Wave with same gradient */}
+            <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
                 <svg
-                    className="relative block w-full h-12 md:h-20"
+                    className="relative block w-full h-16 md:h-24"
                     viewBox="0 0 1200 120"
                     preserveAspectRatio="none"
                 >
                     <path
                         d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                        fill="#ffffff"
+                        fill="url(#bottomWaveGradient)"
                     />
+                    <defs>
+                        <linearGradient id="bottomWaveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#ffffff" />
+                            <stop offset="50%" stopColor="#fbfdff" />
+                            <stop offset="100%" stopColor="#ffffff" />
+                        </linearGradient>
+                    </defs>
                 </svg>
             </div>
 
             <style jsx>{`
                 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-                
-                .line-clamp-1 {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
                 
                 .line-clamp-2 {
                     display: -webkit-box;

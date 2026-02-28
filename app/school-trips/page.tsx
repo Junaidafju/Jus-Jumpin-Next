@@ -4,8 +4,7 @@
 import type { Metadata } from "next";
 import SchoolTripsClient from "./SchoolTripsClient";
 import StructuredData from "../components/shared/StructuredData";
-import Schooltestimonialssection from "../components/school-trips/Schooltestimonialssection";
-import SchoolTestimonialsSection from "../components/school-trips/Schooltestimonialssection";
+import { schoolTestimonialsData } from "../components/school-trips/Schooltestimonialssection";
 
 export const metadata: Metadata = {
   title: "School Trips | Jus Jumpin",
@@ -22,7 +21,11 @@ export default function SchoolTripsPage() {
         Next.js App Router does not allow importing server components
         from client components.
       */}
-      <StructuredData testimonials={SchoolTestimonialsSection} />
+      <StructuredData
+        testimonials={schoolTestimonialsData}
+        businessName="Jus Jumpin"
+        businessType="SportsActivityLocation"
+      />
       <SchoolTripsClient />
     </>
   );

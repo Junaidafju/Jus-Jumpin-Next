@@ -6,8 +6,7 @@ import WhatsIncluded from "../components/school-trips/WhatsIncluded";
 import EducationalBenefits from "../components/school-trips/EducationalBenefits";
 import VideoGallery from "../components/school-trips/VideoGallery";
 import Schooltestimonialssection from "../components/school-trips/Schooltestimonialssection";
-
-// import SchoolFAQ from "@/components/school-trips/SchoolFAQ";
+import SchoolFAQ from "../components/school-trips/SchoolFAQ";
 // import SchoolCTA from "@/components/school-trips/SchoolCTA";
 
 export default function SchoolTripsClient() {
@@ -19,12 +18,9 @@ export default function SchoolTripsClient() {
             <EducationalBenefits />
             <VideoGallery />
             <Schooltestimonialssection />
+            <SchoolFAQ />
             {/* 
             
-            <EducationalBenefits />
-            <VideoGallery />
-            <SchoolTestimonials />
-            <SchoolFAQ />
             <SchoolCTA /> */}
         </>
     );
