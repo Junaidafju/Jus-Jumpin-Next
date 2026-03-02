@@ -1,0 +1,290 @@
+// components/activities/activitiesData.ts
+export interface Activity {
+    id: string;
+    title: string;
+    shortTitle: string;
+    description: string;
+    fullDescription: string;
+    image: string;
+    category: "trampoline" | "adventure" | "sports" | "games" | "kids";
+    ageRange: string;
+    duration: string;
+    intensity: "low" | "medium" | "high";
+    color: string;
+    bgGradient: string;
+    flipDirection: "horizontal" | "vertical";
+    enterDirection: "top" | "bottom" | "left" | "right" | "center";
+    features: string[];
+}
+
+// Vibrant color palette
+export const colors = {
+    pink: '#f67edd',
+    green: '#6dc065',
+    orange: '#ff661a',
+    cyan: '#00b9e3',
+    rose: '#ff5da0',
+    yellow: '#ffc60b',
+    lime: '#b2d235',
+    red: '#ff3645',
+    purple: '#8869d2',
+    blue: '#4facfe'
+};
+
+export const activities: Activity[] = [
+    {
+        id: "1",
+        title: "Infinity Trampoline Arena",
+        shortTitle: "Trampoline Arena",
+        description: "Experience unlimited bounce energy in our interconnected trampoline universe!",
+        fullDescription: "Experience unlimited bounce energy in our interconnected trampoline universe. Designed for freestyle jumps, flips, and high-flying tricks with professional-grade rebound performance.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "trampoline",
+        ageRange: "4+ years",
+        duration: "30–60 mins",
+        intensity: "high",
+        color: colors.pink,
+        bgGradient: `linear-gradient(135deg, ${colors.pink}20, ${colors.rose}10)`,
+        flipDirection: "horizontal",
+        enterDirection: "left",
+        features: ["Wall-to-wall trampolines", "Performance bounce panels", "Safe rebound technology", "Aerial trick zones"]
+    },
+    {
+        id: "2",
+        title: "Foam Pit Jump Zone",
+        shortTitle: "Foam Pit Zone",
+        description: "Leap fearlessly into a soft-landing foam pit for 100% safe epic stunts!",
+        fullDescription: "Leap fearlessly into a soft-landing foam pit. Practice flips, tricks, and stunts safely while enjoying a cushioned adventure experience.",
+        image: "/image/activities/ninja-course.jpg",
+        category: "trampoline",
+        ageRange: "5+ years",
+        duration: "15–30 mins",
+        intensity: "medium",
+        color: colors.orange,
+        bgGradient: `linear-gradient(135deg, ${colors.orange}20, ${colors.yellow}10)`,
+        flipDirection: "vertical",
+        enterDirection: "bottom",
+        features: ["Soft foam cube landing", "Trick practice safe zone", "Airbag-style cushioning", "Foam pit depth safety"]
+    },
+    {
+        id: "3",
+        title: "Donut Slide",
+        shortTitle: "Donut Slide",
+        description: "Slide down our thrilling circular donut slide for a fast, fun-filled ride!",
+        fullDescription: "Slide down our thrilling circular donut slide for a fast, fun-filled ride that's safe and exciting for all ages.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "adventure",
+        ageRange: "4+ years",
+        duration: "10–15 mins",
+        intensity: "medium",
+        color: colors.cyan,
+        bgGradient: `linear-gradient(135deg, ${colors.cyan}20, ${colors.blue}10)`,
+        flipDirection: "horizontal",
+        enterDirection: "right",
+        features: ["Inflatable tube ride", "Smooth curved track", "Safe landing zone", "Family friendly"]
+    },
+    {
+        id: "4",
+        title: "Wave Slide",
+        shortTitle: "Wave Slide",
+        description: "Ride the waves indoors across multi-lane slides delivering speed and thrills!",
+        fullDescription: "Ride the waves indoors! Our multi-lane wave slide delivers speed, thrill, and laughter in every descent.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "adventure",
+        ageRange: "3+ years",
+        duration: "10–15 mins",
+        intensity: "medium",
+        color: colors.blue,
+        bgGradient: `linear-gradient(135deg, ${colors.blue}20, ${colors.cyan}10)`,
+        flipDirection: "vertical",
+        enterDirection: "top",
+        features: ["Multi-lane sliding", "Smooth wave curves", "Safe bottom cushioning", "All-ages fun"]
+    },
+    {
+        id: "5",
+        title: "Sky Stepper Challenge",
+        shortTitle: "Sky Stepper",
+        description: "Balance and jump on suspended stepping platforms high above ground!",
+        fullDescription: "Balance, jump, and conquer suspended stepping platforms in this thrilling coordination test high above ground.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "adventure",
+        ageRange: "6+ years",
+        duration: "15–20 mins",
+        intensity: "high",
+        color: colors.purple,
+        bgGradient: `linear-gradient(135deg, ${colors.purple}20, ${colors.pink}10)`,
+        flipDirection: "horizontal",
+        enterDirection: "center",
+        features: ["Suspended pods", "Harness safety system", "Balance skill challenge", "Height training"]
+    },
+    {
+        id: "6",
+        title: "Hanging Bridge Adventure",
+        shortTitle: "Hanging Bridge",
+        description: "Cross wobbling bridges suspended in mid-air — test your courage and balance!",
+        fullDescription: "Cross wobbling bridges suspended in mid-air and test your courage, balance, and agility.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "adventure",
+        ageRange: "6+ years",
+        duration: "10–15 mins",
+        intensity: "medium",
+        color: colors.green,
+        bgGradient: `linear-gradient(135deg, ${colors.green}20, ${colors.lime}10)`,
+        flipDirection: "vertical",
+        enterDirection: "left",
+        features: ["Suspended pathway", "Safety harness system", "Adventure-style crossing", "Balance challenge"]
+    },
+    {
+        id: "7",
+        title: "Obstacle Ninja Zone",
+        shortTitle: "Ninja Zone",
+        description: "Climb, crawl, and race through our adrenaline-packed ninja training course!",
+        fullDescription: "Climb, crawl, jump, and race through our adrenaline-packed obstacle challenge inspired by ninja training courses.",
+        image: "/image/activities/ninja-course.jpg",
+        category: "adventure",
+        ageRange: "6+ years",
+        duration: "15–25 mins",
+        intensity: "high",
+        color: colors.red,
+        bgGradient: `linear-gradient(135deg, ${colors.red}20, ${colors.orange}10)`,
+        flipDirection: "horizontal",
+        enterDirection: "bottom",
+        features: ["Balance beams", "Climbing walls", "Speed challenges", "Ninja-inspired obstacles"]
+    },
+    {
+        id: "8",
+        title: "Wall Climbing Arena",
+        shortTitle: "Wall Climbing",
+        description: "Reach new heights on our safe indoor climbing walls for all skill levels!",
+        fullDescription: "Reach new heights on our safe indoor climbing walls designed for beginners and young adventurers.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "adventure",
+        ageRange: "6+ years",
+        duration: "15–20 mins",
+        intensity: "medium",
+        color: colors.lime,
+        bgGradient: `linear-gradient(135deg, ${colors.lime}20, ${colors.green}10)`,
+        flipDirection: "vertical",
+        enterDirection: "right",
+        features: ["Auto-belay safety", "Multiple difficulty levels", "Secure harness system", "Expert guidance"]
+    },
+    {
+        id: "9",
+        title: "Basketball Dunk Zone",
+        shortTitle: "Dunk Zone",
+        description: "Bounce higher and slam dunk like a pro on trampoline-assisted courts!",
+        fullDescription: "Bounce higher and slam dunk like a pro with trampoline-assisted basketball courts.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "sports",
+        ageRange: "5+ years",
+        duration: "15–20 mins",
+        intensity: "high",
+        color: colors.orange,
+        bgGradient: `linear-gradient(135deg, ${colors.orange}20, ${colors.yellow}10)`,
+        flipDirection: "horizontal",
+        enterDirection: "top",
+        features: ["Trampoline dunk lanes", "Adjustable hoops", "Soft court flooring", "Dunk contests"]
+    },
+    {
+        id: "10",
+        title: "VR Gaming Arena",
+        shortTitle: "VR Gaming",
+        description: "Step into immersive virtual worlds with thrilling interactive VR adventures!",
+        fullDescription: "Step into immersive virtual worlds with interactive VR adventures designed for thrilling gameplay.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "games",
+        ageRange: "8+ years",
+        duration: "10–20 mins",
+        intensity: "medium",
+        color: colors.cyan,
+        bgGradient: `linear-gradient(135deg, ${colors.cyan}20, ${colors.blue}10)`,
+        flipDirection: "vertical",
+        enterDirection: "center",
+        features: ["Immersive headsets", "Interactive motion gaming", "Safe play environment", "50+ experiences"]
+    },
+    {
+        id: "11",
+        title: "Arcade & Interactive Games",
+        shortTitle: "Arcade Zone",
+        description: "Classic meets modern with exciting arcade challenges for all age groups!",
+        fullDescription: "Classic meets modern with exciting arcade challenges and competitive fun for all age groups.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "games",
+        ageRange: "5+ years",
+        duration: "Flexible",
+        intensity: "low",
+        color: colors.yellow,
+        bgGradient: `linear-gradient(135deg, ${colors.yellow}20, ${colors.lime}10)`,
+        flipDirection: "horizontal",
+        enterDirection: "left",
+        features: ["Digital arcade games", "Multiplayer fun", "Prize-based challenges", "Redemption store"]
+    },
+    {
+        id: "12",
+        title: "Sand Pit Play Zone",
+        shortTitle: "Sand Pit",
+        description: "Creative sensory play where kids dig, build, and explore in indoor sand!",
+        fullDescription: "Creative sensory play area where kids can dig, build, and explore in a safe indoor sand environment.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "kids",
+        ageRange: "2+ years",
+        duration: "20–30 mins",
+        intensity: "low",
+        color: colors.pink,
+        bgGradient: `linear-gradient(135deg, ${colors.pink}20, ${colors.rose}10)`,
+        flipDirection: "vertical",
+        enterDirection: "bottom",
+        features: ["Clean indoor sand", "Interactive tools", "Safe soft flooring", "Creative exploration"]
+    },
+    {
+        id: "13",
+        title: "Soft Play Area",
+        shortTitle: "Soft Play",
+        description: "Colorful padded structures designed especially for toddlers and young kids!",
+        fullDescription: "Colorful, padded play structures designed especially for toddlers and young kids.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "kids",
+        ageRange: "1.5+ years",
+        duration: "30–45 mins",
+        intensity: "low",
+        color: colors.rose,
+        bgGradient: `linear-gradient(135deg, ${colors.rose}20, ${colors.pink}10)`,
+        flipDirection: "horizontal",
+        enterDirection: "right",
+        features: ["Cushioned surfaces", "Mini slides & tunnels", "Safe enclosed play", "Parent access"]
+    },
+    {
+        id: "14",
+        title: "Pin Wall Challenge",
+        shortTitle: "Pin Wall",
+        description: "Jump and stick onto our hilarious Velcro wall for epic photo moments!",
+        fullDescription: "Jump and stick! Experience hilarious moments as you launch yourself onto our sticky Velcro wall.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "games",
+        ageRange: "6+ years",
+        duration: "10–15 mins",
+        intensity: "medium",
+        color: colors.purple,
+        bgGradient: `linear-gradient(135deg, ${colors.purple}20, ${colors.blue}10)`,
+        flipDirection: "vertical",
+        enterDirection: "top",
+        features: ["Velcro suits", "Safe padded wall", "Fun photo moments", "Group activity"]
+    },
+    {
+        id: "15",
+        title: "Cube Climbing",
+        shortTitle: "Cube Climbing",
+        description: "Climb colorful geometric cubes in this modern agility-based indoor adventure!",
+        fullDescription: "Climb colorful geometric cubes in this modern indoor adventure designed for agility and coordination.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "adventure",
+        ageRange: "6+ years",
+        duration: "15–20 mins",
+        intensity: "medium",
+        color: colors.green,
+        bgGradient: `linear-gradient(135deg, ${colors.green}20, ${colors.cyan}10)`,
+        flipDirection: "horizontal",
+        enterDirection: "center",
+        features: ["Modular climbing blocks", "Safety harness", "Skill-based climbing", "Coordination training"]
+    }
+];

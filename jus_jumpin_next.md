@@ -1030,8 +1030,7 @@ This approach ensures:
          ├── TripPackages.tsx            
          ├── WhatsIncluded.tsx           
          ├── EducationalBenefits.tsx     
-         ├── VideoGallery.tsx            
-         ├── SchoolTestimonials.tsx      
+         ├── VideoGallery.tsx                 
          ├── SchoolFAQ.tsx             
          └── SchoolCTA.tsx              
  |   |--AnimatedHeader.tsx
@@ -1046,6 +1045,12 @@ This approach ensures:
  |--school-trips
  |   |--page.tsx
  │   └── SchoolTripsClient.tsx
+ |--shared
+ |   |--GoogleReviewCard.tsx
+ |   |--TestimonialCard.tsx
+ |   |--TestimonialMarquee.tsx
+ |   |--StructuredData.tsx
+ │   └──TestimonialCarousel.tsx
  |--favicon.ico
  |--globals.css
  |--layout.tsx

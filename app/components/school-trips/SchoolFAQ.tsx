@@ -143,8 +143,8 @@ const FAQItemComponent: React.FC<{
                         : "border-white/50 hover:border-white shadow-lg hover:shadow-xl"
                     }`}
                 style={{
-                    background: isOpen ? `linear-gradient(135deg, ${item.color}90, white)` : 'white',
-                    boxShadow: isOpen ? `0 20px 40px ${item.color}0` : undefined
+                    background: isOpen ? `linear-gradient(135deg, ${item.color}0, white)` : 'white',
+                    boxShadow: isOpen ? `0 20px 40px ${item.color}90` : undefined
                 }}
             >
                 {/* Colorful top bar */}
@@ -288,7 +288,7 @@ export default function SchoolFAQ() {
             ref={sectionRef}
             className="relative w-full py-20 md:py-28 overflow-hidden"
             style={{
-                background: `linear-gradient(180deg, ${themeColors.pink}10 0%, ${themeColors.cyan}05 50%, ${themeColors.yellow}08 100%)`
+                background: `linear-gradient(to bottom, #ffffff, #f1f8ff, #d4f5ff, #acf5ff, #81f4ff, #63dff0, #41cae2, #00b6d4, #1c89ac, #246080, #1f3953, #111828);`
             }}
             aria-labelledby="faq-heading"
         >
