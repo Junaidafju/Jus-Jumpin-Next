@@ -11,13 +11,10 @@ export interface Activity {
     duration: string;
     intensity: "low" | "medium" | "high";
     color: string;
-    bgGradient: string;
-    flipDirection: "horizontal" | "vertical";
-    enterDirection: "top" | "bottom" | "left" | "right" | "center";
     features: string[];
+    icon: string;
 }
 
-// Vibrant color palette
 export const colors = {
     pink: '#f67edd',
     green: '#6dc065',
@@ -44,9 +41,7 @@ export const activities: Activity[] = [
         duration: "30–60 mins",
         intensity: "high",
         color: colors.pink,
-        bgGradient: `linear-gradient(135deg, ${colors.pink}20, ${colors.rose}10)`,
-        flipDirection: "horizontal",
-        enterDirection: "left",
+        icon: "🤸",
         features: ["Wall-to-wall trampolines", "Performance bounce panels", "Safe rebound technology", "Aerial trick zones"]
     },
     {
@@ -61,9 +56,7 @@ export const activities: Activity[] = [
         duration: "15–30 mins",
         intensity: "medium",
         color: colors.orange,
-        bgGradient: `linear-gradient(135deg, ${colors.orange}20, ${colors.yellow}10)`,
-        flipDirection: "vertical",
-        enterDirection: "bottom",
+        icon: "🎯",
         features: ["Soft foam cube landing", "Trick practice safe zone", "Airbag-style cushioning", "Foam pit depth safety"]
     },
     {
@@ -78,9 +71,7 @@ export const activities: Activity[] = [
         duration: "10–15 mins",
         intensity: "medium",
         color: colors.cyan,
-        bgGradient: `linear-gradient(135deg, ${colors.cyan}20, ${colors.blue}10)`,
-        flipDirection: "horizontal",
-        enterDirection: "right",
+        icon: "🍩",
         features: ["Inflatable tube ride", "Smooth curved track", "Safe landing zone", "Family friendly"]
     },
     {
@@ -95,9 +86,7 @@ export const activities: Activity[] = [
         duration: "10–15 mins",
         intensity: "medium",
         color: colors.blue,
-        bgGradient: `linear-gradient(135deg, ${colors.blue}20, ${colors.cyan}10)`,
-        flipDirection: "vertical",
-        enterDirection: "top",
+        icon: "🌊",
         features: ["Multi-lane sliding", "Smooth wave curves", "Safe bottom cushioning", "All-ages fun"]
     },
     {
@@ -112,9 +101,7 @@ export const activities: Activity[] = [
         duration: "15–20 mins",
         intensity: "high",
         color: colors.purple,
-        bgGradient: `linear-gradient(135deg, ${colors.purple}20, ${colors.pink}10)`,
-        flipDirection: "horizontal",
-        enterDirection: "center",
+        icon: "☁️",
         features: ["Suspended pods", "Harness safety system", "Balance skill challenge", "Height training"]
     },
     {
@@ -129,9 +116,7 @@ export const activities: Activity[] = [
         duration: "10–15 mins",
         intensity: "medium",
         color: colors.green,
-        bgGradient: `linear-gradient(135deg, ${colors.green}20, ${colors.lime}10)`,
-        flipDirection: "vertical",
-        enterDirection: "left",
+        icon: "🌉",
         features: ["Suspended pathway", "Safety harness system", "Adventure-style crossing", "Balance challenge"]
     },
     {
@@ -146,9 +131,7 @@ export const activities: Activity[] = [
         duration: "15–25 mins",
         intensity: "high",
         color: colors.red,
-        bgGradient: `linear-gradient(135deg, ${colors.red}20, ${colors.orange}10)`,
-        flipDirection: "horizontal",
-        enterDirection: "bottom",
+        icon: "🥷",
         features: ["Balance beams", "Climbing walls", "Speed challenges", "Ninja-inspired obstacles"]
     },
     {
@@ -163,9 +146,7 @@ export const activities: Activity[] = [
         duration: "15–20 mins",
         intensity: "medium",
         color: colors.lime,
-        bgGradient: `linear-gradient(135deg, ${colors.lime}20, ${colors.green}10)`,
-        flipDirection: "vertical",
-        enterDirection: "right",
+        icon: "🧗",
         features: ["Auto-belay safety", "Multiple difficulty levels", "Secure harness system", "Expert guidance"]
     },
     {
@@ -180,9 +161,7 @@ export const activities: Activity[] = [
         duration: "15–20 mins",
         intensity: "high",
         color: colors.orange,
-        bgGradient: `linear-gradient(135deg, ${colors.orange}20, ${colors.yellow}10)`,
-        flipDirection: "horizontal",
-        enterDirection: "top",
+        icon: "🏀",
         features: ["Trampoline dunk lanes", "Adjustable hoops", "Soft court flooring", "Dunk contests"]
     },
     {
@@ -197,9 +176,7 @@ export const activities: Activity[] = [
         duration: "10–20 mins",
         intensity: "medium",
         color: colors.cyan,
-        bgGradient: `linear-gradient(135deg, ${colors.cyan}20, ${colors.blue}10)`,
-        flipDirection: "vertical",
-        enterDirection: "center",
+        icon: "🥽",
         features: ["Immersive headsets", "Interactive motion gaming", "Safe play environment", "50+ experiences"]
     },
     {
@@ -214,9 +191,7 @@ export const activities: Activity[] = [
         duration: "Flexible",
         intensity: "low",
         color: colors.yellow,
-        bgGradient: `linear-gradient(135deg, ${colors.yellow}20, ${colors.lime}10)`,
-        flipDirection: "horizontal",
-        enterDirection: "left",
+        icon: "🎮",
         features: ["Digital arcade games", "Multiplayer fun", "Prize-based challenges", "Redemption store"]
     },
     {
@@ -231,9 +206,7 @@ export const activities: Activity[] = [
         duration: "20–30 mins",
         intensity: "low",
         color: colors.pink,
-        bgGradient: `linear-gradient(135deg, ${colors.pink}20, ${colors.rose}10)`,
-        flipDirection: "vertical",
-        enterDirection: "bottom",
+        icon: "🏖️",
         features: ["Clean indoor sand", "Interactive tools", "Safe soft flooring", "Creative exploration"]
     },
     {
@@ -248,9 +221,7 @@ export const activities: Activity[] = [
         duration: "30–45 mins",
         intensity: "low",
         color: colors.rose,
-        bgGradient: `linear-gradient(135deg, ${colors.rose}20, ${colors.pink}10)`,
-        flipDirection: "horizontal",
-        enterDirection: "right",
+        icon: "🧸",
         features: ["Cushioned surfaces", "Mini slides & tunnels", "Safe enclosed play", "Parent access"]
     },
     {
@@ -265,9 +236,7 @@ export const activities: Activity[] = [
         duration: "10–15 mins",
         intensity: "medium",
         color: colors.purple,
-        bgGradient: `linear-gradient(135deg, ${colors.purple}20, ${colors.blue}10)`,
-        flipDirection: "vertical",
-        enterDirection: "top",
+        icon: "📌",
         features: ["Velcro suits", "Safe padded wall", "Fun photo moments", "Group activity"]
     },
     {
@@ -282,9 +251,16 @@ export const activities: Activity[] = [
         duration: "15–20 mins",
         intensity: "medium",
         color: colors.green,
-        bgGradient: `linear-gradient(135deg, ${colors.green}20, ${colors.cyan}10)`,
-        flipDirection: "horizontal",
-        enterDirection: "center",
+        icon: "🧊",
         features: ["Modular climbing blocks", "Safety harness", "Skill-based climbing", "Coordination training"]
     }
+];
+
+export const categories = [
+    { id: "all", label: "All Activities", icon: "🌟", color: colors.orange },
+    { id: "trampoline", label: "Trampoline", icon: "🤸", color: colors.pink },
+    { id: "adventure", label: "Adventure", icon: "🧗", color: colors.green },
+    { id: "sports", label: "Sports", icon: "⚽", color: colors.cyan },
+    { id: "games", label: "Games", icon: "🎮", color: colors.purple },
+    { id: "kids", label: "Kids Zone", icon: "🧸", color: colors.yellow }
 ];

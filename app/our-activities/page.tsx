@@ -1,17 +1,22 @@
 // app/our-activities/page.tsx
-import ActivitiesClient from "./ActivitiesClient";
+import { Metadata } from "next";
+import ActivitiesHero from "../components/activities/ActivitiesHero";
+// import ActivitiesShowcase from "@/app/components/activities/ActivitiesShowcase";
+import ActivitiesGrid from "@/app/components/activities/ActivitiesGrid";
+import ActivitiesCTA from "@/app/components/activities/ActivitiesCTA";
 
-export const metadata = {
-  title: "Our Activities | Jus Jumpin' - 25+ Fun Adventures for All Ages",
-  description: "Discover 25+ exciting activities at India's premier indoor entertainment destination. Trampolines, ninja courses, climbing walls, VR games and more!",
-  keywords: "trampoline park, kids activities, birthday parties, indoor adventure, ninja course, climbing wall",
-  openGraph: {
-    title: "A Universe of Adventures at Jus Jumpin'",
-    description: "Experience 25+ thrilling activities for all ages. Book your adventure today!",
-    images: ["/images/activities-og.jpg"],
-  },
+export const metadata: Metadata = {
+  title: "Our Activities | 25+ Exciting Adventures at Jus Jumpin",
+  description: "Discover 25+ thrilling indoor activities including trampolines, adventure zones, interactive games and more at India's premier entertainment destination!",
 };
 
-export default function ActivitiesPage() {
-  return <ActivitiesClient />;
+export default function OurActivitiesPage() {
+  return (
+    <main className="relative overflow-x-hidden">
+      <ActivitiesHero />
+      {/* <ActivitiesShowcase /> */}
+      <ActivitiesGrid />
+      <ActivitiesCTA />
+    </main>
+  );
 }

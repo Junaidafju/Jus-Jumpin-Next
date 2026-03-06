@@ -1,27 +1,17 @@
-import type { Metadata } from "next";
-import { AnimatedHeader } from "../components/AnimatedHeader";
+import React from 'react';
+import ContactClient from './ContactClient';
 
-export const metadata: Metadata = {
-  title: "Contact Jus Jumpin | Enquiries, Bookings & Partnerships",
-  description:
-    "Contact Jus Jumpin for bookings, birthday celebrations, school trips, corporate events or franchise and partnership enquiries.",
+export const metadata = {
+  title: 'Contact Us - Jus Jumpin | Get in Touch for Bookings & Events',
+  description: 'Contact Jus Jumpin for birthday party bookings, ticket inquiries, school trips, and general questions. Visit us in Rajarhat, Newtown for instant fun!',
+  keywords: 'Jus Jumpin contact, birthday party booking, trampoline park contact, kids entertainment Kolkata',
+  openGraph: {
+    title: 'Contact Jus Jumpin - India\'s Premier Indoor Entertainment',
+    description: 'Reach out to us for bookings, events, and inquiries. Your adventure starts here!',
+    images: ['/images/contact-og.jpg'],
+  },
 };
 
 export default function ContactPage() {
-  return (
-    <main className="min-h-screen bg-black text-slate-50">
-      <AnimatedHeader />
-      <section className="jj-container py-16">
-        <h1 className="mb-4 text-3xl font-semibold tracking-tight">
-          Contact Jus Jumpin
-        </h1>
-        <p className="max-w-2xl text-sm text-slate-300">
-          This page will host your main contact form, central contact details
-          and business/franchise enquiry information, mirroring the contact
-          structure from the planning file.
-        </p>
-      </section>
-    </main>
-  );
+  return <ContactClient />;
 }
-
