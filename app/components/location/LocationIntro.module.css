@@ -1,0 +1,311 @@
+/* app/components/location/LocationIntro.module.css */
+
+.introSection {
+    padding: 100px 0 0;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.gridContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Left Content Column */
+.contentLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.introTitle {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 24px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.introParagraph {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    line-height: 1.8;
+    margin: 0 0 36px;
+    max-width: 650px;
+}
+
+.ctaContainer {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.ctaBtn {
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transform: translateZ(0);
+}
+
+.ctaBtnPrimary {
+    color: #ffffff;
+}
+
+.ctaBtnSecondary {
+    background: transparent;
+    border: 2px solid;
+}
+
+.ctaBtnAccent {
+    color: #1a1a1a;
+}
+
+.ctaBtn:hover {
+    transform: translateY(-4px) translateZ(0);
+}
+
+.ctaBtn:active {
+    transform: translateY(-2px) scale(0.98) translateZ(0);
+}
+
+/* Right Content Column: Responsive Flip Card */
+.contentRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 0.2s;
+}
+
+.flipCardContainer {
+    perspective: 1200px;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 4/3.2; /* Maintain clean responsive height proportional to width */
+}
+
+.flipCardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* Flip trigger on hover for desktop */
+@media (hover: hover) {
+    .flipCardContainer:hover .flipCardInner {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Flip trigger on click/state for mobile/active */
+.flipCardInner.flipped {
+    transform: rotateY(180deg);
+}
+
+.flipCardFront,
+.flipCardBack {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.flipCardFront {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.flipCardBack {
+    transform: rotateY(180deg);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+}
+
+.flipCardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.flipCardContainer:hover .flipCardImage {
+    transform: scale(1.04);
+}
+
+/* Bullet list inside the flip card back */
+.bulletsList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bulletItem {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bulletCheck {
+    font-size: 16px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flipBackNote {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem;
+    text-align: center;
+    margin: 0 0 16px;
+    letter-spacing: 0.5px;
+}
+
+.flipBackBtn {
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.flipBackBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Bottom Wave */
+.waveWrapper {
+    margin-top: 60px;
+    line-height: 0;
+}
+
+.waveSvg {
+    width: 100%;
+    height: 80px;
+    display: block;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Responsive Overrides */
+@media (max-width: 991px) {
+    .gridContainer {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .introSection {
+        padding: 60px 0 0;
+    }
+
+    .gridContainer {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+    }
+
+    .contentLeft {
+        align-items: center;
+    }
+
+    .ctaContainer {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .ctaBtn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .flipCardContainer {
+        aspect-ratio: 4/3.2;
+        max-width: 380px;
+    }
+
+    .flipCardBack {
+        padding: 24px;
+    }
+
+    .bulletsList {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .bulletItem {
+        font-size: 13px;
+        padding-bottom: 6px;
+    }
+
+    .flipBackNote {
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+
+    .waveWrapper {
+        margin-top: 40px;
+    }
+
+    .waveSvg {
+        height: 50px;
+    }
+}

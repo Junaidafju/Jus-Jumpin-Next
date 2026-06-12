@@ -327,7 +327,7 @@ const HolographicCard4D = ({ feature, index }: { feature: typeof features[0]; in
 };
 
 // Floating Elements for Header
-const FloatingElement = ({ children, delay = 0, duration = 3, className = "" }) => (
+const FloatingElement = ({ children, delay = 0, duration = 3, className = "" }: { children: React.ReactNode, delay?: number, duration?: number, className?: string }) => (
     <motion.div
         className={`absolute ${className}`}
         initial={{ y: 0 }}
@@ -347,7 +347,7 @@ const FloatingElement = ({ children, delay = 0, duration = 3, className = "" }) 
 );
 
 // Bouncing Element for extra fun
-const BouncingElement = ({ children, delay = 0, className = "" }) => (
+const BouncingElement = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
     <motion.div
         className={`absolute ${className}`}
         animate={{

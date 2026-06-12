@@ -996,82 +996,161 @@ This approach ensures:
 
 
 ## 25. Project Folder Structure
- | app
- |--about
- |   |--page.tsx
- |--activities
- |   |--page.tsx
- |--birthday-celebration
- |   |--BirthdayClient.tsx
- |   |--page.tsx
- |--blogs
- |   |--page.tsx
- |--components
- |   |--about
- |       |--FounderSection.tsx
- |       |--AboutHero.tsx
- |       |--Marquee.tsx
- |       |--MissionVission.tsx
- |       |--ValuesSection.tsx
- |       |--WelcomeSection.tsx
- |   |--birthday
- |       |--BirthdayHero.tsx
- |       |--BirthdayInro.tsx
- |       |--BirthdayVideoSection.tsx
- |       |--ConfettiLanding.tsx
- |       |--CTASection.tsx
- |       |--FeatureComparisonTable.tsx
- |       |--MomentsGallery.tsx
- |       |--WhyCelebrate.tsx
- |       |--TestimonialSection.tsx
-     |── school-trips/
-         ├── SchoolTripsHero.tsx         
-         ├── WhyChooseUs.tsx            
-         ├── TripPackages.tsx            
-         ├── WhatsIncluded.tsx           
-         ├── EducationalBenefits.tsx     
-         ├── VideoGallery.tsx                 
-         ├── SchoolFAQ.tsx             
-         └── SchoolCTA.tsx              
- |   |--AnimatedHeader.tsx
- |   |--AnimationWrapper.tsx
- |   |--Footer.tsx
- |   |--FooterWrapper.tsx
- |   |--HomeHero3D.tsx
- |   |--HomeExperinece.tsx
- |   |--ImageSequence.tsx
- |--contacts
- |   |--page.tsx
- |--school-trips
- |   |--page.tsx
- │   └── SchoolTripsClient.tsx
- |--shared
- |   |--GoogleReviewCard.tsx
- |   |--TestimonialCard.tsx
- |   |--TestimonialMarquee.tsx
- |   |--StructuredData.tsx
- │   └──TestimonialCarousel.tsx
- |--favicon.ico
- |--globals.css
- |--layout.tsx
- |--page.tsx
- |node_modules
- |public
- |.gitignore
- |eslint.config.mjs
- |next-env.d.ts
- |next.config
- |package-lock.json
- |package.json.ts
- |postcss.config.mjs
- |README.md
- |tsconfig.json
 
+This reflects the **actual current state** of the codebase as of the last update.
 
+```
+jusjumpin-next/
+├── app/
+│   ├── about/
+│   │   └── page.tsx
+│   ├── birthday-celebration/
+│   │   ├── BirthdayClient.tsx
+│   │   └── page.tsx
+│   ├── blogs/
+│   │   └── page.tsx
+│   ├── contact/
+│   │   ├── ContactClient.tsx
+│   │   └── page.tsx
+│   ├── our-activities/
+│   │   ├── ActivitiesClient.tsx
+│   │   └── page.tsx
+│   ├── school-trips/
+│   │   ├── SchoolTripsClient.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   ├── about/
+│   │   │   ├── AboutHero.tsx
+│   │   │   ├── FounderSection.tsx
+│   │   │   ├── Marquee.tsx
+│   │   │   ├── MissionVision.tsx
+│   │   │   ├── ValuesSection.tsx
+│   │   │   └── WelcomeSection.tsx
+│   │   ├── activities/
+│   │   │   ├── ActivitiesCTA.tsx
+│   │   │   ├── ActivitiesGrid.tsx
+│   │   │   ├── ActivitiesHero.tsx
+│   │   │   ├── ActivitiesShowcase.tsx
+│   │   │   └── activitiesData.ts
+│   │   ├── birthday/
+│   │   │   ├── BirthdayBookingModal.tsx
+│   │   │   ├── BirthdayHero.tsx
+│   │   │   ├── BirthdayIntro.tsx
+│   │   │   ├── BirthdayVideoSection.tsx
+│   │   │   ├── CTASection.tsx
+│   │   │   ├── ConfettiLanding.tsx
+│   │   │   ├── FeatureComparisonTable.tsx
+│   │   │   ├── MomentsGallery.tsx
+│   │   │   └── WhyCelebrate.tsx
+│   │   ├── contact/
+│   │   │   ├── ContactFormSection.tsx
+│   │   │   ├── ContactHero.tsx
+│   │   │   └── MapLocationSection.tsx
+│   │   ├── school-trips/
+│   │   │   ├── EducationalBenefits.tsx
+│   │   │   ├── SchoolFAQ.tsx
+│   │   │   ├── SchoolTripsHero.tsx
+│   │   │   ├── Schooltestimonialssection.tsx
+│   │   │   ├── VideoGallery.tsx
+│   │   │   ├── WhatsIncluded.tsx
+│   │   │   └── WhyChooseUs.tsx
+│   │   ├── shared/
+│   │   │   ├── GoogleReviewCard.tsx
+│   │   │   ├── StructuredData.tsx
+│   │   │   ├── TestimonialCard.tsx
+│   │   │   ├── TestimonialCarousel.tsx
+│   │   │   └── TestimonialMarquee.tsx
+│   │   ├── AnimatedHeader.tsx
+│   │   ├── AnimationWrapper.tsx
+│   │   ├── Footer.tsx
+│   │   ├── FooterWrapper.tsx
+│   │   ├── HomeExperience.tsx
+│   │   ├── HomeHero3D.tsx
+│   │   ├── HomeTestimonialsSection.tsx
+│   │   ├── ImageSequence.tsx
+│   │   └── LottieIcon.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── public/
+│   └── frames/
+│       └── hero/           ← 300-frame PNG sequence for hero animation
+├── .gitignore
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── README.md
+├── tailwind.config.js
+└── tsconfig.json
+```
 
-This file represents the agreed roadmap for rebuilding JusJumpin.com on a modern stack while preserving SEO integrity.
+---
 
+## 26. Current Technology Versions
 
+Actual installed versions as declared in `package.json`:
+
+| Package | Version |
+|---|---|
+| next | 16.1.5 |
+| react / react-dom | 19.2.3 |
+| typescript | ^5 |
+| tailwindcss | ^4.1.18 |
+| gsap / @gsap/react | ^3.14.2 / ^2.1.2 |
+| framer-motion | ^12.34.5 |
+| lenis | ^1.3.17 |
+| lottie-react | ^2.4.1 |
+| lucide-react | ^0.563.0 |
+| react-icons | ^5.5.0 |
+| three / @types/three | ^0.182.0 |
+| canvas-confetti | ^1.9.4 |
+| react-confetti | ^6.4.0 |
+| react-hook-form | ^7.71.2 |
+| react-countup | ^6.5.3 |
+
+---
+
+## 27. Completed Milestones
+
+### ✅ Home Page
+- `HomeHero3D.tsx` — Canvas-based 300-frame scroll animation (GSAP ScrollTrigger, pinned 500% height)
+- `HomeExperience.tsx` — Activities showcase section
+- `HomeTestimonialsSection.tsx` — Testimonial carousel
+- `AnimatedHeader.tsx` — Sticky animated navigation (wrapped in `<header>` for GSAP DOM stability)
+- `Footer.tsx` + `FooterWrapper.tsx` — Global site footer
+
+### ✅ About Page
+- `AboutHero`, `WelcomeSection`, `MissionVision`, `ValuesSection`, `FounderSection`, `Marquee`
+
+### ✅ Our Activities Page
+- `ActivitiesHero`, `ActivitiesShowcase`, `ActivitiesGrid`, `ActivitiesCTA`
+- Activity data managed in `activitiesData.ts` (local, pre-Sanity)
+- `ActivitiesClient.tsx` wires `onExploreClick` scroll behavior
+
+### ✅ Birthday Celebration Page
+- `BirthdayHero`, `BirthdayIntro`, `WhyCelebrate`, `FeatureComparisonTable`
+- `BirthdayVideoSection`, `MomentsGallery`, `CTASection`, `ConfettiLanding`
+- `BirthdayBookingModal.tsx` — Full booking form modal with validation and success state
+- `BirthdayClient.tsx` — State management; all Book Now CTAs trigger modal
+
+### ✅ School Trips Page
+- `SchoolTripsHero`, `WhyChooseUs`, `WhatsIncluded`, `EducationalBenefits`
+- `VideoGallery`, `SchoolFAQ`, `Schooltestimonialssection`
+- `SchoolTripsClient.tsx` wires all sections
+
+### ✅ Contact Page
+- `ContactHero`, `ContactFormSection`, `MapLocationSection`
+- `ContactClient.tsx` assembles the full page
+
+### ✅ Shared / Global Components
+- `StructuredData.tsx` — JSON-LD schema injection
+- `TestimonialCard`, `TestimonialMarquee`, `TestimonialCarousel`, `GoogleReviewCard`
+- `AnimationWrapper.tsx`, `LottieIcon.tsx`, `ImageSequence.tsx`
+
+---
 #Debuggings 
 Implementation Plan - Home Hero 3D Animation
 Goal
@@ -1161,3 +1240,6 @@ Modal Functionality
  Form fields are interactive.
  Validation (e.g., date selection, package choice) is active.
  Success state is reachable after simulated submission.
+> **Document Status:** Active Development Blueprint — updated to reflect current codebase state.
+
+This file represents the agreed roadmap for rebuilding JusJumpin.com on a modern stack while preserving SEO integrity.

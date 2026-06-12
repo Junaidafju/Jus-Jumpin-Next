@@ -14,10 +14,10 @@ export default function HomeHero3D() {
   useGSAP(() => {
     const canvas = canvasRef.current!;
     const context = canvas.getContext("2d")!;
-    const frameCount = 300;
+    const frameCount = 150;
 
     const currentFrame = (i: number) =>
-      `/frames/hero/male${String(i).padStart(4, "0")}.png`;
+      `/frames/ezgif-split/Donut (${i}).gif`;
 
     const images: HTMLImageElement[] = [];
     const hero = { frame: 0 };
