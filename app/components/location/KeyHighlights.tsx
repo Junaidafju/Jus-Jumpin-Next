@@ -6,13 +6,20 @@ import styles from './KeyHighlights.module.css';
 
 interface KeyHighlightsProps {
     highlights: [Highlight, Highlight, Highlight, Highlight];
+    heroImages: [string, string, string];
     accentColor: string;
     isKids: boolean;
 }
 
 // Map key highlight indices to premium illustration assets
+const HIGHLIGHT_IMAGES = [
+    '/image/foam-pit.jpg',
+    '/image/family-jumping.jpg',
+    '/image/bouncy-castle.jpg',
+    '/image/Birthday Party.webp'
+];
 
-export default function KeyHighlights({ highlights, accentColor, isKids }: KeyHighlightsProps) {
+export default function KeyHighlights({ highlights, heroImages, accentColor, isKids }: KeyHighlightsProps) {
     const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
     const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
@@ -33,6 +40,12 @@ export default function KeyHighlights({ highlights, accentColor, isKids }: KeyHi
             [index]: !prev[index]
         }));
     };
+
+    // Dynamically derive the base directory path from the location's heroImages
+    // e.g. "/images/locations/bengaluru-m5/hero-1.jpg" -> "/images/locations/bengaluru-m5/"
+    const firstHero = heroImages[0] || '';
+    const lastSlashIdx = firstHero.lastIndexOf('/');
+    const baseDir = lastSlashIdx !== -1 ? firstHero.substring(0, lastSlashIdx + 1) : '';
 
     return (
         <section className={styles.highlightsSection} style={{ backgroundColor: bg }}>
@@ -57,7 +70,7 @@ export default function KeyHighlights({ highlights, accentColor, isKids }: KeyHi
                     {highlights.map((h, i) => {
                         const isFlipped = !!flippedCards[i];
                         const hasImageError = !!imageErrors[i];
-                        const cardImage = h.image;
+                        const cardImage = h.image || (baseDir ? `${baseDir}hero-${i + 1}.jpg` : HIGHLIGHT_IMAGES[i]);
 
                         return (
                             <div

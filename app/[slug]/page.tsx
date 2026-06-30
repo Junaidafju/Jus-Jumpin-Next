@@ -100,7 +100,7 @@ export default async function LocationPage({ params }: PageProps) {
             <LocationIntro data={loc} />
 
             {/* §3 — Key Highlights */}
-            <KeyHighlights highlights={loc.highlights} accentColor={loc.accentColor} isKids={isKids} />
+            <KeyHighlights highlights={loc.highlights} heroImages={loc.heroImages} accentColor={loc.accentColor} isKids={isKids} />
 
             {/* §4 — Activities */}
             <ActivitiesSection activities={loc.activities} type={loc.type} accentColor={loc.accentColor} />
