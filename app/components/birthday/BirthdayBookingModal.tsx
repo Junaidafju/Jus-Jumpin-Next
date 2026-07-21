@@ -14,6 +14,7 @@ interface FormData {
     parentName: string;
     email: string;
     phone: string;
+    location: string;
     childName: string;
     childAge: string;
     partyDate: string;
@@ -27,6 +28,7 @@ const INITIAL: FormData = {
     parentName: "",
     email: "",
     phone: "",
+    location: "",
     childName: "",
     childAge: "",
     partyDate: "",
@@ -593,6 +595,7 @@ function validate(step: number, data: FormData): Errors {
         if (!data.parentName.trim()) e.parentName = "Name is required";
         if (!data.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) e.email = "Valid email required";
         if (!data.phone.trim() || data.phone.replace(/\D/g, "").length < 10) e.phone = "Valid phone required";
+        if (!data.location) e.location = "Please select a venue location";
     }
     if (step === 1) {
         if (!data.childName.trim()) e.childName = "Child's name is required";
@@ -688,10 +691,12 @@ export default function BirthdayBookingModal({ isOpen, onClose }: BirthdayBookin
     const stepLabels = ["Your Info", "Party Details", "Date & Time"];
     const stepIcons = ["👤", "🎉", "📅"];
 
+    if (!isOpen) return null;
+
     return (
         <div
             ref={backdropRef}
-            className={`bbm-backdrop${isOpen ? " open" : ""}`}
+            className="bbm-backdrop open"
             onClick={onBackdropClick}
             role="dialog"
             aria-modal="true"
@@ -774,12 +779,27 @@ export default function BirthdayBookingModal({ isOpen, onClose }: BirthdayBookin
                                         {errors.email && <span className="bbm-error-msg">⚠ {errors.email}</span>}
                                     </Field>
                                 </div>
-                                <Field label="Phone Number" req>
-                                    <input className={`bbm-input${errors.phone ? " error" : ""}`}
-                                        type="tel" placeholder="e.g. 9876543210"
-                                        value={form.phone} onChange={e => set("phone", e.target.value)} />
-                                    {errors.phone && <span className="bbm-error-msg">⚠ {errors.phone}</span>}
-                                </Field>
+                                <div className="bbm-row">
+                                    <Field label="Phone Number" req>
+                                        <input className={`bbm-input${errors.phone ? " error" : ""}`}
+                                            type="tel" placeholder="e.g. 9876543210"
+                                            value={form.phone} onChange={e => set("phone", e.target.value)} />
+                                        {errors.phone && <span className="bbm-error-msg">⚠ {errors.phone}</span>}
+                                    </Field>
+                                    <Field label="Preferred Location" req>
+                                        <select className={`bbm-select${errors.location ? " error" : ""}`}
+                                            value={form.location} onChange={e => set("location", e.target.value)}>
+                                            <option value="">Select venue location</option>
+                                            <option value="Kolkata - Rajarhat / Newtown">Kolkata - Rajarhat / Newtown</option>
+                                            <option value="Kolkata - Avani Mall">Kolkata - Avani Mall</option>
+                                            <option value="Kolkata - ABC Square">Kolkata - ABC Square</option>
+                                            <option value="Raipur">Raipur</option>
+                                            <option value="Bengaluru - M5 ECity Mall">Bengaluru - M5 ECity Mall</option>
+                                            <option value="Other / Nearby Location">Other / Nearby Location</option>
+                                        </select>
+                                        {errors.location && <span className="bbm-error-msg">⚠ {errors.location}</span>}
+                                    </Field>
+                                </div>
                             </div>
 
                             {/* ── Step 1: Party details ── */}
@@ -875,6 +895,7 @@ export default function BirthdayBookingModal({ isOpen, onClose }: BirthdayBookin
                                     <div className="bbm-summary-body">
                                         {[
                                             { icon: "👤", label: "Parent", val: form.parentName || "—" },
+                                            { icon: "📍", label: "Location", val: form.location || "—" },
                                             { icon: "🎂", label: "Child", val: form.childName ? `${form.childName}, turning ${form.childAge}` : "—" },
                                             { icon: "🎊", label: "Package", val: PACKAGES.find(p => p.id === form.package)?.label || "—" },
                                             { icon: "📅", label: "Date", val: form.partyDate ? new Date(form.partyDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }) : "—" },

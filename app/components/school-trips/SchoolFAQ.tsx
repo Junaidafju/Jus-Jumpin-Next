@@ -500,17 +500,17 @@ export default function SchoolFAQ() {
                                 key={i}
                                 className="absolute w-4 h-4 bg-white rounded-full"
                                 style={{
-                                    left: `${Math.random() * 100}%`,
-                                    top: `${Math.random() * 100}%`,
+                                    left: `${(i * 19 + 7) % 95}%`,
+                                    top: `${(i * 23 + 11) % 90}%`,
                                 }}
                                 animate={{
                                     y: [0, -20, 0],
                                     opacity: [0.2, 0.5, 0.2]
                                 }}
                                 transition={{
-                                    duration: 2 + Math.random() * 2,
+                                    duration: 2 + (i % 3),
                                     repeat: Infinity,
-                                    delay: Math.random() * 2
+                                    delay: (i % 5) * 0.4
                                 }}
                             />
                         ))}

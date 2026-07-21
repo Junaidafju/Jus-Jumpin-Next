@@ -14,31 +14,31 @@ const BirthdayShowcase = ({ onBookNow }: BirthdayShowcaseProps) => {
 
     const celebrationImages = [
         {
-            url: "/image/Birthday Party.webp",
+            url: "/image/Birthday%20Party.webp",
             alt: "Kids celebrating with birthday cake",
             emoji: "🎂",
             color: "#FF6B35"
         },
         {
-            url: "/image/Birthday Party2.webp",
+            url: "/image/Birthday%20Party2.webp",
             alt: "Kids jumping in bouncy castle",
             emoji: "🏰",
             color: "#0066CC"
         },
         {
-            url: "/image/Birthday Party3.webp",
+            url: "/image/Birthday%20Party3.webp",
             alt: "Children wearing party hats",
             emoji: "🎉",
             color: "#FF6B35"
         },
         {
-            url: "/image/Birthday Party4.webp",
+            url: "/image/Birthday%20Party4.webp",
             alt: "Kids opening presents",
             emoji: "🎁",
             color: "#0066CC"
         },
         {
-            url: "/image/Birthday Party5.webp",
+            url: "/image/Birthday%20Party5.webp",
             alt: "Children playing with balloons",
             emoji: "🎈",
             color: "#FF6B35"
@@ -332,7 +332,15 @@ const BirthdayShowcase = ({ onBookNow }: BirthdayShowcaseProps) => {
                                     Book Your Party
                                     <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
                                 </button>
-                                <button className="px-8 py-4 bg-white hover:bg-gray-50 text-[#0066CC] font-bold text-lg rounded-full border-2 border-[#0066CC] transition-all duration-300 shadow-lg hover:shadow-xl">
+                                <button
+                                    onClick={() => {
+                                        const pkgEl = document.getElementById('packages');
+                                        if (pkgEl) {
+                                            pkgEl.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
+                                    className="px-8 py-4 bg-white hover:bg-gray-50 text-[#0066CC] font-bold text-lg rounded-full border-2 border-[#0066CC] transition-all duration-300 shadow-lg hover:shadow-xl"
+                                >
                                     View Packages
                                 </button>
                             </div>

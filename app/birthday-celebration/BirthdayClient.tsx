@@ -2,7 +2,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 import BirthdayHero from '@/app/components/birthday/BirthdayHero';
 import BirthdayIntro from '@/app/components/birthday/BirthdayIntro';
 import WhyCelebrate from '@/app/components/birthday/WhyCelebrate';
@@ -33,18 +32,15 @@ export default function BirthdayClient() {
             {/* Hero Section - Full Width */}
             <BirthdayHero onBookNow={openBookingModal} />
 
-            {/* BirthdayIntro - Full Width with separators (no container) */}
+            {/* BirthdayIntro - Full Width with separators */}
             <BirthdayIntro onBookNow={openBookingModal} />
             <WhyCelebrate onBookNow={openBookingModal} />
             <FeatureComparisonTable onBookNow={openBookingModal} />
             <MomentsGallery onBookNow={openBookingModal} />
             <BirthdayVideoSection />
+            
             {/* Content Sections - Contained */}
-            <div className="container mx-auto px-4 py-12 space-y-20">
-                <Suspense fallback={<div className="h-64 animate-pulse bg-orange-200 rounded-2xl" />}>
-
-                </Suspense>
-
+            <div className="container mx-auto px-4 py-12">
                 <CTASection onBookNow={openBookingModal} />
             </div>
 

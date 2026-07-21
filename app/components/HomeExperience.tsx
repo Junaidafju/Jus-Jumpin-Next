@@ -164,6 +164,7 @@ export default function HomeExperience() {
 
     return (
         <section
+            id="explore"
             ref={sectionRef}
             className="relative min-h-screen overflow-hidden px-4 py-20 md:py-32"
         >
@@ -186,34 +187,34 @@ export default function HomeExperience() {
             <div className="container mx-auto max-w-7xl relative z-10">
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     {/* Content Section */}
-                    <div className="space-y-8">
-                        <div className="space-y-4">
-                            <h1
+                    <div className="space-y-6 sm:space-y-8">
+                        <div className="space-y-3 sm:space-y-4">
+                            <h2
                                 ref={headingRef}
-                                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+                                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
                             >
                                 India's Most Exciting Trampoline Experience
-                            </h1>
+                            </h2>
 
-                            <h2
+                            <h3
                                 ref={subheadingRef}
-                                className="text-xl md:text-2xl font-semibold text-teal-700"
+                                className="text-base sm:text-xl md:text-2xl font-semibold text-teal-700"
                             >
                                 Where Fun, Fitness, and Family Come Together
-                            </h2>
+                            </h3>
                         </div>
 
-                        <div className="space-y-6 text-gray-700">
+                        <div className="space-y-4 sm:space-y-6 text-gray-700">
                             <p
                                 ref={paragraph1Ref}
-                                className="text-lg md:text-xl leading-relaxed"
+                                className="text-sm sm:text-lg md:text-xl leading-relaxed"
                             >
                                 Since 2017, Jus Jumpin has reimagined playtime with vibrant parks across India. We're committed to safety, cleanliness, and high-energy experiences that spark joy for every age.
                             </p>
 
                             <p
                                 ref={paragraph2Ref}
-                                className="text-lg md:text-xl leading-relaxed"
+                                className="text-sm sm:text-lg md:text-xl leading-relaxed"
                             >
                                 At Jus Jumpin, every bounce takes you higher — into fun, freedom, and pure joy. With over 15 rides and gaming activities, we continue to offer a perfect day out destination where memories are brewed and stress goes out of the window.
                             </p>
@@ -222,29 +223,29 @@ export default function HomeExperience() {
                         {/* Quote Section */}
                         <div
                             ref={quoteRef}
-                            className="relative bg-gradient-to-r from-teal-500 to-emerald-600 p-6 md:p-8 rounded-2xl shadow-2xl"
+                            className="relative bg-gradient-to-r from-teal-500 to-emerald-600 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-2xl"
                         >
-                            <div className="absolute -top-4 left-8 bg-white text-teal-600 px-4 py-1 rounded-full text-sm font-bold">
+                            <div className="absolute -top-3.5 left-4 sm:left-8 bg-white text-teal-600 px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
                                 ✨ LIMITED SLOTS
                             </div>
-                            <p className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                            <p className="text-lg sm:text-2xl md:text-3xl font-bold text-white leading-tight">
                                 "Reserve your slot today and bounce into endless excitement!"
                             </p>
-                            <div className="absolute -bottom-3 right-8 text-white text-5xl">🎯</div>
+                            <div className="absolute -bottom-3 right-4 sm:right-8 text-white text-3xl sm:text-5xl">🎯</div>
                         </div>
 
                         {/* CTA Button */}
-                        <div className="pt-4">
+                        <div className="pt-2 sm:pt-4">
                             <a
                                 ref={ctaRef}
-                                href="/booking" // Update with your actual booking page
-                                className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-teal-600 to-emerald-700 rounded-full shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105"
+                                href="/contact"
+                                className="inline-flex items-center justify-center px-6 py-2.5 sm:px-8 sm:py-3.5 text-sm sm:text-base font-bold text-white bg-gradient-to-r from-teal-600 to-emerald-700 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 text-center"
                             >
-                                <span className="mr-3">🎫</span>
+                                <span className="mr-2.5">🎫</span>
                                 Book Ticket Now
-                                <span className="ml-3 animate-pulse">→</span>
+                                <span className="ml-2.5 animate-pulse">→</span>
                             </a>
-                            <p className="mt-3 text-sm text-gray-600">
+                            <p className="mt-3 text-xs sm:text-sm text-gray-600">
                                 🏆 Over 50,000+ happy jumpers • ⭐ 4.8/5 Rating • 🔒 Safe & Secure Booking
                             </p>
                         </div>

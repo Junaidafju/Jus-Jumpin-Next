@@ -5,16 +5,16 @@ import Image from "next/image";
 
 /* ─── gallery data ─────────────────────────────────────────── */
 const PHOTOS = [
-  { src: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=200&h=200&fit=crop", tag: "Cake Time 🎂", color: "#FFD6E0" },
-  { src: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=200&h=200&fit=crop", tag: "Celebrate! 🥳", color: "#D6F0FF" },
-  { src: "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=200&h=200&fit=crop", tag: "Jump High 🚀", color: "#E8FFD6" },
-  { src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&h=200&fit=crop", tag: "Best Pals 👯", color: "#FFF3D6" },
-  { src: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=200&h=200&fit=crop", tag: "Balloons! 🎈", color: "#F0D6FF" },
-  { src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=200&h=200&fit=crop", tag: "Dance Off 🎵", color: "#FFE8D6" },
-  { src: "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?w=200&h=200&fit=crop", tag: "Sweets! 🍭", color: "#D6FFF0" },
-  { src: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=200&h=200&fit=crop", tag: "Sparkle ✨", color: "#FFFBD6" },
-  { src: "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=200&h=200&fit=crop", tag: "Party! 🎊", color: "#FFD6D6" },
-  { src: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&h=900&fit=crop", thumb: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=200&h=200&fit=crop", tag: "Neon Fun 🌈", color: "#D6E8FF" },
+  { src: "/image/birthday/photos.jpg", thumb: "/image/birthday/photos.jpg", tag: "Cake Time 🎂", color: "#FFD6E0" },
+  { src: "/image/group-celebration.jpg", thumb: "/image/group-celebration.jpg", tag: "Celebrate! 🥳", color: "#D6F0FF" },
+  { src: "/image/bouncy-castle.jpg", thumb: "/image/bouncy-castle.jpg", tag: "Jump High 🚀", color: "#E8FFD6" },
+  { src: "/image/birthday/kids-adult.jpg", thumb: "/image/birthday/kids-adult.jpg", tag: "Best Pals 👯", color: "#FFF3D6" },
+  { src: "/image/balloon-fun.jpg", thumb: "/image/balloon-fun.jpg", tag: "Balloons! 🎈", color: "#F0D6FF" },
+  { src: "/image/birthday/fun-games.jpg", thumb: "/image/birthday/fun-games.jpg", tag: "Games Zone 🎮", color: "#FFE8D6" },
+  { src: "/image/birthday/delectable-food.jpg", thumb: "/image/birthday/delectable-food.jpg", tag: "Sweets & Food 🍕", color: "#D6FFF0" },
+  { src: "/image/birthday/personalized-themes.jpg", thumb: "/image/birthday/personalized-themes.jpg", tag: "Sparkle Themes ✨", color: "#FFFBD6" },
+  { src: "/image/birthday/dedicated-zones.jpg", thumb: "/image/birthday/dedicated-zones.jpg", tag: "Private Party 🎊", color: "#FFD6D6" },
+  { src: "/image/foam-pit.jpg", thumb: "/image/foam-pit.jpg", tag: "Foam Pit Fun 🌈", color: "#D6E8FF" },
 ];
 
 /* ─── CSS ──────────────────────────────────────────────────── */

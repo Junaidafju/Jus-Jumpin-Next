@@ -5,6 +5,7 @@ import FooterWrapper from "./components/FooterWrapper";
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://jusjumpin.com'),
   title: "Jus Jumpin | Premium Indoor Trampoline & Play Parks",
   description:
     "Jus Jumpin offers premium indoor trampoline and play parks across India. Safe, hygienic fun for kids, teens, schools, and corporate groups.",

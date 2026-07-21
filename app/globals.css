@@ -99,6 +99,25 @@ body {
   border-radius: 3px;
 }
 
+/* Dual Marquee Keyframe Animations */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 35s linear infinite;
+}
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(245, 158, 11, 0.5);
   border-radius: 3px;
@@ -332,11 +351,11 @@ body {
   }
 }
 
-/* Prevent horizontal scroll */
+/* Prevent horizontal scroll without breaking CSS position: sticky */
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 * {

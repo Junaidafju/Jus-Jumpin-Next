@@ -329,7 +329,7 @@ export default function WhyCelebrate({ onBookNow }: WhyCelebrateProps) {
                 {/* Content Padding Container */}
                 <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
                     {/* Heading Area */}
-                    <div ref={headingRef} className="text-center max-w-4xl mx-auto pt-24 md:pt-32 mb-16 md:mb-20">
+                    <div ref={headingRef} className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
                         <div className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-white shadow-md border-2 border-blue-200 mb-6 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
                             <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-blue-500" />
                             <span className="text-blue-600 font-bold tracking-wider uppercase text-xs md:text-sm">

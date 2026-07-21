@@ -280,6 +280,7 @@ export default function FeatureComparisonTable({ onBookNow }: FeatureComparisonT
 
     return (
         <section
+            id="packages"
             ref={sectionRef}
             className="relative w-full py-0 overflow-hidden"
         >
@@ -326,7 +327,7 @@ export default function FeatureComparisonTable({ onBookNow }: FeatureComparisonT
                 {!isMobile && (
                     <div
                         ref={leftCharsRef}
-                        className="absolute left-5 top-280 -translate-y-1/2 z-30 hidden lg:block "
+                        className="absolute left-5 top-1/2 -translate-y-1/2 z-30 hidden lg:block "
                         style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3))' }}
                     >
                         {!imageErrors[Characters.left.alt] ? (
@@ -359,7 +360,7 @@ export default function FeatureComparisonTable({ onBookNow }: FeatureComparisonT
                 {!isMobile && (
                     <div
                         ref={rightCharsRef}
-                        className="absolute right-5 top-295 -translate-y-1/2 z-30 hidden lg:block"
+                        className="absolute right-5 top-1/2 -translate-y-1/2 z-30 hidden lg:block"
                         style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3))' }}
                     >
                         {!imageErrors[Characters.right.alt] ? (
