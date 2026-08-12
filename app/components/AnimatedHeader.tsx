@@ -265,7 +265,7 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
 
   const rightNavItems = [
     { label: "About", href: "/about/" },
-    // { label: "Blogs", href: "/blog/" },
+    // { label: "Blogs", href: "/blogs" },
     { label: "Contact", href: "/contact/" },
   ];
 

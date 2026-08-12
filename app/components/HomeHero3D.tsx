@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BirthdayBookingModal from "@/app/components/birthday/BirthdayBookingModal";
+import MuxPlayer from "@mux/mux-player-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -155,41 +156,17 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
     return () => ctx.revert();
   }, [isMounted]);
 
+  // Mux Video URLs for Desktop vs Mobile
+  const currentPlaybackId = isMobile ? MOBILE_PLAYBACK_ID : DESKTOP_PLAYBACK_ID;
+  const mp4Url = `https://stream.mux.com/${currentPlaybackId}/high.mp4`;
+  const m3u8Url = `https://stream.mux.com/${currentPlaybackId}.m3u8`;
+  const posterUrl = `https://image.mux.com/${currentPlaybackId}/thumbnail.jpg?time=1`;
+
   // Video Load and Switch Logic
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
     setVideoLoaded(false);
     setVideoError(false);
-
-    const handleLoadedData = () => {
-      setVideoLoaded(true);
-      video.play().catch(() => {
-        // Autoplay policy fallback
-        setVideoLoaded(true);
-      });
-    };
-
-    const handleError = () => {
-      setVideoError(true);
-    };
-
-    video.addEventListener("loadeddata", handleLoadedData);
-    video.addEventListener("error", handleError);
-
-    // Trigger load when source changes
-    video.load();
-
-    if (video.readyState >= 3) {
-      handleLoadedData();
-    }
-
-    return () => {
-      video.removeEventListener("loadeddata", handleLoadedData);
-      video.removeEventListener("error", handleError);
-    };
-  }, [isMobile]);
+  }, [currentPlaybackId]);
 
   const handleBookClick = () => {
     if (onBookClick) {
@@ -198,12 +175,6 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
       setIsBookingModalOpen(true);
     }
   };
-
-  // Mux Video URLs for Desktop vs Mobile
-  const currentPlaybackId = isMobile ? MOBILE_PLAYBACK_ID : DESKTOP_PLAYBACK_ID;
-  const mp4Url = `https://stream.mux.com/${currentPlaybackId}/high.mp4`;
-  const m3u8Url = `https://stream.mux.com/${currentPlaybackId}.m3u8`;
-  const posterUrl = `https://image.mux.com/${currentPlaybackId}/thumbnail.jpg?time=1`;
 
   return (
     <>
@@ -220,26 +191,25 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
           className="absolute inset-0 w-full h-full pointer-events-none"
         >
           <div className="relative w-full h-full overflow-hidden">
-            <video
-              ref={videoRef}
-              className={`w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-100" : "opacity-0"
-                }`}
-              poster={posterUrl}
-              playsInline
+            <MuxPlayer
+              playbackId={currentPlaybackId}
+              streamType="on-demand"
+              autoPlay="muted"
               muted
               loop
-              autoPlay
-              preload="auto"
+              playsInline
+              poster={posterUrl}
+              onPlay={() => setVideoLoaded(true)}
+              onError={() => setVideoError(true)}
               style={{
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
                 transform: "scale(1.03)",
               }}
-            >
-              <source src={m3u8Url} type="application/x-mpegURL" />
-              <source src={mp4Url} type="video/mp4" />
-            </video>
+              className={`w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-100" : "opacity-0"
+                }`}
+            />
 
             {/* Poster / Fallback Background Image */}
             {(!videoLoaded || videoError) && (
@@ -359,7 +329,7 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
             className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-8 mt-6 sm:mt-12 pt-4 sm:pt-8 border-t border-white/15 w-full max-w-4xl px-2 sm:px-0"
           >
             {[
-              { label: "Happy Jumpers", value: "10,000+", icon: "😊" },
+              { label: "Happy Jumpers", value: "10,00,000+", icon: "😊" },
               { label: "Park Locations", value: "20+", icon: "📍" },
               { label: "Years of Joy", value: "10+", icon: "🏆" },
               { label: "Parent Rating", value: "4.9 ★", icon: "⭐" },
