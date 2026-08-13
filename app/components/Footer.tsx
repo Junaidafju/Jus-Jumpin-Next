@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaBirthdayCake, FaHome, FaInfoCircle, FaBlog, FaChevronUp, FaSchool } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaBirthdayCake, FaHome, FaInfoCircle, FaBlog, FaChevronUp, FaSchool, FaBriefcase } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import LottieIcon from './LottieIcon';
 
@@ -19,31 +19,32 @@ const Footer = () => {
         { name: 'School Trips', href: '/school-trips', icon: <FaSchool className="mr-2" /> },
         { name: 'Contact Us', href: '/contacts', icon: <FaPhone className="mr-2" /> },
         { name: 'Blogs', href: '/blogs', icon: <FaBlog className="mr-2" /> },
+        { name: 'Careers', href: '/careers', icon: <FaBriefcase className="mr-2" /> },
     ];
 
     const locations = [
-        { city: 'Kolkata', address: 'ABC Square Building' },
-        { city: 'Kolkata', address: 'Avani Mall' },
-        { city: 'Kolkata', address: 'Axis Mall' },
-        { city: 'Kolkata', address: 'City Centre 2' },
-        { city: 'Siliguri', address: 'City Centre' },
-        { city: 'Durgapur', address: 'Junction Mall' },
-        { city: 'Bengaluru', address: 'M5 Ecity Mall' },
-        { city: 'Bengaluru', address: 'Meenakshi Mall' },
-        { city: 'Ghatkopar', address: 'R City Mall' },
-        { city: 'Dhanbad', address: 'Prabhatam Mall' },
-        { city: 'Mumbai', address: 'Infiniti Mall' },
-        { city: 'Delhi', address: 'Select Citywalk' },
-        { city: 'Chennai', address: 'Express Avenue' },
-        { city: 'Hyderabad', address: 'Inorbit Mall' },
-        { city: 'Pune', address: 'Phoenix Marketcity' },
-        { city: 'Ahmedabad', address: 'Alpha One Mall' },
-        { city: 'Lucknow', address: 'Phoenix Palassio' },
-        { city: 'Jaipur', address: 'World Trade Park' },
-        { city: 'Chandigarh', address: 'Elante Mall' },
-        { city: 'Indore', address: 'Treasure Island' },
-        { city: 'Bhopal', address: 'DB City Mall' },
-        { city: 'Coimbatore', address: 'Brookefields Mall' },
+        { city: 'Kolkata', address: 'ABC Square Building', slug: '/kolkata-abc-square-building-best-adult-trampoline-park/' },
+        { city: 'Kolkata', address: 'Avani Mall', slug: '/kolkata-avani-mall/' },
+        { city: 'Kolkata', address: 'Axis Mall', slug: '/kolkata-axis-mall/' },
+        { city: 'Kolkata', address: 'City Centre 2', slug: '/kolkata-city-centre-2/' },
+        { city: 'Siliguri', address: 'City Centre', slug: '/siliguri-city-centre/' },
+        { city: 'Durgapur', address: 'Junction Mall', slug: '/durgapur-junction-mall/' },
+        { city: 'Bengaluru', address: 'M5 Ecity Mall', slug: '/bengaluru-m5-ecity-mall/' },
+        { city: 'Bengaluru', address: 'Meenakshi Mall', slug: '/bengaluru-meenakshi-mall/' },
+        { city: 'Dhanbad', address: 'Prabhatam Mall', slug: '/dhanbad-prabhatam-mall/' },
+        { city: 'Jamshedpur', address: 'P&M Mall', slug: '/jamshedpur-pm-mall/' },
+        { city: 'Ranchi', address: 'Nucleus Mall', slug: '/ranchi-nucleus-mall/' },
+        { city: 'Noida', address: 'GIP Mall', slug: '/noida-gip-mall/' },
+        { city: 'Noida', address: 'Spectrum Mall', slug: '/noida-spectrum-mall/' },
+        { city: 'Thane', address: 'R Mall', slug: '/thane-r-mall/' },
+        { city: 'Nagpur', address: 'VR Mall', slug: '/nagpur-vr-mall/' },
+        { city: 'Pune', address: 'Seasons Mall', slug: '/pune-season-mall/' },
+        { city: 'Nashik', address: 'City Centre', slug: '/nashik-city-centre/' },
+        { city: 'Ghatkopar', address: 'R City Mall', slug: '/ghatkopar-rcity-mall/' },
+        { city: 'Raipur', address: 'Zora Mall', slug: '/raipur-zora-mall/' },
+        { city: 'Surat', address: 'VR Mall', slug: '/surat-vr-mall/' },
+        { city: 'Hyderabad', address: 'Sarath City Capital Mall', slug: '/hyderabad-sarath-city-capital-mall/' },
+        { city: 'Hyderabad', address: 'DSL Virtue Mall', slug: '/hyderabad-dsl-virtue-mall/' },
     ];
 
     const socialLinks = [
@@ -290,47 +291,48 @@ const Footer = () => {
                         {/* Desktop: Show all locations in grid */}
                         <div className="hidden lg:grid lg:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-3 custom-scrollbar">
                             {locations.map((location, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 border border-gray-700/50 hover:border-yellow-500/30 transition-all duration-300 cursor-pointer"
-                                    onMouseEnter={() => setHoveredLocation(index)}
-                                    onMouseLeave={() => setHoveredLocation(null)}
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.02 }}
-                                    viewport={{ once: true }}
-                                >
-                                    <div className="flex items-start space-x-3">
-                                        <motion.div
-                                            animate={{
-                                                scale: hoveredLocation === index ? 1.2 : 1,
-                                                rotate: hoveredLocation === index ? 360 : 0
-                                            }}
-                                            transition={{ duration: 0.3 }}
-                                        >
-                                            <FaMapMarkerAlt className="text-yellow-500 mt-1 flex-shrink-0" />
-                                        </motion.div>
-                                        <div className="min-w-0 flex-1">
-                                            <p className="font-semibold text-white truncate">{location.city}</p>
-                                            <p className="text-sm text-gray-300 truncate">{location.address}</p>
-                                        </div>
-                                    </div>
-                                    <AnimatePresence>
-                                        {hoveredLocation === index && (
+                                <Link href={location.slug} key={index} className="block">
+                                    <motion.div
+                                        className="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 border border-gray-700/50 hover:border-yellow-500/30 transition-all duration-300 cursor-pointer"
+                                        onMouseEnter={() => setHoveredLocation(index)}
+                                        onMouseLeave={() => setHoveredLocation(null)}
+                                        whileHover={{ scale: 1.02, y: -2 }}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.02 }}
+                                        viewport={{ once: true }}
+                                    >
+                                        <div className="flex items-start space-x-3">
                                             <motion.div
-                                                className="mt-2 pt-2 border-t border-gray-700"
-                                                initial={{ opacity: 0, height: 0 }}
-                                                animate={{ opacity: 1, height: "auto" }}
-                                                exit={{ opacity: 0, height: 0 }}
+                                                animate={{
+                                                    scale: hoveredLocation === index ? 1.2 : 1,
+                                                    rotate: hoveredLocation === index ? 360 : 0
+                                                }}
+                                                transition={{ duration: 0.3 }}
                                             >
-                                                <p className="text-xs text-gray-400">
-                                                    Visit our amazing indoor park
-                                                </p>
+                                                <FaMapMarkerAlt className="text-yellow-500 mt-1 flex-shrink-0" />
                                             </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </motion.div>
+                                            <div className="min-w-0 flex-1">
+                                                <p className="font-semibold text-white truncate">{location.city}</p>
+                                                <p className="text-sm text-gray-300 truncate">{location.address}</p>
+                                            </div>
+                                        </div>
+                                        <AnimatePresence>
+                                            {hoveredLocation === index && (
+                                                <motion.div
+                                                    className="mt-2 pt-2 border-t border-gray-700"
+                                                    initial={{ opacity: 0, height: 0 }}
+                                                    animate={{ opacity: 1, height: "auto" }}
+                                                    exit={{ opacity: 0, height: 0 }}
+                                                >
+                                                    <p className="text-xs text-gray-400">
+                                                        Visit our amazing indoor park
+                                                    </p>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
+                                </Link>
                             ))}
                         </div>
 
@@ -338,18 +340,19 @@ const Footer = () => {
                         <div className="lg:hidden">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-3 custom-scrollbar">
                                 {locations.map((location, index) => (
-                                    <div
-                                        key={index}
-                                        className="p-3 rounded-lg bg-gray-800/50 border border-gray-700/50"
-                                    >
-                                        <div className="flex items-start space-x-3">
-                                            <FaMapMarkerAlt className="text-yellow-500 mt-1 flex-shrink-0" />
-                                            <div className="min-w-0 flex-1">
-                                                <p className="font-semibold text-white text-sm">{location.city}</p>
-                                                <p className="text-xs text-gray-300 truncate">{location.address}</p>
+                                    <Link href={location.slug} key={index} className="block">
+                                        <div
+                                            className="p-3 rounded-lg bg-gray-800/50 border border-gray-700/50 hover:bg-gray-800 hover:border-yellow-500/30 transition-all duration-300"
+                                        >
+                                            <div className="flex items-start space-x-3">
+                                                <FaMapMarkerAlt className="text-yellow-500 mt-1 flex-shrink-0" />
+                                                <div className="min-w-0 flex-1">
+                                                    <p className="font-semibold text-white text-sm">{location.city}</p>
+                                                    <p className="text-xs text-gray-300 truncate">{location.address}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 ))}
                             </div>
                         </div>

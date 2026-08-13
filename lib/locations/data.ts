@@ -21,6 +21,40 @@ const adultsKidsActivities = [
     { name: 'Basketball Dunk', emoji: '🏀', description: 'Bounce sky-high and slam-dunk like a pro on our trampoline basketball courts.', ageGroup: '6+ yrs', color: '#8869d2' },
 ];
 
+// ── Hyderabad-specific activities ──────────────────────────────────
+const hyderabadActivities = [
+    { name: 'Infinity Trampoline', emoji: '🤸', description: 'Jump endlessly across interconnected trampolines built for energetic fun and gravity-defying jumps.', ageGroup: 'All ages', color: '#ff661a' },
+    { name: 'Dodge Ball', emoji: '🏐', description: 'Duck, dodge and throw your way to victory in an action-packed trampoline dodgeball showdown.', ageGroup: '8+ yrs', color: '#ff3645' },
+    { name: 'Sky Stepper', emoji: '🪜', description: 'Test your balance and confidence as you step across elevated platforms high above the ground.', ageGroup: '8+ yrs', color: '#4facfe' },
+    { name: 'Adventure', emoji: '🧗', description: 'Climb, crawl and conquer exciting obstacles designed to challenge agility, strength and coordination.', ageGroup: '6+ yrs', color: '#00b9e3' },
+    { name: 'Wall Climbing', emoji: '🧱', description: 'Scale colourful climbing walls with varying difficulty levels for an exciting vertical adventure.', ageGroup: '6+ yrs', color: '#6dc065' },
+    { name: 'Donut Slide', emoji: '🍩', description: 'Hop onto an inflatable tube and enjoy a fast, thrilling ride down our exciting donut slide.', ageGroup: 'All ages', color: '#b2d235' },
+    { name: 'Tunnel Slide', emoji: '🛝', description: 'Twist and zoom through enclosed tunnels for a smooth, speedy and laughter-filled sliding adventure.', ageGroup: 'All ages', color: '#8869d2' },
+    { name: 'Zorb Ball', emoji: '🔮', description: 'Step inside a giant inflatable sphere and roll, bounce, and tumble for an unforgettable thrill.', ageGroup: '8+ yrs', color: '#ff5da0' },
+    { name: 'Zip Line', emoji: '🚡', description: 'Step off the platform and soar through the air on an exhilarating zip line ride filled with high-flying fun.', ageGroup: '8+ yrs', color: '#f67edd' },
+    { name: 'Bar Dodger', emoji: '🚧', description: 'Duck, jump, and weave past fast-spinning padded beams in a thrilling, high-energy test of speed and agility.', ageGroup: '8+ yrs', color: '#ffc60b' },
+    { name: '360 Cycle', emoji: '🚲', description: 'Pedal your way into a complete 360° loop for an adrenaline-filled cycling experience like no other.', ageGroup: '12+ yrs', color: '#00d9a6' },
+    { name: 'Battle Beam', emoji: '⚔️', description: 'Grab a padded pugil stick, keep your balance, and knock your opponent off the beam into the soft foam pit below!', ageGroup: '8+ yrs', color: '#ff3645' },
+];
+
+// ── DSL Virtue Mall specific activities ─────────────────────────────
+const dslVirtueActivities = [
+    { name: 'Wave Slide', emoji: '🛝', description: 'Glide down our thrilling Wave Slide and feel the rush of fun as you swoosh through smooth waves of excitement!', ageGroup: 'All ages', color: '#ff661a' },
+    { name: 'Sand Pit', emoji: '🏖️', description: 'Build castles, dig tunnels, or just enjoy the soft touch of sand in this creative and calming play zone.', ageGroup: '1–8 yrs', color: '#ff3645' },
+    { name: 'Soft Play Area', emoji: '🧸', description: 'A safe, cushioned wonderland where kids can jump, climb, and tumble freely without a worry in the world.', ageGroup: '1–6 yrs', color: '#4facfe' },
+    { name: 'Cow Game', emoji: '🐄', description: 'Step into the barnyard for some moo-velous fun—try your hand at our interactive cow game and see if you have the ultimate farmer\'s touch!', ageGroup: '3–10 yrs', color: '#00b9e3' },
+    { name: 'Toshi Net', emoji: '🕸️', description: 'Enter a magical, giant cocoon of colorful yarn, built entirely for leaping, laughing, and make-believe play!', ageGroup: '4–12 yrs', color: '#6dc065' },
+    { name: 'Tunnel Slide', emoji: '🌀', description: 'Zoom through twisty tunnels that spark excitement and make every slide a surprise-filled adventure.', ageGroup: 'All ages', color: '#b2d235' },
+    { name: 'Merry Go Round', emoji: '🎠', description: 'Spin, laugh, and twirl to your heart’s delight — the classic ride that never goes out of style!', ageGroup: '2–8 yrs', color: '#8869d2' },
+    { name: 'Zebra Swing', emoji: '🦓', description: 'Hop on the zebra and swing away — balancing fun and thrill in one adorable ride.', ageGroup: '2–8 yrs', color: '#ff5da0' },
+    { name: 'Foam Pit', emoji: '🟦', description: 'Leap high and land soft in our fluffy foam cubes — a safe spot for flips, jumps, and fearless fun!', ageGroup: 'All ages', color: '#f67edd' },
+    { name: 'Horn Slide', emoji: '📯', description: 'Slide down the playful Horn Slide and enjoy a smooth, curvy ride that ends with giggles and excitement!', ageGroup: 'All ages', color: '#ffc60b' },
+    { name: 'Ball Pool', emoji: '🟡', description: 'Dive into a sea of colorful balls — perfect for giggles, splashes of joy, and endless playtime memories.', ageGroup: '2–10 yrs', color: '#00d9a6' },
+    { name: 'Interactive Ball Pool', emoji: '🎮', description: 'Experience play like never before with lights, sounds, and motion games in our high-tech interactive ball pool!', ageGroup: '3–12 yrs', color: '#ff3645' },
+    { name: 'Wall Climb', emoji: '🧗', description: 'Challenge yourself on our epic Climbing Wall — push your limits, find your footing, and race to the summit for endless vertical fun', ageGroup: '5+ yrs', color: '#4facfe' },
+    { name: 'Donut Slide', emoji: '🍩', description: 'Spin, slide, and laugh your way down the Donut Slide — a twisting tunnel of pure joy that guarantees a rush of fun every time!', ageGroup: 'All ages', color: '#6dc065' },
+];
+
 // ── Shared opening hours ────────────────────────────────────────────
 const WEEKDAY_HOURS = '11:00 AM – 9:30 PM';
 const WEEKEND_HOURS = '11:00 AM – 10:00 PM';
@@ -1016,6 +1050,118 @@ export const locations: LocationData[] = [
         seoDescription: 'Jus Jumpin at R Mall, Thane — indoor trampoline park and play area for kids with ball pools, slides, climbing walls & birthday party venue.',
         seoKeywords: 'kids play area thane, trampoline park thane, jus jumpin r mall thane, indoor playground ghodbunder road',
         accentColor: '#ff5da0',
+    },
+    {
+        slug: 'hyderabad-sarath-city-capital-mall',
+        type: 'adults-kids',
+        city: 'Hyderabad',
+        mall: 'Sarath City Capital Mall',
+        stateName: 'Telangana',
+        heroImages: [
+            'https://www.jusjumpin.com/wp-content/uploads/2026/07/Sarath-city-Mall-Hyderabad.png',
+            'https://www.jusjumpin.com/wp-content/uploads/2026/07/Sarath-city-capital-Mall.png',
+            'https://www.jusjumpin.com/wp-content/uploads/2026/07/activity2.png'
+        ],
+        h1: 'Jus Jumpin Sarath City Capital Mall',
+        subtitle: 'Dive into the world of pure joy and laughter at Jus Jumpin. With more than 20 exciting gaming activities for every fun loving soul.',
+        introHeading: 'Ultimate Fun Awaits',
+        introText: 'Jump into a whole new world of laughter and joy at Jus Jumpin, Sarath City Capital Mall, the ultimate indoor playzone in Hyderabad. Laced with 20+ exciting activities and attractions, Jus Jumpin creates a perfect world full of fun, where your age means absolutely nothing. Designed to cater to the fun-loving kid inside you, Jus Jumpin at Sarath City Capital Mall offers an infinity trampoline, a knee-shaking adventure course, a wall climb, a zip line, and a bunch of activities you can’t resist. Built to host every age of fun-loving people, Jus Jumpin Sarath City Capital Mall consists of dedicated play zones for kids and adults. At our facilities, we adhere to global safety standards and an impeccably hygienic environment, so you can worry less and jump more. Besides a world-class infinity trampoline and indoor play area in Hyderabad, Jus Jumpin also comes with an awesome party zone to host vibrant birthday parties for Kids. Along with custom decoration, affordable birthday party packages, and food tailored to your preference, we provide magic shows, tattoo artists, and numerous party activities to turn your party into a day to remember.',
+        flipCardImage: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/sarath-City.png',
+        flipCardBullets: [
+            'Infinity trampoline & play area',
+            'Dedicated play zones for kids & adults',
+            '20+ exciting activities & attractions',
+            'Awesome birthday party zone'
+        ],
+        highlights: [
+            { title: 'Amazing Kitty Parties', emoji: '🎂', paragraph: 'Dedicated party area perfect for hosting amazing birthday parties, kitty parties, and corporate events in Hyderabad.', gradient: 'linear-gradient(135deg, #ff661a, #ff3645)', image: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/sarath-City.png' },
+            { title: 'Corporate Events', emoji: '🏢', paragraph: 'Vibrant theme decorations, flexible birthday packages, and customizable corporate event setups.', gradient: 'linear-gradient(135deg, #00b9e3, #4facfe)', image: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/sarath-City.png' },
+            { title: 'Family Celebrations', emoji: '👨\u200D👩\u200D👧\u200D👦', paragraph: 'A world-class infinity trampoline and play park built to host fun-loving people of all ages.', gradient: 'linear-gradient(135deg, #6dc065, #b2d235)', image: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/sarath-City.png' },
+            { title: 'Inhouse Cafe (Jus\' Bites)', emoji: '🍹', paragraph: 'Vibrant decor, cool music, and an inhouse cafe serving delicious food tailored to your preference.', gradient: 'linear-gradient(135deg, #f67edd, #8869d2)', image: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/sarath-City.png' }
+        ],
+        activities: hyderabadActivities,
+        weekdayHours: WEEKDAY_HOURS,
+        weekendHours: WEEKEND_HOURS,
+        pricing: [
+            { label: '90 Minutes', weekday: '₹650', weekend: '₹750' },
+            { label: '120 Minutes', weekday: '₹850', weekend: '₹950' },
+        ],
+        ticketNote: 'Anti-Skid Grip Socks (One-time purchase, compulsory): ₹50 | Extensions: ₹250/₹450',
+        address: 'JUS JUMPIN, Unit No. SF - 26-30, 4th Floor, Sarath City Capital Mall, Gachibowli Rd, Kondapur, Whitefields, HITEC City, Hyderabad, Telangana 500084',
+        phone: '+91 9836888333',
+        mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31644.387475892054!2d78.33894525257719!3d17.453833537431986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93ba1cc0bc19%3A0x80a949c1d6777179!2sJus&#39;%20Jumpin&#39;%20%7C%7C%20Trampoline%20%26%20Adventure%20Park!5e0!3m2!1sen!2sin!4v1783949963617!5m2!1sen!2sin',
+        mapsDirectionsUrl: 'https://maps.app.goo.gl/WFXLjjgzWDAPsJr67',
+        reviewUrl: 'https://reviewthis.biz/jusjumpin-sarathcity',
+        lat: 17.4538,
+        lng: 78.3389,
+        faqs: makeFaqs([
+            { question: 'Is there any age limit at Jus Jumpin\' Trampoline Park?', answer: 'At Jus Jumpin, we believe that age shouldn\'t limit you from having fun. All the age groups can visit our adult trampoline parks and enjoy to the fullest.' },
+            { question: 'What are the activities Jus Jumpin offers?', answer: 'At our selected venues, Jus Jumpin offers versatile play activities for both kids and adults. At our facilities, you can find dedicated zones for different age groups.' },
+            { question: 'Are there packages, parties, or group rates for adults?', answer: 'Our vibrant theme parks are absolutely epic for hosting birthday parties and social events. For group or bulk bookings, contact our dedicated sales team for irresistible offers.' },
+            { question: 'Are there any health / age / weight restrictions?', answer: 'Although at Jus Jumpin, everyone can enjoy without any restrictions, we cordially suggest pregnant guests and guests with heart conditions not participate for safety reasons. The standard weight limit at our facility is up to 100kg, but it totally depends on specific activities.' },
+            { question: 'Do I need to sign a waiver?', answer: 'Yes, it is mandatory to ensure you are aware of our facility\'s safety guidelines. For minors, the waiver form must be signed by the guardian.' },
+            { question: 'What to wear while visiting Jus Jumpin?', answer: 'While there is no such dress code at Jus Jumpin, we recommend wearing comfortable clothes and mandatory grip socks to ensure the safety of the guests.' }
+        ]),
+        seoTitle: 'Sarath city capital mall | Jus Jumpin',
+        seoDescription: 'Jus Jumpin is an indoor trampoline park and kids entertainment zone — perfect for playful kids and thrill-loving adults looking to unleash their inner jumper.',
+        seoKeywords: 'trampoline park, kids entertainment zone, indoor play area, jump fun, Hyderabad, Sarath City Mall',
+        accentColor: '#00d9a6',
+    },
+    {
+        slug: 'hyderabad-dsl-virtue-mall',
+        type: 'kids',
+        city: 'Hyderabad',
+        mall: 'DSL Virtue Mall',
+        stateName: 'Telangana',
+        heroImages: [
+            'https://www.jusjumpin.com/wp-content/uploads/2026/07/dsl-virtue-mall-uppal-hyderabad-malls-f8t2ftz7d5.jpg',
+            'https://www.jusjumpin.com/wp-content/uploads/2026/07/DJI_0668-scaled-1.jpg',
+            'https://www.jusjumpin.com/wp-content/uploads/2026/07/dsl-virtue-mall-cover-image.png'
+        ],
+        h1: 'Jus Jumpin DSL Virtue Mall, Hyderabad',
+        subtitle: 'Dive into the world of pure joy and laughter at Jus Jumpin. With more than 15 thrilling gaming activities for kids, soft playzone, and a large range of delicious food, a memorable day out is guaranteed.',
+        introHeading: 'Ultimate Fun Awaits',
+        introText: 'Jump into a brand new world full of laughter and fun, at Jus Jumpin, DSL Virtue Mall. Our uplifting kids\' play zone and adventure park is thoughtfully designed to provide a vibrant and safe space for kids aged between 6 months to 12 years, to play without restrictions. With special attractions like vibrant trampoline park, exciting slides, hanging bridge, toddler play zone, and wall climbers, Jus Jumpin hails as the best kids playzone in Hyderabad. Jus Jumpin also acts as the finest venue for birthday party of your child. You can get customized cartoon or anime-themed decorations, an extensive menu curated to your needs, and access to our indoor sports layout, where your kids can play all day long. For the caring parents, we have a cozy lounge area where they can relax comfortably, while their children can explore the new limits of their imagination and play with no restrictions. With more than 15+ games and joyrides, Jus Jumpin creates laughter, energy among kids and wholesome memories for the parents. Jus Jumpin at DSL Virtue Mall is dedicated to providing a safe and fun-filled experience to the tiny jumpers with thrilling wall-to-wall trampolines for kids, exciting wave slides, spiral slides, adventure obstacle games for children, and an interactive soft play zone. With certified safety and hygiene standards, caring parents can entrust their little one with Jus Jumpin and have peace of mind.',
+        flipCardImage: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/cover-image.png',
+        flipCardBullets: [
+            'Trampolines, slides & toddler zones',
+            '15+ exciting games & joyrides',
+            'Finest children\'s birthday venue',
+            'Cozy lounge area for parents'
+        ],
+        highlights: [
+            { title: 'Creative Activities', emoji: '📚', paragraph: 'Experience creative & educational activities designed to stimulate curiosity and motor development.', gradient: 'linear-gradient(135deg, #ff661a, #ff3645)', image: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/cover-image.png' },
+            { title: 'Age Specific Zones', emoji: '👶', paragraph: 'Padded spaces tailored to different age groups from infants to kids up to 12 years.', gradient: 'linear-gradient(135deg, #00b9e3, #4facfe)', image: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/cover-image.png' },
+            { title: 'Perfect Birthdays', emoji: '🎂', paragraph: 'Private party areas with cartoon/anime themes, customized decorations, and custom menus.', gradient: 'linear-gradient(135deg, #6dc065, #b2d235)', image: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/cover-image.png' },
+            { title: 'Resting Zone', emoji: '🛋️', paragraph: 'A cozy lounge area where parents can relax comfortably while their children explore.', gradient: 'linear-gradient(135deg, #f67edd, #8869d2)', image: 'https://www.jusjumpin.com/wp-content/uploads/2026/07/cover-image.png' }
+        ],
+        activities: dslVirtueActivities,
+        weekdayHours: WEEKDAY_HOURS,
+        weekendHours: WEEKEND_HOURS,
+        pricing: [
+            { label: '60 Minutes', weekday: '₹550', weekend: '₹550' },
+            { label: '90 Minutes', weekday: '₹650', weekend: '₹650' },
+        ],
+        ticketNote: 'Anti-Skid Grip Socks compulsory (compulsory for safety & hygiene): ₹50 | Extensions: ₹200 / ₹400',
+        address: '2nd Floor, DSL Virtue Mall, Unit No. SF 27, 28, 29, near Rajiv Gandhi International Cricket Stadium, Industrial Development Area, Uppal, Hyderabad, Telangana 500039',
+        phone: '+91 9830359999',
+        mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d237.95368802562894!2d78.55516850259671!3d17.399353436986623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99d9d44113a3%3A0xd66edde834fb7528!2sJus&#39;%20Jumpin&#39;%20%7C%7C%20Kid&#39;s%20Activity%20and%20Soft%20Play%20Zone!5e0!3m2!1sen!2sin!4v1785138544653!5m2!1sen!2sin',
+        mapsDirectionsUrl: 'https://www.google.com/maps/search/?api=1&query=DSL+Virtue+Mall+Uppal+Hyderabad',
+        reviewUrl: 'https://search.google.com/local/writereview?placeid=ChIJoxNB1NmZyzsRKHX7NOjdbtY',
+        lat: 17.40018,
+        lng: 78.55506,
+        faqs: makeFaqs([
+            { question: 'What age group of Kids can play at Jus Jumpin?', answer: 'All the children aged between 6 months to 12 years can jump into our kids\' playzone.' },
+            { question: 'Can adults also play in the play area?', answer: 'For the not-so-little jumpers, Jus Jumpin have specific venues where the adults can have a fun time.' },
+            { question: 'What activities are available at Jus Jumpin?', answer: 'At our indoor play zones for kids, we offer a large range of action-packed activities, including trampoline park, toddler play zones, colourful sides, obstacle courses and more than 15 gaming activities.' },
+            { question: 'Does Jus Jumpin offer any special packages or Party offers?', answer: 'Our dedicated party zone is one of the best spots to host a birthday party for your little one. We brighten up parties and gatherings with personalised decorations, tattoo artists, mascots and gaming activities. For special offers and packages, you can contact our dedicated sales team.' },
+            { question: 'Can I host a birthday party at Jus Jumpin?', answer: 'Our vibrant indoor party area provides a safe and fun-packed environment, along with dedicated party zones to host the best birthday parties for kids.' },
+            { question: 'Is outside food allowed in the play area?', answer: 'To maintain safety and hygiene standards at our facilities, we don\'t allow outside food. The guests can savour our in-house snacks and refreshments.' }
+        ]),
+        seoTitle: 'Hyderabad - DSL Virtue Mall',
+        seoDescription: 'Visit Kids Playzone at DSL Virtue Mall Hyderabad—top indoor play area & adventure park, perfect for fun-filled kids’ birthday party celebrations.',
+        seoKeywords: 'trampoline park, kids entertainment zone, indoor play area, jump fun, Hyderabad, DSL Virtue Mall',
+        accentColor: '#00b9e3',
     },
 ];
 

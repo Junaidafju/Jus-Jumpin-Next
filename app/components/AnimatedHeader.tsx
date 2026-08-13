@@ -70,6 +70,14 @@ const locationGroups = [
     color: "#8869d2",
     venues: [{ name: "Surat - VR Mall", slug: "/surat-vr-mall/" }],
   },
+  {
+    state: "Telangana",
+    color: "#00d9a6",
+    venues: [
+      { name: "Hyderabad - Sarath City Capital Mall", slug: "/hyderabad-sarath-city-capital-mall/" },
+      { name: "Hyderabad - DSL Virtue Mall", slug: "/hyderabad-dsl-virtue-mall/" },
+    ],
+  },
 ];
 
 export const AnimatedHeader = memo(function AnimatedHeader() {

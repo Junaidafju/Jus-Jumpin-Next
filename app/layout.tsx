@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AnimatedHeader } from "./components/AnimatedHeader";
 import FooterWrapper from "./components/FooterWrapper";
+import PromoPopup from "./components/shared/PromoPopup";
 
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
 
         {children}
         <FooterWrapper />
+        <PromoPopup />
       </body>
     </html>
   );
