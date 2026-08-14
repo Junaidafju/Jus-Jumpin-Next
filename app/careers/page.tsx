@@ -18,8 +18,6 @@ interface Job {
 }
 
 export default function CareersPage() {
-  const waNumber = "919830662244";
-
   // Department Tab State
   const [activeDept, setActiveDept] = useState<"marketing" | "operations" | "surveillance" | "talent">("marketing");
 
@@ -122,34 +120,6 @@ export default function CareersPage() {
       return false;
     }
     return true;
-  };
-
-  // Action: Submit via WhatsApp
-  const handleWhatsAppSubmit = (type: "modal" | "general") => {
-    setErrorMsg("");
-    if (!fullName || !email || !phone || !experience) {
-      setErrorMsg("Please fill out all required fields.");
-      return;
-    }
-
-    const jobTitle = type === "modal" ? (isInternship ? `Internship: ${selectedRole}` : selectedRole) : "General Application";
-    const expLabel = experience === "fresher" ? "Fresher (0–1 years)" : "Experienced (1+ years)";
-
-    const msg = `🎯 *NEW APPLICATION — JUS JUMPIN* 🎯\n\n`
-      + `🏷️ *Position:* ${jobTitle}\n`
-      + `👤 *Name:* ${fullName}\n`
-      + `📧 *Email:* ${email}\n`
-      + `📞 *Phone:* +91 ${phone}\n`
-      + `📍 *Location:* ${location || "Not Provided"}\n`
-      + `💼 *Experience:* ${expLabel}\n`
-      + `💬 *Cover Note:* ${message || "None"}\n`
-      + `\n_Submitted via Next.js Careers Page_`;
-
-    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-    window.open(waUrl, "_blank");
-
-    setSubmitStatus("success");
-    triggerConfetti();
   };
 
   // Action: Submit via Email (Simulated dynamic mailing flow)
@@ -428,24 +398,27 @@ export default function CareersPage() {
                 <img
                   src="https://cdn.dribbble.com/userupload/42012439/file/original-c2ab69f018094baa7d6aede55b288245.gif"
                   alt="Marketing banner animation"
-                  className="absolute inset-0 w-full h-full object-cover opacity-30 select-none pointer-events-none"
+                  className="absolute inset-0 w-full h-full object-cover opacity-70 select-none pointer-events-none"
                 />
               )}
               {activeDept === "operations" && (
                 <img
                   src="https://cdn.dribbble.com/userupload/41805026/file/original-aa6753751db19425872eaa9688b9c9b8.gif"
                   alt="Operations banner animation"
-                  className="absolute inset-0 w-full h-full object-cover opacity-30 select-none pointer-events-none"
+                  className="absolute inset-0 w-full h-full object-cover opacity-70 select-none pointer-events-none"
                 />
               )}
               {activeDept === "surveillance" && (
-                <div className="absolute inset-0 w-full h-full bg-zinc-900/50 opacity-30 select-none pointer-events-none" />
+                <img
+                  src="https://www.asisonline.org/globalassets/security-management/latest-news/web-exclusives/2022/0622-gates-after-a-cyber-defense-breach.gif"
+                  alt="Surveillance banner animation"
+                  className="absolute inset-0 w-full h-full object-cover opacity-70 select-none pointer-events-none" />
               )}
               {activeDept === "talent" && (
                 <img
                   src="https://cdn.dribbble.com/userupload/22304736/file/original-6dbedc6556eb45ee9213fa5bfabca078.gif"
                   alt="Talent Acquisition banner animation"
-                  className="absolute inset-0 w-full h-full object-cover opacity-30 select-none pointer-events-none"
+                  className="absolute inset-0 w-full h-full object-cover opacity-70 select-none pointer-events-none"
                 />
               )}
 
@@ -840,14 +813,7 @@ export default function CareersPage() {
                     <p className="text-xs text-rose-400 pl-1 font-bold">{errorMsg}</p>
                   )}
 
-                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <button
-                      type="button"
-                      onClick={() => { setFormType("general"); handleWhatsAppSubmit("general"); }}
-                      className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-extrabold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer shadow-lg shadow-emerald-950/20"
-                    >
-                      📱 Send via WhatsApp
-                    </button>
+                  <div className="pt-2">
                     <button
                       type="submit"
                       onClick={() => setFormType("general")}
@@ -1026,18 +992,11 @@ export default function CareersPage() {
                       <p className="text-xs text-rose-400 pl-1 font-bold">{errorMsg}</p>
                     )}
 
-                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                      <button
-                        type="button"
-                        onClick={() => { setFormType("modal"); handleWhatsAppSubmit("modal"); }}
-                        className="w-full sm:w-[40%] bg-[#25D366] hover:bg-[#20ba59] text-white font-extrabold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer shadow-lg shadow-emerald-950/20"
-                      >
-                        📱 WhatsApp
-                      </button>
+                    <div className="pt-2">
                       <button
                         type="submit"
                         onClick={() => setFormType("modal")}
-                        className="w-full sm:w-[60%] bg-white hover:bg-white/95 text-black font-extrabold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer shadow-lg"
+                        className="w-full bg-white hover:bg-white/95 text-black font-extrabold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer shadow-lg"
                       >
                         <Send size={12} />
                         <span>Submit Application</span>
