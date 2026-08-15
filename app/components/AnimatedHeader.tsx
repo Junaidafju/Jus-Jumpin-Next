@@ -1,8 +1,9 @@
-// components/AnimatedHeaders.tsx - FIXED WITH CORRECT MOBILE MENU
+// components/AnimatedHeaders.tsx - COMPACT GLASSMORPHISM + ACTIVE ROUTE HIGHLIGHTING
 
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, memo, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -80,7 +81,29 @@ const locationGroups = [
   },
 ];
 
+// Navigation items
+const leftNavItems = [
+  { label: "Home", href: "/" },
+  { label: "Birthday", href: "/birthday-celebration/" },
+  { label: "School Trips", href: "/school-trips/" },
+  { label: "Activities", href: "/our-activities/" },
+];
+
+const rightNavItems = [
+  { label: "About", href: "/about/" },
+  // { label: "Blogs", href: "/blogs" },
+  { label: "Contact", href: "/contact/" },
+];
+
+// Normalize a path by stripping a trailing slash (except root) so
+// "/about" and "/about/" are treated as the same route.
+const normalizePath = (path: string) => {
+  if (!path) return "/";
+  return path.length > 1 ? path.replace(/\/+$/, "") : path;
+};
+
 export const AnimatedHeader = memo(function AnimatedHeader() {
+  const pathname = usePathname() || "/";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -88,7 +111,7 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
   const [isMobile, setIsMobile] = useState(false);
 
   const headerRef = useRef<HTMLDivElement>(null);
-  const navbarRef = useRef<HTMLDivElement>(null);
+  const navPillRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const bookButtonRef = useRef<HTMLButtonElement>(null);
   const locationsDropdownRef = useRef<HTMLDivElement>(null);
@@ -96,351 +119,295 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
 
   const menuAnimation = useRef<gsap.core.Timeline | null>(null);
 
+  const isActive = useCallback(
+    (href: string) => normalizePath(pathname) === normalizePath(href),
+    [pathname]
+  );
+
+  const isLocationsActive = locationGroups.some((group) =>
+    group.venues.some((v) => normalizePath(v.slug) === normalizePath(pathname))
+  );
+
   // Check screen size on mount and resize
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Initial check
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
-
-    // Add resize listener
-    window.addEventListener('resize', checkMobile);
-
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // GSAP animations on mount
+  // GSAP entrance animations on mount — kept minimal so the pill reads as light, not heavy
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Navbar entrance animation
       gsap.from(headerRef.current, {
-        duration: 1,
-        y: -100,
+        duration: 0.9,
+        y: -60,
         opacity: 0,
-        ease: "power3.out"
+        ease: "power3.out",
       });
 
-      // Logo animation
       gsap.from(logoRef.current, {
-        duration: 1.2,
-        scale: 0.5,
+        duration: 1,
+        scale: 0.6,
         opacity: 0,
-        delay: 0.3,
-        ease: "back.out(1.7)"
+        delay: 0.25,
+        ease: "back.out(1.7)",
       });
 
-      // Book button animation
       gsap.from(bookButtonRef.current, {
-        duration: 0.8,
-        x: 50,
+        duration: 0.6,
+        x: 30,
         opacity: 0,
-        delay: 0.8,
-        ease: "power3.out"
+        delay: 0.6,
+        ease: "power3.out",
       });
 
-      // Continuous pulse animation for book button
       gsap.to(bookButtonRef.current, {
         duration: 2,
-        boxShadow: "0 0 20px rgba(109, 192, 101, 0.5)",
+        boxShadow: "0 0 18px rgba(109, 192, 101, 0.45)",
         yoyo: true,
         repeat: -1,
         ease: "sine.inOut",
-        delay: 1.5
+        delay: 1.2,
       });
 
-      // Scroll animation
       ScrollTrigger.create({
         trigger: document.body,
         start: "top top",
         end: "max",
-        onUpdate: (self) => {
-          setScrolled(self.progress > 0.05);
-        }
+        onUpdate: (self) => setScrolled(self.progress > 0.03),
       });
     }, headerRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Update navbar style on scroll
+  // Update pill glass intensity on scroll
   useEffect(() => {
-    if (navbarRef.current) {
-      gsap.to(navbarRef.current, {
+    if (navPillRef.current) {
+      gsap.to(navPillRef.current, {
         duration: 0.3,
-        backdropFilter: scrolled ? "blur(20px)" : "blur(10px)",
-        backgroundColor: scrolled ? "rgba(0, 0, 0, 0.85)" : "rgba(0, 0, 0, 0.7)",
-        boxShadow: scrolled ? "0 10px 30px rgba(0, 0, 0, 0.3)" : "none",
-        ease: "power2.out"
+        backgroundColor: scrolled ? "rgba(20, 12, 4, 0.55)" : "rgba(20, 12, 4, 0.32)",
+        boxShadow: scrolled
+          ? "0 8px 24px rgba(0,0,0,0.25)"
+          : "0 4px 16px rgba(0,0,0,0.12)",
+        ease: "power2.out",
       });
     }
   }, [scrolled]);
 
-  // Handle mobile menu toggle with animations
   const toggleMobileMenu = useCallback(() => {
     if (!mobileMenuOpen) {
-      // Prevent body scroll when menu is open
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
       setMobileMenuOpen(true);
 
-      // Animate in
       if (menuAnimation.current) menuAnimation.current.kill();
-
-      menuAnimation.current = gsap.timeline()
-        .fromTo(".mobile-menu-item",
-          { y: -20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.3, stagger: 0.05, ease: "power2.out" }
-        );
+      menuAnimation.current = gsap.timeline().fromTo(
+        ".mobile-menu-item",
+        { y: -16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.05, ease: "power2.out" }
+      );
     } else {
-      // Restore body scroll
-      document.body.style.overflow = '';
-
-      // Animate out
+      document.body.style.overflow = "";
       if (menuAnimation.current) menuAnimation.current.kill();
-
-      menuAnimation.current = gsap.timeline()
-        .to(".mobile-menu-item",
-          { y: -20, opacity: 0, duration: 0.2, stagger: 0.02, ease: "power2.in" }
-        )
-        .call(() => setMobileMenuOpen(false), undefined, 0.2);
+      menuAnimation.current = gsap
+        .timeline()
+        .to(".mobile-menu-item", { y: -16, opacity: 0, duration: 0.18, stagger: 0.02, ease: "power2.in" })
+        .call(() => setMobileMenuOpen(false), undefined, 0.18);
     }
   }, [mobileMenuOpen]);
 
-  // Close mobile menu on resize to desktop
   useEffect(() => {
     if (!isMobile && mobileMenuOpen) {
       setMobileMenuOpen(false);
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
   }, [isMobile, mobileMenuOpen]);
 
-  // Clean up body overflow on unmount
   useEffect(() => {
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, []);
 
-  // Handle locations dropdown
-  const handleLocationsHover = useCallback((open: boolean) => {
-    if (isMobile) return; // Don't open dropdown on mobile
-    setIsLocationsOpen(open);
-    if (open && locationsDropdownRef.current) {
-      gsap.from(".location-item", {
-        y: 20,
-        opacity: 0,
-        duration: 0.3,
-        stagger: 0.03,
-        ease: "power2.out"
-      });
-    }
-  }, [isMobile]);
+  const handleLocationsHover = useCallback(
+    (open: boolean) => {
+      if (isMobile) return;
+      setIsLocationsOpen(open);
+      if (open && locationsDropdownRef.current) {
+        gsap.from(".location-item", {
+          y: 16,
+          opacity: 0,
+          duration: 0.25,
+          stagger: 0.03,
+          ease: "power2.out",
+        });
+      }
+    },
+    [isMobile]
+  );
 
-  // Handle book ticket click
   const handleBookTicket = useCallback(() => {
-    // Click animation
     gsap.to(bookButtonRef.current, {
       keyframes: [
         { scale: 0.95, duration: 0.1 },
-        { scale: 1.1, duration: 0.1 },
-        { scale: 1, duration: 0.2 }
+        { scale: 1.08, duration: 0.1 },
+        { scale: 1, duration: 0.15 },
       ],
       onComplete: () => {
         window.open("https://book.jusjumpin.com", "_blank");
-      }
+      },
     });
   }, []);
 
-  // Filter locations
   const filteredLocations = locationGroups
     .map((group) => ({
       ...group,
-      venues: group.venues.filter((venue) =>
-        venue.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        group.state.toLowerCase().includes(searchQuery.toLowerCase())
+      venues: group.venues.filter(
+        (venue) =>
+          venue.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          group.state.toLowerCase().includes(searchQuery.toLowerCase())
       ),
     }))
     .filter((group) => group.venues.length > 0);
 
-  // Navigation items data
-  const leftNavItems = [
-    { label: "Home", href: "/" },
-    { label: "Birthday", href: "/birthday-celebration/" },
-    { label: "School Trips", href: "/school-trips/" },
-    { label: "Activities", href: "/our-activities/" },
-  ];
-
-  const rightNavItems = [
-    { label: "About", href: "/about/" },
-    // { label: "Blogs", href: "/blogs" },
-    { label: "Contact", href: "/contact/" },
-  ];
+  // Shared classes for a nav link, active vs. inactive
+  const navLinkClass = (active: boolean) =>
+    `relative font-medium py-2 px-3.5 rounded-full text-[13px] xl:text-sm transition-colors duration-200 ${active
+      ? "text-neutral-900 bg-gradient-to-r from-[#6dc065] to-[#b2d235] shadow-sm shadow-black/20"
+      : "text-white/85 hover:text-white hover:bg-white/10"
+    }`;
 
   return (
     <header className="relative z-50">
-      {/* Desktop Header - FIXED: Mobile menu removed from here */}
-      <div ref={headerRef} className="fixed top-0 left-0 right-0 z-50">
-        {/* Border Container */}
-        <div className="relative mx-auto max-w-7xl px-4 py-4">
+      {/* Floating, content-hugging glass pill — no longer stretches full width */}
+      <div ref={headerRef} className="fixed top-3 sm:top-4 inset-x-0 z-50 flex justify-center px-3">
+        <div
+          ref={navPillRef}
+          className="relative inline-flex items-center gap-1 sm:gap-1.5 lg:gap-2 rounded-full border border-white/15 backdrop-blur-xl overflow-visible max-w-[96vw]"
+          style={{ backgroundColor: "rgba(20, 12, 4, 0.32)" }}
+        >
+          {/* Soft white glow above the pill */}
           <div
-            ref={navbarRef}
-            className="relative bg-black/70 backdrop-blur-lg rounded-3xl border border-white/10 overflow-visible"
-          >
-            {/* Animated border elements */}
-            <div className="absolute inset-0 overflow-hidden rounded-3xl">
-              {/* Top border */}
-              <motion.div
-                className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                animate={{ scaleX: [0, 1, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              />
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 -top-3 sm:-top-4 -translate-x-1/2 w-[70%] h-4 sm:h-5 rounded-full bg-white/50 blur-lg opacity-70"
+          />
+          {/* Soft white glow below the pill */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 -bottom-3 sm:-bottom-4 -translate-x-1/2 w-[70%] h-4 sm:h-5 rounded-full bg-white/30 blur-lg opacity-60"
+          />
+          {/* Inner top edge shine — a thin bright line hugging the glass rim */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"
+          />
+          {/* Inner bottom edge — faint mirrored shine for depth */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          />
 
-              {/* Bottom border */}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                animate={{ scaleX: [0, 1, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 1 }}
-              />
-
-              {/* Corner dots */}
-              {["top-left", "top-right", "bottom-left", "bottom-right"].map((corner, i) => (
-                <motion.div
-                  key={corner}
-                  className={`absolute w-2 h-2 bg-white/40 rounded-full ${corner === "top-left" ? "top-2 left-2" :
-                    corner === "top-right" ? "top-2 right-2" :
-                      corner === "bottom-left" ? "bottom-2 left-2" :
-                        "bottom-2 right-2"
-                    }`}
-                  animate={{ scale: [1, 1.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
-                />
+          <nav className="relative flex items-center gap-1 sm:gap-1.5 lg:gap-2 px-2 py-1.5 sm:px-2.5 sm:py-2 lg:px-3 lg:py-2">
+            {/* Left Navigation - Desktop */}
+            <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+              {leftNavItems.map((item) => (
+                <Link key={item.label} href={item.href} className={navLinkClass(isActive(item.href))}>
+                  <motion.span whileHover={{ y: -1 }} whileTap={{ scale: 0.96 }} className="inline-block">
+                    {item.label}
+                  </motion.span>
+                </Link>
               ))}
             </div>
 
-            {/* Navigation Content - RESPONSIVE LAYOUT */}
-            <nav className="relative px-4 sm:px-6 py-4 flex items-center justify-between">
-              {/* Left Navigation - Desktop */}
-              <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
-                {leftNavItems.map((item) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    className="relative text-white/80 hover:text-white font-medium transition-colors py-2 px-3 rounded-lg text-sm xl:text-base"
-                    whileHover={{
-                      y: -2,
-                      backgroundColor: "rgba(255,255,255,0.1)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.label}
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white to-transparent"
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.a>
-                ))}
-              </div>
+            {/* Logo */}
+            <Link href="/" className="mx-1 lg:mx-2 shrink-0">
+              <motion.div
+                ref={logoRef}
+                className="p-1 rounded-xl"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Image
+                  src="/image/Jus-Jumpin-Logo.webp"
+                  alt="Jus Jumpin logo"
+                  width={150}
+                  height={36}
+                  className="h-6 sm:h-7 lg:h-8 w-auto"
+                  priority
+                />
+              </motion.div>
+            </Link>
 
-              {/* Centered Logo */}
-              <div className="flex-1 flex justify-center">
-                <Link href="/">
-                  <motion.div
-                    className="p-2 rounded-xl bg-gradient-to-br from-white/5 to-transparent"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Image
-                      src="/image/Jus-Jumpin-Logo.webp"
-                      alt="Jus Jumpin logo"
-                      width={180}
-                      height={44}
-                      className="h-8 lg:h-10 w-auto"
-                      priority
-                    />
-                  </motion.div>
-                </Link>
-              </div>
-
-              {/* Right Navigation - Desktop */}
-              <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
-                {/* Locations Dropdown */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => handleLocationsHover(true)}
-                  onMouseLeave={() => handleLocationsHover(false)}
+            {/* Right Navigation - Desktop */}
+            <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+              {/* Locations Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => handleLocationsHover(true)}
+                onMouseLeave={() => handleLocationsHover(false)}
+              >
+                <motion.button
+                  className={`flex items-center gap-1.5 ${navLinkClass(isLocationsActive)}`}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.96 }}
                 >
-                  <motion.button
-                    className="flex items-center space-x-2 text-white/80 hover:text-white font-medium py-2 px-3 rounded-lg text-sm xl:text-base"
-                    whileHover={{ y: -2, backgroundColor: "rgba(255,255,255,0.1)" }}
-                    whileTap={{ scale: 0.95 }}
+                  <span>Locations</span>
+                  <motion.span
+                    animate={{ rotate: isLocationsOpen ? 180 : 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="text-[10px]"
                   >
-                    <span>Locations</span>
-                    <motion.span
-                      animate={{ rotate: isLocationsOpen ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-xs"
+                    ▼
+                  </motion.span>
+                </motion.button>
+
+                <AnimatePresence>
+                  {isLocationsOpen && (
+                    <motion.div
+                      ref={locationsDropdownRef}
+                      initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3
+                                 w-[320px] sm:w-[420px] md:w-[500px] lg:w-[560px] xl:w-[620px]
+                                 bg-neutral-950/90 backdrop-blur-2xl
+                                 rounded-2xl border border-white/10
+                                 shadow-2xl shadow-black/40 overflow-hidden z-[9999]
+                                 max-h-[70vh] overflow-y-auto"
+                      style={{ willChange: "transform", pointerEvents: "auto" }}
                     >
-                      ▼
-                    </motion.span>
-                  </motion.button>
+                      <div className="p-4 border-b border-white/10">
+                        <input
+                          type="text"
+                          placeholder="Search locations..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#6dc065] focus:border-transparent text-sm"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
 
-                  <AnimatePresence>
-                    {isLocationsOpen && (
-                      <motion.div
-                        ref={locationsDropdownRef}
-                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                        className="absolute top-full
-                                   left-1/2 -translate-x-1/2
-                                   mt-3
-                                  w-[320px] sm:w-[420px] md:w-[520px] lg:w-[580px] xl:w-[640px]
-                                bg-black/95 backdrop-blur-xl
-                                   rounded-2xl
-                                  border border-white/10
-                                  shadow-2xl shadow-black/40
-                                  overflow-hidden
-                                  z-[9999]
-                                  max-h-[70vh] overflow-y-auto"
-                        style={{
-                          willChange: 'transform',
-                          pointerEvents: 'auto'
-                        }}
-                      >
-                        {/* Search Bar */}
-                        <div className="p-4 border-b border-white/10">
-                          <input
-                            type="text"
-                            placeholder="Search locations..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#6dc065] focus:border-transparent text-sm md:text-base"
-                            onClick={(e) => e.stopPropagation()}
-                          />
-                        </div>
-
-                        {/* Locations Grid - RESPONSIVE */}
-                        <div className="p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-h-[400px] overflow-y-auto">
-                          {filteredLocations.length > 0 ? (
-                            filteredLocations.map((group) => (
-                              <div key={group.state} className="location-item">
-                                <div className="flex items-center space-x-3 mb-3">
-                                  <div
-                                    className="w-3 h-3 rounded-full"
-                                    style={{ backgroundColor: group.color }}
-                                  />
-                                  <h3 className="font-semibold text-white text-sm md:text-base">{group.state}</h3>
-                                </div>
-                                <div className="space-y-2">
-                                  {group.venues.map((venue) => (
+                      <div className="p-4 md:p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-h-[380px] overflow-y-auto">
+                        {filteredLocations.length > 0 ? (
+                          filteredLocations.map((group) => (
+                            <div key={group.state} className="location-item">
+                              <div className="flex items-center gap-2 mb-2.5">
+                                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: group.color }} />
+                                <h3 className="font-semibold text-white text-sm">{group.state}</h3>
+                              </div>
+                              <div className="space-y-1.5">
+                                {group.venues.map((venue) => {
+                                  const active = normalizePath(venue.slug) === normalizePath(pathname);
+                                  return (
                                     <motion.a
                                       key={venue.slug}
                                       href={venue.slug}
-                                      className="block px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition-colors text-xs md:text-sm"
-                                      whileHover={{ x: 5 }}
+                                      className={`block px-3 py-1.5 rounded-lg transition-colors text-xs md:text-[13px] ${active
+                                          ? "bg-[#6dc065]/20 text-white"
+                                          : "text-white/70 hover:text-white hover:bg-white/5"
+                                        }`}
+                                      whileHover={{ x: 4 }}
                                       whileTap={{ scale: 0.98 }}
                                       onClick={(e) => {
                                         e.stopPropagation();
@@ -449,141 +416,136 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                                     >
                                       {venue.name}
                                     </motion.a>
-                                  ))}
-                                </div>
+                                  );
+                                })}
                               </div>
-                            ))
-                          ) : (
-                            <div className="col-span-1 sm:col-span-2 md:col-span-3 py-8 text-center text-white/60 text-sm md:text-base">
-                              No locations found matching "{searchQuery}"
                             </div>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                {/* Blogs & Contact */}
-                {rightNavItems.map((item) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    className="relative text-white/80 hover:text-white font-medium transition-colors py-2 px-3 rounded-lg text-sm xl:text-base"
-                    whileHover={{
-                      y: -2,
-                      backgroundColor: "rgba(255,255,255,0.1)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.label}
-                  </motion.a>
-                ))}
-
-                {/* Book Ticket Button */}
-                <motion.button
-                  ref={bookButtonRef}
-                  onClick={handleBookTicket}
-                  className="px-4 py-2 lg:px-6 lg:py-3 rounded-full font-semibold text-white relative overflow-hidden text-sm lg:text-base"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{
-                    background: "linear-gradient(135deg, #6dc065 0%, #b2d235 100%)"
-                  }}
-                >
-                  {/* Animated shine effect */}
-                  <motion.span
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                    animate={{ x: ["100%", "-100%"] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  />
-                  <span className="relative z-10 flex items-center space-x-1 lg:space-x-2">
-                    <span>Book Ticket</span>
-                    <motion.svg
-                      className="w-3 h-3 lg:w-4 lg:h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-                    </motion.svg>
-                  </span>
-                </motion.button>
+                          ))
+                        ) : (
+                          <div className="col-span-1 sm:col-span-2 md:col-span-3 py-8 text-center text-white/60 text-sm">
+                            No locations found matching &quot;{searchQuery}&quot;
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
-              {/* Mobile Menu Toggle Button */}
-              <button
-                onClick={toggleMobileMenu}
-                className="lg:hidden p-2 rounded-lg bg-white/10 border border-white/20 ml-auto"
-                aria-label="Toggle menu"
+              {rightNavItems.map((item) => (
+                <Link key={item.label} href={item.href} className={navLinkClass(isActive(item.href))}>
+                  <motion.span whileHover={{ y: -1 }} whileTap={{ scale: 0.96 }} className="inline-block">
+                    {item.label}
+                  </motion.span>
+                </Link>
+              ))}
+
+              {/* Book Ticket Button */}
+              <motion.button
+                ref={bookButtonRef}
+                onClick={handleBookTicket}
+                className="ml-1 px-4 py-2 lg:px-5 lg:py-2.5 rounded-full font-semibold text-white relative overflow-hidden text-[13px] xl:text-sm"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ background: "linear-gradient(135deg, #6dc065 0%, #b2d235 100%)" }}
               >
                 <motion.span
-                  animate={mobileMenuOpen ? "open" : "closed"}
-                  variants={{
-                    open: { rotate: 45, y: 6 },
-                    closed: { rotate: 0, y: 0 }
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="block w-6 h-0.5 bg-white mb-1.5"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  animate={{ x: ["100%", "-100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 />
-                <motion.span
-                  animate={mobileMenuOpen ? "open" : "closed"}
-                  variants={{
-                    open: { opacity: 0 },
-                    closed: { opacity: 1 }
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="block w-6 h-0.5 bg-white mb-1.5"
-                />
-                <motion.span
-                  animate={mobileMenuOpen ? "open" : "closed"}
-                  variants={{
-                    open: { rotate: -45, y: -6 },
-                    closed: { rotate: 0, y: 0 }
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="block w-6 h-0.5 bg-white"
-                />
-              </button>
-            </nav>
-          </div>
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <span>Book Ticket</span>
+                  <motion.svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
+                    />
+                  </motion.svg>
+                </span>
+              </motion.button>
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={toggleMobileMenu}
+              className="lg:hidden p-1.5 rounded-full bg-white/10 border border-white/15 ml-1"
+              aria-label="Toggle menu"
+            >
+              <motion.span
+                animate={mobileMenuOpen ? "open" : "closed"}
+                variants={{ open: { rotate: 45, y: 5 }, closed: { rotate: 0, y: 0 } }}
+                transition={{ duration: 0.25 }}
+                className="block w-5 h-0.5 bg-white mb-1"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? "open" : "closed"}
+                variants={{ open: { opacity: 0 }, closed: { opacity: 1 } }}
+                transition={{ duration: 0.25 }}
+                className="block w-5 h-0.5 bg-white mb-1"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? "open" : "closed"}
+                variants={{ open: { rotate: -45, y: -5 }, closed: { rotate: 0, y: 0 } }}
+                transition={{ duration: 0.25 }}
+                className="block w-5 h-0.5 bg-white"
+              />
+            </button>
+          </nav>
         </div>
       </div>
 
-      {/* Mobile Menu - RENDERED OUTSIDE THE HEADER CONTAINER */}
+      {/* Mobile Menu Panel */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
-              className="lg:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998]"
+              className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={toggleMobileMenu}
             />
 
-            {/* Mobile Menu Panel */}
             <motion.div
               ref={mobileMenuRef}
-              className="lg:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm bg-black/95 backdrop-blur-xl border-l border-white/10 z-[9999] overflow-y-auto"
+              className="lg:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm z-[9999] overflow-y-auto border-l border-white/10"
+              style={{
+                background: "rgba(20, 12, 4, 0.7)",
+                backdropFilter: "blur(24px)",
+                boxShadow: "-10px 0 30px rgba(0, 0, 0, 0.5)",
+              }}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 200 }}
               onClick={(e) => e.stopPropagation()}
-              style={{
-                boxShadow: "-10px 0 30px rgba(0, 0, 0, 0.5)"
-              }}
             >
+              {/* Brand accent bar */}
+              <div className="h-1 w-full bg-gradient-to-r from-[#f67edd] via-[#ffc60b] to-[#6dc065]" />
+
               <div className="p-6 h-full overflow-y-auto">
-                {/* Close Button */}
-                <div className="flex justify-end mb-6">
+                <div className="flex justify-between items-center mb-6">
+                  <Image
+                    src="/image/Jus-Jumpin-Logo.webp"
+                    alt="Jus Jumpin logo"
+                    width={140}
+                    height={34}
+                    className="h-7 w-auto"
+                    priority
+                  />
                   <button
                     onClick={toggleMobileMenu}
-                    className="p-2 rounded-lg bg-white/10 border border-white/20 hover:bg-white/20 transition-colors"
+                    className="p-2 rounded-full bg-white/10 border border-white/15 hover:bg-white/20 transition-colors"
                     aria-label="Close menu"
                   >
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -592,115 +554,113 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                   </button>
                 </div>
 
-                {/* Mobile Logo */}
-                <div className="mb-8">
-                  <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                    <div className="flex items-center space-x-3">
-                      <Image
-                        src="/image/Jus-Jumpin-Logo.webp"
-                        alt="Jus Jumpin logo"
-                        width={180}
-                        height={44}
-                        className="h-8 lg:h-10 w-auto"
-                        priority
-                      />
-                    </div>
-                  </Link>
+                <div className="space-y-1.5 mb-6">
+                  {leftNavItems.map((item) => {
+                    const active = isActive(item.href);
+                    return (
+                      <motion.a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`mobile-menu-item flex items-center justify-between px-4 py-3 rounded-xl text-base transition-colors ${active
+                            ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-neutral-900 font-semibold"
+                            : "text-white/85 hover:text-white hover:bg-white/5"
+                          }`}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {item.label}
+                        {active && <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />}
+                      </motion.a>
+                    );
+                  })}
                 </div>
 
-                {/* Mobile Navigation Links */}
-                <div className="space-y-2 mb-8">
-                  {leftNavItems.map((item, index) => (
-                    <motion.a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="mobile-menu-item block px-4 py-3 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition-colors text-lg"
-                      whileHover={{ x: 5 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {item.label}
-                    </motion.a>
-                  ))}
-                </div>
-
-                {/* Mobile Locations Section */}
-                <div className="mb-8">
+                <div className="mb-6">
                   <div className="px-4 py-2">
-                    <h3 className="font-semibold text-white text-lg mb-3">Locations</h3>
+                    <h3 className="font-semibold text-white text-base mb-3">Locations</h3>
                     <input
                       type="text"
                       placeholder="Search locations..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 mb-4 focus:outline-none focus:ring-2 focus:ring-[#6dc065] focus:border-transparent"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-white/50 mb-4 focus:outline-none focus:ring-2 focus:ring-[#6dc065] focus:border-transparent text-sm"
                     />
-                    <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2">
+                    <div className="space-y-3 max-h-[280px] overflow-y-auto pr-2">
                       {filteredLocations.length > 0 ? (
                         filteredLocations.map((group) => (
-                          <div key={group.state} className="space-y-2">
-                            <div className="flex items-center space-x-2">
-                              <div
-                                className="w-3 h-3 rounded-full"
-                                style={{ backgroundColor: group.color }}
-                              />
-                              <h4 className="font-medium text-white text-base">{group.state}</h4>
+                          <div key={group.state} className="space-y-1.5">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: group.color }} />
+                              <h4 className="font-medium text-white text-sm">{group.state}</h4>
                             </div>
                             <div className="ml-4 space-y-1">
-                              {group.venues.map((venue) => (
-                                <a
-                                  key={venue.slug}
-                                  href={venue.slug}
-                                  onClick={() => setMobileMenuOpen(false)}
-                                  className="block py-2 text-sm text-white/70 hover:text-white hover:pl-2 transition-all border-l border-white/10 hover:border-[#6dc065]"
-                                >
-                                  {venue.name}
-                                </a>
-                              ))}
+                              {group.venues.map((venue) => {
+                                const active = normalizePath(venue.slug) === normalizePath(pathname);
+                                return (
+                                  <a
+                                    key={venue.slug}
+                                    href={venue.slug}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className={`block py-1.5 text-sm transition-all border-l pl-3 ${active
+                                        ? "text-white border-[#6dc065] font-medium"
+                                        : "text-white/70 hover:text-white hover:pl-4 border-white/10 hover:border-[#6dc065]"
+                                      }`}
+                                  >
+                                    {venue.name}
+                                  </a>
+                                );
+                              })}
                             </div>
                           </div>
                         ))
                       ) : (
                         <div className="text-center text-white/60 py-4 text-sm">
-                          No locations found matching "{searchQuery}"
+                          No locations found matching &quot;{searchQuery}&quot;
                         </div>
                       )}
                     </div>
                   </div>
                 </div>
 
-                {/* Mobile Blogs & Contact */}
-                <div className="space-y-2 mb-8">
-                  {rightNavItems.map((item) => (
-                    <motion.a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="mobile-menu-item block px-4 py-3 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition-colors text-lg"
-                      whileHover={{ x: 5 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {item.label}
-                    </motion.a>
-                  ))}
+                <div className="space-y-1.5 mb-6">
+                  {rightNavItems.map((item) => {
+                    const active = isActive(item.href);
+                    return (
+                      <motion.a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`mobile-menu-item flex items-center justify-between px-4 py-3 rounded-xl text-base transition-colors ${active
+                            ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-neutral-900 font-semibold"
+                            : "text-white/85 hover:text-white hover:bg-white/5"
+                          }`}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {item.label}
+                        {active && <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />}
+                      </motion.a>
+                    );
+                  })}
                 </div>
 
-                {/* Mobile Book Ticket Button */}
                 <motion.button
                   onClick={() => {
                     handleBookTicket();
                     setMobileMenuOpen(false);
                   }}
-                  className="mobile-menu-item w-full mt-8 px-6 py-4 rounded-full font-semibold text-white relative overflow-hidden text-lg"
-                  style={{
-                    background: "linear-gradient(135deg, #6dc065 0%, #b2d235 100%)"
-                  }}
+                  className="mobile-menu-item w-full px-6 py-4 rounded-full font-semibold text-white relative overflow-hidden text-base"
+                  style={{ background: "linear-gradient(135deg, #6dc065 0%, #b2d235 100%)" }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="relative z-10 flex items-center justify-center space-x-2">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
                     <span>Book Ticket</span>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
+                      />
                     </svg>
                   </span>
                 </motion.button>

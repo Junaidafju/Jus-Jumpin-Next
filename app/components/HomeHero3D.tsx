@@ -224,9 +224,9 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
               </div>
             )}
 
-            {/* Dark gradient overlays for crisp readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/50 to-[#0a0a14]/30 opacity-90" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a14]/60 via-transparent to-[#0a0a14]/60" />
+            {/* Lighter cinematic overlays to preserve video colors and visibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-transparent to-transparent opacity-85" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a14]/60 via-transparent to-transparent opacity-75" />
           </div>
         </motion.div>
 
@@ -248,117 +248,110 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
         </div>
 
         {/* Main Content Area */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center my-auto pt-10 sm:pt-16 pb-6">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 mb-3 sm:mb-6 rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-lg"
-          >
-            <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6dc065] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-[#6dc065]" />
-            </span>
-            <span className="text-[10px] sm:text-xs font-black text-white uppercase tracking-wider sm:tracking-widest">
-              INDIA&apos;S #1 TRAMPOLINE PARK 🎪
-            </span>
-          </motion.div>
-
-          {/* Main Title */}
-          <h1
-            ref={titleRef}
-            className="max-w-5xl text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.12] sm:leading-[1.05] tracking-tight text-white drop-shadow-2xl"
-          >
-            Jump into the <br />
-            <span className="bg-gradient-to-r from-[#6dc065] via-[#8fc93a] to-[#b2d235] bg-clip-text text-transparent">
-              Extraordinary!
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            ref={subtitleRef}
-            className="max-w-2xl mt-3 sm:mt-6 text-xs xs:text-sm sm:text-lg md:text-xl text-slate-200 leading-normal sm:leading-relaxed font-medium drop-shadow px-2"
-          >
-            Experience the ultimate thrill of defying gravity at India&apos;s happiest
-            trampoline & play park. Endless excitement for kids, teens, and families!
-          </p>
-
-          {/* CTA Buttons - Side by Side in same line */}
-          <div
-            ref={ctaRef}
-            className="flex flex-row items-center justify-center gap-2 sm:gap-4 mt-4 sm:mt-8 w-full px-2"
-          >
-            <button
-              onClick={handleBookClick}
-              className="group relative px-3.5 py-2.5 sm:px-8 sm:py-3.5 text-[11px] xs:text-xs sm:text-base font-black text-slate-900 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_8px_25px_rgba(109,192,101,0.35)] shrink-0 whitespace-nowrap"
-              style={{
-                background: "linear-gradient(135deg, #6dc065 0%, #8fc93a 50%, #b2d235 100%)",
-              }}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-1.5">
-                🎂 Book Tickets
-                <svg
-                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={3}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </span>
-            </button>
-
-            <a
-              href="#explore"
-              className="px-3.5 py-2.5 sm:px-7 sm:py-3.5 text-[11px] xs:text-xs sm:text-base font-bold text-white border border-white/30 hover:border-white/70 rounded-full backdrop-blur-md bg-white/10 transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-md text-center shrink-0 whitespace-nowrap"
-            >
-              Explore 👇
-            </a>
-          </div>
-
-          {/* Trust Stats Bar */}
-          <div
-            ref={statsRef}
-            className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-8 mt-6 sm:mt-12 pt-4 sm:pt-8 border-t border-white/15 w-full max-w-4xl px-2 sm:px-0"
-          >
-            {[
-              { label: "Happy Jumpers", value: "10,00,000+", icon: "😊" },
-              { label: "Park Locations", value: "20+", icon: "📍" },
-              { label: "Years of Joy", value: "10+", icon: "🏆" },
-              { label: "Parent Rating", value: "4.9 ★", icon: "⭐" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl sm:rounded-2xl p-2.5 sm:p-4 text-center hover:bg-white/20 transition-colors"
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center min-h-screen pt-24 pb-28">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
+            {/* Left Column: Hero Content */}
+            <div className="lg:col-span-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="inline-flex items-center gap-2 px-4 py-2 mb-4 sm:mb-6 rounded-full bg-black/45 border border-[#8cc63f]/40 backdrop-blur-md shadow-lg"
               >
-                <div className="text-base sm:text-xl mb-0.5">{stat.icon}</div>
-                <div className="text-sm xs:text-base sm:text-2xl font-black text-white">
-                  {stat.value}
-                </div>
-                <div className="text-[9px] xs:text-[10px] sm:text-xs text-slate-300 font-bold mt-0.5 uppercase tracking-wider">
-                  {stat.label}
-                </div>
+                <span className="text-[10px] sm:text-xs font-black text-white uppercase tracking-wider sm:tracking-widest flex items-center gap-1.5">
+                  <span>📍</span> INDIA&apos;S #1 TRAMPOLINE PARK
+                </span>
+              </motion.div>
+
+              {/* Main Title */}
+              <h1
+                ref={titleRef}
+                style={{ fontFamily: "'Fredoka', sans-serif" }}
+                className="w-full text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.12] sm:leading-[1.05] tracking-tight text-white drop-shadow-2xl"
+              >
+                Jump into the <br />
+                <span className="bg-gradient-to-r from-[#8cc63f] via-[#6dc065] to-[#b2d235] bg-clip-text text-transparent">
+                  Extraordinary!
+                </span>
+              </h1>
+
+              {/* Subtitle / Supporting Copy */}
+              <p
+                ref={subtitleRef}
+                className="max-w-[620px] mt-4 sm:mt-6 text-sm xs:text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed font-medium drop-shadow px-2 lg:px-0 text-center lg:text-left"
+              >
+                Experience the ultimate thrill of defying gravity at India&apos;s happiest
+                trampoline & play park. Endless excitement for kids, teens, and families!
+              </p>
+
+              {/* CTA Buttons */}
+              <div
+                ref={ctaRef}
+                className="flex flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8 w-full px-2 lg:px-0"
+              >
+                <button
+                  onClick={handleBookClick}
+                  className="group relative px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-base font-black text-slate-950 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_8px_25px_rgba(140,198,63,0.35)] shrink-0 whitespace-nowrap cursor-pointer"
+                  style={{
+                    background: "linear-gradient(135deg, #8cc63f 0%, #6dc065 100%)",
+                  }}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-1.5">
+                    🎟 Book Tickets
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </span>
+                </button>
+
+                <a
+                  href="#explore"
+                  className="group px-5 py-3 sm:px-7 sm:py-4 text-xs sm:text-base font-bold text-white border border-white/20 hover:border-[#8cc63f] rounded-full backdrop-blur-md bg-white/5 hover:bg-[#8cc63f] hover:text-slate-950 transition-all duration-300 hover:scale-105 active:scale-95 shadow-md text-center shrink-0 whitespace-nowrap flex items-center gap-1.5"
+                >
+                  <span>Explore Activities</span>
+                  <span className="text-[#8cc63f] group-hover:text-slate-950 transition-colors">▶</span>
+                </a>
               </div>
-            ))}
+            </div>
+
+            {/* Right Column: Statistics Panel */}
+            <div className="lg:col-span-4 flex flex-col items-center lg:items-end w-full mt-8 lg:mt-0">
+              <div
+                ref={statsRef}
+                className="grid grid-cols-2 lg:grid-cols-1 lg:flex lg:flex-col gap-3 sm:gap-4 w-full max-w-md lg:max-w-[200px]"
+              >
+                {[
+                  { label: "HAPPY JUMPERS", value: "10,00,000+", icon: "😊" },
+                  { label: "PARK LOCATIONS", value: "20+", icon: "📍" },
+                  { label: "YEARS OF JOY", value: "10+", icon: "🏆" },
+                  { label: "PARENT RATING", value: "4.9 ★", icon: "⭐" },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="bg-[#141919]/55 backdrop-blur-md border border-white/15 rounded-2xl p-4 flex flex-col justify-center items-center text-center w-full min-h-[95px] transition-all duration-300 hover:bg-[#141919]/75 hover:border-[#8cc63f]/50 hover:-translate-y-1 shadow-md"
+                  >
+                    <div className="text-xl sm:text-2xl mb-1">{stat.icon}</div>
+                    <div className="text-lg sm:text-xl font-black text-white">
+                      {stat.value}
+                    </div>
+                    <div className="text-[9px] sm:text-[10px] text-[#8cc63f] font-black mt-0.5 uppercase tracking-widest">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Scroll Down Indicator */}
         <motion.a
           href="#explore"
-          className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/50 hover:text-white transition-colors cursor-pointer"
+          className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/50 hover:text-white transition-colors cursor-pointer group"
           animate={{
             y: [0, 6, 0],
           }}
           transition={{
-            duration: 2,
+            duration: 1.8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -366,23 +359,54 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
           <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-black">
             Scroll to Explore
           </span>
-          <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 text-[#6dc065]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2.5}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
+          <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center mt-1 group-hover:border-[#8cc63f]/60 transition-colors">
+            <svg
+              className="w-4 h-4 text-[#8cc63f]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={3}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </div>
         </motion.a>
 
-        {/* Bottom Section Gradient Fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-10" />
+        {/* Bottom Announcement Marquee */}
+        <div className="absolute bottom-0 left-0 right-0 h-14 bg-[#0a0a14]/90 border-t border-white/10 flex items-center overflow-hidden z-30 pointer-events-auto">
+          <div
+            className="flex w-max whitespace-nowrap text-xs sm:text-sm font-black uppercase tracking-wider text-white"
+            style={{ animation: "marquee 25s linear infinite" }}
+          >
+            {/* Duplicate content to loop seamlessly */}
+            <div className="flex gap-8 items-center px-4 shrink-0">
+              <span className="text-[#8cc63f] font-bold">✦</span> DEFY GRAVITY
+              <span className="text-white/40 font-bold">•</span> CREATE MEMORIES
+              <span className="text-[#8cc63f] font-bold">•</span> JUMP INTO JOY
+              <span className="text-white/40 font-bold">✦</span> DEFY GRAVITY
+              <span className="text-[#8cc63f] font-bold">•</span> CREATE MEMORIES
+              <span className="text-white/40 font-bold">•</span> JUMP INTO JOY
+              <span className="text-[#8cc63f] font-bold">✦</span> DEFY GRAVITY
+              <span className="text-white/40 font-bold">•</span> CREATE MEMORIES
+              <span className="text-[#8cc63f] font-bold">•</span> JUMP INTO JOY
+            </div>
+            <div className="flex gap-8 items-center px-4 shrink-0" aria-hidden="true">
+              <span className="text-[#8cc63f] font-bold">✦</span> DEFY GRAVITY
+              <span className="text-white/40 font-bold">•</span> CREATE MEMORIES
+              <span className="text-[#8cc63f] font-bold">•</span> JUMP INTO JOY
+              <span className="text-white/40 font-bold">✦</span> DEFY GRAVITY
+              <span className="text-[#8cc63f] font-bold">•</span> CREATE MEMORIES
+              <span className="text-white/40 font-bold">•</span> JUMP INTO JOY
+              <span className="text-[#8cc63f] font-bold">✦</span> DEFY GRAVITY
+              <span className="text-white/40 font-bold">•</span> CREATE MEMORIES
+              <span className="text-[#8cc63f] font-bold">•</span> JUMP INTO JOY
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Embedded Booking Modal */}
