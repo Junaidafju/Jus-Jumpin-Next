@@ -3,16 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import BirthdayBookingModal from "./birthday/BirthdayBookingModal";
-import MuxPlayer from "@mux/mux-player-react";
-
-const MUX_DESKTOP_ID = "IjEtGAmg2JVHRFyN98vVpLFF4H4YtkncunpK1SG6dGs";
 
 export default function HomeFinalCTA() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
-  const videoMp4 = `https://stream.mux.com/${MUX_DESKTOP_ID}/high.mp4`;
-  const videoM3u8 = `https://stream.mux.com/${MUX_DESKTOP_ID}.m3u8`;
-  const posterUrl = `https://image.mux.com/${MUX_DESKTOP_ID}/thumbnail.jpg?time=1`;
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "demo";
+  const ctaVideo = process.env.NEXT_PUBLIC_CLOUDINARY_CTA_VIDEO || "samples/sea-turtle";
+
+  const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto,q_auto/${ctaVideo}.mp4`;
+  const posterUrl = `https://res.cloudinary.com/${cloudName}/video/upload/so_1/${ctaVideo}.jpg`;
 
 
 
@@ -29,10 +28,9 @@ export default function HomeFinalCTA() {
       <section className="relative w-full min-h-[500px] sm:min-h-[550px] overflow-hidden bg-[#0a0a14] flex items-center justify-center text-white border-t border-white/10">
         {/* Full-Bleed Background Video */}
         <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
-          <MuxPlayer
-            playbackId={MUX_DESKTOP_ID}
-            streamType="on-demand"
-            autoPlay="muted"
+          <video
+            src={videoUrl}
+            autoPlay
             muted
             loop
             playsInline

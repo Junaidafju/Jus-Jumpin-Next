@@ -19,7 +19,7 @@ export default function Home() {
         businessType="SportsActivityLocation"
       />
 
-      {/* 1. Cinematic Mux Video Landing Hero */}
+      {/* 1. Cinematic Cloudinary Video Landing Hero */}
       <HomeHero3D />
 
       {/* 2. Geolocation Nearest Match & Location Carousel */}
