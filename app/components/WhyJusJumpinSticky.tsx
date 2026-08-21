@@ -15,7 +15,7 @@ const REASONS = [
     description: "Every single pillar, mat, and wall is lined with multi-layer high-density foam. Certified safety captains supervise every zone 24/7.",
     icon: "🛡️",
     badge: "100% Padded & Sanitized",
-    image: "/image/birthday/photos.jpg",
+    image: "/image/safety_officer.png",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const REASONS = [
     description: "Private celebration suites, dedicated party hosts, custom balloon decor, and delicious catering so parents can sit back and enjoy.",
     icon: "🎂",
     badge: "5,000+ Parties Hosted",
-    image: "/image/birthday/kids-adult.jpg",
+    image: "/image/birthday/photos.jpg",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const REASONS = [
     description: "Separate soft-play zones for toddlers aged 1–5, and high-energy trampoline arenas for teens and adults to jump together.",
     icon: "👨‍👩‍👧‍👦",
     badge: "All Ages Welcome",
-    image: "/image/birthday/dedicated-zones.jpg",
+    image: "/image/birthday/photo-moments.jpg",
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const REASONS = [
     description: "Recharge with fresh pizzas, burgers, fries, milkshakes, and hot coffees while watching your kids play from our lounge.",
     icon: "🍕",
     badge: "Fresh & Hygienic Food",
-    image: "/image/birthday/delectable-food.jpg",
+    image: "/image/Indian Kids Eating at Jus Jumpin.webp",
   },
   {
     id: 5,
@@ -55,12 +55,12 @@ const REASONS = [
   },
   {
     id: 6,
-    title: "6. International Safety Gear",
-    subtitle: "Certified Trampoline Technology",
-    description: "Imported high-rebound mats, dual-stitched safety netting, and commercial-grade grip socks for maximum traction.",
+    title: "6. Unmatched Variety",
+    subtitle: "15+ Activities At Each Store",
+    description: "Our dynamic roster of attractions & themed events guarantees a unique and thrilling experience with every return.",
     icon: "🏅",
     badge: "European Standard",
-    image: "/image/birthday/fun-games.jpg",
+    image: "/image/international_safety.png",
   },
   {
     id: 7,
@@ -69,16 +69,16 @@ const REASONS = [
     description: "Massive venues reaching up to 15,000+ sq. ft. packed with multi-level mazes, high ropes, and warrior obstacle courses.",
     icon: "🏰",
     badge: "Up to 15,000 Sq. Ft.",
-    image: "/image/birthday/personalized-themes.jpg",
+    image: "/image/largest_play_area.png",
   },
   {
     id: 8,
-    title: "8. 50+ Games & Attractions",
-    subtitle: "Endless Variety of Play",
-    description: "From foam pits and basketball slam dunks to donut slides and arcade machines — boredom doesn't exist here!",
-    icon: "🎯",
-    badge: "50+ Activities",
-    image: "/image/birthday/photo-moments.jpg",
+    title: "8. Flexible Hours",
+    subtitle: "Extended Timings",
+    description: "Jump In Whenever the Moment Strikes! We're here for your spontaneous fun and planned play, 7 days a week.",
+    icon: "⏰",
+    badge: "Open Late",
+    image: "/image/Flexible Timing.png",
   },
 ];
 
@@ -148,7 +148,7 @@ export default function WhyJusJumpinSticky() {
           - Single text column container (`textColumnRef`) holding all 8 text blocks
         */}
         <div className="hidden md:grid md:grid-cols-12 gap-8 lg:gap-12 items-start relative w-full">
-          
+
           {/* SINGLE Sticky Image Column (Col 5) */}
           <div
             ref={stickyRef}
@@ -161,11 +161,10 @@ export default function WhyJusJumpinSticky() {
             {REASONS.map((reason, idx) => (
               <div
                 key={reason.id}
-                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                  idx === activeIndex
-                    ? "opacity-100 scale-100 z-10"
-                    : "opacity-0 scale-105 z-0"
-                }`}
+                className={`absolute inset-0 transition-all duration-700 ease-in-out ${idx === activeIndex
+                  ? "opacity-100 scale-100 z-10"
+                  : "opacity-0 scale-105 z-0"
+                  }`}
               >
                 <Image
                   src={reason.image}
@@ -190,11 +189,10 @@ export default function WhyJusJumpinSticky() {
                   backdropFilter: "blur(20px)",
                   WebkitBackdropFilter: "blur(20px)",
                 }}
-                className={`min-h-[480px] flex flex-col justify-center p-8 sm:p-10 rounded-3xl transition-all duration-500 ${
-                  index === activeIndex
-                    ? "bg-white/[0.08] border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_25px_60px_rgba(0,0,0,0.6)] opacity-100 scale-[1.02]"
-                    : "bg-white/[0.05] border border-white/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_50px_rgba(0,0,0,0.5)] opacity-50 hover:opacity-80 scale-100"
-                }`}
+                className={`min-h-[480px] flex flex-col justify-center p-8 sm:p-10 rounded-3xl transition-all duration-500 ${index === activeIndex
+                  ? "bg-white/[0.08] border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_25px_60px_rgba(0,0,0,0.6)] opacity-100 scale-[1.02]"
+                  : "bg-white/[0.05] border border-white/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_50px_rgba(0,0,0,0.5)] opacity-50 hover:opacity-80 scale-100"
+                  }`}
               >
                 {/* Pillar Badge */}
                 <div className="flex items-center gap-3 mb-4">

@@ -11,7 +11,7 @@ interface ActivitiesSectionProps {
 
 export default function ActivitiesSection({ activities, type, accentColor }: ActivitiesSectionProps) {
     const isKids = type === 'kids';
-    
+
     // Background and color themes
     const sectionBg = isKids ? '#fef9f0' : '#111820';
     const cardBg = isKids ? '#ffffff' : '#152030';
@@ -27,10 +27,10 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
     const blob3Color = isKids ? '#ff5da0' : '#8869d2';
 
     return (
-        <section 
-            id="activities" 
-            className={styles.activitiesSection} 
-            style={{ 
+        <section
+            id="activities"
+            className={styles.activitiesSection}
+            style={{
                 backgroundColor: sectionBg,
                 '--blob-color-1': blob1Color,
                 '--blob-color-2': blob2Color,
@@ -45,8 +45,8 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
             <div className={styles.container}>
                 {/* Header */}
                 <div className={styles.header}>
-                    <span 
-                        className={styles.badge} 
+                    <span
+                        className={styles.badge}
                         style={{ backgroundColor: accentColor }}
                     >
                         {badgeText}
@@ -73,14 +73,26 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                                 color: textColor
                             } as React.CSSProperties}
                         >
-                            <span className={styles.emoji}>{activity.emoji}</span>
+                            {activity.image ? (
+                                <div className={styles.cardImageWrapper}>
+                                    <img
+                                        src={activity.image}
+                                        alt={activity.name}
+                                        className={styles.cardImage}
+                                        loading="lazy"
+                                    />
+                                    <span className={styles.imageEmoji}>{activity.emoji}</span>
+                                </div>
+                            ) : (
+                                <span className={styles.emoji}>{activity.emoji}</span>
+                            )}
                             <h3 className={styles.cardTitle} style={{ color: textColor }}>{activity.name}</h3>
                             <p className={styles.cardDescription} style={{ color: mutedColor }}>{activity.description}</p>
-                            <span 
-                                className={styles.ageBadge} 
-                                style={{ 
-                                    backgroundColor: `${activity.color}15`, 
-                                    color: activity.color 
+                            <span
+                                className={styles.ageBadge}
+                                style={{
+                                    backgroundColor: `${activity.color}15`,
+                                    color: activity.color
                                 }}
                             >
                                 {activity.ageGroup}
@@ -93,9 +105,9 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
             {/* Zigzag separator */}
             <div className={styles.dividerWrapper}>
                 <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className={styles.dividerSvg}>
-                    <polygon 
-                        points="0,0 60,60 120,0 180,60 240,0 300,60 360,0 420,60 480,0 540,60 600,0 660,60 720,0 780,60 840,0 900,60 960,0 1020,60 1080,0 1140,60 1200,0 1260,60 1320,0 1380,60 1440,0 1440,60 0,60" 
-                        fill={dividerFill} 
+                    <polygon
+                        points="0,0 60,60 120,0 180,60 240,0 300,60 360,0 420,60 480,0 540,60 600,0 660,60 720,0 780,60 840,0 900,60 960,0 1020,60 1080,0 1140,60 1200,0 1260,60 1320,0 1380,60 1440,0 1440,60 0,60"
+                        fill={dividerFill}
                     />
                 </svg>
             </div>

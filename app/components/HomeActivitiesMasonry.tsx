@@ -7,7 +7,8 @@ const ACTIVITIES = [
   {
     title: "Interconnected Trampolines",
     image: "/image/birthday/photos.jpg",
-    description: "Soar, flip, and bounce across interconnected wall-to-wall trampolines.",
+    description:
+      "Soar, flip, and bounce across interconnected wall-to-wall trampolines.",
   },
   {
     title: "Ninja Warrior Course",
@@ -17,82 +18,109 @@ const ACTIVITIES = [
   {
     title: "Giant Foam Pit",
     image: "/image/foam-pit.jpg",
-    description: "Launch off trampolines into thousands of soft foam cubes.",
+    description:
+      "Launch off trampolines into thousands of soft foam cubes.",
   },
   {
     title: "Soft Play Wonderland",
     image: "/image/birthday/dedicated-zones.jpg",
-    description: "Safe, cushioned mazes and slides designed for little ones.",
+    description:
+      "Safe, cushioned mazes and slides designed for little ones.",
   },
   {
     title: "Basketball Slam Dunk",
     image: "/image/basketball-dunk.jpg",
-    description: "Bounce sky-high and slam dunk like a pro player.",
+    description:
+      "Bounce sky-high and slam dunk like a pro player.",
   },
   {
     title: "Wall Climbing Arena",
     image: "/image/birthday/fun-games.jpg",
-    description: "Climb colorful wall grips with automated harness safety.",
+    description:
+      "Climb colorful wall grips with automated harness safety.",
   },
   {
     title: "Dodgeball Arena",
     image: "/image/birthday/kids-adult.jpg",
-    description: "High-flying trampoline dodgeball matches with friends.",
+    description:
+      "High-flying trampoline dodgeball matches with friends.",
   },
   {
     title: "Spiral Racing Slides",
     image: "/image/birthday/photo-moments.jpg",
-    description: "Race down multi-lane spiral slides for endless giggles.",
+    description:
+      "Race down multi-lane spiral slides for endless giggles.",
   },
   {
     title: "Giant Ball Pool",
     image: "/image/birthday/personalized-themes.jpg",
-    description: "Dive into an ocean of colorful play balls.",
+    description:
+      "Dive into an ocean of colorful play balls.",
   },
 ];
 
 export default function HomeActivitiesMasonry() {
   const [grabbing, setGrabbing] = useState(false);
-  const [instructions, setInstructions] = useState(false); // Default to false to avoid server/client mismatch
+  const [instructions, setInstructions] = useState(false);
 
   const timelineRef = useRef<HTMLDivElement>(null);
   const imageTimelineRef = useRef<HTMLDivElement>(null);
   const backgroundImageTimelineRef = useRef<HTMLDivElement>(null);
 
-  // Use a Ref to store grabbing & drag positions synchronously.
-  // This bypasses React's asynchronous render state loop and prevents stale closure lagging!
+  /**
+   * Desktop mouse-drag state only.
+   */
   const stateRef = useRef({
     grabbing: false,
-    position: { x: 0, left: 0 },
+    position: {
+      x: 0,
+      left: 0,
+    },
   });
 
-  // ---- Scroll sync engine ----------------------------------------------
+  /**
+   * Scroll sync engine
+   */
   const rafId = useRef<number | null>(null);
   const pendingLeft = useRef<number | null>(null);
 
-  // Writes all tracks in lockstep, in the same tick.
-  // - Dial/Tick Timeline: 1x speed
-  // - Main Card Grid: 5x speed
-  // - Background Layer: 7x speed (5 * 1.4)
+  /**
+   * Synchronize the visual layers.
+   *
+   * IMPORTANT:
+   * We intentionally DO NOT write back to timelineRef.scrollLeft.
+   *
+   * On mobile the browser controls the native horizontal scroll.
+   * Writing back to the same element while the finger is moving
+   * can cause the scrolling gesture to feel stuck/jittery.
+   */
   const syncTimelines = (left: number) => {
-    if (timelineRef.current) timelineRef.current.scrollLeft = left;
-    if (imageTimelineRef.current) imageTimelineRef.current.scrollLeft = left * 5;
-    if (backgroundImageTimelineRef.current) backgroundImageTimelineRef.current.scrollLeft = left * 5 * 1.4;
+    if (imageTimelineRef.current) {
+      imageTimelineRef.current.scrollLeft = left * 5;
+    }
+
+    if (backgroundImageTimelineRef.current) {
+      backgroundImageTimelineRef.current.scrollLeft = left * 7;
+    }
   };
 
   const scheduleSync = (left: number) => {
     pendingLeft.current = left;
+
     if (rafId.current === null) {
       rafId.current = requestAnimationFrame(() => {
         if (pendingLeft.current !== null) {
           syncTimelines(pendingLeft.current);
         }
+
         rafId.current = null;
       });
     }
   };
 
-  // Clean up any pending frame on unmount
+  /**
+   * Cleanup RAF
+   */
   useEffect(() => {
     return () => {
       if (rafId.current !== null) {
@@ -101,128 +129,169 @@ export default function HomeActivitiesMasonry() {
     };
   }, []);
 
-  // Safe client-side loading of instructions to avoid SSR Hydration discrepancies
+  /**
+   * Load instructions
+   */
   useEffect(() => {
     if (typeof window !== "undefined") {
       const item = localStorage.getItem("instructions");
+
       if (item === null) {
         setInstructions(true);
       }
     }
   }, []);
 
+  /**
+   * -----------------------------
+   * DESKTOP MOUSE DRAG
+   * -----------------------------
+   */
+
   const handleOnStart = (clientX: number) => {
     if (!timelineRef.current) return;
+
     stateRef.current.grabbing = true;
+
     stateRef.current.position = {
       x: clientX,
       left: timelineRef.current.scrollLeft,
     };
+
     setGrabbing(true);
   };
 
   const handleOnMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevents ghost image dragging/text selection from hijacking drag events
+    /**
+     * Only desktop mouse interaction.
+     */
+    e.preventDefault();
+
     handleOnStart(e.clientX);
   };
 
-  const handleOnTouchStart = (e: React.TouchEvent) => {
-    handleOnStart(e.touches[0].clientX);
-  };
-
-  // Handles native scroll events on the timeline wrapper (wheel / momentum scrolling)
-  const handleOnScroll = () => {
-    if (timelineRef.current) {
-      scheduleSync(timelineRef.current.scrollLeft);
-    }
-  };
-
   const handleOnMove = (clientX: number) => {
-    const s = stateRef.current;
-    if (s.grabbing && timelineRef.current) {
-      const deltaX = s.position.x - clientX;
-      const left = Math.max(0, s.position.left + deltaX);
-      scheduleSync(left);
-    }
+    const state = stateRef.current;
+
+    if (!state.grabbing || !timelineRef.current) return;
+
+    const deltaX = state.position.x - clientX;
+
+    const left = Math.max(
+      0,
+      state.position.left + deltaX
+    );
+
+    timelineRef.current.scrollLeft = left;
+    scheduleSync(left);
   };
 
   const handleOnMouseMove = (e: React.MouseEvent) => {
     handleOnMove(e.clientX);
   };
 
-  const handleOnTouchMove = (e: React.TouchEvent) => {
-    if (e.touches[0]) {
-      handleOnMove(e.touches[0].clientX);
-    }
-  };
-
   const handleOnMouseUp = () => {
-    if (stateRef.current.grabbing) {
-      stateRef.current.grabbing = false;
-      setGrabbing(false);
-      setInstructions(false);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("instructions", "false");
-      }
+    if (!stateRef.current.grabbing) return;
+
+    stateRef.current.grabbing = false;
+
+    setGrabbing(false);
+    setInstructions(false);
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("instructions", "false");
     }
   };
 
-  // Bind global drag release listeners for robust dragging boundary tracking
+  /**
+   * -----------------------------
+   * NATIVE SCROLL
+   * -----------------------------
+   *
+   * Handles:
+   * - Mobile finger swipe
+   * - Mobile momentum scrolling
+   * - Trackpad scrolling
+   * - Mouse wheel
+   */
+  const handleOnScroll = () => {
+    if (!timelineRef.current) return;
+
+    scheduleSync(timelineRef.current.scrollLeft);
+  };
+
+  /**
+   * Global mouse listeners.
+   *
+   * These are intentionally ONLY for desktop.
+   */
   useEffect(() => {
-    const handleGlobalMove = (e: MouseEvent) => {
+    const handleGlobalMouseMove = (e: MouseEvent) => {
       handleOnMove(e.clientX);
     };
 
-    const handleGlobalUp = () => {
-      handleOnMouseUp();
-    };
-
-    const handleGlobalTouchMove = (e: TouchEvent) => {
-      if (e.touches[0]) {
-        handleOnMove(e.touches[0].clientX);
-      }
-    };
-
-    const handleGlobalTouchEnd = () => {
+    const handleGlobalMouseUp = () => {
       handleOnMouseUp();
     };
 
     if (grabbing) {
-      window.addEventListener("mousemove", handleGlobalMove);
-      window.addEventListener("mouseup", handleGlobalUp);
-      window.addEventListener("touchmove", handleGlobalTouchMove, { passive: false });
-      window.addEventListener("touchend", handleGlobalTouchEnd);
+      window.addEventListener(
+        "mousemove",
+        handleGlobalMouseMove
+      );
+
+      window.addEventListener(
+        "mouseup",
+        handleGlobalMouseUp
+      );
     }
 
     return () => {
-      window.removeEventListener("mousemove", handleGlobalMove);
-      window.removeEventListener("mouseup", handleGlobalUp);
-      window.removeEventListener("touchmove", handleGlobalTouchMove);
-      window.removeEventListener("touchend", handleGlobalTouchEnd);
+      window.removeEventListener(
+        "mousemove",
+        handleGlobalMouseMove
+      );
+
+      window.removeEventListener(
+        "mouseup",
+        handleGlobalMouseUp
+      );
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [grabbing]);
 
-  // Generates timeline ticks with optional numbered label elements on top axis
-  const getTicks = (quantity: number, showNumbers = false): React.ReactNode[] => {
+  /**
+   * Generates timeline ticks.
+   */
+  const getTicks = (
+    quantity: number,
+    showNumbers = false
+  ): React.ReactNode[] => {
     const ticks: React.ReactNode[] = [];
 
     const getClass = (index: number): string => {
       if (index % 15 === 0) return "fizz-buzz";
       if (index % 5 === 0) return "buzz";
       if (index % 3 === 0) return "fizz";
+
       return "";
     };
 
     for (let i = 1; i <= quantity; i++) {
       const cls = getClass(i);
+
       ticks.push(
-        <div key={i} className="timeline-tick-wrapper flex flex-col items-center justify-end relative flex-shrink-0">
+        <div
+          key={i}
+          className="timeline-tick-wrapper flex flex-col items-center justify-end relative flex-shrink-0"
+        >
           {showNumbers && (
             <span className="absolute -top-10 text-[11px] font-black text-[#6dc065] tracking-widest select-none bg-slate-950/80 px-2 py-0.5 rounded border border-white/10 shadow-md">
               ZONE {i.toString().padStart(2, "0")}
             </span>
           )}
+
           <div className={`timeline-tick ${cls}`} />
         </div>
       );
@@ -237,21 +306,27 @@ export default function HomeActivitiesMasonry() {
         id="activities"
         className="relative w-full bg-[#1e1e1e] overflow-hidden text-white border-t border-white/10"
       >
-        {/* Header Overlay - Explore Our Action-Packed Zones (Centered & Premium) */}
+        {/* Header */}
         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-2xl flex flex-col items-center text-center pointer-events-none">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-[10px] font-black text-[#6dc065] uppercase tracking-widest mb-3 backdrop-blur-md shadow-lg">
             ⚡ Explore Our Action-Packed Zones
           </div>
+
           <h2 className="text-xl sm:text-4xl font-black text-white tracking-tight leading-tight uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
-            Discover the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6dc065] to-[#b2d235]">Ultimate Play Zones</span>
+            Discover the{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6dc065] to-[#b2d235]">
+              Ultimate Play Zones
+            </span>
           </h2>
+
           <p className="text-slate-300 text-[10px] sm:text-sm font-semibold mt-1.5 drop-shadow-md">
-            Drag or swipe horizontally to navigate across our high-energy rides & arenas!
+            Drag or swipe horizontally to navigate across our high-energy
+            rides & arenas!
           </p>
         </div>
 
         <div id="app-timeline-container">
-          {/* Double Chevron down indicator pointing to dial ticks */}
+          {/* Arrow */}
           <div id="timeline-arrow-wrapper">
             <svg
               id="timeline-arrow"
@@ -265,9 +340,11 @@ export default function HomeActivitiesMasonry() {
               <polyline points="7 13 12 18 17 13" />
               <polyline points="7 6 12 11 17 6" />
             </svg>
+
             <span id="timeline-arrow-guide" />
           </div>
 
+          {/* Main Scroll Controller */}
           <div
             ref={timelineRef}
             onScroll={handleOnScroll}
@@ -275,30 +352,40 @@ export default function HomeActivitiesMasonry() {
             onMouseMove={handleOnMouseMove}
             onMouseUp={handleOnMouseUp}
             onMouseLeave={handleOnMouseUp}
-            onTouchStart={handleOnTouchStart}
-            onTouchEnd={handleOnMouseUp}
-            onTouchCancel={handleOnMouseUp}
-            onTouchMove={handleOnTouchMove}
             id="timeline-wrapper"
             className={grabbing ? "grabbing" : ""}
           >
             <div id="timeline">
-              <div className="extra-timeline-ticks">{getTicks(2)}</div>
-              <div id="timeline-ticks">{getTicks(ACTIVITIES.length, true)}</div>
-              <div className="extra-timeline-ticks">{getTicks(2)}</div>
+              <div className="extra-timeline-ticks">
+                {getTicks(2)}
+              </div>
+
+              <div id="timeline-ticks">
+                {getTicks(ACTIVITIES.length, true)}
+              </div>
+
+              <div className="extra-timeline-ticks">
+                {getTicks(2)}
+              </div>
             </div>
           </div>
 
-          {/* Foreground Card & Label Timeline */}
-          <div id="image-timeline-wrapper" ref={imageTimelineRef}>
+          {/* Foreground Cards */}
+          <div
+            id="image-timeline-wrapper"
+            ref={imageTimelineRef}
+          >
             <div id="image-timeline">
               <div id="image-timeline-items">
                 {ACTIVITIES.map((act, index) => (
-                  <div key={index} className="timeline-item">
-                    {/* Large stylized zone label card header */}
+                  <div
+                    key={index}
+                    className="timeline-item"
+                  >
                     <h1 className="timeline-item-label select-none">
                       Zone {index + 1}: {act.title}
                     </h1>
+
                     <div className="timeline-item-image-wrapper">
                       <div className="timeline-item-image">
                         <Image
@@ -309,13 +396,14 @@ export default function HomeActivitiesMasonry() {
                           sizes="(max-width: 768px) 90vw, 1400px"
                           priority={index === 0}
                         />
+
                         <div className="timeline-item-image-filter" />
 
-                        {/* Interactive Detail Overlay */}
                         <div className="absolute bottom-12 left-12 right-12 z-25 flex flex-col items-start pointer-events-none select-none">
                           <span className="px-3.5 py-1.5 rounded-full bg-[#6dc065] text-slate-950 text-xs font-black uppercase tracking-wider mb-2.5 shadow-md">
                             Zone {index + 1}
                           </span>
+
                           <p className="text-slate-200 text-sm sm:text-base font-semibold max-w-lg drop-shadow-md">
                             {act.description}
                           </p>
@@ -328,8 +416,11 @@ export default function HomeActivitiesMasonry() {
             </div>
           </div>
 
-          {/* Background Blurred Parallax Timeline */}
-          <div id="background-image-timeline-wrapper" ref={backgroundImageTimelineRef}>
+          {/* Background Parallax */}
+          <div
+            id="background-image-timeline-wrapper"
+            ref={backgroundImageTimelineRef}
+          >
             <div id="background-image-timeline">
               <div id="background-image-timeline-items">
                 {ACTIVITIES.map((act, index) => (
@@ -345,10 +436,11 @@ export default function HomeActivitiesMasonry() {
             </div>
           </div>
 
-          {/* Guidance Overlay Instructions */}
+          {/* Instructions */}
           {instructions && (
             <div id="instructions">
               <h1>Pan from right to left</h1>
+
               <div id="instructions-action">
                 <svg
                   className="instructions-arrow"
@@ -358,9 +450,20 @@ export default function HomeActivitiesMasonry() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  style={{ width: "24px", height: "24px", position: "absolute", top: "13px" }}
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    position: "absolute",
+                    top: "13px",
+                  }}
                 >
-                  <line x1="19" y1="12" x2="5" y2="12" />
+                  <line
+                    x1="19"
+                    y1="12"
+                    x2="5"
+                    y2="12"
+                  />
+
                   <polyline points="12 19 5 12 12 5" />
                 </svg>
               </div>
@@ -368,7 +471,6 @@ export default function HomeActivitiesMasonry() {
           )}
         </div>
 
-        {/* Flat Scoped Styles compiled from SCSS */}
         <style jsx>{`
           #app-timeline-container {
             background-color: rgb(30, 30, 30);
@@ -394,7 +496,9 @@ export default function HomeActivitiesMasonry() {
             color: white;
             height: 40px;
             width: 40px;
-            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
+            filter: drop-shadow(
+              0 0 6px rgba(255, 255, 255, 0.4)
+            );
           }
 
           #timeline-arrow-guide {
@@ -408,16 +512,29 @@ export default function HomeActivitiesMasonry() {
             width: 4px;
           }
 
+          /*
+           * MAIN MOBILE SCROLLER
+           *
+           * Native horizontal touch scrolling is enabled.
+           */
           #timeline-wrapper {
-            bottom: 0px;
+            bottom: 0;
             cursor: grab;
             display: flex;
             height: calc(100% - 40px);
-            left: 0px;
-            overflow: auto;
+            left: 0;
+            overflow-x: auto;
+            overflow-y: hidden;
             padding-bottom: 40px;
             position: absolute;
-            touch-action: none;
+
+            /*
+             * IMPORTANT:
+             * Allow native horizontal touch scrolling.
+             */
+            touch-action: pan-x;
+            -webkit-overflow-scrolling: touch;
+
             width: 100%;
             z-index: 3;
             scrollbar-width: none;
@@ -428,14 +545,14 @@ export default function HomeActivitiesMasonry() {
           }
 
           #timeline-wrapper::-webkit-scrollbar {
-            height: 0px;
+            height: 0;
             display: none;
           }
 
           #timeline {
             display: inline-flex;
             gap: calc(20vw - 4px);
-            padding: 0px calc(10vw - 2px);
+            padding: 0 calc(10vw - 2px);
           }
 
           .extra-timeline-ticks,
@@ -478,22 +595,26 @@ export default function HomeActivitiesMasonry() {
             height: 160px;
           }
 
+          /*
+           * Other visual timelines.
+           *
+           * They are not the touch controller.
+           */
           #image-timeline-wrapper,
           #background-image-timeline-wrapper {
             display: flex;
             height: 100%;
-            left: 0px;
-            overflow-x: auto;
-            overflow-y: hidden;
+            left: 0;
+            overflow: hidden;
             position: absolute;
-            top: 0px;
+            top: 0;
             width: 100%;
             scrollbar-width: none;
+            pointer-events: none;
           }
 
           #image-timeline-wrapper::-webkit-scrollbar,
           #background-image-timeline-wrapper::-webkit-scrollbar {
-            height: 0px;
             display: none;
           }
 
@@ -516,6 +637,7 @@ export default function HomeActivitiesMasonry() {
             justify-content: center;
             position: relative;
             width: 100vw;
+            flex-shrink: 0;
           }
 
           .timeline-item-label {
@@ -524,7 +646,9 @@ export default function HomeActivitiesMasonry() {
             -webkit-backdrop-filter: blur(16px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 9999px;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 15px 40px rgba(0, 0, 0, 0.5);
+            box-shadow:
+              inset 0 1px 0 rgba(255, 255, 255, 0.2),
+              0 15px 40px rgba(0, 0, 0, 0.5);
             color: #ffffff;
             font-size: 1.75rem;
             font-weight: 900;
@@ -544,16 +668,18 @@ export default function HomeActivitiesMasonry() {
             display: flex;
             height: 100%;
             justify-content: center;
-            left: 0px;
+            left: 0;
             position: absolute;
-            top: 0px;
+            top: 0;
             width: 100%;
             z-index: 1;
           }
 
           .timeline-item-image {
             border-radius: 60px;
-            box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 30px, rgba(0, 0, 0, 0.16) 0px 0px 10px;
+            box-shadow:
+              rgba(0, 0, 0, 0.12) 0 0 30px,
+              rgba(0, 0, 0, 0.16) 0 0 10px;
             height: 865px;
             margin-bottom: 20px;
             min-height: 500px;
@@ -563,12 +689,16 @@ export default function HomeActivitiesMasonry() {
           }
 
           .timeline-item-image-filter {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            background: linear-gradient(
+              to top,
+              rgba(0, 0, 0, 0.8),
+              transparent
+            );
             border-radius: 60px;
             height: 100%;
-            left: 0px;
+            left: 0;
             position: absolute;
-            top: 0px;
+            top: 0;
             width: 100%;
             z-index: 2;
           }
@@ -595,6 +725,7 @@ export default function HomeActivitiesMasonry() {
             height: 100%;
             opacity: 0.15;
             width: 140vw;
+            flex-shrink: 0;
           }
 
           #instructions {
@@ -631,12 +762,15 @@ export default function HomeActivitiesMasonry() {
               opacity: 0;
               right: -20%;
             }
+
             20% {
               opacity: 1;
             }
+
             80% {
               opacity: 1;
             }
+
             to {
               opacity: 0;
               right: calc(100% - 20px);
@@ -647,12 +781,16 @@ export default function HomeActivitiesMasonry() {
             animation: panRightToLeft 2s ease-in-out infinite;
           }
 
-          /* Media Queries */
+          /* ----------------------------- */
+          /* Responsive                     */
+          /* ----------------------------- */
+
           @media (max-width: 2000px) {
             .timeline-item-image {
               height: 679px !important;
               width: 1100px !important;
             }
+
             .timeline-item-label {
               font-size: 1.5rem !important;
               margin-bottom: 710px !important;
@@ -665,6 +803,7 @@ export default function HomeActivitiesMasonry() {
               height: 600px !important;
               width: 800px !important;
             }
+
             .timeline-item-label {
               font-size: 1.35rem !important;
               margin-bottom: 630px !important;
@@ -679,9 +818,11 @@ export default function HomeActivitiesMasonry() {
               min-height: 400px !important;
               width: calc(100% - 60px) !important;
             }
+
             .timeline-item-image-filter {
               border-radius: 40px !important;
             }
+
             .timeline-item-label {
               font-size: 1.2rem !important;
               margin-bottom: 64% !important;
@@ -690,9 +831,19 @@ export default function HomeActivitiesMasonry() {
           }
 
           @media (max-width: 500px) {
+            /*
+             * Make mobile scrolling completely native.
+             */
+            #timeline-wrapper {
+              touch-action: pan-x;
+              overscroll-behavior-x: contain;
+              -webkit-overflow-scrolling: touch;
+            }
+
             .timeline-item-image {
               width: calc(100% - 40px) !important;
             }
+
             .timeline-item-label {
               font-size: 0.95rem !important;
               margin-bottom: 64% !important;

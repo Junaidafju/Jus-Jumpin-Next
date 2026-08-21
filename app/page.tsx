@@ -22,11 +22,11 @@ export default function Home() {
       {/* 1. Cinematic Cloudinary Video Landing Hero */}
       <HomeHero3D />
 
-      {/* 2. Geolocation Nearest Match & Location Carousel */}
-      <LocationSelector />
-
-      {/* 3. Parallax Intro Section */}
+      {/* 2. Parallax Intro Section */}
       <HomeIntroParallax />
+
+      {/* 3. Geolocation Nearest Match & Location Carousel */}
+      <LocationSelector />
 
       {/* 4. Sticky Scroll "Why Jus Jumpin" (8 Reasons) */}
       <WhyJusJumpinSticky />

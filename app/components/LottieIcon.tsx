@@ -7,9 +7,10 @@ interface LottieIconProps {
     src: string;
     alt?: string;
     className?: string;
+    fallbackSrc?: string;
 }
 
-const LottieIcon: React.FC<LottieIconProps> = ({ src, alt = "icon", className }) => {
+const LottieIcon: React.FC<LottieIconProps> = ({ src, alt = "icon", className, fallbackSrc }) => {
     const [animationData, setAnimationData] = useState<any>(null);
 
     useEffect(() => {
@@ -30,7 +31,19 @@ const LottieIcon: React.FC<LottieIconProps> = ({ src, alt = "icon", className })
         fetchAnimation();
     }, [src]);
 
-    if (!animationData) {
+    const isValidLottie = animationData && typeof animationData === "object" && !Array.isArray(animationData) && Array.isArray(animationData.layers);
+
+    if (!isValidLottie) {
+        if (animationData) {
+            console.error(`Invalid Lottie animation data from ${src}. Missing 'layers' property.`);
+            if (fallbackSrc) {
+                return (
+                    <div className={className} aria-label={alt}>
+                        <img src={fallbackSrc} alt={alt} className="w-full h-full object-cover" />
+                    </div>
+                );
+            }
+        }
         return <div className={className} aria-label={alt} />; // Placeholder or loading state
     }
 

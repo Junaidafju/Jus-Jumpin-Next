@@ -241,9 +241,11 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
                       ref={ctaRef}
                       className="flex flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8 w-full px-2 lg:px-0"
                     >
-                      <button
-                        onClick={handleBookClick}
-                        className="group relative px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-base font-black text-slate-950 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_8px_25px_rgba(140,198,63,0.35)] shrink-0 whitespace-nowrap cursor-pointer"
+                      <a
+                        href="https://jusjumpin.co.in/customer/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-base font-black text-slate-950 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_8px_25px_rgba(140,198,63,0.35)] shrink-0 whitespace-nowrap cursor-pointer flex items-center justify-center gap-1.5"
                         style={{
                           background: "linear-gradient(135deg, #8cc63f 0%, #6dc065 100%)",
                         }}
@@ -252,7 +254,7 @@ export default function HomeHero3D({ onBookClick }: HomeHero3DProps) {
                           🎟 Book Tickets
                           <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                         </span>
-                      </button>
+                      </a>
 
                       <a
                         href="#explore"

@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import Image from "next/image";
+import LottieIcon from "./LottieIcon";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,16 +121,16 @@ export default function HomeIntroParallax() {
               </div>
             </div>
 
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-4 flex flex-row items-center gap-3">
               <Link
                 href="/about"
-                className="px-7 py-3.5 bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 font-black text-sm rounded-full hover:scale-105 transition-transform shadow-lg"
+                className="px-4 py-2.5 whitespace-nowrap bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 font-black text-sm rounded-full hover:scale-105 transition-transform shadow-lg"
               >
                 Learn Our Story →
               </Link>
               <Link
                 href="#why-jus-jumpin"
-                className="px-6 py-3.5 bg-white/10 border border-white/20 text-white font-bold text-sm rounded-full hover:bg-white/20 transition-colors"
+                className="px-4 py-2.5 whitespace-nowrap bg-white/10 border border-white/20 text-white font-bold text-sm rounded-full hover:bg-white/20 transition-colors"
               >
                 Why Choose Us 👇
               </Link>
@@ -137,37 +138,34 @@ export default function HomeIntroParallax() {
           </div>
 
           {/* Multi-Layer Parallax Illustration Right */}
-          <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[550px] flex items-center justify-center">
+          <div className="relative w-full flex flex-col items-center justify-center min-h-[360px] sm:min-h-[420px] lg:min-h-[520px]">
             {/* Layer 1: Back (Soft shapes / blobs) */}
             <div
               ref={layerBackRef}
               className="absolute inset-4 rounded-3xl bg-gradient-to-tr from-[#6dc065]/20 via-emerald-600/10 to-purple-600/20 blur-2xl pointer-events-none"
             />
 
-            {/* Layer 2: Mid (Activity Frame Card) */}
+            {/* Layer 2: Mid (Activity Lottie Animation) */}
             <div
               ref={layerMidRef}
-              className="relative z-10 w-4/5 h-4/5 rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-slate-900"
+              className="relative z-10 w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px] flex items-center justify-center"
             >
-              <Image
-                src="/image/birthday/photos.jpg"
-                alt="Jus Jumpin Park Experience"
-                fill
-                className="object-cover opacity-85"
-                sizes="(max-width: 1024px) 80vw, 500px"
+              <LottieIcon
+                src="/json/gifimage2.json"
+                alt="Jus Jumpin Park Experience Animation"
+                className="w-full h-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
             </div>
 
-            {/* Layer 3: Front (Jumping Mascot / Floating Card) */}
+            {/* Layer 3: Front (Floating Stats Card) */}
             <div
               ref={layerFrontRef}
-              className="absolute bottom-6 right-2 sm:right-6 z-20 bg-slate-900/90 border-2 border-[#6dc065] backdrop-blur-xl p-4 sm:p-5 rounded-2xl shadow-2xl max-w-[260px]"
+              className="relative lg:absolute lg:bottom-6 lg:right-6 z-20 mt-2 lg:mt-0 bg-slate-900/90 border-2 border-[#6dc065] backdrop-blur-xl px-4 py-3 rounded-2xl shadow-2xl max-w-[240px]"
             >
               <div className="flex items-center gap-3">
-                <span className="text-3xl">🚀</span>
+                <span className="text-2xl">🚀</span>
                 <div>
-                  <div className="text-xs font-black text-[#6dc065] uppercase">
+                  <div className="text-xs font-black text-[#6dc065] uppercase tracking-wide">
                     Non-Stop Joy
                   </div>
                   <div className="text-sm font-bold text-white leading-snug">

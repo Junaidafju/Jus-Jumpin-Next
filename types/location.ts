@@ -6,6 +6,7 @@ export interface Activity {
   description: string;
   ageGroup: string;
   color: string;
+  image?: string;
 }
 
 export interface PricingRow {

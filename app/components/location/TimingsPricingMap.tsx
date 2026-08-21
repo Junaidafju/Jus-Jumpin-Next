@@ -15,20 +15,26 @@ export default function TimingsPricingMap({ data }: TimingsPricingMapProps) {
     const mutedColor = isKids ? '#666' : 'rgba(255,255,255,0.6)';
     const borderColor = isKids ? '#ede8f5' : 'rgba(255,255,255,0.08)';
 
-    const [time, setTime] = useState(new Date());
+    const [time, setTime] = useState<Date | null>(null);
     useEffect(() => {
+        setTime(new Date());
         const t = setInterval(() => setTime(new Date()), 1000);
         return () => clearInterval(t);
     }, []);
 
-    const day = time.getDay();
-    const isWeekend = day === 0 || day === 6;
+    const isWeekend = time ? (time.getDay() === 0 || time.getDay() === 6) : false;
     const hours = isWeekend ? data.weekendHours : data.weekdayHours;
-    const timeStr = time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+    const timeStr = time
+        ? time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })
+        : '--:--:--';
 
     // Simple open check (assume open 11 AM – 9:30/10 PM)
-    const h = time.getHours();
-    const isOpen = h >= 11 && h < (isWeekend ? 22 : 21);
+    const h = time ? time.getHours() : 0;
+    const isOpen = time ? (h >= 11 && h < (isWeekend ? 22 : 21)) : false;
+
+    const statusColor = time ? (isOpen ? '#6dc065' : '#ff3645') : '#888888';
+    const statusText = time ? (isOpen ? 'Open Now' : 'Closed') : 'Loading...';
+    const hasPulse = time ? isOpen : false;
 
     return (
         <section id="booking" style={{ background: bg, padding: '80px 0 0', position: 'relative' }}>
@@ -46,9 +52,9 @@ export default function TimingsPricingMap({ data }: TimingsPricingMapProps) {
                                 {timeStr}
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '8px' }}>
-                                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: isOpen ? '#6dc065' : '#ff3645', display: 'inline-block', animation: isOpen ? 'pulse 1.5s infinite' : 'none' }} />
-                                <span style={{ fontFamily: 'Nunito, sans-serif', fontSize: '14px', color: isOpen ? '#6dc065' : '#ff3645', fontWeight: 700 }}>
-                                    {isOpen ? 'Open Now' : 'Closed'}
+                                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: statusColor, display: 'inline-block', animation: hasPulse ? 'pulse 1.5s infinite' : 'none' }} />
+                                <span style={{ fontFamily: 'Nunito, sans-serif', fontSize: '14px', color: statusColor, fontWeight: 700 }}>
+                                    {statusText}
                                 </span>
                             </div>
                         </div>
@@ -98,6 +104,30 @@ export default function TimingsPricingMap({ data }: TimingsPricingMapProps) {
                         <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '12px', color: mutedColor, textAlign: 'center', marginTop: '16px' }}>
                             {data.ticketNote}
                         </p>
+                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '24px' }}>
+                            <a
+                                href="https://jusjumpin.co.in/customer/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    display: 'inline-block',
+                                    padding: '12px 32px',
+                                    borderRadius: '999px',
+                                    background: data.accentColor,
+                                    color: isKids ? '#1a1a1a' : '#fff',
+                                    fontFamily: 'Nunito, sans-serif',
+                                    fontWeight: 800,
+                                    fontSize: '14px',
+                                    textDecoration: 'none',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px',
+                                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.15)',
+                                    textAlign: 'center',
+                                }}
+                            >
+                                🎟️ Book Tickets Online
+                            </a>
+                        </div>
                     </div>
                 </div>
 

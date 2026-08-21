@@ -5,6 +5,7 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import LottieIcon from '../LottieIcon';
 
 export default function AboutHero() {
     const blob1Ref = useRef(null);
@@ -185,16 +186,14 @@ export default function AboutHero() {
                         </motion.div>
                     </div>
 
-                    {/* RIGHT – Animated scene placeholder (would contain cartoon characters / trampoline / playground) */}
+                    {/* RIGHT – Animated scene from about.json */}
                     <div className="relative hidden lg:block h-[80vh] perspective-1000">
                         <div className="absolute inset-0 flex items-center justify-center">
-                            {/* Placeholder for cartoon playground scene */}
-                            {/* You would typically place an animated SVG / Lottie / multiple layered motion.div elements here */}
-                            <div className="text-center text-white/80 text-2xl font-light italic">
-                                [ Animated cartoon kids jumping, sliding, laughing — layered parallax motion ]
-                                <br /><br />
-                                Trampoline • Foam pit • Climbing wall • Ball pit
-                            </div>
+                            <LottieIcon
+                                src="/json/about.json"
+                                alt="Jus Jumpin About Animation"
+                                className="w-full h-full max-w-[600px] max-h-[600px] flex items-center justify-center"
+                            />
                         </div>
                     </div>
 

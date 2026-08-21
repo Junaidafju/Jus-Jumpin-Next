@@ -66,19 +66,21 @@ export default function HomeFinalCTA() {
 
           {/* 3 Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 w-full max-w-2xl mx-auto">
+            <a
+              href="https://jusjumpin.co.in/customer/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 font-black text-sm sm:text-base rounded-full hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(109,192,101,0.4)] text-center flex items-center justify-center gap-1.5"
+            >
+              🎟️ Book Tickets Now
+            </a>
+
             <button
               onClick={() => setIsBookingModalOpen(true)}
-              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 font-black text-sm sm:text-base rounded-full hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(109,192,101,0.4)] text-center"
+              className="w-full sm:w-auto px-7 py-4 bg-white/15 border border-white/25 text-white font-black text-sm sm:text-base rounded-full hover:bg-white/25 hover:scale-105 transition-all backdrop-blur-md text-center cursor-pointer"
             >
-              🎂 Book Tickets Now
+              🎂 Book Birthday Party
             </button>
-
-            <Link
-              href="/birthday-celebration"
-              className="w-full sm:w-auto px-7 py-4 bg-white/15 border border-white/25 text-white font-black text-sm sm:text-base rounded-full hover:bg-white/25 hover:scale-105 transition-all backdrop-blur-md text-center"
-            >
-              🎉 Plan Birthday Party
-            </Link>
 
             <a
               href="#locations"
