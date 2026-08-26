@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { locations } from "@/lib/locations/data";
@@ -14,9 +14,9 @@ function getHaversineDistance(lat1: number, lon1: number, lat2: number, lon2: nu
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos((lat2 * Math.PI) / 180) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return Math.round(R * c * 10) / 10;
 }
@@ -28,26 +28,42 @@ export default function LocationSelector() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [currentScrollIndex, setCurrentScrollIndex] = useState(0);
 
-  // Redesign: Search & Filtering States
+  // Search & Filtering States
   const [selectedState, setSelectedState] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedType, setSelectedType] = useState<"all" | "adults-kids" | "kids">("all");
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
 
   const scrollTrackRef = useRef<HTMLDivElement>(null);
 
   // Compute unique states list dynamically from data
   const uniqueStates = ["All", ...Array.from(new Set(locations.map(loc => loc.stateName)))].filter(Boolean);
 
-  // Filter locations based on state & search query
-  const filteredLocations = locations.filter((loc) => {
-    const matchesState = selectedState === "All" || loc.stateName.toLowerCase() === selectedState.toLowerCase();
-    const query = searchQuery.toLowerCase().trim();
-    const matchesSearch = 
-      loc.city.toLowerCase().includes(query) || 
-      loc.mall.toLowerCase().includes(query) || 
-      loc.stateName.toLowerCase().includes(query) ||
-      loc.address.toLowerCase().includes(query);
-    return matchesState && matchesSearch;
-  });
+  // Filter locations based on state, search query, and type
+  const filteredLocations = useMemo(() => {
+    let filtered = locations.filter((loc) => {
+      const matchesState = selectedState === "All" || loc.stateName.toLowerCase() === selectedState.toLowerCase();
+      const query = searchQuery.toLowerCase().trim();
+      const matchesSearch =
+        loc.city.toLowerCase().includes(query) ||
+        loc.mall.toLowerCase().includes(query) ||
+        loc.stateName.toLowerCase().includes(query) ||
+        loc.address.toLowerCase().includes(query);
+      const matchesType = selectedType === "all" || loc.type === selectedType;
+      return matchesState && matchesSearch && matchesType;
+    });
+
+    // Sort by distance if user location is detected
+    if (userLocation && Object.keys(distances).length > 0) {
+      filtered = filtered.sort((a, b) => {
+        const distA = distances[a.slug] ?? Infinity;
+        const distB = distances[b.slug] ?? Infinity;
+        return distA - distB;
+      });
+    }
+
+    return filtered;
+  }, [locations, selectedState, searchQuery, selectedType, userLocation, distances]);
 
   const handleFindNearestStore = () => {
     if (typeof window === "undefined" || !("geolocation" in navigator)) {
@@ -60,6 +76,8 @@ export default function LocationSelector() {
       (pos) => {
         const uLat = pos.coords.latitude;
         const uLng = pos.coords.longitude;
+
+        setUserLocation({ lat: uLat, lng: uLng });
 
         let minDist = Infinity;
         let closestSlug = "";
@@ -80,28 +98,26 @@ export default function LocationSelector() {
           setNearestSlug(closestSlug);
           setDistances(computedDistances);
           setLocationStatus("success");
-          
-          // Clear filters so the user can see the matched store
+
+          // Clear filters so the user can see all sorted stores
           setSelectedState("All");
           setSearchQuery("");
-          
-          // Scroll nearest store into view
-          const nearestIndex = locations.findIndex((l) => l.slug === closestSlug);
-          if (nearestIndex !== -1 && scrollTrackRef.current) {
-            setTimeout(() => {
-              const track = scrollTrackRef.current;
-              if (track) {
-                const cardWidth = track.firstElementChild?.clientWidth || 320;
-                track.scrollTo({ left: nearestIndex * (cardWidth + 24), behavior: "smooth" });
-              }
-            }, 100);
-          }
+          setSelectedType("all");
+
+          // Scroll to nearest store (which should be first after sorting)
+          setTimeout(() => {
+            const track = scrollTrackRef.current;
+            if (track) {
+              track.scrollTo({ left: 0, behavior: "smooth" });
+            }
+          }, 300);
         } else {
           setLocationStatus("denied");
         }
       },
       () => {
         setLocationStatus("denied");
+        setUserLocation(null);
       },
       { timeout: 8000, maximumAge: 60000 }
     );
@@ -149,36 +165,73 @@ export default function LocationSelector() {
           </div>
 
           {/* Search Bar & Geolocation Integration */}
-          <div className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto mb-6 items-center justify-between w-full">
-            {/* Search Input Box */}
-            <div className="relative w-full md:flex-1">
-              <input
-                type="text"
-                placeholder="Search by city, mall, or address..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-10 py-3.5 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:border-[#6dc065] focus:ring-1 focus:ring-[#6dc065] transition-all text-sm font-medium backdrop-blur-md shadow-inner"
-              />
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">🔍</span>
-              {searchQuery && (
-                <button 
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
-                >
-                  ✕
-                </button>
-              )}
+          <div className="flex flex-col gap-4 max-w-4xl mx-auto mb-6">
+            {/* Search Row */}
+            <div className="flex flex-col md:flex-row gap-4 items-center w-full">
+              {/* Search Input Box */}
+              <div className="relative w-full md:flex-1">
+                <input
+                  type="text"
+                  placeholder="Search by city, mall, or address..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-10 py-3.5 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:border-[#6dc065] focus:ring-1 focus:ring-[#6dc065] transition-all text-sm font-medium backdrop-blur-md shadow-inner"
+                />
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">🔍</span>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+
+              {/* Geolocation Button */}
+              <button
+                onClick={handleFindNearestStore}
+                disabled={locationStatus === "fetching"}
+                className="w-full md:w-auto px-6 py-3.5 bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 font-black text-xs rounded-2xl hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg uppercase tracking-wider cursor-pointer whitespace-nowrap"
+              >
+                <span>🎯</span>
+                <span>{locationStatus === "fetching" ? "Locating..." : "Detect Location"}</span>
+              </button>
             </div>
 
-            {/* Geolocation Button */}
-            <button
-              onClick={handleFindNearestStore}
-              disabled={locationStatus === "fetching"}
-              className="w-full md:w-auto px-6 py-3.5 bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 font-black text-xs rounded-2xl hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg uppercase tracking-wider cursor-pointer whitespace-nowrap"
-            >
-              <span>🎯</span>
-              <span>{locationStatus === "fetching" ? "Locating..." : "Detect Location"}</span>
-            </button>
+            {/* Type Filter Row */}
+            <div className="flex items-center gap-2 justify-center md:justify-start">
+              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">
+                Filter:
+              </span>
+              <button
+                onClick={() => setSelectedType("all")}
+                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer border ${selectedType === "all"
+                    ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 border-[#6dc065] shadow-lg"
+                    : "bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:bg-white/10"
+                  }`}
+              >
+                All Arenas
+              </button>
+              <button
+                onClick={() => setSelectedType("adults-kids")}
+                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer border ${selectedType === "adults-kids"
+                    ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 border-[#6dc065] shadow-lg"
+                    : "bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:bg-white/10"
+                  }`}
+              >
+                🚀 Adults & Kids
+              </button>
+              <button
+                onClick={() => setSelectedType("kids")}
+                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer border ${selectedType === "kids"
+                    ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 border-[#6dc065] shadow-lg"
+                    : "bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:bg-white/10"
+                  }`}
+              >
+                🧸 Kids Only
+              </button>
+            </div>
           </div>
 
           {/* Location status error alert */}
@@ -188,17 +241,24 @@ export default function LocationSelector() {
             </div>
           )}
 
+          {/* Sorting indicator */}
+          {userLocation && locationStatus === "success" && (
+            <div className="max-w-4xl mx-auto mb-4 px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs font-semibold text-center flex items-center justify-center gap-2">
+              <span>📍</span>
+              <span>Showing arenas sorted by distance from your location</span>
+            </div>
+          )}
+
           {/* State Filter Chips */}
           <div className="flex gap-2.5 overflow-x-auto pb-4 mb-10 hide-scrollbar justify-start md:justify-center px-2 scroll-smooth">
             {uniqueStates.map((state) => (
               <button
                 key={state}
                 onClick={() => setSelectedState(state)}
-                className={`px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 whitespace-nowrap cursor-pointer border ${
-                  selectedState === state
+                className={`px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 whitespace-nowrap cursor-pointer border ${selectedState === state
                     ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-slate-950 border-[#6dc065] shadow-[0_4px_12px_rgba(109,192,101,0.25)]"
                     : "bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:bg-white/10"
-                }`}
+                  }`}
               >
                 {state}
               </button>
@@ -272,11 +332,10 @@ export default function LocationSelector() {
                   return (
                     <div
                       key={loc.slug}
-                      className={`snap-center shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden bg-white/5 border transition-all duration-300 flex flex-col justify-between group ${
-                        isNearest
+                      className={`snap-center shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden bg-white/5 border transition-all duration-300 flex flex-col justify-between group ${isNearest
                           ? "border-2 border-[#6dc065] shadow-[0_0_25px_rgba(109,192,101,0.4)] bg-gradient-to-b from-emerald-950/40 to-white/5 scale-[1.02]"
                           : "border-white/10 hover:border-white/30 hover:bg-white/10"
-                      }`}
+                        }`}
                     >
                       {/* Card Image Header */}
                       <div className="relative w-full h-44 sm:h-52 overflow-hidden bg-slate-900">
@@ -368,6 +427,7 @@ export default function LocationSelector() {
                 onClick={() => {
                   setSelectedState("All");
                   setSearchQuery("");
+                  setSelectedType("all");
                 }}
                 className="mt-6 px-5 py-2.5 bg-white/10 border border-white/20 hover:bg-white/20 transition-all text-white text-xs font-black rounded-full uppercase tracking-wider cursor-pointer"
               >
@@ -388,11 +448,10 @@ export default function LocationSelector() {
                     const cardWidth = track.firstElementChild?.clientWidth || 320;
                     track.scrollTo({ left: idx * (cardWidth + 24), behavior: "smooth" });
                   }}
-                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === currentScrollIndex
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === currentScrollIndex
                       ? "w-5 bg-[#6dc065] shadow-[0_0_8px_rgba(109,192,101,0.6)]"
                       : "w-1.5 bg-white/25 hover:bg-white/50"
-                  }`}
+                    }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               ))}

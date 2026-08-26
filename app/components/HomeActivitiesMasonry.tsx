@@ -1,857 +1,467 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ChevronLeft, ChevronRight, Maximize2, X, ZoomIn, ZoomOut } from "lucide-react";
+import { cn } from "../../lib/utils";
 
 const ACTIVITIES = [
   {
     title: "Interconnected Trampolines",
     image: "/image/birthday/photos.jpg",
-    description:
-      "Soar, flip, and bounce across interconnected wall-to-wall trampolines.",
+    description: "Soar, flip, and bounce across interconnected wall-to-wall trampolines.",
+    category: "Bounce & Fly",
+    color: "from-emerald-500/20 to-teal-500/20",
   },
   {
     title: "Ninja Warrior Course",
     image: "/image/activities/ninja-course.jpg",
     description: "Test your speed and balance through obstacle courses.",
+    category: "Challenge",
+    color: "from-orange-500/20 to-red-500/20",
   },
   {
     title: "Giant Foam Pit",
     image: "/image/foam-pit.jpg",
-    description:
-      "Launch off trampolines into thousands of soft foam cubes.",
+    description: "Launch off trampolines into thousands of soft foam cubes.",
+    category: "Adventure",
+    color: "from-blue-500/20 to-purple-500/20",
   },
   {
     title: "Soft Play Wonderland",
     image: "/image/birthday/dedicated-zones.jpg",
-    description:
-      "Safe, cushioned mazes and slides designed for little ones.",
+    description: "Safe, cushioned mazes and slides designed for little ones.",
+    category: "Kids Zone",
+    color: "from-pink-500/20 to-rose-500/20",
   },
   {
     title: "Basketball Slam Dunk",
     image: "/image/basketball-dunk.jpg",
-    description:
-      "Bounce sky-high and slam dunk like a pro player.",
+    description: "Bounce sky-high and slam dunk like a pro player.",
+    category: "Sports",
+    color: "from-yellow-500/20 to-amber-500/20",
   },
   {
     title: "Wall Climbing Arena",
     image: "/image/birthday/fun-games.jpg",
-    description:
-      "Climb colorful wall grips with automated harness safety.",
+    description: "Climb colorful wall grips with automated harness safety.",
+    category: "Challenge",
+    color: "from-cyan-500/20 to-blue-500/20",
   },
   {
     title: "Dodgeball Arena",
     image: "/image/birthday/kids-adult.jpg",
-    description:
-      "High-flying trampoline dodgeball matches with friends.",
+    description: "High-flying trampoline dodgeball matches with friends.",
+    category: "Sports",
+    color: "from-red-500/20 to-orange-500/20",
   },
   {
     title: "Spiral Racing Slides",
     image: "/image/birthday/photo-moments.jpg",
-    description:
-      "Race down multi-lane spiral slides for endless giggles.",
+    description: "Race down multi-lane spiral slides for endless giggles.",
+    category: "Adventure",
+    color: "from-green-500/20 to-emerald-500/20",
   },
   {
     title: "Giant Ball Pool",
     image: "/image/birthday/personalized-themes.jpg",
-    description:
-      "Dive into an ocean of colorful play balls.",
+    description: "Dive into an ocean of colorful play balls.",
+    category: "Kids Zone",
+    color: "from-indigo-500/20 to-purple-500/20",
   },
 ];
 
-export default function HomeActivitiesMasonry() {
-  const [grabbing, setGrabbing] = useState(false);
-  const [instructions, setInstructions] = useState(false);
+export default function PremiumGallery() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [dragStartX, setDragStartX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const imageTimelineRef = useRef<HTMLDivElement>(null);
-  const backgroundImageTimelineRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  /**
-   * Desktop mouse-drag state only.
-   */
-  const stateRef = useRef({
-    grabbing: false,
-    position: {
-      x: 0,
-      left: 0,
-    },
-  });
+  const rotateY = useMotionValue(0);
+  const rotateX = useMotionValue(0);
+  const springConfig = { damping: 25, stiffness: 200 };
+  const rotateYSpring = useSpring(rotateY, springConfig);
+  const rotateXSpring = useSpring(rotateX, springConfig);
 
-  /**
-   * Scroll sync engine
-   */
-  const rafId = useRef<number | null>(null);
-  const pendingLeft = useRef<number | null>(null);
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
 
-  /**
-   * Synchronize the visual layers.
-   *
-   * IMPORTANT:
-   * We intentionally DO NOT write back to timelineRef.scrollLeft.
-   *
-   * On mobile the browser controls the native horizontal scroll.
-   * Writing back to the same element while the finger is moving
-   * can cause the scrolling gesture to feel stuck/jittery.
-   */
-  const syncTimelines = (left: number) => {
-    if (imageTimelineRef.current) {
-      imageTimelineRef.current.scrollLeft = left * 5;
-    }
+    const rect = containerRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
-    if (backgroundImageTimelineRef.current) {
-      backgroundImageTimelineRef.current.scrollLeft = left * 7;
-    }
-  };
+    const rotateYValue = ((e.clientX - centerX) / (rect.width / 2)) * 15;
+    const rotateXValue = ((e.clientY - centerY) / (rect.height / 2)) * -15;
 
-  const scheduleSync = (left: number) => {
-    pendingLeft.current = left;
+    rotateY.set(rotateYValue);
+    rotateX.set(rotateXValue);
+  }, [rotateY, rotateX]);
 
-    if (rafId.current === null) {
-      rafId.current = requestAnimationFrame(() => {
-        if (pendingLeft.current !== null) {
-          syncTimelines(pendingLeft.current);
-        }
+  const handleMouseLeave = useCallback(() => {
+    rotateY.set(0);
+    rotateX.set(0);
+  }, [rotateY, rotateX]);
 
-        rafId.current = null;
-      });
-    }
-  };
-
-  /**
-   * Cleanup RAF
-   */
-  useEffect(() => {
-    return () => {
-      if (rafId.current !== null) {
-        cancelAnimationFrame(rafId.current);
-      }
-    };
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % ACTIVITIES.length);
+    setIsZoomed(false);
   }, []);
 
-  /**
-   * Load instructions
-   */
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const item = localStorage.getItem("instructions");
-
-      if (item === null) {
-        setInstructions(true);
-      }
-    }
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + ACTIVITIES.length) % ACTIVITIES.length);
+    setIsZoomed(false);
   }, []);
 
-  /**
-   * -----------------------------
-   * DESKTOP MOUSE DRAG
-   * -----------------------------
-   */
+  const handleDragStart = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    setIsDragging(true);
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    setDragStartX(clientX);
+    setIsAutoPlaying(false);
+  }, []);
 
-  const handleOnStart = (clientX: number) => {
-    if (!timelineRef.current) return;
+  const handleDragEnd = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    setIsDragging(false);
+    const clientX = 'changedTouches' in e ? e.changedTouches[0].clientX : e.clientX;
+    const deltaX = clientX - dragStartX;
 
-    stateRef.current.grabbing = true;
-
-    stateRef.current.position = {
-      x: clientX,
-      left: timelineRef.current.scrollLeft,
-    };
-
-    setGrabbing(true);
-  };
-
-  const handleOnMouseDown = (e: React.MouseEvent) => {
-    /**
-     * Only desktop mouse interaction.
-     */
-    e.preventDefault();
-
-    handleOnStart(e.clientX);
-  };
-
-  const handleOnMove = (clientX: number) => {
-    const state = stateRef.current;
-
-    if (!state.grabbing || !timelineRef.current) return;
-
-    const deltaX = state.position.x - clientX;
-
-    const left = Math.max(
-      0,
-      state.position.left + deltaX
-    );
-
-    timelineRef.current.scrollLeft = left;
-    scheduleSync(left);
-  };
-
-  const handleOnMouseMove = (e: React.MouseEvent) => {
-    handleOnMove(e.clientX);
-  };
-
-  const handleOnMouseUp = () => {
-    if (!stateRef.current.grabbing) return;
-
-    stateRef.current.grabbing = false;
-
-    setGrabbing(false);
-    setInstructions(false);
-
-    if (typeof window !== "undefined") {
-      localStorage.setItem("instructions", "false");
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
     }
-  };
+  }, [dragStartX, handleNext, handlePrev]);
 
-  /**
-   * -----------------------------
-   * NATIVE SCROLL
-   * -----------------------------
-   *
-   * Handles:
-   * - Mobile finger swipe
-   * - Mobile momentum scrolling
-   * - Trackpad scrolling
-   * - Mouse wheel
-   */
-  const handleOnScroll = () => {
-    if (!timelineRef.current) return;
-
-    scheduleSync(timelineRef.current.scrollLeft);
-  };
-
-  /**
-   * Global mouse listeners.
-   *
-   * These are intentionally ONLY for desktop.
-   */
   useEffect(() => {
-    const handleGlobalMouseMove = (e: MouseEvent) => {
-      handleOnMove(e.clientX);
-    };
-
-    const handleGlobalMouseUp = () => {
-      handleOnMouseUp();
-    };
-
-    if (grabbing) {
-      window.addEventListener(
-        "mousemove",
-        handleGlobalMouseMove
-      );
-
-      window.addEventListener(
-        "mouseup",
-        handleGlobalMouseUp
-      );
+    if (isAutoPlaying && !isLightboxOpen) {
+      autoPlayRef.current = setInterval(() => {
+        setActiveIndex((prev) => (prev + 1) % ACTIVITIES.length);
+      }, 5000);
     }
 
     return () => {
-      window.removeEventListener(
-        "mousemove",
-        handleGlobalMouseMove
-      );
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [isAutoPlaying, isLightboxOpen]);
 
-      window.removeEventListener(
-        "mouseup",
-        handleGlobalMouseUp
-      );
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isLightboxOpen) return;
+
+      switch (e.key) {
+        case 'Escape':
+          setIsLightboxOpen(false);
+          setIsZoomed(false);
+          break;
+        case 'ArrowLeft':
+          handlePrev();
+          break;
+        case 'ArrowRight':
+          handleNext();
+          break;
+        case 'z':
+        case 'Z':
+          setIsZoomed(prev => !prev);
+          break;
+      }
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [grabbing]);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, handleNext, handlePrev]);
 
-  /**
-   * Generates timeline ticks.
-   */
-  const getTicks = (
-    quantity: number,
-    showNumbers = false
-  ): React.ReactNode[] => {
-    const ticks: React.ReactNode[] = [];
-
-    const getClass = (index: number): string => {
-      if (index % 15 === 0) return "fizz-buzz";
-      if (index % 5 === 0) return "buzz";
-      if (index % 3 === 0) return "fizz";
-
-      return "";
-    };
-
-    for (let i = 1; i <= quantity; i++) {
-      const cls = getClass(i);
-
-      ticks.push(
-        <div
-          key={i}
-          className="timeline-tick-wrapper flex flex-col items-center justify-end relative flex-shrink-0"
-        >
-          {showNumbers && (
-            <span className="absolute -top-10 text-[11px] font-black text-[#6dc065] tracking-widest select-none bg-slate-950/80 px-2 py-0.5 rounded border border-white/10 shadow-md">
-              ZONE {i.toString().padStart(2, "0")}
-            </span>
-          )}
-
-          <div className={`timeline-tick ${cls}`} />
-        </div>
-      );
-    }
-
-    return ticks;
-  };
+  const currentActivity = ACTIVITIES[activeIndex];
 
   return (
-    <>
-      <section
-        id="activities"
-        className="relative w-full bg-[#1e1e1e] overflow-hidden text-white border-t border-white/10"
-      >
+    <section className="relative min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+
+      {/* Glow effects */}
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
+        animate={{
+          background: [
+            'radial-gradient(circle, rgba(56,189,248,0.3), transparent 70%)',
+            'radial-gradient(circle, rgba(168,85,247,0.3), transparent 70%)',
+            'radial-gradient(circle, rgba(34,197,94,0.3), transparent 70%)',
+            'radial-gradient(circle, rgba(56,189,248,0.3), transparent 70%)',
+          ],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-2xl flex flex-col items-center text-center pointer-events-none">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-[10px] font-black text-[#6dc065] uppercase tracking-widest mb-3 backdrop-blur-md shadow-lg">
-            ⚡ Explore Our Action-Packed Zones
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-sm font-semibold text-slate-300">Premium Experience Gallery</span>
           </div>
 
-          <h2 className="text-xl sm:text-4xl font-black text-white tracking-tight leading-tight uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
-            Discover the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6dc065] to-[#b2d235]">
-              Ultimate Play Zones
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight">
+            Explore Our{" "}
+            <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+              Wonderland
             </span>
-          </h2>
+          </h1>
 
-          <p className="text-slate-300 text-[10px] sm:text-sm font-semibold mt-1.5 drop-shadow-md">
-            Drag or swipe horizontally to navigate across our high-energy
-            rides & arenas!
+          <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto">
+            Immerse yourself in a world of adventure, excitement, and unforgettable memories
           </p>
-        </div>
+        </motion.div>
 
-        <div id="app-timeline-container">
-          {/* Arrow */}
-          <div id="timeline-arrow-wrapper">
-            <svg
-              id="timeline-arrow"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+        {/* Main Gallery */}
+        <div className="relative">
+          {/* Navigation buttons */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+          </button>
+
+          <button
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+          </button>
+
+          {/* Main display */}
+          <div
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            onMouseDown={handleDragStart}
+            onMouseUp={handleDragEnd}
+            onTouchStart={handleDragStart}
+            onTouchEnd={handleDragEnd}
+            className={cn(
+              "relative cursor-grab active:cursor-grabbing select-none",
+              isDragging && "cursor-grabbing"
+            )}
+          >
+            <motion.div
+              style={{ rotateX: rotateXSpring, rotateY: rotateYSpring }}
+              className="relative perspective-1000"
             >
-              <polyline points="7 13 12 18 17 13" />
-              <polyline points="7 6 12 11 17 6" />
-            </svg>
-
-            <span id="timeline-arrow-guide" />
-          </div>
-
-          {/* Main Scroll Controller */}
-          <div
-            ref={timelineRef}
-            onScroll={handleOnScroll}
-            onMouseDown={handleOnMouseDown}
-            onMouseMove={handleOnMouseMove}
-            onMouseUp={handleOnMouseUp}
-            onMouseLeave={handleOnMouseUp}
-            id="timeline-wrapper"
-            className={grabbing ? "grabbing" : ""}
-          >
-            <div id="timeline">
-              <div className="extra-timeline-ticks">
-                {getTicks(2)}
-              </div>
-
-              <div id="timeline-ticks">
-                {getTicks(ACTIVITIES.length, true)}
-              </div>
-
-              <div className="extra-timeline-ticks">
-                {getTicks(2)}
-              </div>
-            </div>
-          </div>
-
-          {/* Foreground Cards */}
-          <div
-            id="image-timeline-wrapper"
-            ref={imageTimelineRef}
-          >
-            <div id="image-timeline">
-              <div id="image-timeline-items">
-                {ACTIVITIES.map((act, index) => (
-                  <div
-                    key={index}
-                    className="timeline-item"
-                  >
-                    <h1 className="timeline-item-label select-none">
-                      Zone {index + 1}: {act.title}
-                    </h1>
-
-                    <div className="timeline-item-image-wrapper">
-                      <div className="timeline-item-image">
-                        <Image
-                          src={act.image}
-                          alt={act.title}
-                          fill
-                          className="object-cover rounded-[60px] hover:scale-105 transition-transform duration-700 ease-out"
-                          sizes="(max-width: 768px) 90vw, 1400px"
-                          priority={index === 0}
-                        />
-
-                        <div className="timeline-item-image-filter" />
-
-                        <div className="absolute bottom-12 left-12 right-12 z-25 flex flex-col items-start pointer-events-none select-none">
-                          <span className="px-3.5 py-1.5 rounded-full bg-[#6dc065] text-slate-950 text-xs font-black uppercase tracking-wider mb-2.5 shadow-md">
-                            Zone {index + 1}
-                          </span>
-
-                          <p className="text-slate-200 text-sm sm:text-base font-semibold max-w-lg drop-shadow-md">
-                            {act.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Background Parallax */}
-          <div
-            id="background-image-timeline-wrapper"
-            ref={backgroundImageTimelineRef}
-          >
-            <div id="background-image-timeline">
-              <div id="background-image-timeline-items">
-                {ACTIVITIES.map((act, index) => (
-                  <div
-                    key={index}
-                    className="timeline-item-background-image"
-                    style={{
-                      backgroundImage: `url(${act.image})`,
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Instructions */}
-          {instructions && (
-            <div id="instructions">
-              <h1>Pan from right to left</h1>
-
-              <div id="instructions-action">
-                <svg
-                  className="instructions-arrow"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  style={{
-                    width: "24px",
-                    height: "24px",
-                    position: "absolute",
-                    top: "13px",
-                  }}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 0.9, rotateX: 10 }}
+                  animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, rotateX: -10 }}
+                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                  className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/10] rounded-3xl overflow-hidden group cursor-pointer"
+                  onClick={() => setIsLightboxOpen(true)}
                 >
-                  <line
-                    x1="19"
-                    y1="12"
-                    x2="5"
-                    y2="12"
+                  {/* Image */}
+                  <Image
+                    src={currentActivity.image}
+                    alt={currentActivity.title}
+                    fill
+                    className={cn(
+                      "object-cover transition-transform duration-700 ease-out",
+                      isZoomed ? "scale-150" : "scale-100 group-hover:scale-110"
+                    )}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1400px"
+                    priority
                   />
 
-                  <polyline points="12 19 5 12 12 5" />
-                </svg>
-              </div>
-            </div>
-          )}
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  {/* Content overlay */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                    className="absolute bottom-8 left-8 right-8"
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/30 to-teal-500/30 backdrop-blur-md border border-white/20 text-sm font-bold text-white">
+                        {currentActivity.category}
+                      </span>
+                      <span className="text-sm font-semibold text-white/80">
+                        {String(activeIndex + 1).padStart(2, '0')} / {String(ACTIVITIES.length).padStart(2, '0')}
+                      </span>
+                    </div>
+
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-3">
+                      {currentActivity.title}
+                    </h2>
+
+                    <p className="text-base sm:text-lg text-slate-300 max-w-2xl">
+                      {currentActivity.description}
+                    </p>
+                  </motion.div>
+
+                  {/* Actions */}
+                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsLightboxOpen(true);
+                      }}
+                      className="p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                      aria-label="Open lightbox"
+                    >
+                      <Maximize2 className="w-5 h-5 text-white" />
+                    </button>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+          </div>
+
+          {/* Thumbnail strip */}
+          <div className="mt-8 grid grid-cols-5 sm:grid-cols-9 gap-3">
+            {ACTIVITIES.map((activity, index) => (
+              <motion.button
+                key={index}
+                onClick={() => {
+                  setActiveIndex(index);
+                  setIsZoomed(false);
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={cn(
+                  "relative aspect-square rounded-xl overflow-hidden transition-all duration-300",
+                  index === activeIndex
+                    ? "ring-2 ring-emerald-400 shadow-lg shadow-emerald-500/30"
+                    : "opacity-50 hover:opacity-75"
+                )}
+              >
+                <Image
+                  src={activity.image}
+                  alt={activity.title}
+                  fill
+                  className="object-cover"
+                  sizes="100px"
+                />
+                {index === activeIndex && (
+                  <div className="absolute inset-0 bg-emerald-500/20" />
+                )}
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Controls */}
+          <div className="mt-8 flex justify-center gap-4">
+            <button
+              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+              className="px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors text-sm font-semibold text-white"
+            >
+              {isAutoPlaying ? 'Pause Auto Play' : 'Start Auto Play'}
+            </button>
+          </div>
         </div>
+      </div>
 
-        <style jsx>{`
-          #app-timeline-container {
-            background-color: rgb(30, 30, 30);
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-            user-select: none;
-            width: 100%;
-          }
+      {/* Lightbox */}
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center"
+            onClick={() => {
+              setIsLightboxOpen(false);
+              setIsZoomed(false);
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full h-full max-w-7xl max-h-[90vh] p-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative w-full h-full">
+                <Image
+                  src={currentActivity.image}
+                  alt={currentActivity.title}
+                  fill
+                  className={cn(
+                    "object-contain transition-transform duration-500",
+                    isZoomed ? "scale-150" : "scale-100"
+                  )}
+                  sizes="100vw"
+                  quality={100}
+                />
 
-          #timeline-arrow-wrapper {
-            align-items: center;
-            bottom: 220px;
-            display: flex;
-            justify-content: center;
-            pointer-events: none;
-            position: absolute;
-            width: 100%;
-            z-index: 4;
-          }
+                {/* Lightbox controls */}
+                <div className="absolute top-4 right-4 flex gap-2">
+                  <button
+                    onClick={() => setIsZoomed(!isZoomed)}
+                    className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                    aria-label="Toggle zoom"
+                  >
+                    {isZoomed ? (
+                      <ZoomOut className="w-6 h-6 text-white" />
+                    ) : (
+                      <ZoomIn className="w-6 h-6 text-white" />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsLightboxOpen(false);
+                      setIsZoomed(false);
+                    }}
+                    className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                    aria-label="Close lightbox"
+                  >
+                    <X className="w-6 h-6 text-white" />
+                  </button>
+                </div>
 
-          #timeline-arrow {
-            color: white;
-            height: 40px;
-            width: 40px;
-            filter: drop-shadow(
-              0 0 6px rgba(255, 255, 255, 0.4)
-            );
-          }
+                {/* Lightbox navigation */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrev();
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                  aria-label="Previous"
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </button>
 
-          #timeline-arrow-guide {
-            background-color: rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-            bottom: -26px;
-            height: 152px;
-            left: 50%;
-            position: absolute;
-            transform: translate(-50%, 100%);
-            width: 4px;
-          }
-
-          /*
-           * MAIN MOBILE SCROLLER
-           *
-           * Native horizontal touch scrolling is enabled.
-           */
-          #timeline-wrapper {
-            bottom: 0;
-            cursor: grab;
-            display: flex;
-            height: calc(100% - 40px);
-            left: 0;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding-bottom: 40px;
-            position: absolute;
-
-            /*
-             * IMPORTANT:
-             * Allow native horizontal touch scrolling.
-             */
-            touch-action: pan-x;
-            -webkit-overflow-scrolling: touch;
-
-            width: 100%;
-            z-index: 3;
-            scrollbar-width: none;
-          }
-
-          #timeline-wrapper.grabbing {
-            cursor: grabbing;
-          }
-
-          #timeline-wrapper::-webkit-scrollbar {
-            height: 0;
-            display: none;
-          }
-
-          #timeline {
-            display: inline-flex;
-            gap: calc(20vw - 4px);
-            padding: 0 calc(10vw - 2px);
-          }
-
-          .extra-timeline-ticks,
-          #timeline-ticks {
-            align-items: end;
-            display: inline-flex;
-            gap: calc(20vw - 4px);
-          }
-
-          .extra-timeline-ticks .timeline-tick {
-            border-radius: 2px;
-            flex-shrink: 0;
-            width: 4px;
-            background-color: rgba(255, 255, 255, 0.25);
-            height: 10px;
-          }
-
-          #timeline-ticks .timeline-tick {
-            border-radius: 2px;
-            flex-shrink: 0;
-            width: 4px;
-            background-color: white;
-            height: 20px;
-          }
-
-          #timeline-ticks .timeline-tick.fizz {
-            height: 40px;
-          }
-
-          #timeline-ticks .timeline-tick.buzz {
-            height: 80px;
-          }
-
-          #timeline-ticks .timeline-tick.fizz-buzz {
-            height: 160px;
-          }
-
-          .timeline-tick-wrapper {
-            width: 4px;
-            height: 160px;
-          }
-
-          /*
-           * Other visual timelines.
-           *
-           * They are not the touch controller.
-           */
-          #image-timeline-wrapper,
-          #background-image-timeline-wrapper {
-            display: flex;
-            height: 100%;
-            left: 0;
-            overflow: hidden;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            scrollbar-width: none;
-            pointer-events: none;
-          }
-
-          #image-timeline-wrapper::-webkit-scrollbar,
-          #background-image-timeline-wrapper::-webkit-scrollbar {
-            display: none;
-          }
-
-          #image-timeline-wrapper {
-            z-index: 2;
-          }
-
-          #image-timeline {
-            display: inline-flex;
-          }
-
-          #image-timeline-items {
-            display: inline-flex;
-          }
-
-          .timeline-item {
-            align-items: end;
-            display: flex;
-            height: 100vh;
-            justify-content: center;
-            position: relative;
-            width: 100vw;
-            flex-shrink: 0;
-          }
-
-          .timeline-item-label {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            border-radius: 9999px;
-            box-shadow:
-              inset 0 1px 0 rgba(255, 255, 255, 0.2),
-              0 15px 40px rgba(0, 0, 0, 0.5);
-            color: #ffffff;
-            font-size: 1.75rem;
-            font-weight: 900;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            padding: 12px 32px;
-            margin-bottom: 900px;
-            position: relative;
-            text-align: center;
-            z-index: 4;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-          }
-
-          .timeline-item-image-wrapper {
-            align-items: end;
-            display: flex;
-            height: 100%;
-            justify-content: center;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            z-index: 1;
-          }
-
-          .timeline-item-image {
-            border-radius: 60px;
-            box-shadow:
-              rgba(0, 0, 0, 0.12) 0 0 30px,
-              rgba(0, 0, 0, 0.16) 0 0 10px;
-            height: 865px;
-            margin-bottom: 20px;
-            min-height: 500px;
-            position: relative;
-            width: 1400px;
-            overflow: hidden;
-          }
-
-          .timeline-item-image-filter {
-            background: linear-gradient(
-              to top,
-              rgba(0, 0, 0, 0.8),
-              transparent
-            );
-            border-radius: 60px;
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            z-index: 2;
-          }
-
-          #background-image-timeline-wrapper {
-            z-index: 1;
-          }
-
-          #background-image-timeline {
-            display: inline-flex;
-            margin-left: -20vw;
-          }
-
-          #background-image-timeline-items {
-            display: inline-flex;
-            position: relative;
-            z-index: 1;
-          }
-
-          .timeline-item-background-image {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-            opacity: 0.15;
-            width: 140vw;
-            flex-shrink: 0;
-          }
-
-          #instructions {
-            border-radius: 6px;
-            left: 50%;
-            padding: 15px;
-            pointer-events: none;
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 100;
-          }
-
-          #instructions h1 {
-            color: white;
-            font-size: 1.25em;
-            text-align: center;
-          }
-
-          #instructions-action {
-            backdrop-filter: blur(5px);
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            height: 30px;
-            margin-top: 10px;
-            overflow: hidden;
-            padding: 10px;
-            position: relative;
-            width: 300px;
-          }
-
-          @keyframes panRightToLeft {
-            from {
-              opacity: 0;
-              right: -20%;
-            }
-
-            20% {
-              opacity: 1;
-            }
-
-            80% {
-              opacity: 1;
-            }
-
-            to {
-              opacity: 0;
-              right: calc(100% - 20px);
-            }
-          }
-
-          .instructions-arrow {
-            animation: panRightToLeft 2s ease-in-out infinite;
-          }
-
-          /* ----------------------------- */
-          /* Responsive                     */
-          /* ----------------------------- */
-
-          @media (max-width: 2000px) {
-            .timeline-item-image {
-              height: 679px !important;
-              width: 1100px !important;
-            }
-
-            .timeline-item-label {
-              font-size: 1.5rem !important;
-              margin-bottom: 710px !important;
-              padding: 10px 28px !important;
-            }
-          }
-
-          @media (max-width: 1400px) {
-            .timeline-item-image {
-              height: 600px !important;
-              width: 800px !important;
-            }
-
-            .timeline-item-label {
-              font-size: 1.35rem !important;
-              margin-bottom: 630px !important;
-              padding: 8px 24px !important;
-            }
-          }
-
-          @media (max-width: 1000px) {
-            .timeline-item-image {
-              border-radius: 40px !important;
-              height: 60% !important;
-              min-height: 400px !important;
-              width: calc(100% - 60px) !important;
-            }
-
-            .timeline-item-image-filter {
-              border-radius: 40px !important;
-            }
-
-            .timeline-item-label {
-              font-size: 1.2rem !important;
-              margin-bottom: 64% !important;
-              padding: 8px 20px !important;
-            }
-          }
-
-          @media (max-width: 500px) {
-            /*
-             * Make mobile scrolling completely native.
-             */
-            #timeline-wrapper {
-              touch-action: pan-x;
-              overscroll-behavior-x: contain;
-              -webkit-overflow-scrolling: touch;
-            }
-
-            .timeline-item-image {
-              width: calc(100% - 40px) !important;
-            }
-
-            .timeline-item-label {
-              font-size: 0.95rem !important;
-              margin-bottom: 64% !important;
-              padding: 6px 16px !important;
-            }
-          }
-        `}</style>
-      </section>
-    </>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                  aria-label="Next"
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }

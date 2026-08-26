@@ -1,0 +1,1000 @@
+{
+  "locations": [
+    {
+      "id": "kolkata-abc-square",
+      "name": "Jus Jumpin - ABC Square Building",
+      "city": "Kolkata",
+      "mall": "ABC Square Building",
+      "type": "adults",
+      "slug": "kolkata-abc-square-building-best-adult-trampoline-park",
+      "address": "10th Floor, ABC Square, near Decathlon, Action Area II, Action Area IID, Newtown, Kolkata, New Town, West Bengal 700161",
+      "phone": "(+91)98362 29922",
+      "landmarks": "Near Decathlon, NKDA Stadium, and ABC Square Building",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/XEDcGyXtUQUFnQ3s7",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/XEDcGyXtUQUFnQ3s7",
+      "reviewUrl": "https://reviewthis.biz/Jus-jumpin",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#ff661a",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, kitty parties, group events, bulk bookings, corporate packages, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "90 Minutes",
+          "weekday": "₹650",
+          "weekend": "₹750"
+        },
+        {
+          "label": "120 Minutes",
+          "weekday": "₹850",
+          "weekend": "₹950"
+        }
+      ],
+      "activities": [
+        "Infinity Trampoline - Adults",
+        "Donut Slide - Adults",
+        "Foam Pit - Adults",
+        "Hanging Bridge - Adults",
+        "Zorb Ball - Adults",
+        "Bar Dodger - Adults",
+        "Sky Steeper - Adults",
+        "Wall Climbing - Adults",
+        "Magnetic Wall - Adults",
+        "Bridge War - Adults",
+        "Ninja Activities - Adults",
+        "Pin Wall - Adults",
+        "Basketball Area"
+      ]
+    },
+    {
+      "id": "kolkata-avani-mall",
+      "name": "Jus Jumpin - Avani Riverside Mall",
+      "city": "Kolkata",
+      "mall": "Avani Riverside Mall",
+      "type": "kids",
+      "slug": "kolkata-avani-mall",
+      "address": "2nd Floor, Avani Riverside Mall, Choura Bustee, Shibpur, Howrah, Kolkata, West Bengal 711102",
+      "phone": "(+91)85829 09809",
+      "landmarks": "Located in Avani Riverside Mall",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/pLu4GEjspxGdiC1i6",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/pLu4GEjspxGdiC1i6",
+      "reviewUrl": "https://reviewthis.biz/JUS-JUMPIN-AVANI-MALL",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹350",
+          "weekend": "₹350"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹450",
+          "weekend": "₹450"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft play area",
+        "Pathways Area",
+        "Doll House Area",
+        "Tunnel Slide Area",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit Area",
+        "Wall Climbing",
+        "Obstacle Zone",
+        "Ball Pool Area"
+      ]
+    },
+    {
+      "id": "kolkata-axis-mall",
+      "name": "Jus Jumpin - Axis Mall",
+      "city": "Kolkata",
+      "mall": "Axis Mall",
+      "type": "kids",
+      "slug": "kolkata-axis-mall",
+      "address": "4th Floor, Food Court, Axis Mall, Major Arterial Road(South-East), CF Block(Newtown), Action Area 1C, Newtown, Kolkata, West Bengal 700107",
+      "phone": "(+91)98742 06206",
+      "landmarks": "Located in Axis Mall, New Town, Kolkata",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/qu3rLprRK22aeqAX6",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/qu3rLprRK22aeqAX6",
+      "reviewUrl": "https://reviewthis.biz/JUS-JUMPIN-AXIS",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹350",
+          "weekend": "₹350"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹450",
+          "weekend": "₹450"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Wall Climbing",
+        "Obstacle Zone",
+        "Ball Pool",
+        "Tunnel"
+      ]
+    },
+    {
+      "id": "kolkata-city-centre-2",
+      "name": "Jus Jumpin - City Centre 2",
+      "city": "Kolkata",
+      "mall": "City Centre 2",
+      "type": "kids",
+      "slug": "kolkata-city-centre-2",
+      "address": "SHOP NO M-2ND FLOOR, City Centre Mall, 202, Rajarhat Main Rd, Action Area II, Action Area IID, Newtown, New Town, West Bengal 700161",
+      "phone": "(+91)90070 86212",
+      "landmarks": "Located in City Centre 2, Rajarhat",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/hHP7NBzbtQzpudmXA",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/hHP7NBzbtQzpudmXA",
+      "reviewUrl": "https://reviewthis.biz/citycentre2",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹350",
+          "weekend": "₹350"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹450",
+          "weekend": "₹450"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Wall Climbing",
+        "Ball Pit",
+        "Tunnel",
+        "Military Training Pathway"
+      ]
+    },
+    {
+      "id": "siliguri-city-centre",
+      "name": "Jus Jumpin - City Centre Siliguri",
+      "city": "Siliguri",
+      "mall": "City Centre",
+      "type": "kids",
+      "slug": "siliguri-city-centre",
+      "address": "2nd Floor, City Centre Mall, Unit No. CCSG-207, S.P. Mukherjee Road, near Gandhi Maidan, Khalpara, Siliguri, West Bengal 734010",
+      "phone": "(+91)98303 59999",
+      "landmarks": "Located in City Centre, Siliguri",
+      "mapsEmbedUrl": "https://share.google/gqhYvnIfOL3z5Y2Qj",
+      "mapsDirectionsUrl": "https://share.google/gqhYvnIfOL3z5Y2Qj",
+      "reviewUrl": "https://reviewthis.biz/citycentresiliguri",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹350",
+          "weekend": "₹350"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹450",
+          "weekend": "₹450"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Wall Climbing",
+        "Ball Pit",
+        "Web Frame Tunnel",
+        "Obstacle Zone",
+        "Donut Slide"
+      ]
+    },
+    {
+      "id": "durgapur-junction-mall",
+      "name": "Jus Jumpin - Junction Mall",
+      "city": "Durgapur",
+      "mall": "Junction Mall",
+      "type": "kids",
+      "slug": "durgapur-junction-mall",
+      "address": "3rd floor, Junction Mall, Unit no - 311A, opposite foods court, Recol Park, Durgapur, West Bengal 713216",
+      "phone": "(+91)9874206206",
+      "landmarks": "Near Recol Park, Junction Mall",
+      "mapsEmbedUrl": "https://share.google/KHD2TTeNSgmq7yEYg",
+      "mapsDirectionsUrl": "https://share.google/KHD2TTeNSgmq7yEYg",
+      "reviewUrl": "https://reviewthis.biz/junctionmall",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹350",
+          "weekend": "₹350"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹400",
+          "weekend": "₹400"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Ball Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Obstacle Zone",
+        "Sand Pit"
+      ]
+    },
+    {
+      "id": "bengaluru-m5-ecity-mall",
+      "name": "Jus Jumpin - M5 Ecity Mall",
+      "city": "Bengaluru",
+      "mall": "M5 Ecity Mall",
+      "type": "kids",
+      "slug": "bengaluru-m5-ecity-mall",
+      "address": "Shop No. SF-02A, M5 Ecity Mall, Jus Jumpin, 2nd Floor, Hosur Rd, opposite to Veerasandra Industrial Area, Phase II, Electronic City, Bengaluru, Karnataka 560100",
+      "phone": "(+91)98368 88333",
+      "landmarks": "Located in M5 Ecity Mall",
+      "mapsEmbedUrl": "https://share.google/O6F6QEWqrpFIz7KkR",
+      "mapsDirectionsUrl": "https://share.google/O6F6QEWqrpFIz7KkR",
+      "reviewUrl": "https://reviewthis.biz/m5ecity",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹500",
+          "weekend": "₹500"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹600",
+          "weekend": "₹600"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Horn Slide",
+        "Ball Pool",
+        "Interactive Ball Pool",
+        "Obstacle Zone",
+        "Donut Slide"
+      ]
+    },
+    {
+      "id": "bengaluru-meenakshi-mall",
+      "name": "Jus Jumpin - Meenakshi Mall",
+      "city": "Bengaluru",
+      "mall": "Royal Meenakshi Mall",
+      "type": "kids",
+      "slug": "bengaluru-meenakshi-mall",
+      "address": "2nd Floor, Unit No. S013A, Royal Meenakshi Mall, JUS JUMPIN, Bannerghatta Rd, Hulimavu, Bengaluru, Karnataka 560076",
+      "phone": "(+91)98301 15533",
+      "landmarks": "Bannerghatta Road, Hulimavu",
+      "mapsEmbedUrl": "https://share.google/Vrs7PBdaEBhqV0O2b",
+      "mapsDirectionsUrl": "https://share.google/Vrs7PBdaEBhqV0O2b",
+      "reviewUrl": "https://reviewthis.biz/meenakshimall",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹400",
+          "weekend": "₹400"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹500",
+          "weekend": "₹500"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Horn Slide",
+        "Ball Pool",
+        "Interactive Ball Pool",
+        "Obstacle Zone",
+        "Donut Slide",
+        "Cow Game"
+      ]
+    },
+    {
+      "id": "dhanbad-prabhatam-mall",
+      "name": "Jus Jumpin - Prabhatam Mall",
+      "city": "Dhanbad",
+      "mall": "Prabhatam Grand Mall",
+      "type": "adults",
+      "slug": "dhanbad-prabhatam-mall",
+      "address": "Shop no. 252, 2nd floor, Prabhatam Grand Mall, Barwaada Rd, Dhaiya, Dhanbad, Jharkhand 826010",
+      "phone": "(+91)98301 15533",
+      "landmarks": "Near Barwaada Road, Dhaiya",
+      "mapsEmbedUrl": "https://share.google/RviLOBisQ3AJI1T9f",
+      "mapsDirectionsUrl": "https://share.google/RviLOBisQ3AJI1T9f",
+      "reviewUrl": "https://reviewthis.biz/prabhatam",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#ff661a",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, kitty parties, group events, bulk bookings, corporate packages, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹400",
+          "weekend": "₹400"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹500",
+          "weekend": "₹500"
+        }
+      ],
+      "activities": [
+        "Infinity Trampoline",
+        "Donut Slide",
+        "Foam Pit",
+        "Hanging Bridge",
+        "Zorb Ball",
+        "Bar Dodger",
+        "Sky Stepper",
+        "Wall Climbing",
+        "Magnetic Wall",
+        "Bridge War",
+        "Ninja Activities",
+        "Pin Wall"
+      ]
+    },
+    {
+      "id": "jamshedpur-pm-mall",
+      "name": "Jus Jumpin - P&M Mall",
+      "city": "Jamshedpur",
+      "mall": "P&M Mall",
+      "type": "kids",
+      "slug": "jamshedpur-pm-mall",
+      "address": "2nd Floor, P&M Mall, Bistupur Main Rd, South Park, Bistupur, Jamshedpur, Jharkhand 831001",
+      "phone": "(+91)98311 26633",
+      "landmarks": "Bistupur Main Road",
+      "mapsEmbedUrl": "https://share.google/ydcToJ0HyAI1CB8Tt",
+      "mapsDirectionsUrl": "https://share.google/ydcToJ0HyAI1CB8Tt",
+      "reviewUrl": "https://reviewthis.biz/pmj",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹350",
+          "weekend": "₹350"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹450",
+          "weekend": "₹450"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Ball Pool",
+        "Horn Slide",
+        "Interactive Ball Pool",
+        "Tunnel crossway"
+      ]
+    },
+    {
+      "id": "ranchi-nucleus-mall",
+      "name": "Jus Jumpin - Nucleus Mall",
+      "city": "Ranchi",
+      "mall": "Nucleus Mall",
+      "type": "kids",
+      "slug": "ranchi-nucleus-mall",
+      "address": "2nd Floor, Nucleus Mall, Jus Jumpin, S-018 & S-019, Circular Rd, Lalpur, Ranchi, Jharkhand 834001",
+      "phone": "(+91)98303 59999",
+      "landmarks": "Near Circular Rd, Lalpur",
+      "mapsEmbedUrl": "https://share.google/eP0djmzxX5p279LrA",
+      "mapsDirectionsUrl": "https://share.google/eP0djmzxX5p279LrA",
+      "reviewUrl": "https://reviewthis.biz/nucleusmall",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹350",
+          "weekend": "₹350"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹450",
+          "weekend": "₹450"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Ball Pool",
+        "Horn Slide",
+        "Interactive Ball Pool",
+        "Tunnel crossway",
+        "Donut Slide"
+      ]
+    },
+    {
+      "id": "noida-gip-mall",
+      "name": "Jus Jumpin - GIP Mall",
+      "city": "Noida",
+      "mall": "The Great India Place Mall",
+      "type": "adults",
+      "slug": "noida-gip-mall",
+      "address": "Shop No. 300B , 3rd Floor, The Great India Place Mall, Plot A1, opposite Food Court, Sector 38, Noida, Uttar Pradesh 201303",
+      "phone": "(+91)98301 15533",
+      "landmarks": "Sector 38, Noida",
+      "mapsEmbedUrl": "https://share.google/bRxsaDuyLI6E3zqLx",
+      "mapsDirectionsUrl": "https://share.google/bRxsaDuyLI6E3zqLx",
+      "reviewUrl": "https://reviewthis.biz/gipmall",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#ff661a",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, kitty parties, group events, bulk bookings, corporate packages, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹400",
+          "weekend": "₹400"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹500",
+          "weekend": "₹500"
+        }
+      ],
+      "activities": [
+        "Infinity Trampoline",
+        "Donut Slide",
+        "Foam Pit",
+        "Hanging Bridge",
+        "Zorb Ball",
+        "Bar Dodger",
+        "Wall Climbing",
+        "Magnetic Wall",
+        "Bridge War",
+        "Ninja Activities",
+        "Pin Wall"
+      ]
+    },
+    {
+      "id": "noida-spectrum-mall",
+      "name": "Jus Jumpin - Spectrum Mall",
+      "city": "Noida",
+      "mall": "Spectrum Mall",
+      "type": "kids",
+      "slug": "noida-spectrum-mall",
+      "address": "Phase-1, Spectrum Mall, Plot C & D, Metro Station Rd, opposite Sec- 50, Gardenia Gateway, Sector 75, Noida, Uttar Pradesh 201316",
+      "phone": "(+91)98000 05721",
+      "landmarks": "Near Gardenia Gateway, Sector 75",
+      "mapsEmbedUrl": "https://share.google/iUA6iXgyH0tErxMS7",
+      "mapsDirectionsUrl": "https://share.google/iUA6iXgyH0tErxMS7",
+      "reviewUrl": "https://reviewthis.biz/Jus-jumpin",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹400",
+          "weekend": "₹400"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹500",
+          "weekend": "₹500"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Wall Climbing",
+        "Obstacle Zone",
+        "Donut Slide",
+        "Ball Pit"
+      ]
+    },
+    {
+      "id": "nagpur-vr-mall",
+      "name": "Jus Jumpin - VR Mall",
+      "city": "Nagpur",
+      "mall": "VR Mall",
+      "type": "kids",
+      "slug": "nagpur-vr-mall",
+      "address": "Jus Jumpin, VR, Rambagh Layouts, Untkhana, Nagpur, Maharashtra 440003",
+      "phone": "(+91)98368 88333",
+      "landmarks": "2nd Floor, VR Mall, Near Rambagh Layouts, Untkhana, Nagpur",
+      "mapsEmbedUrl": "https://share.google/nx3aXcA0PMJPTuDWb",
+      "mapsDirectionsUrl": "https://share.google/nx3aXcA0PMJPTuDWb",
+      "reviewUrl": "https://reviewthis.biz/vrnagpur",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Vibrant party zone ideal to host amazing birthday parties your kids will love, with exclusive access to the play area and exciting party games.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹450",
+          "weekend": "₹450"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹550",
+          "weekend": "₹550"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Ball Pool",
+        "Interactive Ball Pool",
+        "Obstacle Zone",
+        "Pin Wall",
+        "Horn Slide"
+      ]
+    },
+    {
+      "id": "pune-seasons-mall",
+      "name": "Jus Jumpin - Seasons Mall",
+      "city": "Pune",
+      "mall": "Seasons Mall",
+      "type": "adults",
+      "slug": "pune-seasons-mall",
+      "address": "2nd Floor, Unit No S4, SEASONS MALL, Magarpatta, Hadapsar, Pune, Maharashtra 411013",
+      "phone": "(+91)98742 06206",
+      "landmarks": "Near Magarpatta, Hadapsar, Pune",
+      "mapsEmbedUrl": "https://share.google/AWDnBoBeJAY3dDsCf",
+      "mapsDirectionsUrl": "https://share.google/AWDnBoBeJAY3dDsCf",
+      "reviewUrl": "https://reviewthis.biz/seasonsmall",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#ff661a",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, kitty parties, group events, bulk bookings, corporate packages, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹550",
+          "weekend": "₹550"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹700",
+          "weekend": "₹700"
+        }
+      ],
+      "activities": [
+        "Infinity Trampoline",
+        "Donut Slide",
+        "Foam Pit",
+        "Hanging Bridge",
+        "Zorb Ball",
+        "Bar Dodger",
+        "Sky Stepper",
+        "Wall Climbing",
+        "Magnetic Wall",
+        "Bridge War",
+        "Ninja Activities",
+        "Pin Wall",
+        "Basketball Area",
+        "Net Climb"
+      ]
+    },
+    {
+      "id": "nashik-city-centre",
+      "name": "Jus Jumpin - City Centre Nashik",
+      "city": "Nashik",
+      "mall": "City Centre Mall",
+      "type": "kids",
+      "slug": "nashik-city-centre",
+      "address": "3rd Floor, Jus Jumpin, City Center Mall, Untwadi Rd, Lavate Nagar, Parijat Nagar, Nashik, Maharashtra 422002",
+      "phone": "(+91)98363 34433",
+      "landmarks": "Near Untwadi Rd, Lavate Nagar, Parijat Nagar, Nashik, Maharashtra 422002",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/3FkqnCRFB3gUJGoo9",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/3FkqnCRFB3gUJGoo9",
+      "reviewUrl": "https://reviewthis.biz/JUSJUMPIN-NASHIK",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹400",
+          "weekend": "₹400"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹500",
+          "weekend": "₹500"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Horn Slide",
+        "Ball Pool",
+        "Interactive Ball Pool",
+        "Obstacle Zone",
+        "Donut Slide"
+      ]
+    },
+    {
+      "id": "ghatkopar-rcity-mall",
+      "name": "Jus Jumpin - R City Mall Ghatkopar",
+      "city": "Mumbai",
+      "mall": "R City Mall",
+      "type": "kids",
+      "slug": "ghatkopar-rcity-mall",
+      "address": "2nd Floor, Jus Jumpin, R City Mall, Lal Bahadur Shastri Marg, Amrut Nagar, Ghatkopar West, Mumbai",
+      "phone": "+91 9836229922",
+      "landmarks": "R City Mall, Ghatkopar metro station",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/a36tno6isrgJz7Rw5",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/a36tno6isrgJz7Rw5",
+      "reviewUrl": "https://reviewthis.biz/jus-jumpin-ghatkopar",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, kitty parties, group events, bulk bookings, corporate packages, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "60 Minutes",
+          "weekday": "₹750",
+          "weekend": "₹750"
+        },
+        {
+          "label": "90 Minutes",
+          "weekday": "₹900",
+          "weekend": "₹900"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Horn Slide",
+        "Ball Pool",
+        "Interactive Ball Pool",
+        "Obstacle Zone",
+        "Donut Slide"
+      ]
+    },
+    {
+      "id": "thane-r-mall",
+      "name": "Jus Jumpin - R Mall Thane",
+      "city": "Mumbai",
+      "mall": "R Mall",
+      "type": "kids",
+      "slug": "thane-r-mall",
+      "address": "2nd Floor, Jus Jumpin, Unit no. SF, R MALL, 01-05, Ghodbunder Service Rd, opposite Lokim Company, Dokali Pada, Dhokali, Thane West, Maharashtra 400607",
+      "phone": "+91 9836229922",
+      "landmarks": "R Mall, Thane",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/eQLgYLpEnnJeihqu9",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/eQLgYLpEnnJeihqu9",
+      "reviewUrl": "http://search.google.com/local/writereview?placeid=ChIJ96tFYVq55zsR7y5oiaMN0JM",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, group events, bulk bookings, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "60 Minutes",
+          "weekday": "₹700",
+          "weekend": "₹700"
+        },
+        {
+          "label": "90 Minutes",
+          "weekday": "₹900",
+          "weekend": "₹900"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Horn Slide",
+        "Ball Pool",
+        "Interactive Ball Pool",
+        "Obstacle Zone",
+        "Donut Slide"
+      ]
+    },
+    {
+      "id": "raipur-zora-mall",
+      "name": "Jus Jumpin - Zora Mall",
+      "city": "Raipur",
+      "mall": "Zora The Mall",
+      "type": "adults",
+      "slug": "raipur-zora-mall",
+      "address": "2nd Floor, ZORA The Mall, NH-6, opposite Agriculture College, Serikhedi, Jora, Raipur, Chhattisgarh 492012",
+      "phone": "(+91)98363 34433",
+      "landmarks": "Opposite Agriculture College, Serikhedi",
+      "mapsEmbedUrl": "https://share.google/PrVSETt97Ax1ljVM1",
+      "mapsDirectionsUrl": "https://share.google/PrVSETt97Ax1ljVM1",
+      "reviewUrl": "https://reviewthis.biz/zoramall",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#ff661a",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, kitty parties, group events, bulk bookings, corporate packages, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "90 Minutes",
+          "weekday": "₹750",
+          "weekend": "₹800"
+        }
+      ],
+      "activities": [
+        "Arcade",
+        "VR Games",
+        "Bowling",
+        "Infinity Trampoline",
+        "Donut Slide",
+        "Foam Pit",
+        "Hanging Bridge",
+        "Sky Stepper",
+        "Pin Wall",
+        "Cubic climbing",
+        "Basket Ball",
+        "Tunnel Slide",
+        "Bumper Car",
+        "Wall Climbing"
+      ]
+    },
+    {
+      "id": "surat-vr-mall",
+      "name": "Jus Jumpin - VR Mall Surat",
+      "city": "Surat",
+      "mall": "VR Mall",
+      "type": "kids",
+      "slug": "surat-vr-mall",
+      "address": "3RD FLOOR, VR Mall, JUS JUMPIN, shop no. 303b and 304, Dumas Rd, Magdalla, Surat, Gujarat 395007",
+      "phone": "(+91)98000 05721",
+      "landmarks": "Near Dumas Rd, Magdalla (VR MALL)",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/XEDcGyXtUQUFnQ3s7",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/XEDcGyXtUQUFnQ3s7",
+      "reviewUrl": "https://reviewthis.biz/Jus-jumpin",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "30 Minutes",
+          "weekday": "₹450",
+          "weekend": "₹450"
+        },
+        {
+          "label": "60 Minutes",
+          "weekday": "₹550",
+          "weekend": "₹550"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Pathways",
+        "Doll House",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Ball Pool",
+        "Interactive Ball Pool",
+        "Obstacle Zone",
+        "Pin Wall",
+        "Horn Slide"
+      ]
+    },
+    {
+      "id": "hyderabad-sarath-city-capital-mall",
+      "name": "Jus Jumpin - Sarath City Capital Mall",
+      "city": "Hyderabad",
+      "mall": "Sarath City Capital Mall",
+      "type": "adults",
+      "slug": "hyderabad-sarath-city-capital-mall",
+      "address": "JUS JUMPIN, Unit No. SF - 26-30, 4th Floor, Sarath City Capital Mall, Gachibowli Rd, Kondapur, Whitefields, HITEC City, Hyderabad, Telangana 500084",
+      "phone": "+91 9836888333",
+      "landmarks": "Sarath City Capital Mall, Gachibowli Rd",
+      "mapsEmbedUrl": "https://maps.app.goo.gl/WFXLjjgzWDAPsJr67",
+      "mapsDirectionsUrl": "https://maps.app.goo.gl/WFXLjjgzWDAPsJr67",
+      "reviewUrl": "https://reviewthis.biz/jusjumpin-sarathcity",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#ff661a",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, kitty parties, group events, bulk bookings, corporate packages, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "90 Minutes",
+          "weekday": "₹1100",
+          "weekend": "₹1100"
+        },
+        {
+          "label": "Extensions",
+          "weekday": "₹250/₹450",
+          "weekend": "₹250/₹450"
+        }
+      ],
+      "activities": [
+        "Infinity Trampoline",
+        "Trampoline Dodgeball",
+        "Sky Stepper",
+        "Adventure Obstacle Course",
+        "Wall Climbing",
+        "Donut Slide",
+        "Tunnel Slide",
+        "Zorb Ball",
+        "Zip Line",
+        "Bar Dodger",
+        "360 Cycling",
+        "Battle Beam"
+      ]
+    },
+    {
+      "id": "hyderabad-dsl-virtue-mall",
+      "name": "Jus Jumpin - DSL Virtue Mall",
+      "city": "Hyderabad",
+      "mall": "DSL Virtue Mall",
+      "type": "kids",
+      "slug": "hyderabad-dsl-virtue-mall",
+      "address": "2nd Floor, DSL Virtue Mall, Unit No. SF 27, 28, 29, near Rajiv Gandhi International Cricket Stadium, Industrial Development Area, Uppal, Hyderabad, Telangana 500039",
+      "phone": "(+91)98303 59999",
+      "landmarks": "Near Rajiv Gandhi International Cricket Stadium, Uppal",
+      "mapsEmbedUrl": "https://www.google.com/maps/search/?api=1&query=DSL+Virtue+Mall+Uppal+Hyderabad",
+      "mapsDirectionsUrl": "https://www.google.com/maps/search/?api=1&query=DSL+Virtue+Mall+Uppal+Hyderabad",
+      "reviewUrl": "https://search.google.com/local/writereview?placeid=ChIJoxNB1NmZyzsRKHX7NOjdbtY",
+      "weekdayHours": "11:00 AM - 9:30 PM",
+      "weekendHours": "11:00 AM - 9:30 PM",
+      "accentColor": "#4facfe",
+      "ticketNote": "Planning something special? Get in touch for extended sessions, full-day access, birthday celebrations, and personalized gift vouchers.",
+      "pricing": [
+        {
+          "label": "60 Minutes",
+          "weekday": "₹550",
+          "weekend": "₹550"
+        },
+        {
+          "label": "90 Minutes",
+          "weekday": "₹650",
+          "weekend": "₹650"
+        },
+        {
+          "label": "Extensions",
+          "weekday": "₹200/₹400",
+          "weekend": "₹200/₹400"
+        }
+      ],
+      "activities": [
+        "Wave Slide",
+        "Sand Pit",
+        "Soft Play Area",
+        "Cow Game",
+        "Toshi Net",
+        "Tunnel Slide",
+        "Merry Go Round",
+        "Zebra Swing",
+        "Foam Pit",
+        "Horn Slide",
+        "Ball Pool",
+        "Interactive Ball Pool",
+        "Wall Climb",
+        "Donut Slide"
+      ]
+    }
+  ]
+}

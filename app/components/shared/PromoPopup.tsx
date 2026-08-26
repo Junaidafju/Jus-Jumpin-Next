@@ -7,7 +7,7 @@ import { X, Sparkles, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default function PromoPopup() {
-  const isEnabled = process.env.NEXT_PUBLIC_ENABLE_PROMO_POPUP === "true";
+  const isEnabled = process.env.NEXT_PUBLIC_ENABLE_PROMO_POPUP?.toLowerCase() === "true";
   const redirectUrl = process.env.NEXT_PUBLIC_PROMO_POPUP_URL || "/our-activities";
   const popupTitle = process.env.NEXT_PUBLIC_PROMO_POPUP_TITLE || "Celebrate Freedom & Play!";
   const popupDesc = process.env.NEXT_PUBLIC_PROMO_POPUP_DESC || "Join us for the ultimate high-energy trampoline experience and massive indoor slides during this Independence Day week!";

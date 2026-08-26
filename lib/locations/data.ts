@@ -226,46 +226,32 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹499",
-                "weekend": "₹599"
+                "label": "90 Minutes",
+                "weekday": "₹650",
+                "weekend": "₹750"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹799",
-                "weekend": "₹899"
-            },
-            {
-                "label": "Adult (1 hr)",
-                "weekday": "₹599",
-                "weekend": "₹699"
-            },
-            {
-                "label": "Adult (2 hr)",
-                "weekday": "₹899",
-                "weekend": "₹999"
-            },
-            {
-                "label": "Combo (Adult+Child)",
-                "weekday": "₹999",
-                "weekend": "₹1199"
+                "label": "120 Minutes",
+                "weekday": "₹850",
+                "weekend": "₹950"
             }
+
         ],
-        "ticketNote": "Grip socks included. Infants under 1 year enter free.",
-        "address": "ABC Square Building, 3rd Floor, 28 Camac Street, Kolkata, West Bengal 700016",
-        "phone": "+91 90000 00001",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.5!2d88.35!3d22.54!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDMyJzI0LjAiTiA4OMKwMjEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+ABC+Square+Kolkata",
+        "ticketNote": "Anti-Skid Grip Socks at ₹60 (One-time Purchase. Compulsory for your safety.)",
+        "address": "10th Floor, ABC Square, near Decathlon, Action Area II, Action Area IID, Newtown, Kolkata, New Town, West Bengal 700161",
+        "phone": "(+91)98362 29922",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4570.032287207283!2d88.4587662!3d22.620945699999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89f51faf2845b%3A0x31dab8f09497cf29!2sABC%20-%20SQUARE%20BUILDING!5e1!3m2!1sen!2sin!4v1787748949314!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/Z9e6RcCbYeKLBr7c6",
         "reviewUrl": "https://g.page/r/jusjumpin-kolkata-abc/review",
-        "lat": 22.54,
-        "lng": 88.35,
+        "lat": 22.6209457,
+        "lng": 88.4587662,
         "faqs": [
             {
                 "question": "Where exactly is Jus Jumpin in ABC Square?",
-                "answer": "We are located on the 3rd floor of ABC Square Building, 28 Camac Street, Kolkata. Take the elevator or escalator to the 3rd floor."
+                "answer": "We are located on the 10th Floor, ABC Square Building, near Decathlon, Action Area II, Kolkata. Take the elevator or escalator to the 10th floor."
             },
             {
                 "question": "Is there parking available?",
@@ -464,36 +450,31 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "label": "30 Minutes",
+                "weekday": "₹500",
+                "weekend": "₹500"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹600",
+                "weekend": "₹600"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "M5 Ecity Mall, 2nd Floor, Neeladri Road, Electronic City Phase 1, Bengaluru, Karnataka 560100",
-        "phone": "+91 90000 00002",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.2!2d77.66!3d12.84!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDUwJzI0LjAiTiA3N8KwMzknMzYuMCJF!5e0!3m2!1sen!2sin!4v1",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+M5+Ecity+Mall+Bengaluru",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "Shop No. SF-02A, M5 Ecity Mall, Jus Jumpin, 2nd Floor,Hosur Rd, opposite to Veerasandra Industrial Area, Phase II, Electronic City, Bengaluru, Karnataka 560100",
+        "phone": "(+91)98368 88333",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4827.079414453625!2d77.67663189999999!3d12.841439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6d01a5a22b95%3A0x60ce0f97b40602ef!2sJus%20Jumpin%20%7C%7C%20Kids%20Activity%2C%20Soft%20Play%20Zone%20%26%20Birthday%20Party%20Zone!5e1!3m2!1sen!2sin!4v1787750060361!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/jiAQwKZDQufkmZip7",
         "reviewUrl": "https://g.page/r/jusjumpin-bengaluru-m5/review",
-        "lat": 12.84,
-        "lng": 77.66,
+        "lat": 12.841439,
+        "lng": 77.6766319,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in M5 Ecity Mall?",
-                "answer": "We're on the 2nd floor of M5 Ecity Mall, Neeladri Road, Electronic City Phase 1."
+                "answer": "We're on the 2nd floor of M5 Ecity Mall, opposite to Veerasandra Industrial Area, Phase II, Electronic City."
             },
             {
                 "question": "Is it suitable for toddlers under 3?",
@@ -676,36 +657,31 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "label": "30 Minutes",
+                "weekday": "₹350",
+                "weekend": "₹350"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹450",
+                "weekend": "₹450"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "Avani Mall, 2nd Floor, Jessore Road, Kolkata, West Bengal 700124",
-        "phone": "+91 90000 00003",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.5!2d88.40!3d22.59!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Avani+Mall+Kolkata",
+        "ticketNote": "Anti-Skid Grip Socks at ₹40 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, Avani Riverside Mall, Choura Bustee, Shibpur, Howrah, Kolkata, West Bengal 711102.",
+        "phone": "(+91)85829 09809",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4571.948623768636!2d88.3237031!3d22.563217400000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027936926d2dc7%3A0x9ec029bf5ce5c34e!2sJus'%20Jumpin'%20Kid's%20Play%20Zone%20and%20Birthday%20Party%20Place%20in%20Howrah%2C%20West%20Bengal!5e1!3m2!1sen!2sin!4v1787750591836!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/vx68ZPMYNDHMx46X9",
         "reviewUrl": "https://g.page/r/jusjumpin-kolkata-avani/review",
-        "lat": 22.59,
-        "lng": 88.4,
+        "lat": 22.5632174,
+        "lng": 88.3237031,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in Avani Mall?",
-                "answer": "We are on the 2nd floor of Avani Mall, Jessore Road, Kolkata."
+                "answer": "We are on the 2nd Floor, Avani Riverside Mall, Shibpur, Kolkata."
             },
             {
                 "question": "Is there a separate area for younger kids?",
@@ -896,36 +872,31 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "label": "30 Minutes",
+                "weekday": "₹350",
+                "weekend": "₹350"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹450",
+                "weekend": "₹450"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "Axis Mall, 3rd Floor, New Town, Rajarhat, Kolkata, West Bengal 700156",
-        "phone": "+91 90000 00004",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.0!2d88.45!3d22.58!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Axis+Mall+Kolkata",
+        "ticketNote": "Anti-Skid Grip Socks at ₹40 (One-time Purchase. Compulsory for your safety.)",
+        "address": "4th Floor, Food Court, Axis Mall, Major Arterial Road(South-East), CF Block(Newtown), Action Area 1C, Newtown, Kolkata, West Bengal 700107",
+        "phone": "(+91)98742 06206",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4571.388500083873!2d88.4601678!3d22.5801052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275bde844bdc7%3A0x27d831ac3fc95e89!2sJus%20Jumpin%20Axis%20Mall!5e1!3m2!1sen!2sin!4v1787750904306!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/SyQsMft6NPCWRHGf7",
         "reviewUrl": "https://g.page/r/jusjumpin-kolkata-axis/review",
-        "lat": 22.58,
-        "lng": 88.45,
+        "lat": 22.5801052,
+        "lng": 88.4601678,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in Axis Mall?",
-                "answer": "We are on the 3rd floor of Axis Mall, New Town, Rajarhat."
+                "answer": "We are on the 4th Floor of Axis Mall, New Town, Action Area 1C."
             },
             {
                 "question": "Can I bring outside food?",
@@ -1116,32 +1087,27 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "label": "30 Minutes",
+                "weekday": "₹350",
+                "weekend": "₹350"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹450",
+                "weekend": "₹450"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "City Centre 2, 3rd Floor, New Town, Rajarhat, Kolkata, West Bengal 700157",
-        "phone": "+91 90000 00005",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.8!2d88.47!3d22.59!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+City+Centre+2+Kolkata",
+        "ticketNote": "Anti-Skid Grip Socks at ₹40 (One-time Purchase. Compulsory for your safety.)",
+        "address": "SHOP NO M-2ND FLOOR, City Centre Mall, 202, Rajarhat Main Rd, Action Area II, Action Area IID, Newtown, New Town, West Bengal 700161",
+        "phone": "(+91)90070 86212",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4569.964509505745!2d88.45009!3d22.622984900000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89fdaa0b340af%3A0x10ecacc7e6fcaf62!2sJus'%20Jumpin%20Kid's%20Play%20Zone!5e1!3m2!1sen!2sin!4v1787751206474!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/wQPXL2szCBv6XAX4A",
         "reviewUrl": "https://g.page/r/jusjumpin-kolkata-cc2/review",
-        "lat": 22.59,
-        "lng": 88.47,
+        "lat": 22.6229849,
+        "lng": 88.45009,
         "faqs": [
             {
                 "question": "Which floor is Jus Jumpin on at City Centre 2?",
@@ -1352,36 +1318,31 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "label": "30 Minutes",
+                "weekday": "₹400",
+                "weekend": "₹450"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹500",
+                "weekend": "₹550"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "Meenakshi Mall, 3rd Floor, Bannerghatta Road, Bengaluru, Karnataka 560076",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, Unit No. S013A, Royal Meenakshi Mall, JUS JUMPIN, Bannerghatta Rd, Hulimavu, Bengaluru, Karnataka 560076.",
         "phone": "+91 90000 00006",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.5!2d77.60!3d12.88!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Meenakshi+Mall+Bengaluru",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4826.42030608501!2d77.5958012!3d12.8757139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6b1cb8101bcb%3A0xc4c1b8b538840c86!2sJus%20Jumpin%20%7C%7C%20Kids%20Activity%20%26%20Soft%20Play%20Zone!5e1!3m2!1sen!2sin!4v1787751416285!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/KHF2xiFJwU7FjAWL9",
         "reviewUrl": "https://g.page/r/jusjumpin-bengaluru-meenakshi/review",
-        "lat": 12.88,
-        "lng": 77.6,
+        "lat": 12.8757139,
+        "lng": 77.5958012,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in Meenakshi Mall?",
-                "answer": "We are on the 3rd floor of Meenakshi Mall, Bannerghatta Road."
+                "answer": "We are on the 2nd floor of Meenakshi Mall, Bannerghatta Road."
             },
             {
                 "question": "Is there a cafe inside?",
@@ -1628,46 +1589,31 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹399",
-                "weekend": "₹499"
+                "label": "30 Minutes",
+                "weekday": "₹400",
+                "weekend": "₹400"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹649",
-                "weekend": "₹749"
-            },
-            {
-                "label": "Adult (1 hr)",
-                "weekday": "₹499",
-                "weekend": "₹599"
-            },
-            {
-                "label": "Adult (2 hr)",
-                "weekday": "₹799",
-                "weekend": "₹899"
-            },
-            {
-                "label": "Combo (Adult+Child)",
-                "weekday": "₹849",
-                "weekend": "₹999"
+                "label": "60 Minutes",
+                "weekday": "₹500",
+                "weekend": "₹500"
             }
         ],
-        "ticketNote": "Grip socks included. Infants under 1 year enter free.",
-        "address": "Prabhatam Mall, 2nd Floor, Bank More, Dhanbad, Jharkhand 826001",
-        "phone": "+91 90000 00007",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.2!2d86.45!3d23.79!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Prabhatam+Mall+Dhanbad",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "Shop no. 252, 2nd floor, Prabhatam Grand Mall, Barwaada Rd, Dhaiya, Dhanbad, Jharkhand 826010.",
+        "phone": "(+91)98301 15533",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4528.8812256618385!2d86.43345060000001!3d23.8286387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6bb05ed9a72ad%3A0x8fd0eb1031506014!2sJus%20Jumpin%20Dhanbad!5e1!3m2!1sen!2sin!4v1787751768929!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/sxUQ2NRvwRVBvGPz6",
         "reviewUrl": "https://g.page/r/jusjumpin-dhanbad-prabhatam/review",
-        "lat": 23.79,
-        "lng": 86.45,
+        "lat": 23.8286387,
+        "lng": 86.4334506,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in Prabhatam Mall?",
-                "answer": "We are on the 2nd floor of Prabhatam Mall, Bank More, Dhanbad."
+                "answer": "We are on the 2nd floor of Prabhatam Mall, Dhanbad."
             },
             {
                 "question": "Can adults play on the trampolines?",
@@ -1866,36 +1812,31 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹549",
-                "weekend": "₹649"
+                "label": "60 Minutes",
+                "weekday": "₹750",
+                "weekend": "₹750"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹849",
-                "weekend": "₹949"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "90 Minutes",
+                "weekday": "₹900",
+                "weekend": "₹900"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "R City Mall, 3rd Floor, LBS Marg, Ghatkopar West, Mumbai, Maharashtra 400086",
-        "phone": "+91 90000 00008",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.0!2d72.91!3d19.08!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+R+City+Mall+Ghatkopar",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, Jus Jumpin, R City Mall, Lal Bahadur Shastri Marg, Amrut Nagar, Ghatkopar West, Mumbai",
+        "phone": "+91 9836229922",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4678.355856777129!2d72.9168899!3d19.099948299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c72e3f79e581%3A0x329bfdf93fbaa010!2sJus%20Jumpin%20%7C%7C%20Kids%20Activity%20%26%20Soft%20Play%20Zone!5e1!3m2!1sen!2sin!4v1787752068185!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/MNswC5x4j7FzYiT46",
         "reviewUrl": "https://g.page/r/jusjumpin-ghatkopar-rcity/review",
-        "lat": 19.08,
-        "lng": 72.91,
+        "lat": 19.099948,
+        "lng": 72.9168899,
         "faqs": [
             {
                 "question": "Which floor is Jus Jumpin on?",
-                "answer": "We are on the 3rd floor of R City Mall, Ghatkopar West."
+                "answer": "We are on the 2nd Floor, Jus Jumpin, R City Mall, Ghatkopar West."
             },
             {
                 "question": "Is there parking at R City?",
@@ -2070,46 +2011,31 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹399",
-                "weekend": "₹499"
+                "label": "30 Minutes",
+                "weekday": "₹350",
+                "weekend": "₹350"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹649",
-                "weekend": "₹749"
-            },
-            {
-                "label": "Adult (1 hr)",
-                "weekday": "₹499",
-                "weekend": "₹599"
-            },
-            {
-                "label": "Adult (2 hr)",
-                "weekday": "₹799",
-                "weekend": "₹899"
-            },
-            {
-                "label": "Combo (Adult+Child)",
-                "weekday": "₹849",
-                "weekend": "₹999"
+                "label": "60 Minutes",
+                "weekday": "₹400",
+                "weekend": "₹400"
             }
         ],
         "ticketNote": "Grip socks included. Infants under 1 year enter free.",
-        "address": "Junction Mall, 2nd Floor, City Centre, Durgapur, West Bengal 713216",
-        "phone": "+91 90000 00009",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3646.5!2d87.32!3d23.53!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Junction+Mall+Durgapur",
+        "address": "3rd floor, Junction Mall, Unit no - 311A, opposite foods court, Recol Park, Durgapur, West Bengal 713216",
+        "phone": "(+91)9874206206",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4538.955167136879!2d87.291511!3d23.5384017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f7738c43a3be6d%3A0x3109e286ac0cd419!2sJus%20Jumpin%20Durgapur!5e1!3m2!1sen!2sin!4v1787752313153!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/VRUY2qwVVMwU6o1Y7",
         "reviewUrl": "https://g.page/r/jusjumpin-durgapur-junction/review",
-        "lat": 23.53,
-        "lng": 87.32,
+        "lat": 23.5384017,
+        "lng": 87.291511,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in Junction Mall?",
-                "answer": "We are on the 2nd floor of Junction Mall, City Centre, Durgapur."
+                "answer": "We are on the 3rd floor, Junction Mall, opposite foods court, Recol Park, Durgapur, West Bengal 713216."
             },
             {
                 "question": "Do you have activities for adults?",
@@ -2308,36 +2234,31 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹399",
-                "weekend": "₹499"
+                "label": "30 Minutes",
+                "weekday": "₹400",
+                "weekend": "₹400"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹649",
-                "weekend": "₹749"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹500",
+                "weekend": "₹500"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "City Centre Mall, 2nd Floor, College Road, Nashik, Maharashtra 422005",
-        "phone": "+91 90000 00010",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.5!2d73.79!3d19.99!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+City+Centre+Nashik",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "3rd Floor, Jus Jumpin, City Center Mall, Untwadi Rd, Lavate Nagar, Parijat Nagar, Nashik, Maharashtra 422002.",
+        "phone": "(+91)98363 34433",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4652.613217628464!2d73.7610712!3d19.990448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeba187b29a3f%3A0x9f7bb9ece38536c4!2sJus%20Jumpin%20%7C%7C%20Kids%20Activity%20%26%20Soft%20Play%20Zone!5e1!3m2!1sen!2sin!4v1787752679006!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/7t615sWZZnCBr1Xz8",
         "reviewUrl": "https://g.page/r/jusjumpin-nashik-cc/review",
-        "lat": 19.99,
-        "lng": 73.79,
+        "lat": 19.990448,
+        "lng": 73.7610712,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in City Centre Nashik?",
-                "answer": "We are on the 2nd floor of City Centre Mall, College Road, Nashik."
+                "answer": "We are on the 3rd Floor of City Centre Mall, Untwadi Rd, Nashik."
             },
             {
                 "question": "What age group is this for?",
