@@ -2449,32 +2449,27 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹399",
-                "weekend": "₹499"
+                "label": "30 Minutes",
+                "weekday": "₹350",
+                "weekend": "₹350"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹649",
-                "weekend": "₹749"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹450",
+                "weekend": "₹450"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "P&M Mall, 2nd Floor, Bistupur, Jamshedpur, Jharkhand 831001",
-        "phone": "+91 90000 00011",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0!2d86.20!3d22.80!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+PM+Mall+Jamshedpur",
+        "ticketNote": "Anti-Skid Grip Socks at ₹40 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, P&M Mall, Bistupur Main Rd South Park, Bistupur, Jamshedpur, Jharkhand 831001",
+        "phone": "(+91)98311 26633",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4564.564552150203!2d86.1778833760317!3d22.784895525154564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e3668a0bf67f%3A0xdb9bd13d2c36ac11!2sJus%20Jumpin!5e1!3m2!1sen!2sin!4v1787813339046!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/nwumhjJQrVr1GrQi7",
         "reviewUrl": "https://g.page/r/jusjumpin-jamshedpur-pm/review",
-        "lat": 22.8,
-        "lng": 86.2,
+        "lat": 22.7848955,
+        "lng": 86.1778834,
         "faqs": [
             {
                 "question": "Where is the play zone in P&M Mall?",
@@ -2677,42 +2672,27 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "label": "30 Minutes",
+                "weekday": "₹450",
+                "weekend": "₹450"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult (1 hr)",
-                "weekday": "₹549",
-                "weekend": "₹649"
-            },
-            {
-                "label": "Adult (2 hr)",
-                "weekday": "₹849",
-                "weekend": "₹949"
-            },
-            {
-                "label": "Combo (Adult+Child)",
-                "weekday": "₹899",
-                "weekend": "₹1099"
+                "label": "60 Minutes",
+                "weekday": "₹550",
+                "weekend": "₹550"
             }
         ],
-        "ticketNote": "Grip socks included. Infants under 1 year enter free.",
-        "address": "VR Mall, 3rd Floor, Wardha Road, Nagpur, Maharashtra 440025",
-        "phone": "+91 90000 00012",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.5!2d79.09!3d21.12!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+VR+Mall+Nagpur",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "Jus Jumpin, VR, Rambagh Layouts Untkhana, Nagpur, Maharashtra 440003.",
+        "phone": "+91)98368 88333",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4617.944138168811!2d79.09660749999999!3d21.132838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c1cb2f6c4bef%3A0x93d786e6318723f7!2sJus%20Jumpin%20VR%20Nagpur%20%7C%20Kid's%20Play%20and%20Activity%20Zone!5e1!3m2!1sen!2sin!4v1787814014940!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/4e45hhEdDuouJ4wn9",
         "reviewUrl": "https://g.page/r/jusjumpin-nagpur-vr/review",
-        "lat": 21.12,
-        "lng": 79.09,
+        "lat": 21.132838,
+        "lng": 79.0966075,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in VR Mall Nagpur?",
@@ -2958,43 +2938,28 @@ export const locations: LocationData[] = [
         "weekendHours": "11:00 AM – 10:00 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹549",
-                "weekend": "₹649"
+                "label": "30 Minutes",
+                "weekday": "₹400",
+                "weekend": "₹400"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹849",
-                "weekend": "₹949"
-            },
-            {
-                "label": "Adult (1 hr)",
-                "weekday": "₹649",
-                "weekend": "₹749"
-            },
-            {
-                "label": "Adult (2 hr)",
-                "weekday": "₹999",
-                "weekend": "₹1099"
-            },
-            {
-                "label": "Combo (Adult+Child)",
-                "weekday": "₹1099",
-                "weekend": "₹1299"
+                "label": "60 Minutes",
+                "weekday": "₹500",
+                "weekend": "₹500"
             }
         ],
-        "ticketNote": "Grip socks included. Infants under 1 year enter free.",
-        "address": "Gardens Galleria (GIP) Mall, 3rd Floor, Sector 38A, Noida, Uttar Pradesh 201301",
-        "phone": "+91 90000 00013",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.5!2d77.32!3d28.57!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+GIP+Mall+Noida",
+        "ticketNote": "Anti-Skid Grip Socks at ₹40 (One-time Purchase. Compulsory for your safety.)",
+        "address": "Shop No. 300B , 3rd Floor, The Great India Place Mall, Plot A1, opposite Food Court, Sector 38, Noida, Uttar Pradesh 201303.",
+        "phone": "(+91)98301 15533",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4348.154029413988!2d77.3261607!3d28.5675446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce53232710cc7%3A0x17c0d8fb1b0fe098!2sJus%20Jumpin%20Noida!5e1!3m2!1sen!2sin!4v1787814706274!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/gVWFyHChKYb1uLUYA",
         "reviewUrl": "https://g.page/r/jusjumpin-noida-gip/review",
-        "lat": 28.57,
-        "lng": 77.32,
+        "lat": 28.5675446,
+        "lng": 77.3261607,
         "faqs": [
             {
                 "question": "Where exactly in GIP Mall?",
-                "answer": "We are on the 3rd floor of Gardens Galleria (GIP) Mall, Sector 38A, Noida."
+                "answer": "We are on the 3rd floor of The Great India Place Mall (GIP) Mall, opposite Food Court, Sector 38, Noida."
             },
             {
                 "question": "Is metro access easy?",
@@ -3185,32 +3150,27 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
                 "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "weekday": "₹400",
+                "weekend": "₹400"
             },
             {
                 "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "weekday": "₹500",
+                "weekend": "₹500"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "Spectrum Mall, 2nd Floor, Sector 75, Noida, Uttar Pradesh 201301",
-        "phone": "+91 90000 00014",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.0!2d77.39!3d28.57!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Spectrum+Mall+Noida",
+        "ticketNote": "Anti-Skid Grip Socks at ₹40 (One-time Purchase. Compulsory for your safety.)",
+        "address": "Phase-1, Spectrum Mall, Plot C & D, Metro Station Rd, opposite Sec- 50, Gardenia Gateway, Sector 75, Noida, Uttar Pradesh 201316",
+        "phone": "(+91)98000 05721",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4347.911863788707!2d77.3787457!3d28.573404699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef004d23d7c1%3A0x1ac75d562f1fab6a!2sJus%20Jumpin!5e1!3m2!1sen!2sin!4v1787815414118!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/Y852nF1XdgQiVtW57",
         "reviewUrl": "https://g.page/r/jusjumpin-noida-spectrum/review",
-        "lat": 28.57,
-        "lng": 77.39,
+        "lat": 28.5734047,
+        "lng": 77.3787457,
         "faqs": [
             {
                 "question": "Where in Spectrum Mall?",
@@ -3480,29 +3440,24 @@ export const locations: LocationData[] = [
         "weekendHours": "11:00 AM – 10:00 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "label": "30 Minutes",
+                "weekday": "₹550",
+                "weekend": "₹550"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹700",
+                "weekend": "₹700"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "Seasons Mall, 2nd Floor, Magarpatta City, Hadapsar, Pune, Maharashtra 411028",
-        "phone": "+91 90000 00015",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.5!2d73.93!3d18.51!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Seasons+Mall+Pune",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, Unit No S4, SEASONS MALL, Magarpatta, Hadapsar, Pune, Maharashtra 411013",
+        "phone": "(+91)98742 06206",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4694.543745163552!2d73.9309962!3d18.518908400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c1a62e5fd9c9%3A0x5b8b2f4374d5af48!2sJus%20Jumpin%20Seasons%20Mall%2C%20Pune!5e1!3m2!1sen!2sin!4v1787815744711!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/QToFavzggQDnfBvJ7",
         "reviewUrl": "https://g.page/r/jusjumpin-pune-seasons/review",
-        "lat": 18.51,
-        "lng": 73.93,
+        "lat": 18.5189084,
+        "lng": 73.9309962,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in Seasons Mall?",
@@ -3817,50 +3772,35 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹399",
-                "weekend": "₹499"
+                "label": "90 Minutes",
+                "weekday": "₹750",
+                "weekend": "₹800"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹649",
-                "weekend": "₹749"
-            },
-            {
-                "label": "Adult (1 hr)",
-                "weekday": "₹499",
-                "weekend": "₹599"
-            },
-            {
-                "label": "Adult (2 hr)",
-                "weekday": "₹799",
-                "weekend": "₹899"
-            },
-            {
-                "label": "Combo (Adult+Child)",
-                "weekday": "₹849",
-                "weekend": "₹999"
+                "label": "60 Minutes",
+                "weekday": "₹650",
+                "weekend": "₹750"
             }
         ],
-        "ticketNote": "Grip socks included. Infants under 1 year enter free.",
-        "address": "Zora Mall, 2nd Floor, Fafadih, Raipur, Chhattisgarh 492001",
-        "phone": "+91 90000 00016",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.5!2d81.64!3d21.25!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Zora+Mall+Raipur",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, ZORA The Mall, NH-6, opposite Agriculture College, Serikhedi, Jora, Raipur, Chhattisgarh 492012",
+        "phone": "(+91)98363 34433",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4614.642150834185!2d81.7144278!3d21.238576899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28c33026afbe1d%3A0xcd4eac449d54778a!2sJus%20Jumpin%20Raipur!5e1!3m2!1sen!2sin!4v1787816058825!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/2HNEbrC4gsQnEPxWA",
         "reviewUrl": "https://g.page/r/jusjumpin-raipur-zora/review",
-        "lat": 21.25,
-        "lng": 81.64,
+        "lat": 21.2385769,
+        "lng": 81.7144278,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in Zora Mall?",
-                "answer": "We are on the 2nd floor of Zora Mall, Fafadih, Raipur."
+                "answer": "We are on the 2nd floor of Zora Mall, opposite Agriculture College, Serikhedi, Raipur."
             },
             {
                 "question": "Can adults play too?",
-                "answer": "Absolutely! We have dedicated adult trampoline zones, ninja courses and dodgeball arenas."
+                "answer": "Yes, absolutely! Adults can enjoy all the trampoline zones, ninja courses, and dodgeball arenas."
             },
             {
                 "question": "Is it safe for toddlers?",
@@ -4055,40 +3995,35 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹399",
-                "weekend": "₹499"
+                "label": "30 Minutes",
+                "weekday": "₹350",
+                "weekend": "₹350"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹649",
-                "weekend": "₹749"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹450",
+                "weekend": "₹450"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "Nucleus Mall, 3rd Floor, Main Road, Ranchi, Jharkhand 834001",
-        "phone": "+91 90000 00017",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3662.0!2d85.33!3d23.35!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+Nucleus+Mall+Ranchi",
+        "ticketNote": "Anti-Skid Grip Socks at ₹40 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, Nucleus Mall, Jus Jumpin, S-018 & S-019, Circular Rd, Lalpur, Ranchi, Jharkhand 834001.",
+        "phone": "(+91)98303 59999",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4544.498910073946!2d85.3314637!3d23.3772342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f4e1006bd868b5%3A0x25546315d5b55927!2sJus%20Jumpin!5e1!3m2!1sen!2sin!4v1787816424317!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/SdZ825x5CppWxhBy7",
         "reviewUrl": "https://g.page/r/jusjumpin-ranchi-nucleus/review",
-        "lat": 23.35,
-        "lng": 85.33,
+        "lat": 23.3772342,
+        "lng": 85.3314637,
         "faqs": [
             {
                 "question": "Which floor is Jus Jumpin on?",
-                "answer": "We are on the 3rd floor of Nucleus Mall, Main Road, Ranchi."
+                "answer": "We are on the 2nd floor of Nucleus Mall, Main Road, Ranchi."
             },
             {
                 "question": "Are there activities for teenagers?",
-                "answer": "Yes! Our trampoline zone and obstacle courses are great fun for teens aged 12–16."
+                "answer": "Yes! Our trampoline zone and obstacle courses are great fun for teens aged 6 months–12 years."
             },
             {
                 "question": "Is it safe for toddlers?",
@@ -4286,33 +4221,28 @@ export const locations: LocationData[] = [
         "weekendHours": "11:00 AM – 10:00 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹399",
-                "weekend": "₹499"
+                "label": "30 Minutes",
+                "weekday": "₹350",
+                "weekend": "₹350"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹649",
-                "weekend": "₹749"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹450",
+                "weekend": "₹450"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "City Centre Mall, 2nd Floor, Sevoke Road, Siliguri, West Bengal 734001",
-        "phone": "+91 90000 00018",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.5!2d88.43!3d26.72!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+City+Centre+Siliguri",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, City Centre Mall, Unit No. CCSG-207, S.P. Mukherjee Road, near Gandhi Maidan, Khalpara, Siliguri, West Bengal 734010",
+        "phone": "(+91)98303 59999",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4421.995878175723!2d88.3939113!3d26.7258215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e4473e943cfe59%3A0x49a69068776bf1c!2sJus'%20Jumpin'%2C%20Siliguri!5e1!3m2!1sen!2sin!4v1787816735907!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/BFawibFYkgF3Aq9Q7",
         "reviewUrl": "https://g.page/r/jusjumpin-siliguri-cc/review",
         "lat": 26.72,
         "lng": 88.43,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in City Centre Siliguri?",
-                "answer": "We are on the 2nd floor of City Centre Mall, Sevoke Road, Siliguri."
+                "answer": "We are on the 2nd Floor, City Centre Mall, S.P. Mukherjee Road, Siliguri."
             },
             {
                 "question": "Is it good for a rainy day?",
@@ -4514,33 +4444,28 @@ export const locations: LocationData[] = [
         "weekendHours": "11:00 AM – 10:00 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹449",
-                "weekend": "₹549"
+                "label": "30 Minutes",
+                "weekday": "₹450",
+                "weekend": "₹500"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹699",
-                "weekend": "₹799"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "60 Minutes",
+                "weekday": "₹550",
+                "weekend": "₹600"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "VR Mall, 3rd Floor, Dumas Road, Surat, Gujarat 395007",
-        "phone": "+91 90000 00019",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0!2d72.82!3d21.17!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+VR+Mall+Surat",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "3RD FLOOR, VR Mall, JUS JUMPIN, shop no. 303b and 304, Dumas Rd, Magdalla, Surat, Gujarat 395007.",
+        "phone": "(+91)98000 05721",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4617.581919244806!2d72.75775190000002!3d21.1444619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be053ef22e53e93%3A0x80925ebfe69cf318!2sJus%20Jumpin!5e1!3m2!1sen!2sin!4v1787817390661!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/yCd1K1DcN4vpzxq4A",
         "reviewUrl": "https://g.page/r/jusjumpin-surat-vr/review",
-        "lat": 21.17,
-        "lng": 72.82,
+        "lat": 21.1444619,
+        "lng": 72.7577519,
         "faqs": [
             {
-                "question": "Where is Jus Jumpin in VR Mall Surat?",
-                "answer": "We are on the 3rd floor of VR Mall, Dumas Road, Surat."
+                "question": "Where is Jus Jumpin located in VR Mall Surat?",
+                "answer": "We are located on the 3rd floor of VR Mall on Dumas Road, Surat."
             },
             {
                 "question": "Do you offer group discounts?",
@@ -4742,29 +4667,24 @@ export const locations: LocationData[] = [
         "weekendHours": "11:00 AM – 10:00 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
-                "weekday": "₹499",
-                "weekend": "₹599"
+                "label": "60 Minutes",
+                "weekday": "₹700",
+                "weekend": "₹700"
             },
             {
-                "label": "Child (2 hr)",
-                "weekday": "₹799",
-                "weekend": "₹899"
-            },
-            {
-                "label": "Adult Companion",
-                "weekday": "Free",
-                "weekend": "Free"
+                "label": "90 Minutes",
+                "weekday": "₹900",
+                "weekend": "₹900"
             }
         ],
-        "ticketNote": "Grip socks included. One accompanying adult enters free per child.",
-        "address": "R Mall, 2nd Floor, Ghodbunder Road, Thane West, Maharashtra 400607",
-        "phone": "+91 90000 00021",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.5!2d72.96!3d19.22!2m3!1f0!2f0!3f0",
-        "mapsDirectionsUrl": "https://maps.google.com/?q=Jus+Jumpin+R+Mall+Thane",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "2nd Floor, Jus Jumpin, Unit no. SF, R MALL, 01-05, Ghodbunder Service Rd, opposite Lokim Company, Dokali Pada, Dhokali, Thane West, Maharashtra 400607",
+        "phone": "+91 9836229922",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4674.650116390312!2d72.9773946!3d19.230580399999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b95a6145abf7%3A0x93d00da389682eef!2sJus%20Jumpin%20%7C%7C%20Kids%20Activity%2C%20Soft%20Play%2C%20Trampoline%20%26%20Birthday%20Party%20Zone!5e1!3m2!1sen!2sin!4v1787817937860!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/DmV3ujtvxsg5tdKb7",
         "reviewUrl": "https://g.page/r/jusjumpin-thane-rmall/review",
-        "lat": 19.22,
-        "lng": 72.96,
+        "lat": 19.2305804,
+        "lng": 72.9773946,
         "faqs": [
             {
                 "question": "Where is Jus Jumpin in R Mall?",
@@ -5047,27 +4967,27 @@ export const locations: LocationData[] = [
             }
         ],
         "weekdayHours": "11:00 AM – 9:30 PM",
-        "weekendHours": "11:00 AM – 10:00 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
                 "label": "90 Minutes",
-                "weekday": "₹650",
-                "weekend": "₹750"
+                "weekday": "₹1100",
+                "weekend": "₹1100"
             },
             {
-                "label": "120 Minutes",
-                "weekday": "₹850",
-                "weekend": "₹950"
+                "label": "Extensions",
+                "weekday": "₹500",
+                "weekend": "₹500"
             }
         ],
-        "ticketNote": "Anti-Skid Grip Socks (One-time purchase, compulsory): ₹50 | Extensions: ₹250/₹450",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
         "address": "JUS JUMPIN, Unit No. SF - 26-30, 4th Floor, Sarath City Capital Mall, Gachibowli Rd, Kondapur, Whitefields, HITEC City, Hyderabad, Telangana 500084",
         "phone": "+91 9836888333",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31644.387475892054!2d78.33894525257719!3d17.453833537431986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93ba1cc0bc19%3A0x80a949c1d6777179!2sJus&#39;%20Jumpin&#39;%20%7C%7C%20Trampoline%20%26%20Adventure%20Park!5e0!3m2!1sen!2sin!4v1783949963617!5m2!1sen!2sin",
-        "mapsDirectionsUrl": "https://maps.app.goo.gl/WFXLjjgzWDAPsJr67",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4722.8690667674955!2d78.3642433!3d17.457426299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93ba1cc0bc19%3A0x80a949c1d6777179!2sJus'%20Jumpin'%20%7C%7C%20Trampoline%20%26%20Adventure%20Park!5e1!3m2!1sen!2sin!4v1787818182268!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/aoh6iTJBrtgUV2Q76",
         "reviewUrl": "https://reviewthis.biz/jusjumpin-sarathcity",
-        "lat": 17.4538,
-        "lng": 78.3389,
+        "lat": 17.4574263,
+        "lng": 78.3642433,
         "faqs": [
             {
                 "question": "Is there any age limit at Jus Jumpin' Trampoline Park?",
@@ -5299,14 +5219,14 @@ export const locations: LocationData[] = [
                 "weekend": "₹650"
             }
         ],
-        "ticketNote": "Anti-Skid Grip Socks compulsory (compulsory for safety & hygiene): ₹50 | Extensions: ₹200 / ₹400",
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
         "address": "2nd Floor, DSL Virtue Mall, Unit No. SF 27, 28, 29, near Rajiv Gandhi International Cricket Stadium, Industrial Development Area, Uppal, Hyderabad, Telangana 500039",
         "phone": "+91 9830359999",
-        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d237.95368802562894!2d78.55516850259671!3d17.399353436986623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99d9d44113a3%3A0xd66edde834fb7528!2sJus&#39;%20Jumpin&#39;%20%7C%7C%20Kid&#39;s%20Activity%20and%20Soft%20Play%20Zone!5e0!3m2!1sen!2sin!4v1785138544653!5m2!1sen!2sin",
-        "mapsDirectionsUrl": "https://www.google.com/maps/search/?api=1&query=DSL+Virtue+Mall+Uppal+Hyderabad",
+        "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4724.3109400873445!2d78.5564378!3d17.401718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99d9d44113a3%3A0xd66edde834fb7528!2sJus'%20Jumpin'%20%7C%7C%20Kid's%20Activity%20and%20Soft%20Play%20Zone!5e1!3m2!1sen!2sin!4v1787824299802!5m2!1sen!2sin",
+        "mapsDirectionsUrl": "https://maps.app.goo.gl/EVKk9nRL8AkPLAyk7",
         "reviewUrl": "https://search.google.com/local/writereview?placeid=ChIJoxNB1NmZyzsRKHX7NOjdbtY",
-        "lat": 17.40018,
-        "lng": 78.55506,
+        "lat": 17.401718,
+        "lng": 78.5564378,
         "faqs": [
             {
                 "question": "What age group of Kids can play at Jus Jumpin?",
