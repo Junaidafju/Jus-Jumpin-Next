@@ -359,7 +359,7 @@ export default function TimingsPricingMap({ data }: TimingsPricingMapProps) {
                 </svg>
             </div>
 
-            <style jsx>{`
+            <style>{`
                 /* ─── Base Styles ─── */
                 .tp-section {
                     position: relative;

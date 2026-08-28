@@ -1870,7 +1870,7 @@ export const locations: LocationData[] = [
     },
     {
         "slug": "durgapur-junction-mall",
-        "type": "adults-kids",
+        "type": "kids",
         "city": "Durgapur",
         "mall": "Junction Mall",
         "stateName": "West Bengal",
@@ -2507,7 +2507,7 @@ export const locations: LocationData[] = [
     },
     {
         "slug": "nagpur-vr-mall",
-        "type": "adults-kids",
+        "type": "kids",
         "city": "Nagpur",
         "mall": "VR Mall",
         "stateName": "Maharashtra",
@@ -3153,12 +3153,12 @@ export const locations: LocationData[] = [
         "weekendHours": "11:00 AM – 9:30 PM",
         "pricing": [
             {
-                "label": "Child (1 hr)",
+                "label": "30 Minutes",
                 "weekday": "₹400",
                 "weekend": "₹400"
             },
             {
-                "label": "Child (2 hr)",
+                "label": "60 Minutes",
                 "weekday": "₹500",
                 "weekend": "₹500"
             }

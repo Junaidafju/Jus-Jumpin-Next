@@ -1,10 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { Activity, LocationType } from '@/types/location';
 import styles from './ActivitiesSection.module.css';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import {
+    Waves,
+    Sprout,
+    Smile,
+    Mountain,
+    Zap,
+    Sparkles,
+    Dribbble,
+    Route,
+    RotateCw,
+    HelpCircle
+} from 'lucide-react';
 
 interface ActivitiesSectionProps {
     activities: Activity[];
@@ -12,7 +22,7 @@ interface ActivitiesSectionProps {
     accentColor: string;
 }
 
-// Floating icons configuration
+// Floating edge emoji configurations
 const floatingIcons = [
     { icon: '🎈', size: 'text-5xl', top: '10%', left: '5%', delay: 0, duration: 6 },
     { icon: '🏀', size: 'text-4xl', top: '20%', left: '15%', delay: 1, duration: 7 },
@@ -31,95 +41,49 @@ const floatingIcons = [
     { icon: '🎡', size: 'text-6xl', top: '70%', left: '50%', delay: 0.4, duration: 9 },
 ];
 
+// Helper to resolve relevant Lucide outline icons based on activity keywords
+const getActivityIcon = (name: string) => {
+    const n = name.toLowerCase();
+    if (n.includes('slide') || n.includes('donut') || n.includes('wave')) return Waves;
+    if (n.includes('sand') || n.includes('pit')) return Sprout;
+    if (n.includes('soft play') || n.includes('toddler') || n.includes('kids area') || n.includes('toy')) return Smile;
+    if (n.includes('climb') || n.includes('wall')) return Mountain;
+    if (n.includes('ninja') || n.includes('warrior') || n.includes('bridge') || n.includes('war') || n.includes('dodger')) return Zap;
+    if (n.includes('trampoline') || n.includes('arena') || n.includes('jump') || n.includes('stepper')) return Sparkles;
+    if (n.includes('ball') || n.includes('pool') || n.includes('basket') || n.includes('dodge') || n.includes('dodgeball')) return Dribbble;
+    if (n.includes('path') || n.includes('maze') || n.includes('pathway') || n.includes('pathways')) return Route;
+    if (n.includes('merry') || n.includes('round') || n.includes('spin')) return RotateCw;
+    return HelpCircle;
+};
+
 export default function ActivitiesSection({ activities, type, accentColor }: ActivitiesSectionProps) {
     const isKids = type === 'kids';
 
-    // Lightbox state
-    const [selectedImage, setSelectedImage] = useState<Activity | null>(null);
-    const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-    const [isZoomed, setIsZoomed] = useState(false);
-
-    // Background and color themes
-    const sectionBg = isKids ? '#fef9f0' : '#111820';
-    const cardBg = isKids ? '#ffffff' : '#152030';
-    const textColor = isKids ? '#2d2d2d' : '#ffffff';
-    const mutedColor = isKids ? '#666666' : 'rgba(255, 255, 255, 0.65)';
+    // Background and color themes matching TimingPricingMap layout
+    const sectionBg = isKids ? '#fef9f0' : '#090514';
+    const cardBg = isKids ? '#ffffff' : 'rgba(20, 14, 43, 0.85)';
+    const textColor = isKids ? '#1e1b4b' : '#ffffff';
+    const mutedColor = isKids ? '#525c76' : 'rgba(255, 255, 255, 0.65)';
     const borderColor = isKids ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)';
     const badgeText = isKids ? '🧒 Kids Activities' : '👨‍👩‍👧 Adults + Kids Activities';
-    const dividerFill = isKids ? '#f8f6ff' : '#0d1520';
+    const dividerFill = isKids ? '#f5f0ff' : '#04020b'; // Matches next section timings pricing map wave transition
 
-    // Ambient floating blob colors mapping
-    const blob1Color = isKids ? '#f67edd' : '#ff661a';
-    const blob2Color = isKids ? '#00b9e3' : '#4facfe';
-    const blob3Color = isKids ? '#ff5da0' : '#8869d2';
-
-    // Lock body scroll when modal is open
-    useEffect(() => {
-        if (selectedImage) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [selectedImage]);
-
-    // Keyboard navigation
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (!selectedImage) return;
-
-            switch (e.key) {
-                case 'Escape':
-                    closeLightbox();
-                    break;
-                case 'ArrowLeft':
-                    navigateImage('prev');
-                    break;
-                case 'ArrowRight':
-                    navigateImage('next');
-                    break;
-                case 'z':
-                case 'Z':
-                    setIsZoomed(prev => !prev);
-                    break;
-            }
-        };
-
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [selectedImage, currentImageIndex]);
-
-    const openLightbox = (activity: Activity, index: number) => {
-        setSelectedImage(activity);
-        setCurrentImageIndex(index);
-        setIsZoomed(false);
-    };
-
-    const closeLightbox = () => {
-        setSelectedImage(null);
-        setIsZoomed(false);
-    };
-
-    const navigateImage = (direction: 'prev' | 'next') => {
-        if (!activities.length) return;
-
-        let newIndex: number;
-        if (direction === 'prev') {
-            newIndex = (currentImageIndex - 1 + activities.length) % activities.length;
-        } else {
-            newIndex = (currentImageIndex + 1) % activities.length;
-        }
-
-        setCurrentImageIndex(newIndex);
-        setSelectedImage(activities[newIndex]);
-        setIsZoomed(false);
-    };
+    // Ambient floating glow blob colors
+    const blob1Color = isKids ? 'rgba(246, 126, 221, 0.06)' : 'rgba(255, 102, 26, 0.08)';
+    const blob2Color = isKids ? 'rgba(0, 185, 227, 0.06)' : 'rgba(79, 172, 254, 0.08)';
+    const blob3Color = isKids ? 'rgba(255, 93, 160, 0.06)' : 'rgba(136, 105, 210, 0.08)';
 
     return (
         <>
+            {/* Global Parallel Wave ClipMask defined once */}
+            <svg width="0" height="0" className="absolute pointer-events-none">
+                <defs>
+                    <clipPath id="card-wave-clip" clipPathUnits="objectBoundingBox">
+                        <path d="M0,0 L1,0 L1,0.9 C0.7,0.96 0.3,0.84 0,0.9 Z" />
+                    </clipPath>
+                </defs>
+            </svg>
+
             <section
                 id="activities"
                 className={styles.activitiesSection}
@@ -129,7 +93,8 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                     '--blob-color-2': blob2Color,
                     '--blob-color-3': blob3Color,
                     position: 'relative',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    scrollMarginTop: '100px'
                 } as React.CSSProperties}
             >
                 {/* Floating Activity Icons */}
@@ -141,14 +106,14 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                             style={{
                                 top: item.top,
                                 left: item.left,
-                                opacity: isKids ? 0.15 : 0.1,
+                                opacity: isKids ? 0.15 : 0.08,
                                 filter: 'blur(0.5px)',
                             }}
                             animate={{
                                 y: [0, -30, 0, 30, 0],
                                 x: [0, 15, -15, 0, 15],
                                 rotate: [0, 8, -8, 5, -5, 0],
-                                scale: [1, 1.1, 1, 0.95, 1],
+                                scale: [1, 1.08, 1, 0.95, 1],
                             }}
                             transition={{
                                 duration: item.duration,
@@ -175,7 +140,7 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                     ))}
                 </div>
 
-                {/* GPU Ambient Floating Background Blobs */}
+                {/* Ambient Background Glows */}
                 <div className={`${styles.blob} ${styles.blob1} ${isKids ? styles.kidsBlob : styles.adultsBlob}`} style={{ zIndex: 1 }} />
                 <div className={`${styles.blob} ${styles.blob2} ${isKids ? styles.kidsBlob : styles.adultsBlob}`} style={{ zIndex: 1 }} />
                 <div className={`${styles.blob} ${styles.blob3} ${isKids ? styles.kidsBlob : styles.adultsBlob}`} style={{ zIndex: 1 }} />
@@ -190,83 +155,132 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                             {badgeText}
                         </span>
                         <h2 className={styles.title} style={{ color: textColor }}>
-                            Our <span style={{ color: accentColor }}>Activities</span>
+                            Our <span style={{
+                                background: `linear-gradient(to right, ${accentColor}, #ff3645)`,
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                display: 'inline-block'
+                            }}>Activities</span>
                         </h2>
                         <p className={styles.subtitle} style={{ color: mutedColor }}>
-                            Discover all the amazing zones waiting for you at this venue. Click any image to view it larger!
+                            Discover all the amazing zones waiting for you at this venue.
                         </p>
                     </div>
 
-                    {/* 4 Cards Grid (Desktop: 4, Tab: 2, Mobile: 1) */}
+                    {/* Cards Grid */}
                     <div className={styles.grid}>
-                        {activities.map((activity, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: i * 0.1 }}
-                                className={`${styles.card} group`}
-                                style={{
-                                    backgroundColor: cardBg,
-                                    borderColor: borderColor,
-                                    '--hover-color': activity.color,
-                                    '--hover-shadow': `0 20px 40px ${activity.color}33`,
-                                    color: textColor,
-                                    cursor: activity.image ? 'pointer' : 'default',
-                                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                    position: 'relative'
-                                } as React.CSSProperties}
-                                onClick={() => activity.image && openLightbox(activity, i)}
-                                whileHover={{ y: -5 }}
-                            >
-                                {activity.image ? (
-                                    <div className={styles.cardImageWrapper} style={{ position: 'relative', overflow: 'hidden' }}>
-                                        <img
-                                            src={activity.image}
-                                            alt={activity.name}
-                                            className={styles.cardImage}
-                                            loading="lazy"
-                                            style={{
-                                                transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                                            }}
-                                        />
-                                        <span className={styles.imageEmoji}>{activity.emoji}</span>
+                        {activities.map((activity, i) => {
+                            const Icon = getActivityIcon(activity.name);
+                            return (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 55, rotate: i % 2 === 0 ? -4 : 4, scale: 0.94 }}
+                                    whileInView={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+                                    viewport={{ once: true, margin: "0px 0px -55px 0px" }}
+                                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.06 }}
+                                    className={`${styles.card} group`}
+                                    style={{
+                                        backgroundColor: cardBg,
+                                        borderColor: borderColor,
+                                        '--hover-color': activity.color || accentColor,
+                                        '--hover-shadow': `0 20px 40px ${(activity.color || accentColor)}33`,
+                                        '--card-bg': cardBg,
+                                        color: textColor,
+                                    } as React.CSSProperties}
+                                >
+                                    {/* Image with Wave Clip Mask */}
+                                    {activity.image ? (
+                                        <div className={styles.cardImageWrapper}>
+                                            {/* Masked Image */}
+                                            <div
+                                                className="w-full h-full object-cover overflow-hidden"
+                                                style={{ clipPath: 'url(#card-wave-clip)' }}
+                                            >
+                                                <img
+                                                    src={activity.image}
+                                                    alt={activity.name}
+                                                    className={styles.cardImage}
+                                                    loading="lazy"
+                                                />
+                                            </div>
 
-                                        {/* Hover overlay with zoom icon */}
-                                        <div
-                                            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-0 flex items-center justify-center"
-                                            style={{
-                                                background: 'rgba(0, 0, 0, 0.4)',
-                                                backdropFilter: 'blur(2px)'
-                                            }}
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <ZoomIn className="w-8 h-8 text-white" />
-                                                <span className="text-white text-xs font-semibold">View Larger</span>
+                                            {/* Wave Border Outline Separator */}
+                                            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none z-10">
+                                                <path
+                                                    d="M 0,90 C 30,84 70,96 100,90"
+                                                    fill="none"
+                                                    stroke={activity.color || accentColor}
+                                                    strokeWidth="3"
+                                                />
+                                            </svg>
+
+                                            {/* Circular Overlapping Icon Container */}
+                                            <div
+                                                className={styles.iconContainer}
+                                                style={{
+                                                    backgroundColor: activity.color || accentColor,
+                                                }}
+                                            >
+                                                <Icon className="text-white" size={20} />
                                             </div>
                                         </div>
+                                    ) : (
+                                        <div className="relative w-full pt-10 pb-4 flex justify-center">
+                                            <span className={styles.emoji}>{activity.emoji}</span>
+                                        </div>
+                                    )}
+
+                                    {/* Text Content Block */}
+                                    <div className={styles.cardContent}>
+                                        {/* Card Title */}
+                                        <h3 className={styles.cardTitle} style={{ color: textColor }}>
+                                            {activity.name}
+                                        </h3>
+
+                                        {/* Card Description */}
+                                        <p
+                                            className={styles.cardDescription}
+                                            style={{ color: mutedColor }}
+                                        >
+                                            {activity.description}
+                                        </p>
+
+                                        {/* Card Age Badge */}
+                                        <span
+                                            className={styles.ageBadge}
+                                            style={{
+                                                backgroundColor: `${activity.color || accentColor}15`,
+                                                color: activity.color || accentColor
+                                            }}
+                                        >
+                                            {activity.ageGroup}
+                                        </span>
+
+                                        {/* Dot grid in bottom-right matching the color scheme */}
+                                        <div className={styles.dotGrid} style={{ color: activity.color || accentColor }}>
+                                            <svg width="24" height="16" viewBox="0 0 24 16" fill="currentColor">
+                                                <circle cx="2" cy="2" r="1.5" />
+                                                <circle cx="8" cy="2" r="1.5" />
+                                                <circle cx="14" cy="2" r="1.5" />
+                                                <circle cx="20" cy="2" r="1.5" />
+                                                <circle cx="2" cy="8" r="1.5" />
+                                                <circle cx="8" cy="8" r="1.5" />
+                                                <circle cx="14" cy="8" r="1.5" />
+                                                <circle cx="20" cy="8" r="1.5" />
+                                                <circle cx="2" cy="14" r="1.5" />
+                                                <circle cx="8" cy="14" r="1.5" />
+                                                <circle cx="14" cy="14" r="1.5" />
+                                                <circle cx="20" cy="14" r="1.5" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                ) : (
-                                    <span className={styles.emoji}>{activity.emoji}</span>
-                                )}
-                                <h3 className={styles.cardTitle} style={{ color: textColor }}>{activity.name}</h3>
-                                <p className={styles.cardDescription} style={{ color: mutedColor }}>{activity.description}</p>
-                                <span
-                                    className={styles.ageBadge}
-                                    style={{
-                                        backgroundColor: `${activity.color}15`,
-                                        color: activity.color
-                                    }}
-                                >
-                                    {activity.ageGroup}
-                                </span>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
 
-                {/* Zigzag separator */}
+                {/* Divider separated bottom vector block */}
                 <div className={styles.dividerWrapper} style={{ position: 'relative', zIndex: 2 }}>
                     <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className={styles.dividerSvg}>
                         <polygon
@@ -276,119 +290,6 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                     </svg>
                 </div>
             </section>
-
-            {/* Lightbox Modal */}
-            <AnimatePresence>
-                {selectedImage && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center"
-                        style={{
-                            background: 'rgba(0, 0, 0, 0.95)',
-                            backdropFilter: 'blur(8px)'
-                        }}
-                        onClick={closeLightbox}
-                    >
-                        {/* Close button */}
-                        <button
-                            onClick={closeLightbox}
-                            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                            aria-label="Close"
-                        >
-                            <X className="w-6 h-6 text-white" />
-                        </button>
-
-                        {/* Zoom toggle */}
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setIsZoomed(!isZoomed);
-                            }}
-                            className="absolute top-4 left-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                            aria-label="Toggle zoom"
-                        >
-                            <Maximize2 className="w-5 h-5 text-white" />
-                        </button>
-
-                        {/* Image counter */}
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-semibold">
-                            {currentImageIndex + 1} / {activities.length}
-                        </div>
-
-                        {/* Navigation buttons */}
-                        {activities.length > 1 && (
-                            <>
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        navigateImage('prev');
-                                    }}
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                                    aria-label="Previous image"
-                                >
-                                    <ChevronLeft className="w-6 h-6 text-white" />
-                                </button>
-
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        navigateImage('next');
-                                    }}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                                    aria-label="Next image"
-                                >
-                                    <ChevronRight className="w-6 h-6 text-white" />
-                                </button>
-                            </>
-                        )}
-
-                        {/* Image container */}
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            className="relative w-full h-full max-w-5xl max-h-[90vh] p-4"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <div className="relative w-full h-full flex items-center justify-center">
-                                <motion.img
-                                    key={selectedImage.name}
-                                    src={selectedImage.image}
-                                    alt={selectedImage.name}
-                                    className={`object-contain w-full h-full rounded-lg ${isZoomed ? 'cursor-zoom-out scale-150' : 'cursor-zoom-in'
-                                        }`}
-                                    style={{
-                                        transition: 'transform 0.3s ease',
-                                    }}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setIsZoomed(!isZoomed);
-                                    }}
-                                />
-                            </div>
-
-                            {/* Image info */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-md text-center max-w-[90%]">
-                                <h3 className="text-white font-bold text-lg">{selectedImage.name}</h3>
-                                <p className="text-white/70 text-sm mt-1">{selectedImage.description}</p>
-                                <span
-                                    className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-semibold"
-                                    style={{
-                                        backgroundColor: `${selectedImage.color}20`,
-                                        color: selectedImage.color
-                                    }}
-                                >
-                                    {selectedImage.ageGroup}
-                                </span>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </>
     );
 }

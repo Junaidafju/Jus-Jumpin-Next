@@ -2,23 +2,23 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-    Shield, 
-    Eye, 
-    Sparkles, 
-    Video, 
-    DoorOpen, 
-    HeartPulse, 
-    MapPin, 
-    Users, 
-    Baby, 
-    Ticket, 
-    Shirt, 
-    Gift, 
-    Camera, 
-    Car, 
-    HelpCircle, 
-    Plus 
+import {
+    Shield,
+    Eye,
+    Sparkles,
+    Video,
+    DoorOpen,
+    HeartPulse,
+    MapPin,
+    Users,
+    Baby,
+    Ticket,
+    Shirt,
+    Gift,
+    Camera,
+    Car,
+    HelpCircle,
+    Plus
 } from 'lucide-react';
 import { FAQ } from '@/types/location';
 
@@ -134,7 +134,7 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
     };
 
     return (
-        <section 
+        <section
             className="relative overflow-x-hidden py-24 px-4 md:px-8 min-h-screen flex flex-col justify-center transition-colors duration-500"
             style={{ background: config.bg }}
         >
@@ -147,40 +147,40 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
 
             {/* Background Grid Pattern (Only visible on dark backgrounds to avoid clutter on kids page) */}
             {!isKids && <div className="absolute inset-0 opacity-15 pointer-events-none grid-bg" aria-hidden="true" />}
-            
+
             {/* Background Glow Spots */}
             <div className={`absolute top-20 left-10 w-80 h-80 rounded-full blur-[100px] pointer-events-none ${isKids ? 'bg-purple-600/5' : 'bg-blue/10'}`} aria-hidden="true" />
             <div className={`absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[140px] pointer-events-none ${isKids ? 'bg-pink-600/5' : 'bg-purple/5'}`} aria-hidden="true" />
             <div className={`absolute bottom-20 right-10 w-96 h-96 rounded-full blur-[120px] pointer-events-none ${isKids ? 'bg-purple-600/5' : 'bg-pink/10'}`} aria-hidden="true" />
 
             {/* Floating 3D Bouncing Spheres */}
-            <div 
-                className="absolute top-[15%] left-[6%] w-7 h-7 rounded-full pointer-events-none hidden md:block float-sphere shadow-[inset_-3px_-3px_8px_rgba(0,0,0,0.5)]" 
-                style={{ 
-                    background: 'radial-gradient(circle at 35% 35%, #a3e635, #16a34a)', 
+            <div
+                className="absolute top-[15%] left-[6%] w-7 h-7 rounded-full pointer-events-none hidden md:block float-sphere shadow-[inset_-3px_-3px_8px_rgba(0,0,0,0.5)]"
+                style={{
+                    background: 'radial-gradient(circle at 35% 35%, #a3e635, #16a34a)',
                     filter: 'drop-shadow(0 8px 12px rgba(34, 197, 94, 0.35))',
                     animation: 'float-key 5s ease-in-out infinite'
-                }} 
+                }}
                 aria-hidden="true"
             />
-            <div 
-                className="absolute top-[55%] left-[4%] w-9 h-9 rounded-full pointer-events-none hidden md:block float-sphere shadow-[inset_-3px_-3px_8px_rgba(0,0,0,0.5)]" 
-                style={{ 
-                    background: 'radial-gradient(circle at 35% 35%, #38bdf8, #0284c7)', 
+            <div
+                className="absolute top-[55%] left-[4%] w-9 h-9 rounded-full pointer-events-none hidden md:block float-sphere shadow-[inset_-3px_-3px_8px_rgba(0,0,0,0.5)]"
+                style={{
+                    background: 'radial-gradient(circle at 35% 35%, #38bdf8, #0284c7)',
                     filter: 'drop-shadow(0 10px 15px rgba(56, 189, 248, 0.35))',
                     animation: 'float-key 6s ease-in-out infinite',
                     animationDelay: '1.2s'
-                }} 
+                }}
                 aria-hidden="true"
             />
-            <div 
-                className="absolute bottom-[12%] right-[8%] w-11 h-11 rounded-full pointer-events-none hidden md:block float-sphere shadow-[inset_-4px_-4px_10px_rgba(0,0,0,0.5)]" 
-                style={{ 
-                    background: 'radial-gradient(circle at 35% 35%, #f472b6, #db2777)', 
+            <div
+                className="absolute bottom-[12%] right-[8%] w-11 h-11 rounded-full pointer-events-none hidden md:block float-sphere shadow-[inset_-4px_-4px_10px_rgba(0,0,0,0.5)]"
+                style={{
+                    background: 'radial-gradient(circle at 35% 35%, #f472b6, #db2777)',
                     filter: 'drop-shadow(0 12px 18px rgba(244, 114, 182, 0.35))',
                     animation: 'float-key 7s ease-in-out infinite',
                     animationDelay: '2.5s'
-                }} 
+                }}
                 aria-hidden="true"
             />
 
@@ -198,7 +198,7 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
 
             {/* Main Content Area - Expanded to Full Width */}
             <div className="max-w-[1550px] mx-auto relative z-10 w-full px-4 md:px-12 lg:px-16">
-                
+
                 {/* ─── Safety Section Header ─── */}
                 <div className="text-center mb-16">
                     <h2 className="font-sans font-black text-center text-[clamp(2.25rem,4.5vw,3.25rem)] tracking-tight mb-4" style={{ color: config.textColor }}>
@@ -214,10 +214,10 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
                 <div className="relative flex items-center justify-center w-full px-4 mb-28 xl:px-44 lg:px-20">
                     {/* Left Kid (Builder Emoji / Illustration) */}
                     <div className="absolute left-[-2%] xl:left-[2%] w-[130px] xl:w-[185px] hidden lg:block pointer-events-none float-boy z-20">
-                        <img 
-                            src="/characters/left_boy.png" 
-                            alt="Safety character illustration left" 
-                            className="w-full h-auto object-contain filter drop-shadow-[0_15px_22px_rgba(0,0,0,0.6)]" 
+                        <img
+                            src="https://i.pinimg.com/originals/df/57/c2/df57c263f3133c5c46b60c964495f17b.gif"
+                            alt="Safety character illustration left"
+                            className="w-full h-auto object-contain filter"
                         />
                     </div>
 
@@ -226,17 +226,17 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
                         {SAFETY_ITEMS.map((item, i) => {
                             const Icon = item.Icon;
                             return (
-                                <div 
-                                    key={i} 
+                                <div
+                                    key={i}
                                     className="group relative flex flex-col items-center text-center p-6 py-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2"
-                                    style={{ 
+                                    style={{
                                         backgroundColor: config.cardBg,
                                         borderColor: config.cardBorder,
                                         boxShadow: isKids ? '0 10px 30px rgba(124, 58, 237, 0.05)' : '0 8px 32px 0 rgba(0, 0, 0, 0.25)',
                                     }}
                                 >
                                     {/* Neon border hover overlay */}
-                                    <div 
+                                    <div
                                         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                                         style={{
                                             border: `1.5px solid ${item.color}`,
@@ -245,7 +245,7 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
                                     />
 
                                     {/* Icon Container */}
-                                    <div 
+                                    <div
                                         className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-all duration-300"
                                         style={{
                                             border: `2px solid ${item.color}`,
@@ -270,10 +270,10 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
 
                     {/* Right Kid (Safety Cat / Illustration) */}
                     <div className="absolute right-[-2%] xl:right-[2%] w-[130px] xl:w-[185px] hidden lg:block pointer-events-none float-girl z-20">
-                        <img 
-                            src="/characters/right_girl.png" 
-                            alt="Safety character illustration right" 
-                            className="w-full h-auto object-contain filter drop-shadow-[0_15px_22px_rgba(0,0,0,0.6)]" 
+                        <img
+                            src="https://i.pinimg.com/originals/b2/1d/bd/b21dbd909e730c8dd7eea0421929eb68.gif"
+                            alt="Safety character illustration right"
+                            className="w-full h-auto object-contain"
                         />
                     </div>
                 </div>
@@ -308,17 +308,16 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
                             {col.map((faq, i) => {
                                 const globalIndex = colIdx === 0 ? i : i + mid;
                                 const isOpenItem = openIndex === globalIndex;
-                                
+
                                 const { Icon, color, bg: iconBg } = getFAQIcon(faq.question);
 
                                 return (
-                                    <div 
-                                        key={globalIndex} 
-                                        className={`rounded-2xl transition-all duration-300 border overflow-hidden ${
-                                            isOpenItem 
-                                                ? 'border-transparent shadow-[0_10px_25px_rgba(255,102,26,0.15)]' 
-                                                : 'hover:border-opacity-50'
-                                        }`}
+                                    <div
+                                        key={globalIndex}
+                                        className={`rounded-2xl transition-all duration-300 border overflow-hidden ${isOpenItem
+                                            ? 'border-transparent shadow-[0_10px_25px_rgba(255,102,26,0.15)]'
+                                            : 'hover:border-opacity-50'
+                                            }`}
                                         style={{
                                             backgroundColor: config.cardBg,
                                             borderColor: isOpenItem ? config.accent : config.cardBorder,
@@ -327,11 +326,12 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
                                     >
                                         <button
                                             onClick={() => toggle(globalIndex)}
-                                            className="w-full flex items-center justify-between p-5 py-6 text-left transition-colors duration-200 cursor-pointer"
+                                            className="w-full flex items-center justify-between p-5 py-6 text-left transition-colors duration-200 cursor-pointer focus:outline-none focus:no-underline focus-visible:outline-none"
+                                            style={{ outline: 'none', textDecoration: 'none' }}
                                         >
                                             <div className="flex items-center gap-4">
                                                 {/* Circular FAQ Icon Wrapper */}
-                                                <div 
+                                                <div
                                                     className="w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300"
                                                     style={{
                                                         background: iconBg,
@@ -340,7 +340,7 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
                                                 >
                                                     <Icon size={20} style={{ color }} />
                                                 </div>
-                                                
+
                                                 {/* Question Text - Increased size */}
                                                 <span className="font-sans font-extrabold text-[16px] md:text-[18px] tracking-wide select-none" style={{ color: config.textColor }}>
                                                     {faq.question}
@@ -348,7 +348,7 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
                                             </div>
 
                                             {/* Plus button rotating */}
-                                            <div 
+                                            <div
                                                 className="w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300"
                                                 style={{
                                                     transform: isOpenItem ? 'rotate(45deg)' : 'rotate(0)',
@@ -389,7 +389,7 @@ export default function SafetyFAQ({ faqs, accentColor, isKids }: SafetyFAQProps)
             </div>
 
             {/* Custom Embedded Scoped CSS Styles for floating animations and patterns */}
-            <style jsx>{`
+            <style>{`
                 .grid-bg {
                     background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
                     background-size: 24px 24px;

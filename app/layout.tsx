@@ -3,6 +3,8 @@ import "./globals.css";
 import { AnimatedHeader } from "./components/AnimatedHeader";
 import FooterWrapper from "./components/FooterWrapper";
 import PromoPopup from "./components/shared/PromoPopup";
+import ScrollToTop from "./components/shared/ScrollToTop";
+import SmoothScroll from "./components/shared/SmoothScroll";
 
 
 export const metadata: Metadata = {
@@ -20,11 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-black text-slate-50 antialiased">
-        <AnimatedHeader />
+        <ScrollToTop />
+        <SmoothScroll>
+          <AnimatedHeader />
 
-        {children}
-        <FooterWrapper />
-        <PromoPopup />
+          {children}
+          <FooterWrapper />
+          <PromoPopup />
+        </SmoothScroll>
       </body>
     </html>
   );
