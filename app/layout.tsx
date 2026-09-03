@@ -5,6 +5,7 @@ import FooterWrapper from "./components/FooterWrapper";
 import PromoPopup from "./components/shared/PromoPopup";
 import ScrollToTop from "./components/shared/ScrollToTop";
 import SmoothScroll from "./components/shared/SmoothScroll";
+import FloatingChat from './components/FloatingChat';
 
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
           <FooterWrapper />
           <PromoPopup />
         </SmoothScroll>
+        <FloatingChat />
       </body>
     </html>
   );

@@ -3,7 +3,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-
+  env: {
+    GOOGLE_AI_API_KEY: process.env.GOOGLE_AI_API_KEY,
+  },
   images: {
     remotePatterns: [
       {

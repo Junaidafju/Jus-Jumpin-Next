@@ -1001,6 +1001,16 @@ This reflects the **actual current state** of the codebase as of the last update
 
 ```
 jusjumpin-next/
+├── lib/
+│   └── chatbot/
+│       ├── intentMatcher.ts         # NLP/Keyword matching
+│       └── contextManager.ts        # Session context
+│   └── locations/
+│       ├── data.ts
+|   └──util.ts
+|   └──wordpress.ts 
+└── hooks/
+    └── useChatbot.ts                # Custom hook       
 ├── app/
 │   ├── about/
 │   │   └── page.tsx
@@ -1060,6 +1070,16 @@ jusjumpin-next/
 │   │   │   ├── TestimonialCard.tsx
 │   │   │   ├── TestimonialCarousel.tsx
 │   │   │   └── TestimonialMarquee.tsx
+|   |   └── chatbot/
+│       ├── Chatbot.tsx              # Main component
+│       ├── ChatbotButton.tsx        # Floating toggle
+│       ├── ChatWindow.tsx           # Chat interface
+│       ├── MessageList.tsx          # Message display
+│       ├── MessageInput.tsx         # User input
+│       ├── QuickReplies.tsx         # Suggested responses
+│       ├── ChatbotProvider.tsx      # Context provider
+│       └── data/
+│           └── responses.ts         # Static response mapping
 │   │   ├── AnimatedHeader.tsx
 │   │   ├── AnimationWrapper.tsx
 │   │   ├── Footer.tsx
