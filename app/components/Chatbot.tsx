@@ -264,10 +264,12 @@ export default function Chatbot({ onClose }: ChatbotProps) {
             {/* Modern Header */}
             <div className="flex-shrink-0 px-5 py-4 bg-white border-b border-slate-200/80 flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
-                    <div className="relative">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#6345fc] via-[#7b57ff] to-[#9a78ff] flex items-center justify-center text-white text-lg shadow-md shadow-violet-500/20">
-                            😀
-                        </div>
+                    <div className="relative flex items-center justify-center">
+                        <img
+                            src="https://static.wixstatic.com/media/a89add_3d73f7e43cff4f37bdf0af4772ef6595~mv2.gif"
+                            alt="Jus Jumpin AI"
+                            className="w-10 h-10 object-contain drop-shadow-sm"
+                        />
                         <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
                     </div>
                     <div>
@@ -321,8 +323,12 @@ export default function Chatbot({ onClose }: ChatbotProps) {
                         >
                             {/* Avatar */}
                             {message.type === 'bot' ? (
-                                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#6345fc] to-[#8a68ff] text-white flex items-center justify-center text-xs flex-shrink-0 shadow-xs mb-1">
-                                    😎
+                                <div className="w-7 h-7 flex items-center justify-center flex-shrink-0 mb-1">
+                                    <img
+                                        src="https://static.wixstatic.com/media/a89add_3d73f7e43cff4f37bdf0af4772ef6595~mv2.gif"
+                                        alt="Bot"
+                                        className="w-full h-full object-contain"
+                                    />
                                 </div>
                             ) : (
                                 <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-slate-700 to-slate-900 text-white flex items-center justify-center text-xs flex-shrink-0 shadow-xs mb-1 font-semibold">

@@ -289,7 +289,11 @@ const Footer = () => {
                         </motion.h3>
 
                         {/* Desktop: Show all locations in grid */}
-                        <div className="hidden lg:grid lg:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-3 custom-scrollbar">
+                        <div
+                            data-lenis-prevent="true"
+                            className="hidden lg:grid lg:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-3 custom-scrollbar overscroll-contain"
+                            onWheel={(e) => e.stopPropagation()}
+                        >
                             {locations.map((location, index) => (
                                 <Link href={location.slug} key={index} className="block">
                                     <motion.div
@@ -338,7 +342,11 @@ const Footer = () => {
 
                         {/* Mobile: Compact list view */}
                         <div className="lg:hidden">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-3 custom-scrollbar">
+                            <div
+                                data-lenis-prevent="true"
+                                className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-3 custom-scrollbar overscroll-contain"
+                                onWheel={(e) => e.stopPropagation()}
+                            >
                                 {locations.map((location, index) => (
                                     <Link href={location.slug} key={index} className="block">
                                         <div

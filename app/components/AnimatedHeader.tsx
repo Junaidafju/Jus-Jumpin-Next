@@ -369,15 +369,17 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                       initial={{ opacity: 0, y: -8, scale: 0.97 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                      data-lenis-prevent="true"
                       className="absolute top-full left-1/2 -translate-x-1/2 mt-3
                                  w-[320px] sm:w-[420px] md:w-[500px] lg:w-[560px] xl:w-[620px]
                                  bg-neutral-950/90 backdrop-blur-2xl
                                  rounded-2xl border border-white/10
                                  shadow-2xl shadow-black/40 overflow-hidden z-[9999]
-                                 max-h-[70vh] overflow-y-auto"
+                                 max-h-[75vh] flex flex-col overscroll-contain"
                       style={{ willChange: "transform", pointerEvents: "auto" }}
+                      onWheel={(e) => e.stopPropagation()}
                     >
-                      <div className="p-4 border-b border-white/10">
+                      <div className="p-4 border-b border-white/10 shrink-0">
                         <input
                           type="text"
                           placeholder="Search locations..."
@@ -388,7 +390,11 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                         />
                       </div>
 
-                      <div className="p-4 md:p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-h-[380px] overflow-y-auto">
+                      <div 
+                        data-lenis-prevent="true"
+                        className="p-4 md:p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-h-[380px] overflow-y-auto overscroll-contain"
+                        onWheel={(e) => e.stopPropagation()}
+                      >
                         {filteredLocations.length > 0 ? (
                           filteredLocations.map((group) => (
                             <div key={group.state} className="location-item">
@@ -518,7 +524,8 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
 
             <motion.div
               ref={mobileMenuRef}
-              className="lg:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm z-[9999] overflow-y-auto border-l border-white/10"
+              data-lenis-prevent="true"
+              className="lg:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm z-[9999] overflow-y-auto border-l border-white/10 overscroll-contain"
               style={{
                 background: "rgba(20, 12, 4, 0.7)",
                 backdropFilter: "blur(24px)",
@@ -529,11 +536,12 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 200 }}
               onClick={(e) => e.stopPropagation()}
+              onWheel={(e) => e.stopPropagation()}
             >
               {/* Brand accent bar */}
               <div className="h-1 w-full bg-gradient-to-r from-[#f67edd] via-[#ffc60b] to-[#6dc065]" />
 
-              <div className="p-6 h-full overflow-y-auto">
+              <div className="p-6 h-full overflow-y-auto overscroll-contain" data-lenis-prevent="true">
                 <div className="flex justify-between items-center mb-6">
                   <Image
                     src="/image/Jus-Jumpin-Logo.webp"
@@ -585,7 +593,11 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-white/50 mb-4 focus:outline-none focus:ring-2 focus:ring-[#6dc065] focus:border-transparent text-sm"
                     />
-                    <div className="space-y-3 max-h-[280px] overflow-y-auto pr-2">
+                    <div 
+                      data-lenis-prevent="true"
+                      className="space-y-3 max-h-[280px] overflow-y-auto pr-2 overscroll-contain"
+                      onWheel={(e) => e.stopPropagation()}
+                    >
                       {filteredLocations.length > 0 ? (
                         filteredLocations.map((group) => (
                           <div key={group.state} className="space-y-1.5">

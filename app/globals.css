@@ -425,8 +425,9 @@ html.lenis body {
   scroll-behavior: auto !important;
 }
 
-.lenis-smooth [data-lenis-prevent] {
-  overflow: clip;
+.lenis-smooth [data-lenis-prevent],
+[data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 .lenis-target {

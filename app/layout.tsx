@@ -6,6 +6,7 @@ import PromoPopup from "./components/shared/PromoPopup";
 import ScrollToTop from "./components/shared/ScrollToTop";
 import SmoothScroll from "./components/shared/SmoothScroll";
 import FloatingChat from './components/FloatingChat';
+import WhatsAppSideTab from './components/WhatsAppSideTab';
 
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({
           <PromoPopup />
         </SmoothScroll>
         <FloatingChat />
+        <WhatsAppSideTab />
       </body>
     </html>
   );

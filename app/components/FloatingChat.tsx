@@ -30,13 +30,17 @@ export default function FloatingChat() {
             {/* Floating Action Button */}
             <button
                 onClick={toggleChat}
-                className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-tr from-[#6345fc] via-[#7b57ff] to-[#9a78ff] hover:scale-105 active:scale-95 shadow-[0_10px_25px_rgba(99,69,252,0.4)] transition-all duration-300 flex items-center justify-center text-white ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
+                className={`fixed bottom-19 right-6 z-50 p-0 bg-transparent border-0 cursor-pointer focus:outline-none transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
                     } ${isOpen ? 'scale-0 opacity-0 pointer-events-none' : 'scale-100 opacity-100'}`}
                 aria-label="Open chat"
             >
                 <div className="relative flex items-center justify-center">
-                    <span className="text-2xl">😎</span>
-                    <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full"></span>
+                    <img
+                        src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/cd1c9a80364113.5cdec491b07d9.gif"
+                        alt="Jus Jumpin AI Chatbot"
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.35)]"
+                    />
+                    <span className="absolute top-1 right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full shadow-sm"></span>
                 </div>
             </button>
 

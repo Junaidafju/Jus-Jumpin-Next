@@ -864,7 +864,7 @@ export default function CareersPage() {
                 <X size={16} />
               </button>
 
-              <div className="p-6 md:p-8 max-h-[85vh] overflow-y-auto custom-scrollbar">
+              <div data-lenis-prevent="true" className="p-6 md:p-8 max-h-[85vh] overflow-y-auto custom-scrollbar overscroll-contain">
 
                 {/* Header */}
                 <div className="mb-6 flex items-start gap-4">

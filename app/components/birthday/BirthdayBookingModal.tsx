@@ -701,8 +701,9 @@ export default function BirthdayBookingModal({ isOpen, onClose }: BirthdayBookin
             role="dialog"
             aria-modal="true"
             aria-label="Birthday Booking Form"
+            data-lenis-prevent="true"
         >
-            <div className="bbm-modal">
+            <div className="bbm-modal" data-lenis-prevent="true">
                 {/* confetti strip */}
                 <div className="bbm-confetti-strip" aria-hidden="true" />
 

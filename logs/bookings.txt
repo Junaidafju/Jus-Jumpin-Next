@@ -115,3 +115,29 @@
 📝 Requests: super hero theme
 🌐 IP: ::1
 ----------------------------------------
+
+========================================
+📅 Date: 4/9/2026, 12:03:31 pm
+👤 Name: Muhammad Junaid Akhtar
+📱 Phone: 8948240252
+📧 Email: N/A
+👥 People: 14
+📍 Location: Bengaluru - M5 Ecity Mall
+📅 Preferred Date: 2026-09-05
+⏰ Preferred Time: N/A
+📝 Requests: Special is nothing
+🌐 IP: ::1
+----------------------------------------
+
+========================================
+📅 Date: 5/9/2026, 4:29:46 pm
+👤 Name: TESTING Junaid Akhtar
+📱 Phone: 8948240252
+📧 Email: N/A
+👥 People: 10
+📍 Location: Bengaluru - M5 Ecity Mall
+📅 Preferred Date: 2026-09-06
+⏰ Preferred Time: N/A
+📝 Requests: THEMED
+🌐 IP: ::1
+----------------------------------------
