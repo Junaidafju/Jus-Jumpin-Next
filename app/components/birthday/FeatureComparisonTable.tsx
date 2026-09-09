@@ -695,7 +695,7 @@ export default function FeatureComparisonTable({ onBookNow }: FeatureComparisonT
             </div>
 
             {/* Global Styles */}
-            <style jsx global>{`
+            <style>{`
                 @keyframes spin-slow {
                     from { transform: rotate(0deg); }
                     to { transform: rotate(360deg); }

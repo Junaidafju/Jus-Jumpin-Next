@@ -6,15 +6,16 @@ import Image from "next/image";
 /* ─── gallery data ─────────────────────────────────────────── */
 const PHOTOS = [
   { src: "/image/birthday/photos.jpg", thumb: "/image/birthday/photos.jpg", tag: "Cake Time 🎂", color: "#FFD6E0" },
-  { src: "/image/group-celebration.jpg", thumb: "/image/group-celebration.jpg", tag: "Celebrate! 🥳", color: "#D6F0FF" },
-  { src: "/image/bouncy-castle.jpg", thumb: "/image/bouncy-castle.jpg", tag: "Jump High 🚀", color: "#E8FFD6" },
-  { src: "/image/birthday/kids-adult.jpg", thumb: "/image/birthday/kids-adult.jpg", tag: "Best Pals 👯", color: "#FFF3D6" },
-  { src: "/image/balloon-fun.jpg", thumb: "/image/balloon-fun.jpg", tag: "Balloons! 🎈", color: "#F0D6FF" },
-  { src: "/image/birthday/fun-games.jpg", thumb: "/image/birthday/fun-games.jpg", tag: "Games Zone 🎮", color: "#FFE8D6" },
-  { src: "/image/birthday/delectable-food.jpg", thumb: "/image/birthday/delectable-food.jpg", tag: "Sweets & Food 🍕", color: "#D6FFF0" },
+  { src: "/image/birthday/birthday-celebration1.webp", thumb: "/image/birthday/birthday-celebration1.webp", tag: "Celebrate! 🥳", color: "#D6F0FF" },
+  { src: "/image/birthday/birthday-celebration2.webp", thumb: "/image/birthday/birthday-celebration2.webp", tag: "Jump High 🚀", color: "#E8FFD6" },
+  { src: "/image/birthday/birthday-celebration5.webp", thumb: "/image/birthday/birthday-celebration5.webp", tag: "Private Party 🎊", color: "#FFD6D6" },
+  { src: "/image/birthday/birthday-celebration3.webp", thumb: "/image/birthday/birthday-celebration3.webp", tag: "Best Pals 👯", color: "#FFF3D6" },
+  { src: "/image/birthday/birthday-celebration4.webp", thumb: "/image/birthday/birthday-celebration4.webp", tag: "Balloons! 🎈", color: "#F0D6FF" },
+  { src: "/image/birthday/birthday-celebration6.webp", thumb: "/image/birthday/birthday-celebration6.webp", tag: "Birthday Fun ", color: "#FFE8D6" },
+  { src: "/image/birthday/birthday-celebration7.webp", thumb: "/image/birthday/birthday-celebration7.webp", tag: "Family Fun 👨‍👩‍👧‍👦", color: "#D6FFF0" },
   { src: "/image/birthday/personalized-themes.jpg", thumb: "/image/birthday/personalized-themes.jpg", tag: "Sparkle Themes ✨", color: "#FFFBD6" },
-  { src: "/image/birthday/dedicated-zones.jpg", thumb: "/image/birthday/dedicated-zones.jpg", tag: "Private Party 🎊", color: "#FFD6D6" },
-  { src: "/image/foam-pit.jpg", thumb: "/image/foam-pit.jpg", tag: "Foam Pit Fun 🌈", color: "#D6E8FF" },
+  { src: "/image/birthday/birthday-celebration8.webp", thumb: "/image/birthday/birthday-celebration8.webp", tag: "Party Time 🎊", color: "#FFD6D6" },
+  { src: "/image/birthday/birthday-celebration10.webp", thumb: "/image/birthday/birthday-celebration10.webp", tag: "Fun Time 🌈", color: "#D6E8FF" },
 ];
 
 /* ─── CSS ──────────────────────────────────────────────────── */

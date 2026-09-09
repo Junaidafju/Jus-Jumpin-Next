@@ -286,23 +286,6 @@ export default function WhatsIncluded() {
 
             {/* Bottom Gradient Fade */}
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a1628] to-transparent z-10" />
-
-            {/* Responsive Styles */}
-            <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-        
-        @media (max-width: 768px) {
-          section {
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-          }
-          
-          /* Reduce background intensity on mobile */
-          .backdrop-blur-\\[2px\\] {
-            backdrop-filter: blur(1px);
-          }
-        }
-      `}</style>
         </section>
     );
 }

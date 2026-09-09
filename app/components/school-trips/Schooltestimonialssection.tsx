@@ -314,7 +314,7 @@ export default function SchoolTestimonialsSection() {
                         transition={{ type: "spring", stiffness: 400 }}
                     >
                         <Link
-                            href="/school-trips/enquire"
+                            href="/contact"
                             style={{
                                 display: "inline-flex", alignItems: "center", gap: 10,
                                 background: "linear-gradient(135deg, #FE5000 0%, #ff7e40 100%)",
@@ -360,11 +360,6 @@ export default function SchoolTestimonialsSection() {
                     </div>
                 </motion.div>
             </div>
-
-            {/* Fonts */}
-            <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800&display=swap');
-      `}</style>
         </section>
     );
 }

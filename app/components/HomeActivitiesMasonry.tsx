@@ -16,7 +16,7 @@ const ACTIVITIES = [
   },
   {
     title: "Ninja Warrior Course",
-    image: "/image/activities/ninja-course.jpg",
+    image: "/image/intro/activity-ninja.webp",
     description: "Test your speed and balance through obstacle courses.",
     category: "Challenge",
     color: "from-orange-500/20 to-red-500/20",
@@ -30,42 +30,42 @@ const ACTIVITIES = [
   },
   {
     title: "Soft Play Wonderland",
-    image: "/image/birthday/dedicated-zones.jpg",
+    image: "/image/intro/activity-softplay.webp",
     description: "Safe, cushioned mazes and slides designed for little ones.",
     category: "Kids Zone",
     color: "from-pink-500/20 to-rose-500/20",
   },
   {
     title: "Basketball Slam Dunk",
-    image: "/image/basketball-dunk.jpg",
+    image: "/image/intro/Basketball-Slam-Dunk.webp",
     description: "Bounce sky-high and slam dunk like a pro player.",
     category: "Sports",
     color: "from-yellow-500/20 to-amber-500/20",
   },
   {
     title: "Wall Climbing Arena",
-    image: "/image/birthday/fun-games.jpg",
+    image: "/image/intro/Wall-climb.webp",
     description: "Climb colorful wall grips with automated harness safety.",
     category: "Challenge",
     color: "from-cyan-500/20 to-blue-500/20",
   },
   {
     title: "Dodgeball Arena",
-    image: "/image/birthday/kids-adult.jpg",
+    image: "/image/intro/activity-dodgeball.webp",
     description: "High-flying trampoline dodgeball matches with friends.",
     category: "Sports",
     color: "from-red-500/20 to-orange-500/20",
   },
   {
     title: "Spiral Racing Slides",
-    image: "/image/birthday/photo-moments.jpg",
+    image: "/image/intro/spiral-slide.webp",
     description: "Race down multi-lane spiral slides for endless giggles.",
     category: "Adventure",
     color: "from-green-500/20 to-emerald-500/20",
   },
   {
     title: "Giant Ball Pool",
-    image: "/image/birthday/personalized-themes.jpg",
+    image: "/image/intro/giant-ball-pool.webp",
     description: "Dive into an ocean of colorful play balls.",
     category: "Kids Zone",
     color: "from-indigo-500/20 to-purple-500/20",
@@ -182,14 +182,14 @@ export default function PremiumGallery() {
   const currentActivity = ACTIVITIES[activeIndex];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 sm:py-16 lg:py-20 px-3 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.1),transparent_50%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       {/* Glow effects */}
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full blur-3xl opacity-20 pointer-events-none"
         animate={{
           background: [
             'radial-gradient(circle, rgba(56,189,248,0.3), transparent 70%)',
@@ -207,21 +207,21 @@ export default function PremiumGallery() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-4 sm:mb-6">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-sm font-semibold text-slate-300">Premium Experience Gallery</span>
+            <span className="text-xs sm:text-sm font-semibold text-slate-300">Premium Experience Gallery</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-3 sm:mb-6 tracking-tight">
             Explore Our{" "}
             <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
               Wonderland
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto px-2">
             Immerse yourself in a world of adventure, excitement, and unforgettable memories
           </p>
         </motion.div>
@@ -231,18 +231,18 @@ export default function PremiumGallery() {
           {/* Navigation buttons */}
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-black/40 sm:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+            <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform" />
           </button>
 
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-black/40 sm:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group"
             aria-label="Next slide"
           >
-            <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+            <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform" />
           </button>
 
           {/* Main display */}
@@ -270,7 +270,7 @@ export default function PremiumGallery() {
                   animate={{ opacity: 1, scale: 1, rotateX: 0 }}
                   exit={{ opacity: 0, scale: 0.9, rotateX: -10 }}
                   transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                  className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/10] rounded-3xl overflow-hidden group cursor-pointer"
+                  className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] lg:aspect-[21/10] rounded-2xl sm:rounded-3xl overflow-hidden group cursor-pointer shadow-2xl"
                   onClick={() => setIsLightboxOpen(true)}
                 >
                   {/* Image */}
@@ -280,51 +280,51 @@ export default function PremiumGallery() {
                     fill
                     className={cn(
                       "object-cover transition-transform duration-700 ease-out",
-                      isZoomed ? "scale-150" : "scale-100 group-hover:scale-110"
+                      isZoomed ? "scale-150" : "scale-100 group-hover:scale-105 sm:group-hover:scale-110"
                     )}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1400px"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 1400px"
                     priority
                   />
 
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  {/* Gradient overlay - concentrated lower on mobile for maximum image clarity */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 via-35% to-transparent sm:from-black/85 sm:via-black/25 sm:via-45%" />
 
                   {/* Content overlay */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                    className="absolute bottom-8 left-8 right-8"
+                    transition={{ delay: 0.15, duration: 0.4 }}
+                    className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 lg:bottom-8 lg:left-8 lg:right-8"
                   >
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/30 to-teal-500/30 backdrop-blur-md border border-white/20 text-sm font-bold text-white">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2 md:mb-3">
+                      <span className="px-2.5 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-emerald-500/30 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs md:text-sm font-semibold text-white tracking-wide">
                         {currentActivity.category}
                       </span>
-                      <span className="text-sm font-semibold text-white/80">
+                      <span className="text-[11px] sm:text-xs md:text-sm font-medium text-white/80">
                         {String(activeIndex + 1).padStart(2, '0')} / {String(ACTIVITIES.length).padStart(2, '0')}
                       </span>
                     </div>
 
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-3">
+                    <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-1 sm:mb-2 md:mb-3 leading-tight tracking-tight drop-shadow-md">
                       {currentActivity.title}
                     </h2>
 
-                    <p className="text-base sm:text-lg text-slate-300 max-w-2xl">
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-200/90 sm:text-slate-300 max-w-2xl line-clamp-2 sm:line-clamp-none leading-relaxed">
                       {currentActivity.description}
                     </p>
                   </motion.div>
 
                   {/* Actions */}
-                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         setIsLightboxOpen(true);
                       }}
-                      className="p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                      className="p-1.5 sm:p-2 rounded-lg bg-black/40 sm:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
                       aria-label="Open lightbox"
                     >
-                      <Maximize2 className="w-5 h-5 text-white" />
+                      <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                     </button>
                   </div>
                 </motion.div>
@@ -333,7 +333,7 @@ export default function PremiumGallery() {
           </div>
 
           {/* Thumbnail strip */}
-          <div className="mt-8 grid grid-cols-5 sm:grid-cols-9 gap-3">
+          <div className="mt-4 sm:mt-6 lg:mt-8 flex sm:grid sm:grid-cols-9 gap-2 sm:gap-2.5 lg:gap-3 overflow-x-auto pb-2 sm:pb-0 scrollbar-none snap-x snap-mandatory sm:snap-none justify-start sm:justify-center px-1">
             {ACTIVITIES.map((activity, index) => (
               <motion.button
                 key={index}
@@ -344,9 +344,9 @@ export default function PremiumGallery() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={cn(
-                  "relative aspect-square rounded-xl overflow-hidden transition-all duration-300",
+                  "relative flex-shrink-0 w-14 h-14 sm:w-auto sm:h-auto aspect-square rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 snap-center",
                   index === activeIndex
-                    ? "ring-2 ring-emerald-400 shadow-lg shadow-emerald-500/30"
+                    ? "ring-2 ring-emerald-400 shadow-lg shadow-emerald-500/30 scale-105 sm:scale-100"
                     : "opacity-50 hover:opacity-75"
                 )}
               >
@@ -355,7 +355,7 @@ export default function PremiumGallery() {
                   alt={activity.title}
                   fill
                   className="object-cover"
-                  sizes="100px"
+                  sizes="(max-width: 640px) 60px, 120px"
                 />
                 {index === activeIndex && (
                   <div className="absolute inset-0 bg-emerald-500/20" />
@@ -365,10 +365,10 @@ export default function PremiumGallery() {
           </div>
 
           {/* Controls */}
-          <div className="mt-8 flex justify-center gap-4">
+          <div className="mt-4 sm:mt-6 lg:mt-8 flex justify-center gap-4">
             <button
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-              className="px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors text-sm font-semibold text-white"
+              className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors text-xs sm:text-sm font-semibold text-white shadow-sm"
             >
               {isAutoPlaying ? 'Pause Auto Play' : 'Start Auto Play'}
             </button>
@@ -383,7 +383,7 @@ export default function PremiumGallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-2 sm:p-4"
             onClick={() => {
               setIsLightboxOpen(false);
               setIsZoomed(false);
@@ -394,7 +394,7 @@ export default function PremiumGallery() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full h-full max-w-7xl max-h-[90vh] p-4"
+              className="relative w-full h-full max-w-7xl max-h-[90vh] p-2 sm:p-4 flex flex-col justify-center items-center"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative w-full h-full">
@@ -411,16 +411,16 @@ export default function PremiumGallery() {
                 />
 
                 {/* Lightbox controls */}
-                <div className="absolute top-4 right-4 flex gap-2">
+                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 flex gap-2 z-20">
                   <button
                     onClick={() => setIsZoomed(!isZoomed)}
-                    className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                    className="p-2 sm:p-3 rounded-full bg-black/50 sm:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
                     aria-label="Toggle zoom"
                   >
                     {isZoomed ? (
-                      <ZoomOut className="w-6 h-6 text-white" />
+                      <ZoomOut className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     ) : (
-                      <ZoomIn className="w-6 h-6 text-white" />
+                      <ZoomIn className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     )}
                   </button>
                   <button
@@ -428,10 +428,10 @@ export default function PremiumGallery() {
                       setIsLightboxOpen(false);
                       setIsZoomed(false);
                     }}
-                    className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                    className="p-2 sm:p-3 rounded-full bg-black/50 sm:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
                     aria-label="Close lightbox"
                   >
-                    <X className="w-6 h-6 text-white" />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </button>
                 </div>
 
@@ -441,10 +441,10 @@ export default function PremiumGallery() {
                     e.stopPropagation();
                     handlePrev();
                   }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 sm:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors z-20"
                   aria-label="Previous"
                 >
-                  <ChevronLeft className="w-6 h-6 text-white" />
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </button>
 
                 <button
@@ -452,11 +452,18 @@ export default function PremiumGallery() {
                     e.stopPropagation();
                     handleNext();
                   }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/50 sm:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors z-20"
                   aria-label="Next"
                 >
-                  <ChevronRight className="w-6 h-6 text-white" />
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </button>
+
+                {/* Bottom title in lightbox on mobile */}
+                <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 text-center pointer-events-none">
+                  <p className="text-xs sm:text-base font-semibold text-white/90 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full inline-block">
+                    {currentActivity.title} ({activeIndex + 1}/{ACTIVITIES.length})
+                  </p>
+                </div>
               </div>
             </motion.div>
           </motion.div>

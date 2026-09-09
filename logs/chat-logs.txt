@@ -2227,3 +2227,50 @@ We have trampoline & adventure parks in:
 📝 User Question: where can i complaint?
 🤖 AI Response: For any complaints or feedback, please contact our helpline at **+91 98362 29922**. We're here to help!
 --------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 7/9/2026, 3:25:10 pm
+🕐 UTC: 2026-09-07T09:55:10.960Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
+📝 User Question: What are your prices?
+🤖 AI Response: 📍 **Which location would you like to check?**
+
+We have trampoline & adventure parks in:
+• Kolkata • Bengaluru • Dhanbad • Mumbai • Durgapur • Nashik • Jamshedpur • Nagpur • Noida • Pune • Raipur • Ranchi • Siliguri • Surat • Thane • Hyderabad
+
+💡 Example: *"Kolkata prices"*, *"Noida hours"*, or *"Hyderabad activities"*
+--------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 7/9/2026, 3:25:21 pm
+🕐 UTC: 2026-09-07T09:55:21.320Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
+📝 User Question: kolkata prices
+🤖 AI Response: 💰 **Ticket Pricing — Kolkata (ABC Square Building)**
+
+• **90 Minutes:** Weekday **₹650** | Weekend **₹750**
+• **120 Minutes:** Weekday **₹850** | Weekend **₹950**
+
+📌 *Anti-Skid Grip Socks at ₹60 (One-time Purchase. Compulsory for your safety.)*
+
+📞 For party or bulk bookings: (+91)98362 29922
+🔗 https://www.jusjumpin.com/kolkata-abc-square-building-best-adult-trampoline-park
+--------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 7/9/2026, 3:25:33 pm
+🕐 UTC: 2026-09-07T09:55:33.751Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
+📝 User Question: any other place in kolkata?
+🤖 AI Response: 📊 We have **4 locations** in **Kolkata**:
+
+• **ABC Square Building** (10th Floor) — 📞 (+91)98362 29922
+• **Avani Mall** (2nd Floor) — 📞 (+91)85829 09809
+• **Axis Mall** (4th Floor) — 📞 (+91)98742 06206
+• **City Centre 2** (SHOP NO M-2ND FLOOR) — 📞 (+91)90070 86212
+
+💡 Mention any mall (e.g. *"ABC Square Building prices"*) to see exact tickets and timings!
+--------------------------------------------------------------------------------

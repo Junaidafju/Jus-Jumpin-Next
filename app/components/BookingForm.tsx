@@ -71,7 +71,10 @@ export default function BookingForm({ isOpen, onClose, onSuccessBooking, locatio
             const response = await fetch('/api/bookings', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    bookingSource: 'Chatbot AI Assistant'
+                }),
             });
 
             const data = await response.json();

@@ -341,7 +341,7 @@ const BirthdayShowcase = ({ onBookNow }: BirthdayShowcaseProps) => {
                                     }}
                                     className="px-8 py-4 bg-white hover:bg-gray-50 text-[#0066CC] font-bold text-lg rounded-full border-2 border-[#0066CC] transition-all duration-300 shadow-lg hover:shadow-xl"
                                 >
-                                    View Packages
+                                    View Benefits
                                 </button>
                             </div>
 

@@ -17,6 +17,7 @@
  */
 
 import { useRef, useState, useEffect, memo } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { GraduationCap, ArrowRight, School, Users, Shield } from "lucide-react";
 import Image from "next/image";
@@ -517,23 +518,27 @@ export default function SchoolTripsHero() {
                             transition={{ duration: 0.6, delay: 0.8 }}
                             className="flex flex-row gap-3 justify-center lg:justify-start"
                         >
-                            <motion.button
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group relative flex-1 sm:flex-none px-4 py-3 sm:px-8 sm:py-4 bg-[#FE5000] text-white font-bold text-sm sm:text-lg rounded-full transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 min-w-0"
-                                style={{ boxShadow: "4px 4px 0 #1b3a5c" }}
-                            >
-                                <span className="truncate">View Packages</span>
-                                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
-                            </motion.button>
-                            <motion.button
-                                whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255,255,255,0.1)" }}
-                                whileTap={{ scale: 0.95 }}
-                                className="flex-1 sm:flex-none px-4 py-3 sm:px-8 sm:py-4 bg-transparent font-bold text-sm sm:text-lg rounded-full border-2 border-white/50 transition-all duration-300 min-w-0"
-                                style={{ boxShadow: "4px 4px 0 #1b3a5c", color: "#FE5000" }}
-                            >
-                                <span className="truncate">Request Quote</span>
-                            </motion.button>
+                            <Link href="/contact" className="flex-1 sm:flex-none">
+                                <motion.button
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="group relative w-full sm:w-auto px-4 py-3 sm:px-8 sm:py-4 bg-[#FE5000] text-white font-bold text-sm sm:text-lg rounded-full transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 min-w-0"
+                                    style={{ boxShadow: "4px 4px 0 #1b3a5c" }}
+                                >
+                                    <span className="truncate">Book School Trip</span>
+                                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+                                </motion.button>
+                            </Link>
+                            <Link href="/contact" className="flex-1 sm:flex-none">
+                                <motion.button
+                                    whileHover={{ scale: 1.05, y: -2, backgroundColor: "rgba(255,255,255,0.1)" }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-full sm:w-auto px-4 py-3 sm:px-8 sm:py-4 bg-transparent font-bold text-sm sm:text-lg rounded-full border-2 border-white/50 transition-all duration-300 min-w-0"
+                                    style={{ boxShadow: "4px 4px 0 #1b3a5c", color: "#FE5000" }}
+                                >
+                                    <span className="truncate">Request Quote</span>
+                                </motion.button>
+                            </Link>
                         </motion.div>
 
                         <motion.div

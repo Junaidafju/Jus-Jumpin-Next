@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Play, Clapperboard, Film, Popcorn, Candy, Sparkles } from "lucide-react";
 import { useState } from "react";
 
@@ -361,21 +362,23 @@ export default function VideoGallery() {
                     transition={{ delay: 0.6 }}
                     className="mt-16 text-center"
                 >
-                    <motion.button
-                        whileHover={{ y: -4, scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="group relative px-8 py-4 bg-gradient-to-r from-[#FE5000] to-[#3080c0] text-white text-lg font-bold rounded-full shadow-xl inline-flex items-center gap-3 border-b-4 border-[#172B44] active:border-b-0 active:translate-y-1"
-                        style={{ fontFamily: '"Fredoka One", cursive' }}
-                    >
-                        <span className="text-2xl">🎪</span>
-                        Plan Your School Visit
-                        <motion.span
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
+                    <Link href="/contact">
+                        <motion.button
+                            whileHover={{ y: -4, scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group relative px-8 py-4 bg-gradient-to-r from-[#FE5000] to-[#3080c0] text-white text-lg font-bold rounded-full shadow-xl inline-flex items-center gap-3 border-b-4 border-[#172B44] active:border-b-0 active:translate-y-1"
+                            style={{ fontFamily: '"Fredoka One", cursive' }}
                         >
-                            →
-                        </motion.span>
-                    </motion.button>
+                            <span className="text-2xl">🎪</span>
+                            Plan Your School Visit
+                            <motion.span
+                                animate={{ x: [0, 5, 0] }}
+                                transition={{ duration: 1.5, repeat: Infinity }}
+                            >
+                                →
+                            </motion.span>
+                        </motion.button>
+                    </Link>
                     <p className="text-sm text-gray-500 mt-3">
                         Bring your students for an unforgettable experience
                     </p>
@@ -402,17 +405,6 @@ export default function VideoGallery() {
                     </defs>
                 </svg>
             </div>
-
-            <style jsx>{`
-                @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-                
-                .line-clamp-2 {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-            `}</style>
         </section>
     );
 }

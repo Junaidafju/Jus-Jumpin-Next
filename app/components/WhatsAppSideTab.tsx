@@ -69,11 +69,10 @@ export default function WhatsAppSideTab() {
         <div
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className={`absolute right-full top-1/2 -translate-y-1/2 mr-2 transition-all duration-300 ease-out origin-right transform ${
-            isOpen
+          className={`absolute right-full top-1/2 -translate-y-1/2 mr-2 transition-all duration-300 ease-out origin-right transform ${isOpen
               ? "translate-x-0 opacity-100 scale-100 pointer-events-auto visible"
               : "translate-x-6 opacity-0 scale-95 pointer-events-none invisible"
-          } w-[290px] sm:w-[320px] bg-slate-950/95 backdrop-blur-2xl border border-emerald-500/30 rounded-2xl p-3.5 sm:p-4 text-white shadow-[0_20px_50px_rgba(0,0,0,0.6)]`}
+            } w-[290px] sm:w-[320px] bg-slate-950/95 backdrop-blur-2xl border border-emerald-500/30 rounded-2xl p-3.5 sm:p-4 text-white shadow-[0_20px_50px_rgba(0,0,0,0.6)]`}
         >
           {/* Top Header */}
           <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/10">
@@ -179,9 +178,8 @@ export default function WhatsAppSideTab() {
           {/* Bottom: Subtle indicator arrow */}
           <div className="mt-2 text-white/90 group-hover:-translate-x-0.5 transition-transform">
             <ChevronLeft
-              className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                isOpen ? "rotate-180" : ""
-              }`}
+              className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                }`}
             />
           </div>
         </button>

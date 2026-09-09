@@ -6,46 +6,45 @@ import { useEffect, useRef, useState, useCallback } from "react";
    Types
    ───────────────────────────────────────── */
 interface BirthdayBookingModalProps {
-    isOpen: boolean;
-    onClose: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 interface FormData {
-    parentName: string;
-    email: string;
-    phone: string;
-    location: string;
-    childName: string;
-    childAge: string;
-    partyDate: string;
-    partyTime: string;
-    guestCount: string;
-    package: string;
-    message: string;
+  parentName: string;
+  email: string;
+  phone: string;
+  location: string;
+  childName: string;
+  childAge: string;
+  partyDate: string;
+  partyTime: string;
+  guestCount: string;
+  package: string;
+  message: string;
 }
 
 const INITIAL: FormData = {
-    parentName: "",
-    email: "",
-    phone: "",
-    location: "",
-    childName: "",
-    childAge: "",
-    partyDate: "",
-    partyTime: "",
-    guestCount: "",
-    package: "",
-    message: "",
+  parentName: "",
+  email: "",
+  phone: "",
+  location: "",
+  childName: "",
+  childAge: "",
+  partyDate: "",
+  partyTime: "",
+  guestCount: "",
+  package: "",
+  message: "",
 };
 
 const PACKAGES = [
-    { id: "mini", label: "Mini Party 🎈", desc: "Up to 15 kids · 2 hrs", price: "₹4,999" },
-    { id: "classic", label: "Classic Party 🎉", desc: "Up to 30 kids · 3 hrs", price: "₹7,999" },
-    { id: "mega", label: "Mega Party 🚀", desc: "Up to 50 kids · 4 hrs", price: "₹12,999" },
-    { id: "royal", label: "Royal Party 👑", desc: "Unlimited · Full day", price: "₹19,999" },
+  { id: "mini", label: "Mini Party 🎈", desc: "Up to 15 kids · Connect with our team for details", price: "₹7,499/-" },
+  { id: "customised", label: "Customised Party 🎉", desc: "As per your requirement . Get Customised Plan and Pricing", price: "₹XX,XXX" },
+
 ];
 
-const TIME_SLOTS = ["10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM", "6:00 PM"];
+const TIME_SLOTS = ["10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM", "6:00 PM", "Other"];
 
 /* ─────────────────────────────────────────
    CSS
@@ -590,383 +589,490 @@ const CSS = `
 type Errors = Partial<Record<keyof FormData, string>>;
 
 function validate(step: number, data: FormData): Errors {
-    const e: Errors = {};
-    if (step === 0) {
-        if (!data.parentName.trim()) e.parentName = "Name is required";
-        if (!data.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) e.email = "Valid email required";
-        if (!data.phone.trim() || data.phone.replace(/\D/g, "").length < 10) e.phone = "Valid phone required";
-        if (!data.location) e.location = "Please select a venue location";
-    }
-    if (step === 1) {
-        if (!data.childName.trim()) e.childName = "Child's name is required";
-        if (!data.childAge) e.childAge = "Please select age";
-        if (!data.package) e.package = "Please pick a package";
-    }
-    if (step === 2) {
-        if (!data.partyDate) e.partyDate = "Date is required";
-        if (!data.partyTime) e.partyTime = "Please pick a time slot";
-        if (!data.guestCount) e.guestCount = "Guest count is required";
-    }
-    return e;
+  const e: Errors = {};
+  if (step === 0) {
+    if (!data.parentName.trim()) e.parentName = "Name is required";
+    if (!data.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) e.email = "Valid email required";
+    if (!data.phone.trim() || data.phone.replace(/\D/g, "").length < 10) e.phone = "Valid 10-digit phone required";
+    if (!data.location) e.location = "Please select a venue location";
+  }
+  if (step === 1) {
+    if (!data.childName.trim()) e.childName = "Child's name is required";
+    if (!data.childAge) e.childAge = "Please select age";
+    if (!data.package) e.package = "Please pick a package";
+  }
+  if (step === 2) {
+    if (!data.partyDate) e.partyDate = "Date is required";
+    if (!data.partyTime) e.partyTime = "Please pick a time slot";
+    if (!data.guestCount) e.guestCount = "Guest count is required";
+  }
+  return e;
 }
 
 /* ─────────────────────────────────────────
    Modal component
    ───────────────────────────────────────── */
 export default function BirthdayBookingModal({ isOpen, onClose }: BirthdayBookingModalProps) {
-    const [step, setStep] = useState(0);
-    const [form, setForm] = useState<FormData>(INITIAL);
-    const [errors, setErrors] = useState<Errors>({});
-    const [success, setSuccess] = useState(false);
-    const [submitting, setSub] = useState(false);
-    const backdropRef = useRef<HTMLDivElement>(null);
-    const bodyRef = useRef<HTMLDivElement>(null);
+  const [step, setStep] = useState(0);
+  const [form, setForm] = useState<FormData>(INITIAL);
+  const [errors, setErrors] = useState<Errors>({});
+  const [submitError, setSubmitError] = useState<string>("");
+  const [success, setSuccess] = useState(false);
+  const [submitting, setSub] = useState(false);
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
 
-    const TOTAL_STEPS = 3;
+  const TOTAL_STEPS = 3;
 
-    /* inject CSS */
-    useEffect(() => {
-        if (document.getElementById("bbm-css")) return;
-        const s = document.createElement("style");
-        s.id = "bbm-css"; s.textContent = CSS;
-        document.head.appendChild(s);
-        return () => { document.getElementById("bbm-css")?.remove(); };
-    }, []);
+  /* inject CSS */
+  useEffect(() => {
+    if (document.getElementById("bbm-css")) return;
+    const s = document.createElement("style");
+    s.id = "bbm-css"; s.textContent = CSS;
+    document.head.appendChild(s);
+    return () => { document.getElementById("bbm-css")?.remove(); };
+  }, []);
 
-    /* lock body scroll when open */
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-            // reset after close animation
-            const t = setTimeout(() => { setStep(0); setForm(INITIAL); setErrors({}); setSuccess(false); }, 400);
-            return () => clearTimeout(t);
-        }
-    }, [isOpen]);
-
-    /* escape key */
-    useEffect(() => {
-        const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
-        if (isOpen) window.addEventListener("keydown", onKey);
-        return () => window.removeEventListener("keydown", onKey);
-    }, [isOpen, onClose]);
-
-    /* scroll body to top on step change */
-    useEffect(() => {
-        bodyRef.current?.scrollTo({ top: 0, behavior: "smooth" });
-    }, [step]);
-
-    const set = (key: keyof FormData, val: string) => {
-        setForm(p => ({ ...p, [key]: val }));
-        setErrors(p => { const n = { ...p }; delete n[key]; return n; });
-    };
-
-    const next = () => {
-        const e = validate(step, form);
-        if (Object.keys(e).length) { setErrors(e); return; }
+  /* lock body scroll when open */
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      // reset after close animation
+      const t = setTimeout(() => {
+        setStep(0);
+        setForm(INITIAL);
         setErrors({});
-        setStep(p => p + 1);
-    };
+        setSubmitError("");
+        setSuccess(false);
+      }, 400);
+      return () => clearTimeout(t);
+    }
+  }, [isOpen]);
 
-    const back = () => { setErrors({}); setStep(p => p - 1); };
+  /* escape key */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    if (isOpen) window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen, onClose]);
 
-    const submit = async () => {
-        const e = validate(step, form);
-        if (Object.keys(e).length) { setErrors(e); return; }
-        setSub(true);
-        // simulate API call
-        await new Promise(r => setTimeout(r, 1400));
-        setSub(false);
+  /* scroll body to top on step change */
+  useEffect(() => {
+    bodyRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
+
+  const set = (key: keyof FormData, val: string) => {
+    setForm(p => ({ ...p, [key]: val }));
+    setErrors(p => { const n = { ...p }; delete n[key]; return n; });
+    setSubmitError("");
+  };
+
+  const next = () => {
+    const e = validate(step, form);
+    if (Object.keys(e).length) { setErrors(e); return; }
+    setErrors({});
+    setSubmitError("");
+    setStep(p => p + 1);
+  };
+
+  const back = () => {
+    setErrors({});
+    setSubmitError("");
+    setStep(p => p - 1);
+  };
+
+  const submit = async () => {
+    const e = validate(step, form);
+    if (Object.keys(e).length) { setErrors(e); return; }
+    setSub(true);
+    setSubmitError("");
+
+    try {
+      const selectedPkg = PACKAGES.find(p => p.id === form.package);
+      const packageDesc = selectedPkg ? `${selectedPkg.label} (${selectedPkg.price}) - ${selectedPkg.desc}` : form.package;
+
+      const payload = {
+        parentName: form.parentName,
+        name: form.parentName,
+        email: form.email,
+        phone: form.phone,
+        location: form.location,
+        childName: form.childName,
+        childAge: form.childAge,
+        package: packageDesc,
+        guestCount: form.guestCount,
+        people: form.guestCount,
+        partyDate: form.partyDate,
+        date: form.partyDate,
+        partyTime: form.partyTime,
+        time: form.partyTime,
+        message: form.message,
+        specialRequests: form.message,
+        bookingSource: "Birthday Celebration Page (Modal)"
+      };
+
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setSuccess(true);
-    };
+      } else {
+        setSubmitError(data.error || "Failed to process your booking request. Please check your information or call +91 98362 29922.");
+      }
+    } catch (err) {
+      setSubmitError("Could not connect to the booking server. Please check your internet connection or call +91 98362 29922.");
+    } finally {
+      setSub(false);
+    }
+  };
 
-    /* close on backdrop click */
-    const onBackdropClick = (e: React.MouseEvent) => {
-        if (e.target === backdropRef.current) onClose();
-    };
+  /* close on backdrop click */
+  const onBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === backdropRef.current) onClose();
+  };
 
-    const todayStr = new Date().toISOString().split("T")[0];
+  const todayStr = new Date().toISOString().split("T")[0];
 
-    const stepLabels = ["Your Info", "Party Details", "Date & Time"];
-    const stepIcons = ["👤", "🎉", "📅"];
+  const stepLabels = ["Your Info", "Party Details", "Date & Time"];
+  const stepIcons = ["👤", "🎉", "📅"];
 
-    if (!isOpen) return null;
+  if (!isOpen) return null;
 
-    return (
-        <div
-            ref={backdropRef}
-            className="bbm-backdrop open"
-            onClick={onBackdropClick}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Birthday Booking Form"
-            data-lenis-prevent="true"
-        >
-            <div className="bbm-modal" data-lenis-prevent="true">
-                {/* confetti strip */}
-                <div className="bbm-confetti-strip" aria-hidden="true" />
+  return (
+    <div
+      ref={backdropRef}
+      className="bbm-backdrop open"
+      onClick={onBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Birthday Booking Form"
+      data-lenis-prevent="true"
+    >
+      <div className="bbm-modal" data-lenis-prevent="true">
+        {/* confetti strip */}
+        <div className="bbm-confetti-strip" aria-hidden="true" />
 
-                {/* header */}
-                <div className="bbm-header">
-                    <div className="bbm-header-left">
-                        <span className="bbm-header-tag">📸 Jus Jumpin'</span>
-                        <span className="bbm-header-title">
-                            Book Your <span>Birthday</span> Party 🎂
-                        </span>
-                    </div>
-                    <button className="bbm-close" onClick={onClose} aria-label="Close">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round">
-                            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                        </svg>
-                    </button>
-                </div>
-
-                {/* step tabs */}
-                {!success && (
-                    <div className="bbm-steps" role="tablist">
-                        {stepLabels.map((label, i) => (
-                            <button
-                                key={i}
-                                role="tab"
-                                aria-selected={i === step}
-                                className={`bbm-step-tab${i === step ? " active" : ""}${i < step ? " done" : ""}`}
-                                onClick={() => i < step && setStep(i)}
-                            >
-                                <span className="bbm-step-num">
-                                    {i < step ? "✓" : stepIcons[i]}
-                                </span>
-                                {label}
-                            </button>
-                        ))}
-                    </div>
-                )}
-
-                {/* body */}
-                <div className="bbm-body" ref={bodyRef}>
-                    {success ? (
-                        /* ── success ── */
-                        <div className="bbm-success">
-                            <div className="bbm-success-confetti" aria-hidden="true">🎊 🎂 🎈</div>
-                            <div className="bbm-success-icon">🎉</div>
-                            <div className="bbm-success-title">
-                                You&apos;re <span>Booked!</span>
-                            </div>
-                            <p className="bbm-success-sub">
-                                Woohoo! We&apos;ve received your booking request for{" "}
-                                <strong>{form.childName}&apos;s birthday party</strong>.
-                                Our team will call you on <strong>{form.phone}</strong> within 24 hours to confirm!
-                            </p>
-                            <button className="bbm-btn bbm-btn-submit" onClick={onClose} style={{ marginTop: 8 }}>
-                                🎈 Awesome, Close!
-                            </button>
-                        </div>
-                    ) : (
-                        <>
-                            {/* ── Step 0: Contact info ── */}
-                            <div className={`bbm-panel${step === 0 ? " active" : ""}`} role="tabpanel">
-                                <div className="bbm-section-label">Your Contact Info</div>
-                                <div className="bbm-row">
-                                    <Field label="Parent / Guardian Name" req>
-                                        <input className={`bbm-input${errors.parentName ? " error" : ""}`}
-                                            type="text" placeholder="e.g. Priya Sharma"
-                                            value={form.parentName} onChange={e => set("parentName", e.target.value)} />
-                                        {errors.parentName && <span className="bbm-error-msg">⚠ {errors.parentName}</span>}
-                                    </Field>
-                                    <Field label="Email Address" req>
-                                        <input className={`bbm-input${errors.email ? " error" : ""}`}
-                                            type="email" placeholder="you@email.com"
-                                            value={form.email} onChange={e => set("email", e.target.value)} />
-                                        {errors.email && <span className="bbm-error-msg">⚠ {errors.email}</span>}
-                                    </Field>
-                                </div>
-                                <div className="bbm-row">
-                                    <Field label="Phone Number" req>
-                                        <input className={`bbm-input${errors.phone ? " error" : ""}`}
-                                            type="tel" placeholder="e.g. 9876543210"
-                                            value={form.phone} onChange={e => set("phone", e.target.value)} />
-                                        {errors.phone && <span className="bbm-error-msg">⚠ {errors.phone}</span>}
-                                    </Field>
-                                    <Field label="Preferred Location" req>
-                                        <select className={`bbm-select${errors.location ? " error" : ""}`}
-                                            value={form.location} onChange={e => set("location", e.target.value)}>
-                                            <option value="">Select venue location</option>
-                                            <option value="Kolkata - Rajarhat / Newtown">Kolkata - Rajarhat / Newtown</option>
-                                            <option value="Kolkata - Avani Mall">Kolkata - Avani Mall</option>
-                                            <option value="Kolkata - ABC Square">Kolkata - ABC Square</option>
-                                            <option value="Raipur">Raipur</option>
-                                            <option value="Bengaluru - M5 ECity Mall">Bengaluru - M5 ECity Mall</option>
-                                            <option value="Other / Nearby Location">Other / Nearby Location</option>
-                                        </select>
-                                        {errors.location && <span className="bbm-error-msg">⚠ {errors.location}</span>}
-                                    </Field>
-                                </div>
-                            </div>
-
-                            {/* ── Step 1: Party details ── */}
-                            <div className={`bbm-panel${step === 1 ? " active" : ""}`} role="tabpanel">
-                                <div className="bbm-section-label">Birthday Child</div>
-                                <div className="bbm-row">
-                                    <Field label="Child's Name" req>
-                                        <input className={`bbm-input${errors.childName ? " error" : ""}`}
-                                            type="text" placeholder="e.g. Arjun"
-                                            value={form.childName} onChange={e => set("childName", e.target.value)} />
-                                        {errors.childName && <span className="bbm-error-msg">⚠ {errors.childName}</span>}
-                                    </Field>
-                                    <Field label="Turning Age" req>
-                                        <select className={`bbm-select${errors.childAge ? " error" : ""}`}
-                                            value={form.childAge} onChange={e => set("childAge", e.target.value)}>
-                                            <option value="">Select age</option>
-                                            {Array.from({ length: 15 }, (_, i) => i + 1).map(n => (
-                                                <option key={n} value={n}>{n} years old</option>
-                                            ))}
-                                        </select>
-                                        {errors.childAge && <span className="bbm-error-msg">⚠ {errors.childAge}</span>}
-                                    </Field>
-                                </div>
-
-                                <div className="bbm-section-label">Choose Package</div>
-                                {errors.package && <span className="bbm-error-msg">⚠ {errors.package}</span>}
-                                <div className="bbm-packages">
-                                    {PACKAGES.map(pkg => (
-                                        <div
-                                            key={pkg.id}
-                                            className={`bbm-pkg${form.package === pkg.id ? " selected" : ""}`}
-                                            onClick={() => set("package", pkg.id)}
-                                            role="radio"
-                                            aria-checked={form.package === pkg.id}
-                                            tabIndex={0}
-                                            onKeyDown={e => e.key === "Enter" && set("package", pkg.id)}
-                                        >
-                                            <div className="bbm-pkg-label">{pkg.label}</div>
-                                            <div className="bbm-pkg-desc">{pkg.desc}</div>
-                                            <div className="bbm-pkg-price">{pkg.price}</div>
-                                            <div className="bbm-pkg-check">✓</div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* ── Step 2: Date & time ── */}
-                            <div className={`bbm-panel${step === 2 ? " active" : ""}`} role="tabpanel">
-                                <div className="bbm-section-label">When's the Party?</div>
-                                <div className="bbm-row">
-                                    <Field label="Party Date" req>
-                                        <input className={`bbm-input${errors.partyDate ? " error" : ""}`}
-                                            type="date" min={todayStr}
-                                            value={form.partyDate} onChange={e => set("partyDate", e.target.value)} />
-                                        {errors.partyDate && <span className="bbm-error-msg">⚠ {errors.partyDate}</span>}
-                                    </Field>
-                                    <Field label="Number of Guests" req>
-                                        <select className={`bbm-select${errors.guestCount ? " error" : ""}`}
-                                            value={form.guestCount} onChange={e => set("guestCount", e.target.value)}>
-                                            <option value="">Select guests</option>
-                                            {["10–15", "15–25", "25–35", "35–50", "50+"].map(g => (
-                                                <option key={g} value={g}>{g} guests</option>
-                                            ))}
-                                        </select>
-                                        {errors.guestCount && <span className="bbm-error-msg">⚠ {errors.guestCount}</span>}
-                                    </Field>
-                                </div>
-
-                                <div className="bbm-section-label">Preferred Time Slot</div>
-                                {errors.partyTime && <span className="bbm-error-msg">⚠ {errors.partyTime}</span>}
-                                <div className="bbm-slots" role="group" aria-label="Time slots">
-                                    {TIME_SLOTS.map(t => (
-                                        <button
-                                            key={t}
-                                            className={`bbm-slot${form.partyTime === t ? " selected" : ""}`}
-                                            onClick={() => set("partyTime", t)}
-                                            type="button"
-                                        >
-                                            🕐 {t}
-                                        </button>
-                                    ))}
-                                </div>
-
-                                <Field label="Special Requests / Theme Ideas 🎨" optional>
-                                    <textarea className="bbm-textarea"
-                                        placeholder="e.g. Superhero theme, nut-free cake, indoor seating..."
-                                        value={form.message} onChange={e => set("message", e.target.value)} />
-                                </Field>
-
-                                {/* summary */}
-                                <div className="bbm-summary">
-                                    <div className="bbm-summary-head">📋 Your Booking Summary</div>
-                                    <div className="bbm-summary-body">
-                                        {[
-                                            { icon: "👤", label: "Parent", val: form.parentName || "—" },
-                                            { icon: "📍", label: "Location", val: form.location || "—" },
-                                            { icon: "🎂", label: "Child", val: form.childName ? `${form.childName}, turning ${form.childAge}` : "—" },
-                                            { icon: "🎊", label: "Package", val: PACKAGES.find(p => p.id === form.package)?.label || "—" },
-                                            { icon: "📅", label: "Date", val: form.partyDate ? new Date(form.partyDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }) : "—" },
-                                            { icon: "🕐", label: "Time", val: form.partyTime || "—" },
-                                            { icon: "👥", label: "Guests", val: form.guestCount || "—" },
-                                        ].map((r, i) => (
-                                            <div key={i} className="bbm-summary-row">
-                                                <span className="bbm-summary-icon">{r.icon}</span>
-                                                <span style={{ color: "#5a80a0" }}>{r.label}:</span>
-                                                <span className="bbm-summary-val">{r.val}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </>
-                    )}
-                </div>
-
-                {/* footer */}
-                {!success && (
-                    <div className="bbm-footer">
-                        <div className="bbm-step-dot-row" aria-hidden="true">
-                            {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-                                <div key={i} className={`bbm-step-dot${i === step ? " active" : i < step ? " done" : ""}`} />
-                            ))}
-                        </div>
-
-                        <div style={{ display: "flex", gap: 10 }}>
-                            {step > 0 && (
-                                <button className="bbm-btn bbm-btn-back" onClick={back} type="button">
-                                    ← Back
-                                </button>
-                            )}
-                            {step < TOTAL_STEPS - 1 ? (
-                                <button className="bbm-btn bbm-btn-next" onClick={next} type="button">
-                                    Next Step →
-                                </button>
-                            ) : (
-                                <button
-                                    className="bbm-btn bbm-btn-submit"
-                                    onClick={submit}
-                                    type="button"
-                                    disabled={submitting}
-                                >
-                                    {submitting ? "Booking... ⏳" : "🎉 Confirm Booking!"}
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                )}
-            </div>
+        {/* header */}
+        <div className="bbm-header">
+          <div className="bbm-header-left">
+            <span className="bbm-header-tag">📸 Jus Jumpin'</span>
+            <span className="bbm-header-title">
+              Book Your <span>Birthday</span> Party 🎂
+            </span>
+          </div>
+          <button className="bbm-close" onClick={onClose} aria-label="Close">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
         </div>
-    );
+
+        {/* step tabs */}
+        {!success && (
+          <div className="bbm-steps" role="tablist">
+            {stepLabels.map((label, i) => (
+              <button
+                key={i}
+                role="tab"
+                aria-selected={i === step}
+                className={`bbm-step-tab${i === step ? " active" : ""}${i < step ? " done" : ""}`}
+                onClick={() => i < step && setStep(i)}
+              >
+                <span className="bbm-step-num">
+                  {i < step ? "✓" : stepIcons[i]}
+                </span>
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* body */}
+        <div className="bbm-body" ref={bodyRef}>
+          {success ? (
+            /* ── success ── */
+            <div className="bbm-success">
+              <div className="bbm-success-confetti" aria-hidden="true">🎊 🎂 🎈</div>
+              <div className="bbm-success-icon">🎉</div>
+              <div className="bbm-success-title">
+                You&apos;re <span>Booked!</span>
+              </div>
+              <p className="bbm-success-sub">
+                Woohoo! We&apos;ve received your party booking request for{" "}
+                <strong>{form.childName}&apos;s birthday celebration</strong>.
+                Our team will call you on <strong>+91 {form.phone}</strong> within 24 hours to confirm the date and theme!
+              </p>
+              <button className="bbm-btn bbm-btn-submit" onClick={onClose} style={{ marginTop: 8 }}>
+                🎈 Awesome, Close!
+              </button>
+            </div>
+          ) : (
+            <>
+              {/* Error Banner if API submission fails */}
+              {submitError && (
+                <div style={{
+                  background: "#fee2e2",
+                  border: "2px solid #ef4444",
+                  color: "#991b1b",
+                  padding: "10px 14px",
+                  borderRadius: "12px",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  marginBottom: "14px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px"
+                }}>
+                  <span>⚠️</span>
+                  <span>{submitError}</span>
+                </div>
+              )}
+
+              {/* ── Step 0: Contact info ── */}
+              <div className={`bbm-panel${step === 0 ? " active" : ""}`} role="tabpanel">
+                <div className="bbm-section-label">Your Contact Info</div>
+                <div className="bbm-row">
+                  <Field label="Parent / Guardian Name" req>
+                    <input className={`bbm-input${errors.parentName ? " error" : ""}`}
+                      type="text" placeholder="e.g. Priya Sharma"
+                      value={form.parentName} onChange={e => set("parentName", e.target.value)} />
+                    {errors.parentName && <span className="bbm-error-msg">⚠ {errors.parentName}</span>}
+                  </Field>
+                  <Field label="Email Address" req>
+                    <input className={`bbm-input${errors.email ? " error" : ""}`}
+                      type="email" placeholder="you@email.com"
+                      value={form.email} onChange={e => set("email", e.target.value)} />
+                    {errors.email && <span className="bbm-error-msg">⚠ {errors.email}</span>}
+                  </Field>
+                </div>
+                <div className="bbm-row">
+                  <Field label="Phone Number" req>
+                    <input className={`bbm-input${errors.phone ? " error" : ""}`}
+                      type="tel" placeholder="e.g. 9876543210"
+                      maxLength={10}
+                      value={form.phone} onChange={e => set("phone", e.target.value)} />
+                    {errors.phone && <span className="bbm-error-msg">⚠ {errors.phone}</span>}
+                  </Field>
+                  <Field label="Preferred Venue Location" req>
+                    <select className={`bbm-select${errors.location ? " error" : ""}`}
+                      value={form.location} onChange={e => set("location", e.target.value)}>
+                      <option value="">Select venue location</option>
+                      <optgroup label="West Bengal">
+                        <option value="Kolkata - ABC Square Building">Kolkata - ABC Square Building</option>
+                        <option value="Kolkata - Avani Mall">Kolkata - Avani Mall</option>
+                        <option value="Kolkata - Axis Mall">Kolkata - Axis Mall</option>
+                        <option value="Kolkata - City Centre 2">Kolkata - City Centre 2</option>
+                        <option value="Siliguri - City Centre Mall">Siliguri - City Centre Mall</option>
+                        <option value="Durgapur - Junction Mall">Durgapur - Junction Mall</option>
+                      </optgroup>
+                      <optgroup label="Karnataka">
+                        <option value="Bengaluru - M5 Ecity Mall">Bengaluru - M5 Ecity Mall</option>
+                        <option value="Bengaluru - Meenakshi Mall">Bengaluru - Meenakshi Mall</option>
+                      </optgroup>
+                      <optgroup label="Telangana">
+                        <option value="Hyderabad - Sarath City Capital Mall">Hyderabad - Sarath City Capital Mall</option>
+                        <option value="Hyderabad - DSL Virtue Mall">Hyderabad - DSL Virtue Mall</option>
+                      </optgroup>
+                      <optgroup label="Uttar Pradesh & NCR">
+                        <option value="Noida - The Great India Place (GIP)">Noida - The Great India Place (GIP)</option>
+                        <option value="Noida - Spectrum Metro Mall">Noida - Spectrum Metro Mall</option>
+                      </optgroup>
+                      <optgroup label="Maharashtra">
+                        <option value="Mumbai - R City Mall (Ghatkopar)">Mumbai - R City Mall (Ghatkopar)</option>
+                        <option value="Thane - R Mall">Thane - R Mall</option>
+                        <option value="Pune - Seasons Mall">Pune - Seasons Mall</option>
+                        <option value="Nagpur - VR Mall">Nagpur - VR Mall</option>
+                        <option value="Nashik - City Centre Mall">Nashik - City Centre Mall</option>
+                      </optgroup>
+                      <optgroup label="Chhattisgarh">
+                        <option value="Raipur - Zora The Mall">Raipur - Zora The Mall</option>
+                      </optgroup>
+                      <optgroup label="Jharkhand">
+                        <option value="Ranchi - Nucleus Mall">Ranchi - Nucleus Mall</option>
+                        <option value="Dhanbad - Prabhatam Grand Mall">Dhanbad - Prabhatam Grand Mall</option>
+                        <option value="Jamshedpur - P&M Mall">Jamshedpur - P&M Mall</option>
+                      </optgroup>
+                      <optgroup label="Gujarat">
+                        <option value="Surat - VR Mall">Surat - VR Mall</option>
+                      </optgroup>
+                      <option value="Other / Nearest Jus Jumpin Venue">Other / Nearest Jus Jumpin Venue</option>
+                    </select>
+                    {errors.location && <span className="bbm-error-msg">⚠ {errors.location}</span>}
+                  </Field>
+                </div>
+              </div>
+
+              {/* ── Step 1: Party details ── */}
+              <div className={`bbm-panel${step === 1 ? " active" : ""}`} role="tabpanel">
+                <div className="bbm-section-label">Birthday Child</div>
+                <div className="bbm-row">
+                  <Field label="Child's Name" req>
+                    <input className={`bbm-input${errors.childName ? " error" : ""}`}
+                      type="text" placeholder="e.g. Arjun"
+                      value={form.childName} onChange={e => set("childName", e.target.value)} />
+                    {errors.childName && <span className="bbm-error-msg">⚠ {errors.childName}</span>}
+                  </Field>
+                  <Field label="Turning Age" req>
+                    <select className={`bbm-select${errors.childAge ? " error" : ""}`}
+                      value={form.childAge} onChange={e => set("childAge", e.target.value)}>
+                      <option value="">Select age</option>
+                      {Array.from({ length: 15 }, (_, i) => i + 1).map(n => (
+                        <option key={n} value={n}>{n} years old</option>
+                      ))}
+                    </select>
+                    {errors.childAge && <span className="bbm-error-msg">⚠ {errors.childAge}</span>}
+                  </Field>
+                </div>
+
+                <div className="bbm-section-label">Choose Package</div>
+                {errors.package && <span className="bbm-error-msg">⚠ {errors.package}</span>}
+                <div className="bbm-packages">
+                  {PACKAGES.map(pkg => (
+                    <div
+                      key={pkg.id}
+                      className={`bbm-pkg${form.package === pkg.id ? " selected" : ""}`}
+                      onClick={() => set("package", pkg.id)}
+                      role="radio"
+                      aria-checked={form.package === pkg.id}
+                      tabIndex={0}
+                      onKeyDown={e => e.key === "Enter" && set("package", pkg.id)}
+                    >
+                      <div className="bbm-pkg-label">{pkg.label}</div>
+                      <div className="bbm-pkg-desc">{pkg.desc}</div>
+                      <div className="bbm-pkg-price">{pkg.price}</div>
+                      <div className="bbm-pkg-check">✓</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── Step 2: Date & time ── */}
+              <div className={`bbm-panel${step === 2 ? " active" : ""}`} role="tabpanel">
+                <div className="bbm-section-label">When's the Party?</div>
+                <div className="bbm-row">
+                  <Field label="Party Date" req>
+                    <input className={`bbm-input${errors.partyDate ? " error" : ""}`}
+                      type="date" min={todayStr}
+                      value={form.partyDate} onChange={e => set("partyDate", e.target.value)} />
+                    {errors.partyDate && <span className="bbm-error-msg">⚠ {errors.partyDate}</span>}
+                  </Field>
+                  <Field label="Number of Guests" req>
+                    <select className={`bbm-select${errors.guestCount ? " error" : ""}`}
+                      value={form.guestCount} onChange={e => set("guestCount", e.target.value)}>
+                      <option value="">Select guests</option>
+                      {["10–15", "15–25", "25–35", "35–50", "50+"].map(g => (
+                        <option key={g} value={g}>{g} guests</option>
+                      ))}
+                    </select>
+                    {errors.guestCount && <span className="bbm-error-msg">⚠ {errors.guestCount}</span>}
+                  </Field>
+                </div>
+
+                <div className="bbm-section-label">Preferred Time Slot</div>
+                {errors.partyTime && <span className="bbm-error-msg">⚠ {errors.partyTime}</span>}
+                <div className="bbm-slots" role="group" aria-label="Time slots">
+                  {TIME_SLOTS.map(t => (
+                    <button
+                      key={t}
+                      className={`bbm-slot${form.partyTime === t ? " selected" : ""}`}
+                      onClick={() => set("partyTime", t)}
+                      type="button"
+                    >
+                      🕐 {t}
+                    </button>
+                  ))}
+                </div>
+
+                <Field label="Special Requests / Theme Ideas 🎨" optional>
+                  <textarea className="bbm-textarea"
+                    placeholder="e.g. Superhero theme, nut-free cake, indoor seating..."
+                    value={form.message} onChange={e => set("message", e.target.value)} />
+                </Field>
+
+                {/* summary */}
+                <div className="bbm-summary">
+                  <div className="bbm-summary-head">📋 Your Booking Summary</div>
+                  <div className="bbm-summary-body">
+                    {[
+                      { icon: "👤", label: "Parent", val: form.parentName || "—" },
+                      { icon: "📍", label: "Location", val: form.location || "—" },
+                      { icon: "🎂", label: "Child", val: form.childName ? `${form.childName}, turning ${form.childAge}` : "—" },
+                      { icon: "🎊", label: "Package", val: PACKAGES.find(p => p.id === form.package)?.label || "—" },
+                      { icon: "📅", label: "Date", val: form.partyDate ? new Date(form.partyDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }) : "—" },
+                      { icon: "🕐", label: "Time", val: form.partyTime || "—" },
+                      { icon: "👥", label: "Guests", val: form.guestCount || "—" },
+                    ].map((r, i) => (
+                      <div key={i} className="bbm-summary-row">
+                        <span className="bbm-summary-icon">{r.icon}</span>
+                        <span style={{ color: "#5a80a0" }}>{r.label}:</span>
+                        <span className="bbm-summary-val">{r.val}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* footer */}
+        {!success && (
+          <div className="bbm-footer">
+            <div className="bbm-step-dot-row" aria-hidden="true">
+              {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+                <div key={i} className={`bbm-step-dot${i === step ? " active" : i < step ? " done" : ""}`} />
+              ))}
+            </div>
+
+            <div style={{ display: "flex", gap: 10 }}>
+              {step > 0 && (
+                <button className="bbm-btn bbm-btn-back" onClick={back} type="button">
+                  ← Back
+                </button>
+              )}
+              {step < TOTAL_STEPS - 1 ? (
+                <button className="bbm-btn bbm-btn-next" onClick={next} type="button">
+                  Next Step →
+                </button>
+              ) : (
+                <button
+                  className="bbm-btn bbm-btn-submit"
+                  onClick={submit}
+                  type="button"
+                  disabled={submitting}
+                >
+                  {submitting ? "Submitting Booking... ⏳" : "🎉 Confirm Booking!"}
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 /* ─── tiny Field wrapper ─── */
 function Field({
-    label, req, optional, children,
+  label, req, optional, children,
 }: {
-    label: string; req?: boolean; optional?: boolean; children: React.ReactNode;
+  label: string; req?: boolean; optional?: boolean; children: React.ReactNode;
 }) {
-    return (
-        <div className="bbm-field">
-            <label className="bbm-label">
-                {label}
-                {req && <span className="req"> *</span>}
-                {optional && <span style={{ color: "#a0bcd0", fontSize: "0.75rem", marginLeft: 4 }}>(optional)</span>}
-            </label>
-            {children}
-        </div>
-    );
+  return (
+    <div className="bbm-field">
+      <label className="bbm-label">
+        {label}
+        {req && <span className="req"> *</span>}
+        {optional && <span style={{ color: "#a0bcd0", fontSize: "0.75rem", marginLeft: 4 }}>(optional)</span>}
+      </label>
+      {children}
+    </div>
+  );
 }

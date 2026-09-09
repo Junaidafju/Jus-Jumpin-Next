@@ -222,7 +222,7 @@ const FAQItemComponent: React.FC<{
 
                                     {/* Fun CTA for booking */}
                                     {item.category === "booking" && (
-                                        <Link href="/school-trips/book">
+                                        <Link href="/contact">
                                             <motion.span
                                                 className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-full text-sm font-bold text-white"
                                                 style={{ background: item.color }}
@@ -288,7 +288,7 @@ export default function SchoolFAQ() {
             ref={sectionRef}
             className="relative w-full py-20 md:py-28 overflow-hidden"
             style={{
-                background: `linear-gradient(to bottom, #ffffff, #f1f8ff, #d4f5ff, #acf5ff, #81f4ff, #63dff0, #41cae2, #00b6d4, #1c89ac, #246080, #1f3953, #111828);`
+                background: `linear-gradient(to bottom, #ffffff, #f1f8ff, #d4f5ff, #acf5ff, #81f4ff, #63dff0, #41cae2, #00b6d4, #1c89ac, #246080, #1f3953, #111828)`
             }}
             aria-labelledby="faq-heading"
         >
@@ -549,7 +549,7 @@ export default function SchoolFAQ() {
                             </motion.a>
 
                             <motion.a
-                                href="mailto:schools@jusjumpin.com"
+                                href="mailto:jusjumpinmarketing@gmail.com"
                                 whileHover={{ scale: 1.05, rotate: 2 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="flex items-center gap-3 px-8 py-4 rounded-full font-bold text-lg shadow-xl border-4 border-white"

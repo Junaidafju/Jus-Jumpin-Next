@@ -607,21 +607,6 @@ export default function WhyChooseUs() {
                     ))}
                 </div>
             </div>
-
-            <style jsx>{`
-                .card-4d {
-                    transform-style: preserve-3d;
-                }
-                .card__front {
-                    backface-visibility: hidden;
-                }
-                .delay-100 {
-                    animation-delay: 100ms;
-                }
-                .delay-150 {
-                    animation-delay: 150ms;
-                }
-            `}</style>
         </section>
     );
 }

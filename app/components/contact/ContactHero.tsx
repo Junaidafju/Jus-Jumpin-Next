@@ -33,9 +33,11 @@ const MeshBg = () => (
         </svg>
         {/* Subtle noise texture */}
         <div className="absolute inset-0 opacity-40" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
-            backgroundSize: '200px 200px',
+            backgroundImage: `url("https://i.pinimg.com/originals/37/af/79/37af794546af5a722a036563e21ce618.gif")`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
         }} />
+
     </div>
 );
 
@@ -73,7 +75,7 @@ export function ContactHero() {
             <div className="absolute top-1/4 right-[10%] w-32 h-32 rounded-full" style={{ background: 'rgba(74,222,128,0.1)' }} />
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-                <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 ">
                     {/* Left Content */}
                     <div className="flex-1 max-w-2xl text-center lg:text-left">
                         <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-green-400/30 text-green-300 rounded-full px-4 py-2 text-xs sm:text-sm font-medium mb-6">
@@ -144,7 +146,7 @@ export function ContactHero() {
                                 alt="Jus Jumpin trampoline fun"
                                 width={500}
                                 height={500}
-                                className="w-full h-auto object-contain drop-shadow-2xl"
+                                className="w-full h-auto object-contain drop-shadow-2xl translate-y-20"
                                 priority
                                 onError={(e) => {
                                     // Fallback image if the custom image doesn't exist
@@ -183,18 +185,6 @@ function QuickVisitCTA() {
 
                 <div className="hidden md:block w-px h-12 bg-green-200" />
 
-                {/* Visit Us */}
-                <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center text-2xl">
-                        📍
-                    </div>
-                    <div>
-                        <div className="text-xs font-semibold text-green-600 uppercase tracking-wider">Visit Us</div>
-                        <div className="font-display font-bold text-gray-800">Newtown, Rajarhat</div>
-                    </div>
-                </div>
-
-                <div className="hidden md:block w-px h-12 bg-green-200" />
 
                 {/* Hours */}
                 <div className="flex items-center gap-3">

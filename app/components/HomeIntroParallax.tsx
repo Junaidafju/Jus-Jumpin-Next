@@ -31,7 +31,7 @@ const ACTIVITIES = [
     image: "/image/intro/hero-trampoline-fun.webp",
     accentColor: "#a855f7",
     icon: Zap,
-    link: "/activities#trampoline",
+    link: "/our-activities#trampoline",
     shape: "rounded-diamond",
   },
   {
@@ -42,7 +42,7 @@ const ACTIVITIES = [
     image: "/image/intro/activity-softplay.webp",
     accentColor: "#ec4899",
     icon: Sparkles,
-    link: "/activities#soft-play",
+    link: "/our-activities#soft-play",
     shape: "corner-round",
   },
   {
@@ -53,7 +53,7 @@ const ACTIVITIES = [
     image: "/image/intro/activity-ninja.webp",
     accentColor: "#f59e0b",
     icon: Flame,
-    link: "/activities#ninja-course",
+    link: "/our-activities#ninja-course",
     shape: "star-flower",
   },
   {
@@ -64,7 +64,7 @@ const ACTIVITIES = [
     image: "/image/intro/activity-climbing.webp",
     accentColor: "#84cc16",
     icon: Mountain,
-    link: "/activities#wall-climbing",
+    link: "/our-activities#wall-climbing",
     shape: "gear",
   },
   {
@@ -75,7 +75,7 @@ const ACTIVITIES = [
     image: "/image/intro/activity-dodgeball.webp",
     accentColor: "#06b6d4",
     icon: Target,
-    link: "/activities#dodgeball",
+    link: "/our-activities#dodgeball",
     shape: "rounded-diamond",
   },
   {
@@ -83,10 +83,10 @@ const ACTIVITIES = [
     name: "Birthday Parties",
     tagline: "Celebrate Bigger",
     description: "Dedicated party lounges, custom themes, tasty treats and private jump times.",
-    image: "/image/intro/hero-trampoline-fun.webp",
+    image: "/image/intro/birthday_parties.webp",
     accentColor: "#8b5cf6",
     icon: PartyPopper,
-    link: "/birthday",
+    link: "/birthday-celebration",
     shape: "corner-round",
   },
 ];
@@ -333,7 +333,7 @@ export default function HomeIntroParallax() {
                       <image
                         href="/image/intro/activity-trampoline.webp"
                         x="-240"
-                        y="-220"
+                        y="-180"
                         width="520"
                         height="370"
                         preserveAspectRatio="xMidYMid slice"

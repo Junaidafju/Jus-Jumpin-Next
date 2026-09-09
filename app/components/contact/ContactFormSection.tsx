@@ -97,7 +97,7 @@ export function ContactFormSection() {
     const contactCards = [
         {
             icon: '📍',
-            title: 'Our Address',
+            title: 'Corporate Office',
             content: 'PS Qube, Street No. 1111, Action Area IID, Rajarhat, Newtown, West Bengal 700156',
             link: null
         },
