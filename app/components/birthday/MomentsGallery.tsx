@@ -18,7 +18,7 @@ const PHOTOS = [
   { src: "/image/birthday/birthday-celebration10.webp", thumb: "/image/birthday/birthday-celebration10.webp", tag: "Fun Time 🌈", color: "#D6E8FF" },
 ];
 
-/* ─── CSS ──────────────────────────────────────────────────── */
+/* ───────────────────────────────────────── CSS ──────────────────────────────────────────────────── */
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;700;800;900&display=swap');
 
