@@ -8,6 +8,14 @@ import HomeReviewsMarquee from "./components/HomeReviewsMarquee";
 import HomeFinalCTA from "./components/HomeFinalCTA";
 import StructuredData from "./components/shared/StructuredData";
 import { homeTestimonialsData } from "./components/HomeTestimonialsSection";
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata(
+  "Indoor Trampoline & Play Parks Across India | Jus Jumpin",
+  "Discover safe, exciting indoor trampoline parks and play zones across India. Find activities, celebrate birthdays, and plan your next visit with Jus Jumpin.",
+  "/",
+);
 
 export default function Home() {
   return (

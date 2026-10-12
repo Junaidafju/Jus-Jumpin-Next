@@ -7,7 +7,6 @@ import WelcomeSection from "../components/about/WelcomeSection";
 import MissionVision from "../components/about/MissionVision";
 import ValuesSection from "../components/about/ValuesSection";
 import FounderSection from "../components/about/FounderSection";
-
 export default function AboutPage() {
     return (
         <main className="min-h-screen bg-bg-cream overflow-x-hidden">

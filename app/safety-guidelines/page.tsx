@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { PolicyLayout } from "../components/legal/PolicyLayout";
 import styles from "../components/legal/PolicyLayout.module.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Safety Guidelines | Jus Jumpin",
-  description:
-    "Prepare for a safe visit with Jus Jumpin's play, supervision, health, and hygiene guidance.",
-};
+export const metadata: Metadata = pageMetadata(
+  "Safety Guidelines | Jus Jumpin",
+  "Prepare for a safe visit with Jus Jumpin's play, supervision, health, and hygiene guidance.",
+  "/safety-guidelines/",
+);
 
 const essentials = [
   {

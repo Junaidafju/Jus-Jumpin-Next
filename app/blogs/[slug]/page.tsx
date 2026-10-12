@@ -7,6 +7,7 @@ import { BlogCard } from "@/app/components/blogs/BlogCard";
 import { BlogSidebar } from "@/app/components/blogs/BlogSidebar";
 import { ShareButton } from "@/app/components/blogs/ShareButton";
 import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
+import { absoluteUrl } from "@/lib/seo";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }> | { slug: string };
@@ -20,20 +21,37 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     return {
       title: "Post Not Found | Jus Jumpin Blog",
       description: "The requested blog post could not be found.",
+      robots: { index: false, follow: false },
     };
   }
 
   const cleanExcerpt = post.excerpt?.rendered
     ? post.excerpt.rendered.replace(/<[^>]*>/g, "").slice(0, 160) + "..."
-    : "";
+    : "Read the latest stories, tips, and updates from Jus Jumpin.";
+  const canonical = absoluteUrl(`/blogs/${post.slug}/`);
 
   return {
     title: `${post.title.rendered} | Jus Jumpin Blog`,
     description: cleanExcerpt,
+    alternates: { canonical },
     openGraph: {
       title: post.title.rendered,
       description: cleanExcerpt,
-      images: post.featuredImageUrl ? [{ url: post.featuredImageUrl }] : [],
+      url: canonical,
+      siteName: "Jus Jumpin",
+      locale: "en_IN",
+      type: "article",
+      images: post.featuredImageUrl
+        ? [{ url: post.featuredImageUrl }]
+        : [{ url: absoluteUrl("/image/Jus-Jumpin-Logo.webp"), alt: "Jus Jumpin" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title.rendered,
+      description: cleanExcerpt,
+      images: post.featuredImageUrl
+        ? [post.featuredImageUrl]
+        : [absoluteUrl("/image/Jus-Jumpin-Logo.webp")],
     },
   };
 }

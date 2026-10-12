@@ -4,6 +4,14 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Chat with JusJumpin AI Assistant',
     description: 'Ask JusJumpin AI about our locations, pricing, activities, and book your next party!',
+    robots: {
+        index: false,
+        follow: false,
+        googleBot: {
+            index: false,
+            follow: false,
+        },
+    },
 };
 
 export default function ChatPage() {

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { PolicyLayout } from "../components/legal/PolicyLayout";
 import styles from "../components/legal/PolicyLayout.module.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions | Jus Jumpin",
-  description:
-    "Read the Jus Jumpin party, venue, and attraction rules before your visit.",
-};
+export const metadata: Metadata = pageMetadata(
+  "Terms & Conditions | Jus Jumpin",
+  "Read the Jus Jumpin party, venue, and attraction rules before your visit.",
+  "/terms-and-conditions/",
+);
 
 const categories = [
   {

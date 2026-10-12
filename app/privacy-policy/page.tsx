@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { PolicyLayout } from "../components/legal/PolicyLayout";
 import styles from "../components/legal/PolicyLayout.module.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Jus Jumpin",
-  description:
-    "Learn how Jus Jumpin collects, uses, shares, and safeguards your information.",
-};
+export const metadata: Metadata = pageMetadata(
+  "Privacy Policy | Jus Jumpin",
+  "Learn how Jus Jumpin collects, uses, shares, and safeguards your information.",
+  "/privacy-policy/",
+);
 
 const sections = [
   {

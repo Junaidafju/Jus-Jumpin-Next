@@ -5,12 +5,13 @@ import type { Metadata } from "next";
 import SchoolTripsClient from "./SchoolTripsClient";
 import StructuredData from "../components/shared/StructuredData";
 import { schoolTestimonialsData } from "../components/school-trips/Schooltestimonialssection";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "School Trips | Jus Jumpin",
-  description:
-    "Book an unforgettable, curriculum-aligned school trip at Jus Jumpin. Safe, fun, and Ofsted-aligned activities for all year groups.",
-};
+export const metadata: Metadata = pageMetadata(
+  "School Trips | Jus Jumpin",
+  "Book an unforgettable, curriculum-aligned school trip at Jus Jumpin. Safe, fun, and Ofsted-aligned activities for all year groups.",
+  "/school-trips/",
+);
 
 export default function SchoolTripsPage() {
   return (

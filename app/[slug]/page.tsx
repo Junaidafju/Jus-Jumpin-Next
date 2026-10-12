@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getLocation, getAllSlugs } from '@/lib/locations/data';
+import { absoluteUrl } from '@/lib/seo';
 
 import HeroCarousel from '@/app/components/location/HeroCarousel';
 import LocationIntro from '@/app/components/location/LocationIntro';
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: MetadataProps): Promise<Metad
     const loc = getLocation(slug);
     if (!loc) return {};
 
-    const canonical = `https://www.jusjumpin.com/${loc.slug}/`;
+    const canonical = absoluteUrl(`/${loc.slug}/`);
     const ogImage = loc.heroImages[0];
 
     return {
@@ -54,7 +55,7 @@ function buildJsonLd(loc: NonNullable<ReturnType<typeof getLocation>>) {
         '@type': 'AmusementPark',
         name: `Jus Jumpin — ${loc.city} ${loc.mall}`,
         description: loc.seoDescription,
-        url: `https://www.jusjumpin.com/${loc.slug}/`,
+        url: absoluteUrl(`/${loc.slug}/`),
         image: loc.heroImages[0],
         telephone: loc.phone,
         address: {
