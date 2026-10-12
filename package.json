@@ -36,8 +36,9 @@
     "three": "^0.182.0"
   },
   "optionalDependencies": {
-  "lightningcss-linux-x64-gnu": "*"
-},
+    "@tailwindcss/oxide-linux-x64-gnu": "4.1.18",
+    "lightningcss-linux-x64-gnu": "*"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/canvas-confetti": "^1.9.0",
