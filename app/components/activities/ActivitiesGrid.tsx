@@ -8,311 +8,311 @@ import { activities, categories, Activity, colors } from "./activitiesData";
 
 // ─── Per-card holo config ─────────────────────────────────────────────────────
 const HOLO_CONFIGS: Record<string, { c1: string; c2: string; c3?: string; c4?: string; c5?: string }> = {
-    pink: { c1: "#f67edd", c2: "#ff5da0" },
-    orange: { c1: "#ff661a", c2: "#ffc60b" },
-    cyan: { c1: "#00b9e3", c2: "#4facfe" },
-    green: { c1: "#6dc065", c2: "#b2d235" },
-    purple: { c1: "#8869d2", c2: "#f67edd", c3: "#00b9e3", c4: "#6dc065", c5: "#ffc60b" },
-    red: { c1: "#ff3645", c2: "#ff5da0" },
-    yellow: { c1: "#ffc60b", c2: "#b2d235" },
-    blue: { c1: "#4facfe", c2: "#00b9e3" },
-    lime: { c1: "#b2d235", c2: "#6dc065" },
-    rose: { c1: "#ff5da0", c2: "#f67edd" },
+  pink: { c1: "#f67edd", c2: "#ff5da0" },
+  orange: { c1: "#ff661a", c2: "#ffc60b" },
+  cyan: { c1: "#00b9e3", c2: "#4facfe" },
+  green: { c1: "#6dc065", c2: "#b2d235" },
+  purple: { c1: "#8869d2", c2: "#f67edd", c3: "#00b9e3", c4: "#6dc065", c5: "#ffc60b" },
+  red: { c1: "#ff3645", c2: "#ff5da0" },
+  yellow: { c1: "#ffc60b", c2: "#b2d235" },
+  blue: { c1: "#4facfe", c2: "#00b9e3" },
+  lime: { c1: "#b2d235", c2: "#6dc065" },
+  rose: { c1: "#ff5da0", c2: "#f67edd" },
 };
 
 function getHoloConfig(color: string) {
-    const key = Object.entries(colors).find(([, v]) => v === color)?.[0] || "orange";
-    return HOLO_CONFIGS[key] || HOLO_CONFIGS.orange;
+  const key = Object.entries(colors).find(([, v]) => v === color)?.[0] || "orange";
+  return HOLO_CONFIGS[key] || HOLO_CONFIGS.orange;
 }
 
 // ─── Single Holo Card ─────────────────────────────────────────────────────────
 interface HoloCardProps {
-    activity: Activity;
-    index: number;
+  activity: Activity;
+  index: number;
 }
 
 function HoloCard({ activity, index }: HoloCardProps) {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const [isFlipped, setIsFlipped] = useState(false);
-    const [transform, setTransform] = useState("");
-    const [gradPos, setGradPos] = useState("50% 50%");
-    const [sparkPos, setSparkPos] = useState("50% 50%");
-    const [glareOpc, setGlareOpc] = useState(0.4);
-    const [isHovered, setIsHovered] = useState(false);
-    const [isAnimated, setIsAnimated] = useState(true);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [transform, setTransform] = useState("");
+  const [gradPos, setGradPos] = useState("50% 50%");
+  const [sparkPos, setSparkPos] = useState("50% 50%");
+  const [glareOpc, setGlareOpc] = useState(0.4);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(true);
 
-    const holo = getHoloConfig(activity.color);
+  const holo = getHoloConfig(activity.color);
 
-    const handlePointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
-        if (isFlipped) return;
-        const card = cardRef.current;
-        if (!card) return;
+  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (isFlipped) return;
+    const card = cardRef.current;
+    if (!card) return;
 
-        const rect = card.getBoundingClientRect();
-        const l = e.clientX - rect.left;
-        const t = e.clientY - rect.top;
-        const w = rect.width;
-        const h = rect.height;
+    const rect = card.getBoundingClientRect();
+    const l = e.clientX - rect.left;
+    const t = e.clientY - rect.top;
+    const w = rect.width;
+    const h = rect.height;
 
-        const px = Math.abs(Math.floor((100 / w) * l) - 100);
-        const py = Math.abs(Math.floor((100 / h) * t) - 100);
-        const pa = (50 - px) + (50 - py);
+    const px = Math.abs(Math.floor((100 / w) * l) - 100);
+    const py = Math.abs(Math.floor((100 / h) * t) - 100);
+    const pa = (50 - px) + (50 - py);
 
-        const lp = 50 + (px - 50) / 1.5;
-        const tp = 50 + (py - 50) / 1.5;
-        const pxSpark = 50 + (px - 50) / 7;
-        const pySpark = 50 + (py - 50) / 7;
-        const pOpc = 20 + Math.abs(pa) * 1.5;
+    const lp = 50 + (px - 50) / 1.5;
+    const tp = 50 + (py - 50) / 1.5;
+    const pxSpark = 50 + (px - 50) / 7;
+    const pySpark = 50 + (py - 50) / 7;
+    const pOpc = 20 + Math.abs(pa) * 1.5;
 
-        const ty = ((tp - 50) / 2) * -1;
-        const tx = ((lp - 50) / 1.5) * 0.5;
+    const ty = ((tp - 50) / 2) * -1;
+    const tx = ((lp - 50) / 1.5) * 0.5;
 
-        setTransform(`rotateX(${ty}deg) rotateY(${tx}deg)`);
-        setGradPos(`${lp}% ${tp}%`);
-        setSparkPos(`${pxSpark}% ${pySpark}%`);
-        setGlareOpc(pOpc / 100);
-        setIsHovered(true);
-        setIsAnimated(false);
+    setTransform(`rotateX(${ty}deg) rotateY(${tx}deg)`);
+    setGradPos(`${lp}% ${tp}%`);
+    setSparkPos(`${pxSpark}% ${pySpark}%`);
+    setGlareOpc(pOpc / 100);
+    setIsHovered(true);
+    setIsAnimated(false);
 
-        if (timerRef.current) clearTimeout(timerRef.current);
-    }, [isFlipped]);
+    if (timerRef.current) clearTimeout(timerRef.current);
+  }, [isFlipped]);
 
-    const handlePointerLeave = useCallback(() => {
-        if (isFlipped) return;
-        setTransform("");
-        setIsHovered(false);
-        if (timerRef.current) clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => setIsAnimated(true), 2500);
-    }, [isFlipped]);
+  const handlePointerLeave = useCallback(() => {
+    if (isFlipped) return;
+    setTransform("");
+    setIsHovered(false);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setIsAnimated(true), 2500);
+  }, [isFlipped]);
 
-    const handleClick = useCallback(() => {
-        setIsFlipped((f) => !f);
-        setTransform("");
-        setIsHovered(false);
-        setIsAnimated(false);
-    }, []);
+  const handleClick = useCallback(() => {
+    setIsFlipped((f) => !f);
+    setTransform("");
+    setIsHovered(false);
+    setIsAnimated(false);
+  }, []);
 
-    useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
 
-    const rainbowGradient = holo.c3
-        ? `linear-gradient(115deg, transparent 20%, ${holo.c1} 36%, ${holo.c2} 43%, ${holo.c3} 50%, ${holo.c4} 57%, ${holo.c5} 64%, transparent 80%)`
-        : `linear-gradient(110deg, transparent 25%, ${holo.c1} 48%, ${holo.c2} 52%, transparent 75%)`;
+  const rainbowGradient = holo.c3
+    ? `linear-gradient(115deg, transparent 20%, ${holo.c1} 36%, ${holo.c2} 43%, ${holo.c3} 50%, ${holo.c4} 57%, ${holo.c5} 64%, transparent 80%)`
+    : `linear-gradient(110deg, transparent 25%, ${holo.c1} 48%, ${holo.c2} 52%, transparent 75%)`;
 
-    const ambientGradient = `linear-gradient(115deg,
+  const ambientGradient = `linear-gradient(115deg,
     transparent 0%, ${holo.c1} 25%,
     transparent 47%, transparent 53%,
     ${holo.c2} 75%, transparent 100%)`;
 
-    const c1 = holo.c1;
-    const c2 = holo.c2;
+  const c1 = holo.c1;
+  const c2 = holo.c2;
 
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: index * 0.04 }}
-            style={{ perspective: "750px" }}
-            className="relative"
-        >
-            {/* Card wrapper — handles tilt transform */}
-            <div
-                ref={cardRef}
-                onPointerMove={handlePointerMove}
-                onPointerLeave={handlePointerLeave}
-                onClick={handleClick}
-                className={`holo-card ${isAnimated ? "animated" : ""} ${isHovered ? "hovered" : ""}`}
-                style={{
-                    transform: isFlipped
-                        ? "rotateY(180deg)"
-                        : isHovered
-                            ? transform
-                            : undefined,
-                    "--c1": c1,
-                    "--c2": c2,
-                    "--grad-pos": gradPos,
-                    "--spark-pos": sparkPos,
-                    "--glare-opc": glareOpc,
-                    "--rainbow": rainbowGradient,
-                    "--ambient": ambientGradient,
-                    "--activity-color": activity.color,
-                } as React.CSSProperties}
-            >
-                {/* ── FRONT ── */}
-                <div className="card-face card-front">
-                    <div className="card-image-wrap">
-                        <Image
-                            src={activity.image}
-                            alt={activity.title}
-                            fill
-                            className="card-img"
-                            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 22vw"
-                            priority={index < 4}
-                        />
-                        <div className="card-image-overlay" />
-                    </div>
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.04 }}
+      style={{ perspective: "750px" }}
+      className="relative"
+    >
+      {/* Card wrapper — handles tilt transform */}
+      <div
+        ref={cardRef}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        onClick={handleClick}
+        className={`holo-card ${isAnimated ? "animated" : ""} ${isHovered ? "hovered" : ""}`}
+        style={{
+          transform: isFlipped
+            ? "rotateY(180deg)"
+            : isHovered
+              ? transform
+              : undefined,
+          "--c1": c1,
+          "--c2": c2,
+          "--grad-pos": gradPos,
+          "--spark-pos": sparkPos,
+          "--glare-opc": glareOpc,
+          "--rainbow": rainbowGradient,
+          "--ambient": ambientGradient,
+          "--activity-color": activity.color,
+        } as React.CSSProperties}
+      >
+        {/* ── FRONT ── */}
+        <div className="card-face card-front">
+          <div className="card-image-wrap">
+            <Image
+              src={activity.image}
+              alt={activity.title}
+              fill
+              className="card-img"
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 22vw"
+              priority={index < 4}
+            />
+            <div className="card-image-overlay" />
+          </div>
 
-                    {/* Category pill */}
-                    <div className="card-category" style={{ background: activity.color }}>
-                        <span>{activity.icon}</span>
-                        <span>{activity.category}</span>
-                    </div>
+          {/* Category pill */}
+          <div className="card-category" style={{ background: activity.color }}>
+            <span>{activity.icon}</span>
+            <span>{activity.category}</span>
+          </div>
 
-                    {/* Flip hint sparkle */}
-                    <div className="card-flip-hint">✦</div>
+          {/* Flip hint sparkle */}
+          <div className="card-flip-hint">✦</div>
 
-                    {/* Bottom info */}
-                    <div className="card-front-footer">
-                        <h3 className="card-title">{activity.shortTitle}</h3>
-                        <p className="card-desc">{activity.description}</p>
-                        <div className="card-meta">
-                            <span><Users size={11} /> {activity.ageRange}</span>
-                            <span><Clock size={11} /> {activity.duration}</span>
-                        </div>
-                        <div className="card-tap-hint">
-                            <span>Tap to explore</span>
-                            <ArrowRight size={12} />
-                        </div>
-                    </div>
+          {/* Bottom info */}
+          <div className="card-front-footer">
+            <h3 className="card-title">{activity.shortTitle}</h3>
+            <p className="card-desc">{activity.description}</p>
+            <div className="card-meta">
+              <span><Users size={11} /> {activity.ageRange}</span>
+              <span><Clock size={11} /> {activity.duration}</span>
+            </div>
+            <div className="card-tap-hint">
+              <span>Tap to explore</span>
+              <ArrowRight size={12} />
+            </div>
+          </div>
 
-                    {/* Holo gradient layer */}
-                    <div className="holo-gradient" />
-                    {/* Sparkle + holo overlay */}
-                    <div className="holo-sparkle" />
-                    {/* Glare */}
-                    <div className="holo-glare" style={{ opacity: isHovered ? glareOpc : undefined }} />
+          {/* Holo gradient layer */}
+          <div className="holo-gradient" />
+          {/* Sparkle + holo overlay */}
+          <div className="holo-sparkle" />
+          {/* Glare */}
+          <div className="holo-glare" style={{ opacity: isHovered ? glareOpc : undefined }} />
+        </div>
+
+        {/* ── BACK ── */}
+        <div className="card-face card-back">
+          <button
+            className="card-close-btn"
+            onClick={(e) => { e.stopPropagation(); setIsFlipped(false); }}
+          >
+            <X size={14} />
+          </button>
+
+          {/* Header strip */}
+          <div className="card-back-header" style={{ background: `linear-gradient(135deg, ${activity.color}22, ${activity.color}08)`, borderBottom: `2px solid ${activity.color}30` }}>
+            <div className="card-back-icon" style={{ background: `${activity.color}18`, border: `1.5px solid ${activity.color}40` }}>
+              <span>{activity.icon}</span>
+            </div>
+            <div>
+              <div className="card-back-cat" style={{ color: activity.color }}>{activity.category}</div>
+              <h3 className="card-back-title" style={{ color: activity.color }}>{activity.title}</h3>
+            </div>
+          </div>
+
+          {/* Body */}
+          <div className="card-back-body">
+            <p className="card-back-desc">{activity.fullDescription}</p>
+
+            {/* Stats */}
+            <div className="card-stats">
+              {[
+                { icon: <Users size={14} />, label: "Age", value: activity.ageRange },
+                { icon: <Clock size={14} />, label: "Time", value: activity.duration },
+                { icon: <Zap size={14} />, label: "Level", value: activity.intensity },
+              ].map(({ icon, label, value }) => (
+                <div key={label} className="card-stat-item" style={{ borderColor: `${activity.color}25` }}>
+                  <div style={{ color: activity.color }}>{icon}</div>
+                  <div className="card-stat-label">{label}</div>
+                  <div className="card-stat-value">{value}</div>
                 </div>
-
-                {/* ── BACK ── */}
-                <div className="card-face card-back">
-                    <button
-                        className="card-close-btn"
-                        onClick={(e) => { e.stopPropagation(); setIsFlipped(false); }}
-                    >
-                        <X size={14} />
-                    </button>
-
-                    {/* Header strip */}
-                    <div className="card-back-header" style={{ background: `linear-gradient(135deg, ${activity.color}22, ${activity.color}08)`, borderBottom: `2px solid ${activity.color}30` }}>
-                        <div className="card-back-icon" style={{ background: `${activity.color}18`, border: `1.5px solid ${activity.color}40` }}>
-                            <span>{activity.icon}</span>
-                        </div>
-                        <div>
-                            <div className="card-back-cat" style={{ color: activity.color }}>{activity.category}</div>
-                            <h3 className="card-back-title" style={{ color: activity.color }}>{activity.title}</h3>
-                        </div>
-                    </div>
-
-                    {/* Body */}
-                    <div className="card-back-body">
-                        <p className="card-back-desc">{activity.fullDescription}</p>
-
-                        {/* Stats */}
-                        <div className="card-stats">
-                            {[
-                                { icon: <Users size={14} />, label: "Age", value: activity.ageRange },
-                                { icon: <Clock size={14} />, label: "Time", value: activity.duration },
-                                { icon: <Zap size={14} />, label: "Level", value: activity.intensity },
-                            ].map(({ icon, label, value }) => (
-                                <div key={label} className="card-stat-item" style={{ borderColor: `${activity.color}25` }}>
-                                    <div style={{ color: activity.color }}>{icon}</div>
-                                    <div className="card-stat-label">{label}</div>
-                                    <div className="card-stat-value">{value}</div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Features */}
-                        <div className="card-features">
-                            {activity.features.slice(0, 4).map((f, i) => (
-                                <span key={i} className="card-feature-tag" style={{ background: `${activity.color}12`, color: activity.color, border: `1px solid ${activity.color}25` }}>
-                                    {f}
-                                </span>
-                            ))}
-                        </div>
-
-                        {/* CTA */}
-                        <button className="card-book-btn" style={{ background: `linear-gradient(135deg, ${activity.color}, ${holo.c2})` }}>
-                            Book This Activity
-                            <ArrowRight size={15} />
-                        </button>
-                    </div>
-
-                    {/* Subtle back holo shimmer */}
-                    <div className="back-shimmer" style={{ background: `radial-gradient(ellipse at 60% 30%, ${activity.color}10 0%, transparent 70%)` }} />
-                </div>
+              ))}
             </div>
 
-            {/* Card name label beneath */}
-            <div className="card-label-below" style={{ color: activity.color }}>
-                {activity.shortTitle}
+            {/* Features */}
+            <div className="card-features">
+              {activity.features.slice(0, 4).map((f, i) => (
+                <span key={i} className="card-feature-tag" style={{ background: `${activity.color}12`, color: activity.color, border: `1px solid ${activity.color}25` }}>
+                  {f}
+                </span>
+              ))}
             </div>
-        </motion.div>
-    );
+
+            {/* CTA */}
+            <button className="card-book-btn" style={{ background: `linear-gradient(135deg, ${activity.color}, ${holo.c2})` }}>
+              Book This Activity
+              <ArrowRight size={15} />
+            </button>
+          </div>
+
+          {/* Subtle back holo shimmer */}
+          <div className="back-shimmer" style={{ background: `radial-gradient(ellipse at 60% 30%, ${activity.color}10 0%, transparent 70%)` }} />
+        </div>
+      </div>
+
+      {/* Card name label beneath */}
+      <div className="card-label-below" style={{ color: activity.color }}>
+        {activity.shortTitle}
+      </div>
+    </motion.div>
+  );
 }
 
 // ─── Main Section ─────────────────────────────────────────────────────────────
 export default function ActivitiesGrid() {
-    const [selectedCat, setSelectedCat] = useState("all");
+  const [selectedCat, setSelectedCat] = useState("all");
 
-    const filtered = selectedCat === "all"
-        ? activities
-        : activities.filter((a) => a.category === selectedCat);
+  const filtered = selectedCat === "all"
+    ? activities
+    : activities.filter((a) => a.category === selectedCat);
 
-    return (
-        <section className="activities-grid-section">
-            <style>{STYLES}</style>
+  return (
+    <section className="activities-grid-section">
+      <style>{STYLES}</style>
 
-            {/* Section header */}
-            <div className="grid-header">
-                <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <div className="section-eyebrow">✦ Our Collection ✦</div>
-                    <h2 className="section-title">
-                        All <span style={{ color: colors.orange }}>Activities</span>
-                    </h2>
-                    <p className="section-sub">
-                        Hover each card to reveal the holo shimmer — tap to flip for details
-                    </p>
-                </motion.div>
+      {/* Section header */}
+      <div className="grid-header">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="section-eyebrow">✦ Our Collection ✦</div>
+          <h2 className="section-title">
+            All <span style={{ color: colors.orange }}>Activities</span>
+          </h2>
+          <p className="section-sub">
+            Hover each card to reveal the holo shimmer — tap to flip for details
+          </p>
+        </motion.div>
 
-                {/* Category filters */}
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.15 }}
-                    className="filter-bar"
-                >
-                    {categories.map((cat) => (
-                        <button
-                            key={cat.id}
-                            onClick={() => setSelectedCat(cat.id)}
-                            className={`filter-btn ${selectedCat === cat.id ? "active" : ""}`}
-                            style={selectedCat === cat.id ? { background: cat.color, borderColor: cat.color, color: "#fff" } : {}}
-                        >
-                            <span>{cat.icon}</span>
-                            {cat.label}
-                        </button>
-                    ))}
-                </motion.div>
-            </div>
+        {/* Category filters */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="filter-bar"
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCat(cat.id)}
+              className={`filter-btn ${selectedCat === cat.id ? "active" : ""}`}
+              style={selectedCat === cat.id ? { background: cat.color, borderColor: cat.color, color: "#fff" } : {}}
+            >
+              <span>{cat.icon}</span>
+              {cat.label}
+            </button>
+          ))}
+        </motion.div>
+      </div>
 
-            {/* Grid */}
-            <motion.div layout className="cards-grid">
-                <AnimatePresence mode="popLayout">
-                    {filtered.map((activity, i) => (
-                        <HoloCard key={activity.id} activity={activity} index={i} />
-                    ))}
-                </AnimatePresence>
-            </motion.div>
-        </section>
-    );
+      {/* Grid */}
+      <motion.div layout className="cards-grid">
+        <AnimatePresence mode="popLayout">
+          {filtered.map((activity, i) => (
+            <HoloCard key={activity.id} activity={activity} index={i} />
+          ))}
+        </AnimatePresence>
+      </motion.div>
+    </section>
+  );
 }
 
 // ─── Styles ───────────────────────────────────────────────────────────────────

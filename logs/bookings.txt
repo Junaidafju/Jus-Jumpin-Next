@@ -158,3 +158,20 @@
 📝 Requests / Theme: Ambani Theme
 🌐 IP: ::1
 ----------------------------------------
+
+========================================
+📅 Timestamp: 10/10/2026, 4:16:42 pm
+🏷️ Source: Chatbot AI Assistant
+👤 Contact Name: Muhammad Junaid Akhtar
+📱 Phone: 8948240252
+📧 Email: N/A
+🎂 Child Name: N/A
+🎈 Turning Age: N/A
+🎊 Package: N/A
+👥 Guests: 3
+📍 Location: Kolkata - Avani Mall
+📅 Preferred Date: 2026-10-31
+⏰ Preferred Time: N/A
+📝 Requests / Theme: testing the SMTP
+🌐 IP: ::ffff:192.168.1.44
+----------------------------------------

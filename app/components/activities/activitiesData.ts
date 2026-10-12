@@ -6,7 +6,7 @@ export interface Activity {
     description: string;
     fullDescription: string;
     image: string;
-    category: "trampoline" | "adventure" | "sports" | "games" | "kids";
+    category: "trampoline" | "adventure" | "sports" | "games" | "kids" | "360-cycle";
     ageRange: string;
     duration: string;
     intensity: "low" | "medium" | "high";
@@ -46,8 +46,23 @@ export const activities: Activity[] = [
     },
     {
         id: "2",
+        title: "360° Cycling",
+        shortTitle: "360 Cycling",
+        description: "Spin, tilt, and loop on our thrilling 360° cycle for a one-of-a-kind ride!",
+        fullDescription: "Strap in and take on gravity with our 360° cycle — a full-rotation ride that spins, tilts, and loops for an adrenaline-packed experience unlike anything else in the park.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "360-cycle",
+        ageRange: "8+ years",
+        duration: "5–10 mins",
+        intensity: "high",
+        color: colors.yellow,
+        icon: "🚴",
+        features: ["Full 360° rotation", "Secure safety harness", "Attendant-operated ride", "Thrilling one-of-a-kind spin"]
+    },
+    {
+        id: "3",
         title: "Foam Pit Jump Zone",
-        shortTitle: "Foam Pit Zone",
+        shortTitle: "Foam Pit",
         description: "Leap fearlessly into a soft-landing foam pit for 100% safe epic stunts!",
         fullDescription: "Leap fearlessly into a soft-landing foam pit. Practice flips, tricks, and stunts safely while enjoying a cushioned adventure experience.",
         image: "/image/activities/ninja-course.jpg",
@@ -60,7 +75,7 @@ export const activities: Activity[] = [
         features: ["Soft foam cube landing", "Trick practice safe zone", "Airbag-style cushioning", "Foam pit depth safety"]
     },
     {
-        id: "3",
+        id: "4",
         title: "Donut Slide",
         shortTitle: "Donut Slide",
         description: "Slide down our thrilling circular donut slide for a fast, fun-filled ride!",
@@ -75,7 +90,7 @@ export const activities: Activity[] = [
         features: ["Inflatable tube ride", "Smooth curved track", "Safe landing zone", "Family friendly"]
     },
     {
-        id: "4",
+        id: "5",
         title: "Wave Slide",
         shortTitle: "Wave Slide",
         description: "Ride the waves indoors across multi-lane slides delivering speed and thrills!",
@@ -90,7 +105,7 @@ export const activities: Activity[] = [
         features: ["Multi-lane sliding", "Smooth wave curves", "Safe bottom cushioning", "All-ages fun"]
     },
     {
-        id: "5",
+        id: "6",
         title: "Sky Stepper Challenge",
         shortTitle: "Sky Stepper",
         description: "Balance and jump on suspended stepping platforms high above ground!",
@@ -105,7 +120,7 @@ export const activities: Activity[] = [
         features: ["Suspended pods", "Harness safety system", "Balance skill challenge", "Height training"]
     },
     {
-        id: "6",
+        id: "7",
         title: "Hanging Bridge Adventure",
         shortTitle: "Hanging Bridge",
         description: "Cross wobbling bridges suspended in mid-air — test your courage and balance!",
@@ -120,8 +135,8 @@ export const activities: Activity[] = [
         features: ["Suspended pathway", "Safety harness system", "Adventure-style crossing", "Balance challenge"]
     },
     {
-        id: "7",
-        title: "Obstacle Ninja Zone",
+        id: "8",
+        title: "Ninja Course Zone",
         shortTitle: "Ninja Zone",
         description: "Climb, crawl, and race through our adrenaline-packed ninja training course!",
         fullDescription: "Climb, crawl, jump, and race through our adrenaline-packed obstacle challenge inspired by ninja training courses.",
@@ -135,7 +150,7 @@ export const activities: Activity[] = [
         features: ["Balance beams", "Climbing walls", "Speed challenges", "Ninja-inspired obstacles"]
     },
     {
-        id: "8",
+        id: "9",
         title: "Wall Climbing Arena",
         shortTitle: "Wall Climbing",
         description: "Reach new heights on our safe indoor climbing walls for all skill levels!",
@@ -150,7 +165,22 @@ export const activities: Activity[] = [
         features: ["Auto-belay safety", "Multiple difficulty levels", "Secure harness system", "Expert guidance"]
     },
     {
-        id: "9",
+        id: "10",
+        title: "Battle Beam",
+        shortTitle: "Battle Beam",
+        description: "Duel a friend on a padded balance beam with foam jousting poles!",
+        fullDescription: "Face off on a raised, padded balance beam armed with soft foam jousting poles — stay balanced, knock your opponent off, and be the last one standing.",
+        image: "/image/activities/ninja-course.jpg",
+        category: "adventure",
+        ageRange: "6+ years",
+        duration: "10–15 mins",
+        intensity: "medium",
+        color: colors.red,
+        icon: "⚔️",
+        features: ["Padded balance beam", "Soft foam joust poles", "Airbag-cushioned landing", "1v1 duel format"]
+    },
+    {
+        id: "11",
         title: "Basketball Dunk Zone",
         shortTitle: "Dunk Zone",
         description: "Bounce higher and slam dunk like a pro on trampoline-assisted courts!",
@@ -165,7 +195,22 @@ export const activities: Activity[] = [
         features: ["Trampoline dunk lanes", "Adjustable hoops", "Soft court flooring", "Dunk contests"]
     },
     {
-        id: "10",
+        id: "12",
+        title: "Trampoline Dodgeball",
+        shortTitle: "Dodgeball",
+        description: "Dive, duck, and dodge on trampolines in this high-flying team showdown!",
+        fullDescription: "Take team competition airborne — dive, duck, and dodge across a court of interconnected trampolines in this fast-paced, high-flying dodgeball showdown.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "sports",
+        ageRange: "6+ years",
+        duration: "15–20 mins",
+        intensity: "high",
+        color: colors.cyan,
+        icon: "🤾‍♂️",
+        features: ["Trampoline dodgeball court", "Team vs team play", "Soft foam dodgeballs", "Referee-supervised matches"]
+    },
+    {
+        id: "13",
         title: "VR Gaming Arena",
         shortTitle: "VR Gaming",
         description: "Step into immersive virtual worlds with thrilling interactive VR adventures!",
@@ -180,7 +225,7 @@ export const activities: Activity[] = [
         features: ["Immersive headsets", "Interactive motion gaming", "Safe play environment", "50+ experiences"]
     },
     {
-        id: "11",
+        id: "14",
         title: "Arcade & Interactive Games",
         shortTitle: "Arcade Zone",
         description: "Classic meets modern with exciting arcade challenges for all age groups!",
@@ -195,7 +240,7 @@ export const activities: Activity[] = [
         features: ["Digital arcade games", "Multiplayer fun", "Prize-based challenges", "Redemption store"]
     },
     {
-        id: "12",
+        id: "15",
         title: "Sand Pit Play Zone",
         shortTitle: "Sand Pit",
         description: "Creative sensory play where kids dig, build, and explore in indoor sand!",
@@ -210,7 +255,7 @@ export const activities: Activity[] = [
         features: ["Clean indoor sand", "Interactive tools", "Safe soft flooring", "Creative exploration"]
     },
     {
-        id: "13",
+        id: "16",
         title: "Soft Play Area",
         shortTitle: "Soft Play",
         description: "Colorful padded structures designed especially for toddlers and young kids!",
@@ -225,7 +270,7 @@ export const activities: Activity[] = [
         features: ["Cushioned surfaces", "Mini slides & tunnels", "Safe enclosed play", "Parent access"]
     },
     {
-        id: "14",
+        id: "17",
         title: "Pin Wall Challenge",
         shortTitle: "Pin Wall",
         description: "Jump and stick onto our hilarious Velcro wall for epic photo moments!",
@@ -240,7 +285,7 @@ export const activities: Activity[] = [
         features: ["Velcro suits", "Safe padded wall", "Fun photo moments", "Group activity"]
     },
     {
-        id: "15",
+        id: "18",
         title: "Cube Climbing",
         shortTitle: "Cube Climbing",
         description: "Climb colorful geometric cubes in this modern agility-based indoor adventure!",
@@ -253,6 +298,96 @@ export const activities: Activity[] = [
         color: colors.green,
         icon: "🧊",
         features: ["Modular climbing blocks", "Safety harness", "Skill-based climbing", "Coordination training"]
+    },
+    {
+        id: "19",
+        title: "Magnetic Wall",
+        shortTitle: "Magnetic Wall",
+        description: "Suit up and stick to our magnetic climbing wall for a gravity-defying challenge!",
+        fullDescription: "Suit up in our magnetic gear and defy gravity as you stick, climb, and pose your way across the magnetic wall.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "games",
+        ageRange: "6+ years",
+        duration: "10–15 mins",
+        intensity: "medium",
+        color: colors.blue,
+        icon: "🧲",
+        features: ["Magnetic play suits", "Safe padded wall", "Fun photo moments", "Group activity"]
+    },
+    {
+        id: "20",
+        title: "Merry-Go-Round",
+        shortTitle: "Merry-Go-Round",
+        description: "Hop on our colorful spinning ride for classic, gentle carousel fun!",
+        fullDescription: "Hop on our colorful merry-go-round for a gentle spinning ride that's a timeless favorite for little ones.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "kids",
+        ageRange: "2+ years",
+        duration: "10–15 mins",
+        intensity: "low",
+        color: colors.rose,
+        icon: "🎠",
+        features: ["Gentle spinning ride", "Colorful seating", "Safe for toddlers", "Family fun"]
+    },
+    {
+        id: "21",
+        title: "Bar Dodger",
+        shortTitle: "Bar Dodger",
+        description: "Duck, dodge, and dive under rotating bars in this reflex-testing challenge!",
+        fullDescription: "Duck, dodge, and dive under rotating bars in this fast-paced challenge that puts your reflexes and agility to the test.",
+        image: "/image/activities/ninja-course.jpg",
+        category: "adventure",
+        ageRange: "6+ years",
+        duration: "10–15 mins",
+        intensity: "medium",
+        color: colors.red,
+        icon: "🤾",
+        features: ["Rotating dodge bars", "Reflex challenge", "Safe padded flooring", "Fun group competition"]
+    },
+    {
+        id: "22",
+        title: "Tunnels",
+        shortTitle: "Tunnels",
+        description: "Crawl through winding tunnels for sensory play and hide-and-seek fun!",
+        fullDescription: "Crawl through winding, colorful tunnels designed for sensory exploration and playful hide-and-seek adventures.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "kids",
+        ageRange: "2+ years",
+        duration: "15–20 mins",
+        intensity: "low",
+        color: colors.lime,
+        icon: "🕳️",
+        features: ["Crawl-through tunnels", "Sensory exploration", "Safe enclosed play", "Toddler friendly"]
+    },
+    {
+        id: "23",
+        title: "Ball Pool",
+        shortTitle: "Ball Pool",
+        description: "Dive into a colorful sea of soft balls for playful, sensory-rich fun!",
+        fullDescription: "Dive into a colorful sea of soft play balls — a sensory-rich favorite for our youngest jumpers.",
+        image: "/image/activities/trampoline-arena.jpg",
+        category: "kids",
+        ageRange: "1.5+ years",
+        duration: "20–30 mins",
+        intensity: "low",
+        color: colors.cyan,
+        icon: "🔵",
+        features: ["Colorful ball pit", "Soft cushioned base", "Safe for toddlers", "Sensory play"]
+    },
+    {
+        id: "24",
+        title: "Toshi Net",
+        shortTitle: "Toshi Net",
+        description: "Climb and bounce across a suspended net structure for a true adventure test!",
+        fullDescription: "Climb, crawl, and bounce across our suspended Toshi net structure — a full-body adventure challenge for the brave.",
+        image: "/image/activities/ninja-course.jpg",
+        category: "adventure",
+        ageRange: "6+ years",
+        duration: "15–20 mins",
+        intensity: "medium",
+        color: colors.green,
+        icon: "🕸️",
+        features: ["Suspended net climbing", "Balance and agility test", "Safety harness system", "Adventure challenge"]
     }
 ];
 
@@ -262,5 +397,6 @@ export const categories = [
     { id: "adventure", label: "Adventure", icon: "🧗", color: colors.green },
     { id: "sports", label: "Sports", icon: "⚽", color: colors.cyan },
     { id: "games", label: "Games", icon: "🎮", color: colors.purple },
+    { id: "360-cycle", label: "360 Cycle", icon: "🚴", color: colors.yellow },
     { id: "kids", label: "Kids Zone", icon: "🧸", color: colors.yellow }
 ];

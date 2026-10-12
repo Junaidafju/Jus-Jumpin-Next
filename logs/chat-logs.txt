@@ -2274,3 +2274,17 @@ We have trampoline & adventure parks in:
 
 💡 Mention any mall (e.g. *"ABC Square Building prices"*) to see exact tickets and timings!
 --------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 10/10/2026, 4:15:55 pm
+🕐 UTC: 2026-10-10T10:45:55.991Z
+🌐 IP Address: ::ffff:192.168.1.44
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36
+📝 User Question: What are your prices?
+🤖 AI Response: 📍 **Which location would you like to check?**
+
+We have trampoline & adventure parks in:
+• Kolkata • Bengaluru • Dhanbad • Mumbai • Durgapur • Nashik • Jamshedpur • Nagpur • Noida • Pune • Raipur • Ranchi • Siliguri • Surat • Thane • Hyderabad
+
+💡 Example: *"Kolkata prices"*, *"Noida hours"*, or *"Hyderabad activities"*
+--------------------------------------------------------------------------------
