@@ -2288,3 +2288,41 @@ We have trampoline & adventure parks in:
 
 💡 Example: *"Kolkata prices"*, *"Noida hours"*, or *"Hyderabad activities"*
 --------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 12/10/2026, 12:45:00 pm
+🕐 UTC: 2026-10-12T07:15:00.625Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.141.0 Chrome/150.0.7871.250 Electron/43.7.7 Safari/537.36
+📝 User Question: What are your prices?
+🤖 AI Response: 📍 **Which location would you like to check?**
+
+We have trampoline & adventure parks in:
+• Kolkata • Bengaluru • Dhanbad • Mumbai • Durgapur • Nashik • Jamshedpur • Nagpur • Noida • Pune • Raipur • Ranchi • Siliguri • Surat • Thane • Hyderabad
+
+💡 Example: *"Kolkata prices"*, *"Noida hours"*, or *"Hyderabad activities"*
+--------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 12/10/2026, 12:45:02 pm
+🕐 UTC: 2026-10-12T07:15:02.789Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.141.0 Chrome/150.0.7871.250 Electron/43.7.7 Safari/537.36
+📝 User Question: Raipur
+🤖 AI Response: 📍 **Jus Jumpin — Raipur (Zora Mall)**
+📝 High-octane indoor fun for adults and kids at Zora Mall — bounce, climb and conquer!
+
+🏢 **Address:** 2nd Floor, ZORA The Mall, NH-6, opposite Agriculture College, Serikhedi, Jora, Raipur, Chhattisgarh 492012
+📞 **Phone:** (+91)98363 34433
+
+⏰ **Hours:** Weekdays 11:00 AM – 9:30 PM | Weekends 11:00 AM – 9:30 PM
+
+💰 **Pricing:**
+• 90 Minutes: **₹750** (WD) | **₹800** (WE)
+• 60 Minutes: **₹650** (WD) | **₹750** (WE)
+📌 *Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)*
+
+🎮 **Activities:** Arcade Game, MerryGo Round, VR Games, Wave Slide, Bowling, Horn Slide + 22 more
+
+🔗 https://www.jusjumpin.com/raipur-zora-mall
+--------------------------------------------------------------------------------
