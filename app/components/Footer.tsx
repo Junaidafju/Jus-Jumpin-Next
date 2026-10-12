@@ -514,19 +514,24 @@ const Footer = () => {
                     </motion.div>
 
                     <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm">
-                        {['Privacy Policy', 'Terms & Conditions', 'Safety Guidelines'].map((item, idx) => (
+                        {[
+                            { label: 'Privacy Policy', href: '/privacy-policy/' },
+                            { label: 'Terms & Conditions', href: '/terms-and-conditions/' },
+                            { label: 'Safety Guidelines', href: '/safety-guidelines/' },
+                            { label: 'Disclaimer', href: '/disclaimer/' },
+                        ].map((item, idx) => (
                             <motion.div
-                                key={item}
+                                key={item.href}
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: idx * 0.1 }}
                                 viewport={{ once: true }}
                             >
                                 <Link
-                                    href={`/${item.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-')}`}
+                                    href={item.href}
                                     className="text-gray-400 hover:text-yellow-400 transition-colors duration-300 relative group"
                                 >
-                                    {item}
+                                    {item.label}
                                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 group-hover:w-full transition-all duration-300" />
                                 </Link>
                             </motion.div>

@@ -1,0 +1,79 @@
+# ============================================
+# FORCE HTTPS + WWW (SEO - Duplicate Content Fix)
+# ============================================
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Step 1: Redirect HTTP to HTTPS first
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Step 2: Redirect non-www to www
+RewriteCond %{HTTP_HOST} ^jusjumpin\.com$ [NC]
+RewriteRule ^(.*)$ https://www.jusjumpin.com/$1 [R=301,L]
+</IfModule>
+
+# ============================================
+# WORDPRESS CORE (Do not modify)
+# ============================================
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# ============================================
+# CUSTOM REWRITE RULES FOR BLOG POSTS
+# ============================================
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^blog/([^/]+)/?$ index.php?name=$1&post_type=post [QSA,L]
+RewriteRule ^blog/page/([0-9]+)/?$ index.php?pagename=blog&paged=$1 [QSA,L]
+RewriteRule ^blog/feed/?$ index.php?feed=feed [QSA,L]
+RewriteRule ^blog/feed/(feed|rdf|rss|rss2|atom)/?$ index.php?feed=$1 [QSA,L]
+RewriteRule ^blog/(feed|rdf|rss|rss2|atom)/?$ index.php?feed=$1 [QSA,L]
+</IfModule>
+
+# ============================================
+# JUS JUMPIN – OLD URL TO NEW URL REDIRECTS
+# ============================================
+
+Redirect 301 /play-area-for-kids-gip-mall-noida/ https://www.jusjumpin.com/noida-gip-mall/ 
+
+Redirect 301 /abc/ https://www.jusjumpin.com/kolkata-abc-square-building-best-adult-trampoline-park/ 
+
+Redirect 301 /kolkata-abc-square-building/ https://www.jusjumpin.com/kolkata-abc-square-building-best-adult-trampoline-park/ 
+
+Redirect 301 /abc-square-mall/ https://www.jusjumpin.com/kolkata-abc-square-building-best-adult-trampoline-mall/ 
+
+Redirect 301 /trampoline-park/ https://www.jusjumpin.com/ 
+
+Redirect 301 /indoor-play-area-spectrum-mall-noida/ https://www.jusjumpin.com/noida-spectrum-mall/ 
+
+Redirect 301 /the-best-kids-play-area-in-prabhatam-mall-dhanbad/ https://www.jusjumpin.com/dhanbad-prabhatam-mall/ 
+
+Redirect 301 /adult-trampoline-park-prabhatam-mall-dhanbad/ https://www.jusjumpin.com/dhanbad-prabhatam-mall/ 
+
+Redirect 301 /indoor-play-area-for-kids-adults-prabhatam-mall-dhanbad/ https://www.jusjumpin.com/dhanbad-prabhatam-mall/ 
+
+Redirect 301 /udiapur-urban-square-mall/ https://www.jusjumpin.com/udaipur-urban-square-mall/ 
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

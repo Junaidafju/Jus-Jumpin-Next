@@ -255,7 +255,7 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
         { scale: 1, duration: 0.15 },
       ],
       onComplete: () => {
-        window.open("https://book.jusjumpin.com", "_blank");
+        window.open("https://jusjumpin.co.in/customer/", "_blank");
       },
     });
   }, []);

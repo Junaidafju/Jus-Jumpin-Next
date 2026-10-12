@@ -116,7 +116,7 @@ export function ContactHero() {
                         {/* CTA Buttons */}
                         <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                             <Link
-                                href="/book"
+                                href="https://jusjumpin.co.in/customer/"
                                 className="group bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:shadow-green-500/25 transform hover:scale-105 transition-all duration-300"
                             >
                                 <span className="flex items-center gap-2">
