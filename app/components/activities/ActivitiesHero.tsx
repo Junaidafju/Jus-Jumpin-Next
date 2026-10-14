@@ -160,7 +160,7 @@ export default function ActivitiesHero({ onExploreClick }: ActivitiesHeroProps) 
                     className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
                     <motion.a
-                        href="#activities"
+                        href="#cards-grid"
                         onClick={(e) => {
                             if (onExploreClick) {
                                 e.preventDefault();
@@ -180,6 +180,7 @@ export default function ActivitiesHero({ onExploreClick }: ActivitiesHeroProps) 
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         className="px-8 py-4 bg-white text-gray-800 font-bold text-lg rounded-full shadow-lg border-2 border-gray-200 hover:border-[#ff661a] transition-colors flex items-center gap-2"
+                        onClick={() => window.open("https://www.youtube.com/watch?v=Jx6HAtV91YU", "_blank")} // Replace with actual video link
                         style={{ fontFamily: '"Fredoka One", cursive' }}
                     >
                         <Play className="w-5 h-5 text-[#ff661a]" fill="currentColor" />

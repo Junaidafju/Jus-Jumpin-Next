@@ -304,7 +304,7 @@ export default function ActivitiesGrid() {
       </div>
 
       {/* Grid */}
-      <motion.div layout className="cards-grid">
+      <motion.div id="cards-grid" layout className="cards-grid">
         <AnimatePresence mode="popLayout">
           {filtered.map((activity, i) => (
             <HoloCard key={activity.id} activity={activity} index={i} />
@@ -572,7 +572,7 @@ const STYLES = `
 .holo-glare {
   position: absolute;
   inset: 0;
-  clip-path: inset(58% 0 0 0);
+  clip-path: inset(70% 0 0 0);
     border-radius: 12px;
     pointer-events: none;
     mix-blend-mode: color-dodge;

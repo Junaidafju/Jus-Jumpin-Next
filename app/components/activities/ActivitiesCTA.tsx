@@ -81,7 +81,7 @@ export default function ActivitiesCTA() {
 
                         {/* Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Link href="/book">
+                            <Link href="https://jusjumpin.co.in/customer/">
                                 <motion.button
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
@@ -157,7 +157,7 @@ export default function ActivitiesCTA() {
                                     </div>
                                     <div>
                                         <div className="text-xs text-gray-400">Call us</div>
-                                        <div className="text-sm font-bold text-gray-800">1800-123-4567</div>
+                                        <div className="text-sm font-bold text-gray-800">+91 98303 59999</div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -173,7 +173,7 @@ export default function ActivitiesCTA() {
                                     </div>
                                     <div>
                                         <div className="text-xs text-gray-400">Email us</div>
-                                        <div className="text-sm font-bold text-gray-800">hello@jusjumpin.com</div>
+                                        <div className="text-sm font-bold text-gray-800">info@jusjumpin.com</div>
                                     </div>
                                 </div>
                             </motion.div>
