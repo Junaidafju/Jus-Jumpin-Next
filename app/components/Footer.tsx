@@ -45,6 +45,7 @@ const Footer = () => {
         { city: 'Surat', address: 'VR Mall', slug: '/surat-vr-mall/' },
         { city: 'Hyderabad', address: 'Sarath City Capital Mall', slug: '/hyderabad-sarath-city-capital-mall/' },
         { city: 'Hyderabad', address: 'DSL Virtue Mall', slug: '/hyderabad-dsl-virtue-mall/' },
+        { city: 'Gurgaon', address: 'M3M Route 65 Mall', slug: '/gurgaon-m3m-route65-mall/' },
     ];
 
     const socialLinks = [

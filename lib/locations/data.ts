@@ -5277,6 +5277,249 @@ export const locations: LocationData[] = [
         "seoDescription": "Explore screen free kids entertainment at jus jumpin DSL virtue mall. Find 15+ exciting games and activities at the best kids play area in hyderabad. Visit now.",
         "seoKeywords": "trampoline park, kids entertainment zone, indoor play area, jump fun, Hyderabad, DSL Virtue Mall",
         "accentColor": "#00b9e3"
+    },
+    {
+        "slug": "gurgaon-m3m-route65-mall",
+        "type": "kids",
+        "city": "Gurgaon",
+        "mall": "M3M Route 65 Mall",
+        "stateName": "Haryana",
+        "heroImages": [
+            `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/gurgaon-m3m-1.jpg`,
+            `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/gurgaon-m3m-2.jpg`,
+            `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/gurgaon-m3m-3.jpg`
+        ],
+        "h1": "JUS JUMPIN M3M ROUTE 65 GURGAON",
+        "subtitle": "Jump in to experience the most exciting kids' play zone in Gurgaon. Laced with 15+ action-packed kids' play activities, offering your kids an adventure to remember.",
+        "introHeading": "Ultimate Fun Awaits",
+        "introText": "Welcome to Jus Jumpin, M3M Route 65 Mall Gurgaon (Gurugram). Thoughtfully designed to provide a fun-filled, safe space where the kids can run, jump, and laugh without any restriction or fear of falling. Our meticulously engineered soft play zone for kids in Gurugram is perfect for little kids aged between 6 months and 12 years. At our facility, treat your kids to an exciting trampoline park, foam pit, interactive doll house, a fun-packed obstacle zone, and many other kid-friendly activities. Besides offering an exciting play zone in Gurgaon, Jus Jumpin always prioritises Kids' safety above anything else. Loving parents can watch their little one reach new heights from our dedicated resting zone.",
+        "flipCardImage": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/gurgaon-m3m-1.jpg`,
+        "flipCardBullets": [
+            "15+ action-packed kids' play activities",
+            "Age-specific kids play zones (6 months to 12 years)",
+            "Dedicated resting zone for parents",
+            "In-house DJ & premium cafeteria"
+        ],
+        "highlights": [
+            {
+                "title": "Creative & Educational Activities",
+                "emoji": "📖",
+                "paragraph": "Features a premium kids play area, colourful rainbow slides, wall climbing, foam pit, and a dedicated soft play zone to foster creativity and learning.",
+                "gradient": "linear-gradient(135deg, #ff661a, #ff3645)",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/gurgaon-creative.jpg`
+            },
+            {
+                "title": "Age Specific Kids Play Zones",
+                "emoji": "👶",
+                "paragraph": "Thoughtfully designed soft play spaces engineered specifically for little kids aged between 6 months and 12 years to run and explore safely.",
+                "gradient": "linear-gradient(135deg, #00b9e3, #4facfe)",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/gurgaon-age-zones.jpg`
+            },
+            {
+                "title": "Perfect Birthday Celebrations",
+                "emoji": "🎂",
+                "paragraph": "Our exclusive party area features custom decorations, fun party games, magic shows, an in-house DJ, and exclusive access to the play zone.",
+                "gradient": "linear-gradient(135deg, #6dc065, #b2d235)",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/gurgaon-birthday.jpg`
+            },
+            {
+                "title": "Dedicated Resting Zone For Parents",
+                "emoji": "☕",
+                "paragraph": "Loving parents can comfortably watch their children play from the resting area and recharge at our premium cafeteria with tasty refreshments.",
+                "gradient": "linear-gradient(135deg, #f67edd, #8869d2)",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/gurgaon-resting-zone.jpg`
+            }
+        ],
+        "activities": [
+            {
+                "name": "Trampoline",
+                "emoji": "🤸",
+                "description": "Bounce your way to pure joy on our safe, spring-loaded trampolines built especially for little jumpers.",
+                "ageGroup": "6 months–12 yrs",
+                "color": "#ff661a",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/trampoline_activity.webp`
+            },
+            {
+                "name": "Wall Climb",
+                "emoji": "🧱",
+                "description": "Kids scale colourful climbing walls at their own pace, building confidence, strength, and a sense of achievement.",
+                "ageGroup": "3–12 yrs",
+                "color": "#6dc065",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/Wall_climb_activity.webp`
+            },
+            {
+                "name": "Foam Pit",
+                "emoji": "🟦",
+                "description": "Leap high and land soft in our fluffy foam cubes — a safe spot for flips, jumps, and fearless fun!",
+                "ageGroup": "All kids",
+                "color": "#00b9e3",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/foam_pit_activity.webp`
+            },
+            {
+                "name": "Sand Pit",
+                "emoji": "🏖️",
+                "description": "Build castles, dig tunnels, or just enjoy the soft touch of sand in this creative and calming play zone.",
+                "ageGroup": "1–8 yrs",
+                "color": "#ff3645",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/kids_playing_sandpit_activity.webp`
+            },
+            {
+                "name": "Obstacle Course",
+                "emoji": "🏃",
+                "description": "Crawl, climb, and balance through our fun-packed obstacle zone designed to test agility and coordination.",
+                "ageGroup": "3–12 yrs",
+                "color": "#8869d2",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/obstacle_course_activity.webp`
+            },
+            {
+                "name": "Toshi Net",
+                "emoji": "🕸️",
+                "description": "Bounce, crawl, and climb across our suspended net zone for a bouncy adventure unlike any other.",
+                "ageGroup": "3–12 yrs",
+                "color": "#b2d235",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/toshi_net_activity.webp`
+            },
+            {
+                "name": "Cow Game",
+                "emoji": "🐄",
+                "description": "A quirky, giggle-inducing game that keeps the little ones entertained and active for hours.",
+                "ageGroup": "2–8 yrs",
+                "color": "#f67edd",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/cow_game_activity.webp`
+            },
+            {
+                "name": "Rainbow Slide",
+                "emoji": "🌈",
+                "description": "Slide down our colourful rainbow slide for a burst of excitement and non-stop smiles.",
+                "ageGroup": "2–12 yrs",
+                "color": "#ff5da0",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/rainbow_slide_activity.webp`
+            },
+            {
+                "name": "Wave Slide",
+                "emoji": "🛝",
+                "description": "Glide down our thrilling Wave Slide and feel the rush of fun as you swoosh through smooth waves of excitement!",
+                "ageGroup": "2–12 yrs",
+                "color": "#ff661a",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/Wave-slide-activity.webp`
+            },
+            {
+                "name": "Ball Pool",
+                "emoji": "🟡",
+                "description": "Dive into a sea of colorful balls — perfect for giggles, splashes of joy, and endless playtime memories.",
+                "ageGroup": "6 months–8 yrs",
+                "color": "#ffc60b",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/ball_pool_activities.webp`
+            },
+            {
+                "name": "Horn Slide",
+                "emoji": "🛝",
+                "description": "Slide down the playful Horn Slide and enjoy a smooth, curvy ride that ends with giggles and excitement!",
+                "ageGroup": "2–10 yrs",
+                "color": "#4facfe",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/horn_slide_activity.webp`
+            },
+            {
+                "name": "Interactive Ball Pool",
+                "emoji": "🎮",
+                "description": "Experience play like never before with lights, sounds, and motion games in our high-tech interactive ball pool!",
+                "ageGroup": "2–12 yrs",
+                "color": "#00b9e3",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/interactive_ball_pool_activity.webp`
+            },
+            {
+                "name": "Doll House",
+                "emoji": "🏠",
+                "description": "Step into a magical miniature world filled with charm, imagination, and make-believe fun!",
+                "ageGroup": "2–8 yrs",
+                "color": "#f67edd",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/doll_house_activity.webp`
+            },
+            {
+                "name": "Soft Play Area",
+                "emoji": "🧸",
+                "description": "A safe, cushioned wonderland where kids can jump, climb, and tumble freely without a worry in the world.",
+                "ageGroup": "6 months–6 yrs",
+                "color": "#6dc065",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/Soft_play_activity.webp`
+            },
+            {
+                "name": "Tunnels",
+                "emoji": "🎯",
+                "description": "Crawl, explore, and adventure through our colorful tunnels — a playful path that sparks curiosity at every turn!",
+                "ageGroup": "2–10 yrs",
+                "color": "#ff661a",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/Tunnel_activities.webp`
+            },
+            {
+                "name": "Donut Slide",
+                "emoji": "🍩",
+                "description": "Spin, slide, and laugh your way down the Donut Slide — a twisting tunnel of pure joy that guarantees a rush of fun every time!",
+                "ageGroup": "3–12 yrs",
+                "color": "#b2d235",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/donut_slide_activity.webp`
+            },
+            {
+                "name": "Swing",
+                "emoji": "🎠",
+                "description": "Hop on and swing away — balancing fun and thrill in one adorable ride for the little ones.",
+                "ageGroup": "2–8 yrs",
+                "color": "#8869d2",
+                "image": `${BASE_URL}/wp-content/themes/newjusjumpin/assets/img/Swing_activity.webp`
+            }
+        ],
+        "weekdayHours": "11:00 AM – 9:30 PM",
+        "weekendHours": "11:00 AM – 9:30 PM",
+        "pricing": [
+            {
+                "label": "60 Minutes",
+                "weekday": "₹800",
+                "weekend": "₹800"
+            },
+            {
+                "label": "90 Minutes",
+                "weekday": "₹1000",
+                "weekend": "₹1000"
+            }
+        ],
+        "ticketNote": "Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)",
+        "address": "Unit 8, Tyagi Market, 1st Floor, Unit No. R5 101 to R5 112A, Jus Jumpin, M3M Route 65 Mall, nearby Emerald Estate Sector 65, Gurugram, Haryana 122101",
+        "phone": "(+91)90070 05557",
+        "mapsEmbedUrl": "",
+        "mapsDirectionsUrl": "",
+        "reviewUrl": "",
+        "lat": 28.4022,
+        "lng": 77.0654,
+        "faqs": [
+            {
+                "question": "What age group of Kids can play at Jus Jumpin?",
+                "answer": "All the children aged between 6 months to 12 years can jump into our kids' playzone."
+            },
+            {
+                "question": "Can adults also play in the play area?",
+                "answer": "For the not-so-little jumpers, Jus Jumpin have specific venues where the adults can have a fun time."
+            },
+            {
+                "question": "What activities are available at Jus Jumpin?",
+                "answer": "At our indoor play zones for kids, we offer a large range of action-packed activities, including trampoline park, toddler play zones, colourful slides, obstacle courses and more than 15 gaming activities."
+            },
+            {
+                "question": "Does Jus Jumpin offer any special packages or Party offers?",
+                "answer": "Our dedicated party zone is one of the best spots to host a birthday party for your little one. We brighten up parties and gatherings with personalised decorations, tattoo artists, mascots and gaming activities. For special offers and packages, you can contact our dedicated sales team."
+            },
+            {
+                "question": "Can I host a birthday party at Jus Jumpin?",
+                "answer": "Our vibrant indoor party area provides a safe and fun-packed environment, along with dedicated party zones to host the best birthday parties for kids."
+            },
+            {
+                "question": "Is outside food allowed in the play area?",
+                "answer": "To maintain safety and hygiene standards at our facilities, we don't allow outside food. The guests can savour our in-house snacks and refreshments."
+            }
+        ],
+        "seoTitle": "Best Indoor Kids Entertainment Zone and Trampoline Park In Gurgaon | Jus Jumpin",
+        "seoDescription": "Jump in to experience the most exciting kids' play zone in Gurgaon at M3M Route 65 Mall. Over 15+ action-packed activities, birthday celebrations, and trampoline fun for kids.",
+        "seoKeywords": "kids play zone gurgaon, trampoline park gurgaon, jus jumpin m3m route 65, soft play area gurugram, birthday party venue gurgaon",
+        "accentColor": "#ff661a"
     }
 ];
 

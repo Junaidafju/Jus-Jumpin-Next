@@ -2,7 +2,6 @@
 
 import { Activity, LocationType } from '@/types/location';
 import styles from './ActivitiesSection.module.css';
-import { motion } from 'framer-motion';
 import {
     Waves,
     Sprout,
@@ -22,23 +21,13 @@ interface ActivitiesSectionProps {
     accentColor: string;
 }
 
-// Floating edge emoji configurations
+// Static edge decorations keep the activity section from running background animation loops.
 const floatingIcons = [
-    { icon: '🎈', size: 'text-5xl', top: '10%', left: '5%', delay: 0, duration: 6 },
-    { icon: '🏀', size: 'text-4xl', top: '20%', left: '15%', delay: 1, duration: 7 },
-    { icon: '🎪', size: 'text-6xl', top: '15%', left: '85%', delay: 0.5, duration: 8 },
-    { icon: '🧸', size: 'text-4xl', top: '30%', left: '90%', delay: 1.5, duration: 6 },
-    { icon: '🎯', size: 'text-3xl', top: '40%', left: '8%', delay: 2, duration: 7 },
-    { icon: '🎠', size: 'text-5xl', top: '50%', left: '92%', delay: 0.8, duration: 9 },
-    { icon: '🏰', size: 'text-4xl', top: '60%', left: '5%', delay: 1.2, duration: 7 },
-    { icon: '🤸', size: 'text-5xl', top: '65%', left: '88%', delay: 0.3, duration: 8 },
-    { icon: '🎨', size: 'text-4xl', top: '75%', left: '10%', delay: 1.8, duration: 6 },
-    { icon: '🚀', size: 'text-5xl', top: '80%', left: '85%', delay: 0.7, duration: 7 },
-    { icon: '🎳', size: 'text-3xl', top: '85%', left: '15%', delay: 2.2, duration: 8 },
-    { icon: '🎮', size: 'text-4xl', top: '90%', left: '90%', delay: 1.4, duration: 6 },
-    { icon: '🧩', size: 'text-5xl', top: '5%', left: '50%', delay: 0.9, duration: 7 },
-    { icon: '🎪', size: 'text-4xl', top: '45%', left: '95%', delay: 1.6, duration: 8 },
-    { icon: '🎡', size: 'text-6xl', top: '70%', left: '50%', delay: 0.4, duration: 9 },
+    { icon: '🎈', size: 'text-5xl', top: '10%', left: '5%' },
+    { icon: '🏀', size: 'text-4xl', top: '25%', left: '92%' },
+    { icon: '🎪', size: 'text-5xl', top: '55%', left: '4%' },
+    { icon: '🧸', size: 'text-4xl', top: '72%', left: '91%' },
+    { icon: '🎯', size: 'text-3xl', top: '86%', left: '12%' },
 ];
 
 // Helper to resolve relevant Lucide outline icons based on activity keywords
@@ -99,44 +88,18 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
             >
                 {/* Floating Activity Icons */}
                 <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-                    {floatingIcons.map((item, index) => (
-                        <motion.div
-                            key={index}
+                    {floatingIcons.map((item) => (
+                        <div
+                            key={item.icon}
                             className={`absolute ${item.size} select-none`}
                             style={{
                                 top: item.top,
                                 left: item.left,
                                 opacity: isKids ? 0.15 : 0.08,
-                                filter: 'blur(0.5px)',
-                            }}
-                            animate={{
-                                y: [0, -30, 0, 30, 0],
-                                x: [0, 15, -15, 0, 15],
-                                rotate: [0, 8, -8, 5, -5, 0],
-                                scale: [1, 1.08, 1, 0.95, 1],
-                            }}
-                            transition={{
-                                duration: item.duration,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: item.delay,
                             }}
                         >
-                            <motion.span
-                                animate={{
-                                    opacity: [0.6, 1, 0.8, 1, 0.6],
-                                }}
-                                transition={{
-                                    duration: item.duration * 0.6,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                    delay: item.delay,
-                                }}
-                                className="drop-shadow-lg inline-block"
-                            >
-                                {item.icon}
-                            </motion.span>
-                        </motion.div>
+                            <span className="drop-shadow-lg inline-block">{item.icon}</span>
+                        </div>
                     ))}
                 </div>
 
@@ -172,12 +135,8 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                         {activities.map((activity, i) => {
                             const Icon = getActivityIcon(activity.name);
                             return (
-                                <motion.div
+                                <div
                                     key={i}
-                                    initial={{ opacity: 0, y: 55, rotate: i % 2 === 0 ? -4 : 4, scale: 0.94 }}
-                                    whileInView={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
-                                    viewport={{ once: true, margin: "0px 0px -55px 0px" }}
-                                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.06 }}
                                     className={`${styles.card} group`}
                                     style={{
                                         backgroundColor: cardBg,
@@ -201,6 +160,9 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                                                     alt={activity.name}
                                                     className={styles.cardImage}
                                                     loading="lazy"
+                                                    decoding="async"
+                                                    width={800}
+                                                    height={600}
                                                 />
                                             </div>
 
@@ -274,7 +236,7 @@ export default function ActivitiesSection({ activities, type, accentColor }: Act
                                             </svg>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </div>
                             );
                         })}
                     </div>

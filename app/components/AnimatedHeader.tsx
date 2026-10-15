@@ -79,6 +79,11 @@ const locationGroups = [
       { name: "Hyderabad - DSL Virtue Mall", slug: "/hyderabad-dsl-virtue-mall/" },
     ],
   },
+  {
+    state: "Haryana",
+    color: "#ffc60b",
+    venues: [{ name: "Gurgaon - M3M Route 65 Mall", slug: "/gurgaon-m3m-route65-mall/" }],
+  },
 ];
 
 // Navigation items
