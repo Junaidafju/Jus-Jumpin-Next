@@ -7,8 +7,8 @@ import ActivitiesCTA from "@/app/components/activities/ActivitiesCTA";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
-  "Our Activities | 25+ Exciting Adventures at Jus Jumpin",
-  "Discover 25+ thrilling indoor activities including trampolines, adventure zones, interactive games and more at India's premier entertainment destination!",
+  "Activities at Jus Jumpin | Indoor Fun & Play Zones for Kids",
+  "Discover exciting activities at Jus Jumpin – trampolines, foam pits, soft play zones &amp; more across India. Safe, clean fun for kids of all ages!",
   "/our-activities/",
 );
 

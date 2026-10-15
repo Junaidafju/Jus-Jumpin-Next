@@ -12,8 +12,8 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
-  "Indoor Trampoline & Play Parks Across India | Jus Jumpin",
-  "Discover safe, exciting indoor trampoline parks and play zones across India. Find activities, celebrate birthdays, and plan your next visit with Jus Jumpin.",
+  "Discover the Best Trampoline Park at Jus Jumpin",
+  "Trampoline parks, foam pits, dodgeball & birthday parties for kids, teens & adults. Safe, high-energy adventures await!",
   "/",
 );
 

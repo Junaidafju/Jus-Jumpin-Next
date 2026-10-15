@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight, FileText } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
-  "Blog | Jus Jumpin Tips, Ideas & Updates for Parents and Kids",
-  "Read the Jus Jumpin blog for play ideas, parenting tips, safety insights and updates from our trampoline and play parks across India.",
+  "Blog - JUSJUMPIN | Latest News & Updates",
+  "Stay updated with the latest news and updates from Jus Jumpin - India's premier indoor trampoline park.",
   "/blogs/",
 );
 

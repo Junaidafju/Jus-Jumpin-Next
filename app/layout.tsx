@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { AnimatedHeader } from "./components/AnimatedHeader";
 import FooterWrapper from "./components/FooterWrapper";
@@ -12,13 +13,13 @@ import { absoluteUrl, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: "Jus Jumpin | Premium Indoor Trampoline & Play Parks",
+  title: "Discover the Best Trampoline Park at Jus Jumpin",
   description:
-    "Jus Jumpin offers premium indoor trampoline and play parks across India. Safe, hygienic fun for kids, teens, schools, and corporate groups.",
+    "Trampoline parks, foam pits, dodgeball & birthday parties for kids, teens & adults. Safe, high-energy adventures await!",
   openGraph: {
-    title: "Jus Jumpin | Premium Indoor Trampoline & Play Parks",
+    title: "Discover the Best Trampoline Park at Jus Jumpin",
     description:
-      "Jus Jumpin offers premium indoor trampoline and play parks across India. Safe, hygienic fun for kids, teens, schools, and corporate groups.",
+      "Trampoline parks, foam pits, dodgeball & birthday parties for kids, teens & adults. Safe, high-energy adventures await!",
     siteName: "Jus Jumpin",
     locale: "en_IN",
     type: "website",
@@ -31,9 +32,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jus Jumpin | Premium Indoor Trampoline & Play Parks",
+    title: "Discover the Best Trampoline Park at Jus Jumpin",
     description:
-      "Jus Jumpin offers premium indoor trampoline and play parks across India. Safe, hygienic fun for kids, teens, schools, and corporate groups.",
+      "Trampoline parks, foam pits, dodgeball & birthday parties for kids, teens & adults. Safe, high-energy adventures await!",
     images: [absoluteUrl("/image/Jus-Jumpin-Logo.webp")],
   },
   robots: {
@@ -57,6 +58,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-black text-slate-50 antialiased">
+        <Script id="google-analytics-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GWTVT41WFF');
+          `}
+        </Script>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-GWTVT41WFF"
+          strategy="afterInteractive"
+        />
         <ScrollToTop />
         <SmoothScroll>
           <AnimatedHeader />

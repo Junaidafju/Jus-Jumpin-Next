@@ -3,8 +3,8 @@ import { pageMetadata } from "@/lib/seo";
 
 // Server Component - No client-side code here
 export const metadata = pageMetadata(
-  "Birthday Celebrations | Jus Jumpin",
-  "Host unforgettable birthday parties for kids and adults at Jus Jumpin. Trampoline park, personalized decorations, food & endless entertainment.",
+  "Best Birthday Celebration Venue | Top Kids Birthday Party Halls",
+  "Find the best kids birthday party venue in your city. Host a birthday party for your kid at our party zone with party games, delicious food and theme decorations.",
   "/birthday-celebration/",
 );
 

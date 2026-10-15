@@ -4,8 +4,8 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = {
   ...pageMetadata(
-    "Contact Us | Jus Jumpin",
-    "Contact Jus Jumpin for birthday party bookings, ticket inquiries, school trips, and general questions. Visit us in Rajarhat, Newtown for instant fun!",
+    "Contact Jus Jumpin – India's Premier Kids Play Zone",
+    "Reach out to Jus Jumpin for inquiries, bookings, partnerships, or support. ! Call us at 9800005721 or 9830359999 today! Friendly help awaits.",
     "/contact/",
   ),
   keywords: 'Jus Jumpin contact, birthday party booking, trampoline park contact, kids entertainment Kolkata',
