@@ -201,7 +201,7 @@ export default function LocationSelector() {
               <div className="relative w-full md:flex-1">
                 <input
                   type="text"
-                  placeholder="🔍 Search by city, mall, or address..."
+                  placeholder="Search by city, mall, or address..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-10 py-3.5 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:border-[#6dc065] focus:ring-2 focus:ring-[#6dc065]/30 transition-all text-sm font-medium backdrop-blur-md shadow-inner"

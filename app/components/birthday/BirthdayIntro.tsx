@@ -14,8 +14,8 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-    { number: 500, suffix: '+', label: 'Birthday Parties' },
-    { number: 10, suffix: 'k+', label: 'Happy Kids' },
+    { number: 5000, suffix: '+', label: 'Birthday Parties' },
+    { number: 10, suffix: 'K+', label: 'Happy Kids' },
     { number: 50, suffix: '+', label: 'Themes' },
     { number: 100, suffix: '%', label: 'Memories' },
 ];

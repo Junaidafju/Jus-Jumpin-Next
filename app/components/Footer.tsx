@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaBirthdayCake, FaHome, FaInfoCircle, FaBlog, FaChevronUp, FaSchool, FaBriefcase } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import LottieIcon from './LottieIcon';
+import BallPool from './Ballpool';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -45,7 +46,10 @@ const Footer = () => {
         { city: 'Surat', address: 'VR Mall', slug: '/surat-vr-mall/' },
         { city: 'Hyderabad', address: 'Sarath City Capital Mall', slug: '/hyderabad-sarath-city-capital-mall/' },
         { city: 'Hyderabad', address: 'DSL Virtue Mall', slug: '/hyderabad-dsl-virtue-mall/' },
+        { city: 'Hyderabad', address: 'Lake Shore Mall', slug: '/hyderabad-lakeshore-mall/' },
+        { city: 'Secunderabad', address: 'AMR Planet Mall', slug: '/secunderabad-amr-planet-mall/' },
         { city: 'Gurgaon', address: 'M3M Route 65 Mall', slug: '/gurgaon-m3m-route65-mall/' },
+        { city: 'Dehradun', address: 'Mall Of Dehradun', slug: '/dehradun-mall-of-dehradun/' },
     ];
 
     const socialLinks = [
@@ -145,7 +149,12 @@ const Footer = () => {
                     />
                 ))}
             </div>
+            {/* Animated background particles */}
+            <div className="absolute inset-0 overflow-hidden">
+                ...
+            </div>
 
+            <BallPool />   {/* 👈 add this */}
             {/* Top decorative wave with animation */}
             <motion.div
                 className="overflow-hidden relative"

@@ -2474,3 +2474,84 @@ We have trampoline & adventure parks in:
 
 🔗 https://www.jusjumpin.com/kolkata-abc-square-building-best-adult-trampoline-park
 --------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 16/10/2026, 4:06:08 pm
+🕐 UTC: 2026-10-16T10:36:08.880Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36
+📝 User Question: which AI assistant are you?
+🤖 AI Response: I'm the friendly and energetic AI Assistant for Jus Jumpin, India's premier indoor trampoline and adventure parks! I'm here to help you with information about our locations, activities, timings, and more. How can I assist you today?
+--------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 12/11/2026, 7:25:47 pm
+🕐 UTC: 2026-11-12T13:55:47.067Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36
+📝 User Question: is there any store in dehradun?
+🤖 AI Response: 📍 **Jus Jumpin — Dehradun (Mall of Dehradun)**
+📝 Hop in to experience the best trampoline park & Kids play zone in Dehradun. With more than 15 fun-packed activities, a day out to remember for a lifetime is guaranteed.
+
+🏢 **Address:** 2F/19, Mall of Dehradun, 2nd Floor, Jus Jumpin, Unit No. SH, IIP, Mohkampur, Mohkam Pur Khurd, Dehradun, Uttarakhand 248005
+📞 **Phone:** (+91)98301 15533
+
+⏰ **Hours:** Weekdays 11:00 AM – 9:30 PM | Weekends 11:00 AM – 9:30 PM
+
+💰 **Pricing:**
+• 30 Minutes: **₹450** (WD) | **₹450** (WE)
+• 60 Minutes: **₹550** (WD) | **₹550** (WE)
+📌 *Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)*
+
+🎮 **Activities:** Trampoline, Foam Pit, Ball Pool, Tunnel, Obstacle Course, Toshi Net + 11 more
+
+🔗 https://www.jusjumpin.com/dehradun-mall-of-dehradun
+--------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 12/11/2026, 7:25:57 pm
+🕐 UTC: 2026-11-12T13:55:57.398Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36
+📝 User Question: Dehradun - Mall of Dehradun pricing
+🤖 AI Response: 💰 **Ticket Pricing — Dehradun (Mall of Dehradun)**
+
+• **30 Minutes:** Weekday **₹450** | Weekend **₹450**
+• **60 Minutes:** Weekday **₹550** | Weekend **₹550**
+
+📌 *Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)*
+
+📞 For party or bulk bookings: (+91)98301 15533
+🔗 https://www.jusjumpin.com/dehradun-mall-of-dehradun
+--------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 13/11/2026, 4:43:42 pm
+🕐 UTC: 2026-11-13T11:13:42.722Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36
+📝 User Question: Where are you located?
+🤖 AI Response: 🏢 We have **20+ locations across India**! Here are some of the cities where you can find us:
+
+- Kolkata
+- Hyderabad
+- Secunderabad
+- Bengaluru
+- Dhanbad
+- Mumbai
+- Durgapur
+- Nashik
+- Jamshedpur
+- Nagpur
+- Noida
+- Pune
+- Raipur
+- Ranchi
+- Siliguri
+- Surat
+- Thane
+- Gurgaon
+- Dehradun
+
+If you need information about a specific location, just let me know!
+--------------------------------------------------------------------------------

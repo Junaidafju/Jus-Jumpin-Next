@@ -26,11 +26,24 @@ const locationGroups = [
     ],
   },
   {
-    state: "Karnataka",
-    color: "#00b9e3",
+    state: "Telangana",
+    color: "#00d9a6",
     venues: [
-      { name: "Bengaluru - M5 Ecity Mall", slug: "/bengaluru-m5-ecity-mall/" },
-      { name: "Bengaluru - Meenakshi Mall", slug: "/bengaluru-meenakshi-mall/" },
+      { name: "Hyderabad - Sarath City Capital Mall", slug: "/hyderabad-sarath-city-capital-mall/" },
+      { name: "Hyderabad - DSL Virtue Mall", slug: "/hyderabad-dsl-virtue-mall/" },
+      { name: "Hyderabad - Lake Shore Mall", slug: "/hyderabad-lakeshore-mall/" },
+      { name: "Secunderabad - AMR Planet Mall", slug: "/secunderabad-amr-planet-mall/" },
+    ],
+  },
+  {
+    state: "Maharashtra",
+    color: "#ff661a",
+    venues: [
+      { name: "Thane - R Mall", slug: "/thane-r-mall/" },
+      { name: "Nagpur - VR Mall", slug: "/nagpur-vr-mall/" },
+      { name: "Pune - Seasons Mall", slug: "/pune-season-mall/" },
+      { name: "Nashik - City Centre", slug: "/nashik-city-centre/" },
+      { name: "Ghatkopar - R City Mall", slug: "/ghatkopar-rcity-mall/" },
     ],
   },
   {
@@ -51,15 +64,17 @@ const locationGroups = [
     ],
   },
   {
-    state: "Maharashtra",
-    color: "#ff661a",
+    state: "Karnataka",
+    color: "#00b9e3",
     venues: [
-      { name: "Thane - R Mall", slug: "/thane-r-mall/" },
-      { name: "Nagpur - VR Mall", slug: "/nagpur-vr-mall/" },
-      { name: "Pune - Seasons Mall", slug: "/pune-season-mall/" },
-      { name: "Nashik - City Centre", slug: "/nashik-city-centre/" },
-      { name: "Ghatkopar - R City Mall", slug: "/ghatkopar-rcity-mall/" },
+      { name: "Bengaluru - M5 Ecity Mall", slug: "/bengaluru-m5-ecity-mall/" },
+      { name: "Bengaluru - Meenakshi Mall", slug: "/bengaluru-meenakshi-mall/" },
     ],
+  },
+  {
+    state: "Haryana",
+    color: "#ffc60b",
+    venues: [{ name: "Gurgaon - M3M Route 65 Mall", slug: "/gurgaon-m3m-route65-mall/" }],
   },
   {
     state: "Chhattisgarh",
@@ -67,22 +82,14 @@ const locationGroups = [
     venues: [{ name: "Raipur - Zora Mall", slug: "/raipur-zora-mall/" }],
   },
   {
+    state: "Dehradun",
+    color: "#ff0000ff",
+    venues: [{ name: "Dehradun - Mall Dehradun", slug: " /dehradun-mall-of-dehradun/" }],
+  },
+  {
     state: "Gujarat",
     color: "#8869d2",
     venues: [{ name: "Surat - VR Mall", slug: "/surat-vr-mall/" }],
-  },
-  {
-    state: "Telangana",
-    color: "#00d9a6",
-    venues: [
-      { name: "Hyderabad - Sarath City Capital Mall", slug: "/hyderabad-sarath-city-capital-mall/" },
-      { name: "Hyderabad - DSL Virtue Mall", slug: "/hyderabad-dsl-virtue-mall/" },
-    ],
-  },
-  {
-    state: "Haryana",
-    color: "#ffc60b",
-    venues: [{ name: "Gurgaon - M3M Route 65 Mall", slug: "/gurgaon-m3m-route65-mall/" }],
   },
 ];
 
@@ -395,7 +402,7 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                         />
                       </div>
 
-                      <div 
+                      <div
                         data-lenis-prevent="true"
                         className="p-4 md:p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-h-[380px] overflow-y-auto overscroll-contain"
                         onWheel={(e) => e.stopPropagation()}
@@ -415,8 +422,8 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                                       key={venue.slug}
                                       href={venue.slug}
                                       className={`block px-3 py-1.5 rounded-lg transition-colors text-xs md:text-[13px] ${active
-                                          ? "bg-[#6dc065]/20 text-white"
-                                          : "text-white/70 hover:text-white hover:bg-white/5"
+                                        ? "bg-[#6dc065]/20 text-white"
+                                        : "text-white/70 hover:text-white hover:bg-white/5"
                                         }`}
                                       whileHover={{ x: 4 }}
                                       whileTap={{ scale: 0.98 }}
@@ -576,8 +583,8 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
                         className={`mobile-menu-item flex items-center justify-between px-4 py-3 rounded-xl text-base transition-colors ${active
-                            ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-neutral-900 font-semibold"
-                            : "text-white/85 hover:text-white hover:bg-white/5"
+                          ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-neutral-900 font-semibold"
+                          : "text-white/85 hover:text-white hover:bg-white/5"
                           }`}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -598,7 +605,7 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-white/50 mb-4 focus:outline-none focus:ring-2 focus:ring-[#6dc065] focus:border-transparent text-sm"
                     />
-                    <div 
+                    <div
                       data-lenis-prevent="true"
                       className="space-y-3 max-h-[280px] overflow-y-auto pr-2 overscroll-contain"
                       onWheel={(e) => e.stopPropagation()}
@@ -619,8 +626,8 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                                     href={venue.slug}
                                     onClick={() => setMobileMenuOpen(false)}
                                     className={`block py-1.5 text-sm transition-all border-l pl-3 ${active
-                                        ? "text-white border-[#6dc065] font-medium"
-                                        : "text-white/70 hover:text-white hover:pl-4 border-white/10 hover:border-[#6dc065]"
+                                      ? "text-white border-[#6dc065] font-medium"
+                                      : "text-white/70 hover:text-white hover:pl-4 border-white/10 hover:border-[#6dc065]"
                                       }`}
                                   >
                                     {venue.name}
@@ -648,8 +655,8 @@ export const AnimatedHeader = memo(function AnimatedHeader() {
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
                         className={`mobile-menu-item flex items-center justify-between px-4 py-3 rounded-xl text-base transition-colors ${active
-                            ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-neutral-900 font-semibold"
-                            : "text-white/85 hover:text-white hover:bg-white/5"
+                          ? "bg-gradient-to-r from-[#6dc065] to-[#b2d235] text-neutral-900 font-semibold"
+                          : "text-white/85 hover:text-white hover:bg-white/5"
                           }`}
                         whileTap={{ scale: 0.98 }}
                       >
