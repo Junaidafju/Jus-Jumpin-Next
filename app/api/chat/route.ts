@@ -18,7 +18,7 @@ interface ChatRequestBody {
 /**
  * Distinguishes explicit booking intent from informational inquiries.
  */
-export function isBookingIntent(query: string): boolean {
+function isBookingIntent(query: string): boolean {
     const q = query.toLowerCase().trim();
 
     // Purely exploratory or informational questions without booking action

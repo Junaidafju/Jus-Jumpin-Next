@@ -1,52 +1,23 @@
-// next.config.ts - More permissive version
+// next.config.ts
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactCompiler: true,
+  // Set to false or remove this line:
+  reactCompiler: false,
+
   env: {
     GOOGLE_AI_API_KEY: process.env.GOOGLE_AI_API_KEY,
   },
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.jusjumpin.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.shutterstock.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media.istockphoto.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'static.vecteezy.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**', // Allows all paths
-      },
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'static.wixstatic.com',
-        port: '',
-        pathname: '/**',
-      },
-      // Add more domains as needed
+      { protocol: 'https', hostname: 'www.jusjumpin.com' },
+      { protocol: 'https', hostname: 'www.shutterstock.com' },
+      { protocol: 'https', hostname: 'media.istockphoto.com' },
+      { protocol: 'https', hostname: 'static.vecteezy.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'static.wixstatic.com', pathname: '/**' },
     ],
-
-    // Alternative: Disable image optimization for external images
-    // unoptimized: true,
   },
 };
 

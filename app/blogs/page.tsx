@@ -17,16 +17,11 @@ interface BlogsPageProps {
     search?: string;
     category?: string;
     page?: string;
-  }> | {
-    search?: string;
-    category?: string;
-    page?: string;
-  };
+  }>;
 }
 
 export default async function BlogsPage({ searchParams }: BlogsPageProps) {
-  // Resilient params parsing for all Next.js versions
-  const resolvedParams = searchParams instanceof Promise ? await searchParams : searchParams;
+  const resolvedParams = await searchParams;
   const search = resolvedParams?.search || "";
   const categoryIdStr = resolvedParams?.category || "";
   const pageStr = resolvedParams?.page || "1";

@@ -10,12 +10,12 @@ import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
 import { absoluteUrl } from "@/lib/seo";
 
 interface BlogPostPageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const post = await getPostBySlug(resolvedParams.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -57,8 +57,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const post = await getPostBySlug(resolvedParams.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();

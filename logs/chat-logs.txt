@@ -2555,3 +2555,41 @@ We have trampoline & adventure parks in:
 
 If you need information about a specific location, just let me know!
 --------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 17/11/2026, 5:35:54 pm
+🕐 UTC: 2026-11-17T12:05:54.063Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36
+📝 User Question: What are your prices?
+🤖 AI Response: 📍 **Which location would you like to check?**
+
+We have trampoline & adventure parks in:
+• Kolkata • Hyderabad • Secunderabad • Bengaluru • Dhanbad • Mumbai • Durgapur • Nashik • Jamshedpur • Nagpur • Noida • Pune • Raipur • Ranchi • Siliguri • Surat • Thane • Gurgaon • Dehradun
+
+💡 Example: *"Kolkata prices"*, *"Noida hours"*, or *"Hyderabad activities"*
+--------------------------------------------------------------------------------
+
+================================================================================
+📅 Date & Time: 17/11/2026, 5:36:06 pm
+🕐 UTC: 2026-11-17T12:06:06.207Z
+🌐 IP Address: ::1
+🖥️ User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36
+📝 User Question: dehradub
+🤖 AI Response: 📍 **Jus Jumpin — Dhanbad (Prabhatam Mall)**
+📝 High-energy fun for the whole family — trampolines, ninja courses and more at Prabhatam Mall.
+
+🏢 **Address:** Shop no. 252, 2nd floor, Prabhatam Grand Mall, Barwaada Rd, Dhaiya, Dhanbad, Jharkhand 826010.
+📞 **Phone:** (+91)98301 15533
+
+⏰ **Hours:** Weekdays 11:00 AM – 9:30 PM | Weekends 11:00 AM – 9:30 PM
+
+💰 **Pricing:**
+• 30 Minutes: **₹400** (WD) | **₹400** (WE)
+• 60 Minutes: **₹500** (WD) | **₹500** (WE)
+📌 *Anti-Skid Grip Socks at ₹50 (One-time Purchase. Compulsory for your safety.)*
+
+🎮 **Activities:** Infinity Trampoline, MerryGo Round, Donut Slide, Wave Slide, Foam Pit, Swing + 14 more
+
+🔗 https://www.jusjumpin.com/dhanbad-prabhatam-mall
+--------------------------------------------------------------------------------
